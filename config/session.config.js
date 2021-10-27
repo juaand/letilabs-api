@@ -5,7 +5,7 @@ const SESSION_MAX_AGE_SECONDS = Number(process.env.SESSION_MAX_AGE_SECONDS) || 6
 
 //LOCALHOST
 module.exports = session({
-  secret: process.env.SESSION_SECRET || 'Mappetapi',
+  secret: process.env.SESSION_SECRET || 'Letilabsapi',
   resave: true,
   saveUninitialized: false,
   cookie: {
