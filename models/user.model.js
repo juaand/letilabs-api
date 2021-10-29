@@ -47,10 +47,6 @@ const userSchema = new Schema(
       required: [true, 'Username is required'],
       trim: true,
     },
-    bio: {
-      type: String,
-      maxlength: 500
-    },
     activation: {
       active: {
         type: Boolean,
@@ -66,14 +62,8 @@ const userSchema = new Schema(
       enum: ['Guest', 'Admin', 'Editor'],
       default: 'Guest'
     },
-    level: {
-      type: String,
-      enum: ['puppy', 'adult', 'senior'],
-      default: 'puppy'
-    },
     social: {
       google: String,
-      facebook: String
     }
   },
   {
