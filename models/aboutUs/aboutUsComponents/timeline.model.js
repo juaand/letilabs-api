@@ -1,17 +1,17 @@
 // models/like.model.js
 const { Schema, model} = require('mongoose')
 
-const socialMediaFooterSchema = new Schema(
+const timelineSchema = new Schema(
   {
-    socialMediaName: {
+    year: {
+      type: Number,
+      required: true
+    },
+    imgURL: {
       type: String,
       required: true
     },
-    socialUrl: {
-      type: String,
-      required: true
-    },
-    socialLogo: {
+    description: {
       type: String,
       required: true
     },
@@ -19,4 +19,4 @@ const socialMediaFooterSchema = new Schema(
   { timestamps: true }
 )
 
-module.exports = model('SocialMediaFooter', socialMediaFooterSchema)
+module.exports = model('Timeline', timelineSchema)

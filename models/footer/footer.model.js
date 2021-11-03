@@ -1,5 +1,5 @@
 // models/spot.model.js
-const {Schema, model, ObjectId} = require('mongoose')
+const {Schema, model} = require('mongoose')
 
 const footerSchema = new Schema(
   {

@@ -1,5 +1,5 @@
-// models/spot.model.js
-const {Schema, model, ObjectId} = require('mongoose')
+// models/aboutUs.model.js
+const {Schema, model} = require('mongoose')
 const medicalSpecialities = require('../data/medicalSpecialities')
 
 const aboutUsSchema = new Schema(
