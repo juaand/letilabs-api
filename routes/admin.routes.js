@@ -8,13 +8,7 @@ const commentController = require('../controllers/comment.controller')
 
 module.exports = router
 
-router.get('/admin', routeGuard.isAuthenticated, adminController.getAdmin)
-
-router.get(
-  '/admin/comment/:id/aprove',
-  routeGuard.isAuthenticated,
-  adminController.aproveComment
-)
+router.get('/admin/edit', routeGuard.isAuthenticated, adminController.getAdmin)
 
 router.get(
   '/admin/comment/:id/delete',

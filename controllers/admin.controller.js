@@ -1,30 +1,28 @@
 // controllers/admin.controllers.js
 
 const User = require('../models/user.model')
-const Spot = require('../models/spot.model')
-const Pet = require('../models/pet.model')
-const Comment = require('../models/comment.model')
-const Likes = require('../models/like.model')
+const Home = require('../models/home/home.model')
+const Navbar = require('../models/navbar/navbar.model')
+const Footer = require('../models/footer/footer.model')
+
 
 module.exports.getAdmin = (req, res, next) => {
   const user = req.session.currentUser
 
   if (user.role === 'Admin') {
     const users = User.find()
-    const spots = Spot.find()
-    const pets = Pet.find()
-    const comments = Comment.find()
-    const likes = Likes.find()
+    const home = Home.find()
+    const navbar = Navbar.find()
+    const footer = Footer.find()
 
-    Promise.all([users, spots, pets, comments, likes])
+    Promise.all([users, home, navbar, footer])
       .then((values) => {
-        res.render('admin/', {
+        res.render('admin/edit', {
           profiles: values[0],
-          spots: values[1],
-          pets: values[2],
-          comments: values[3],
-          likes: values[4],
-          title: 'mappet | admin page',
+          home: values[1],
+          navbar: values[2],
+          footer: values[3],
+          title: 'letilab | admin page',
           admin: true
         })
       })
@@ -89,17 +87,6 @@ module.exports.getAdminPets = (req, res, next) => {
       })
       .catch((error) => next(error))
   }
-}
-
-module.exports.aproveComment = (req, res, next) => {
-  const id = req.params.id
-  Comment.findByIdAndUpdate(id, {
-    verify: true
-  })
-    .then(() => {
-      res.redirect('/admin/stats/comments')
-    })
-    .catch((error) => next(error))
 }
 
 module.exports.getAdminComments = (req, res, next) => {

@@ -9,7 +9,7 @@ const authController = require('../controllers/auth.controller')
 module.exports = router
 
 
-router.post('/login', routeGuard.isNotAuthenticated, authController.doLogin)
+router.post('/admin', routeGuard.isNotAuthenticated, authController.admin)
 
 router.post('/google-login', routeGuard.isNotAuthenticated, authController.doGoogleLogin)
 

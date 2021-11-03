@@ -1,19 +1,7 @@
 const bcrypt = require('bcryptjs')
 const {Schema, model} = require('mongoose')
-const Pet = require('./pet.model')
-const Spot = require('./spot.model')
 
 const EMAIL_PATTERN = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i
-
-const generateRandomToken = () => {
-  const characters =
-    '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
-  let token = ''
-  for (let i = 0; i < 25; i++) {
-    token += characters[Math.floor(Math.random() * characters.length)]
-  }
-  return token
-}
 
 const userSchema = new Schema(
   {
@@ -38,33 +26,17 @@ const userSchema = new Schema(
       trim: true,
       lowercase: true
     },
-    avatar: {
-      type: String
-    },
     password: {
       type: String,
       minlength: [8, 'password min length is 8'],
       required: [true, 'Username is required'],
       trim: true,
     },
-    activation: {
-      active: {
-        type: Boolean,
-        default: false
-      },
-      token: {
-        type: String,
-        default: generateRandomToken
-      }
-    },
     role: {
       type: String,
       enum: ['Guest', 'Admin', 'Editor'],
       default: 'Guest'
     },
-    social: {
-      google: String,
-    }
   },
   {
     timestamps: true,
@@ -82,30 +54,6 @@ const userSchema = new Schema(
     }
   }
 )
-
-userSchema.virtual('pets', {
-  ref: 'Pet',
-  localField: '_id',
-  foreignField: 'creatorId',
-  justOne: false,
-  options: {sort: {createdAt: -1}}
-})
-
-userSchema.virtual('spots', {
-  ref: 'Spot',
-  localField: '_id',
-  foreignField: 'creatorId',
-  justOne: false,
-  options: {sort: {createdAt: -1}}
-})
-
-userSchema.virtual('blogs', {
-  ref: 'Blog',
-  localField: '_id',
-  foreignField: 'authorId',
-  justOne: false,
-  options: {sort: {createdAt: -1}}
-})
 
 userSchema.pre('save', function (next) {
   if (this.isModified('password')) {
