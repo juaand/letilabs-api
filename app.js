@@ -8,7 +8,6 @@ const cookieParser = require('cookie-parser')
 const mongoose = require('mongoose')
 
 require('./config/db.config')
-const passportConfig = require('./config/passport.config')
 const session = require('./config/session.config')
 const cors = require('./config/cors.config')
 
@@ -30,7 +29,6 @@ app.use(express.urlencoded({extended: false}))
 app.use(cookieParser())
 app.use(express.static(path.join(__dirname, 'public')))
 app.use(session)
-app.use(passportConfig)
 
 app.use((req, _, next) => {
   req.currentUser = req.session.user

@@ -11,25 +11,4 @@ module.exports = router
 
 router.post('/admin', routeGuard.isNotAuthenticated, authController.admin)
 
-router.post('/google-login', routeGuard.isNotAuthenticated, authController.doGoogleLogin)
-
-router.get(
-  '/register',
-  routeGuard.isNotAuthenticated,
-  authController.getRegister
-)
-
-router.post(
-  '/register',
-  routeGuard.isNotAuthenticated,
-  upload.single('avatar'),
-  authController.postRegister
-)
-
-router.get(
-  '/activate/:token',
-  routeGuard.isNotAuthenticated,
-  authController.getToken
-)
-
 router.post('/logout', routeGuard.isAuthenticated, authController.doLogout)

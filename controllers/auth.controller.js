@@ -7,8 +7,6 @@ const createError = require("http-errors")
 
 module.exports.admin = (req, res, next) => {
   const {email, password} = req.body
-  const googleUserID = req.body.googleId
-  console.log(googleUserID)
   
   if (!email || !password) {
     throw createError(400, "Missing credentials")

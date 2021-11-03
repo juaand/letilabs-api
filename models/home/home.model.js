@@ -1,6 +1,6 @@
 // models/spot.model.js
 const {Schema, model, ObjectId} = require('mongoose')
-const medicalSpecialities = require('../data/medicalSpecialities')
+const medicalSpecialities = require('../../data/medicalSpecialities')
 
 const EMAIL_PATTERN = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i
 
