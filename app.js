@@ -97,7 +97,7 @@ app.use(function (error, req, res, next) {
 /** 
  * Listen on provided port
  */
-const port = normalizePort(process.env.PORT || '3010')
+const port = normalizePort(process.env.PORT || '3001')
 app.listen(port, () => {
   console.log(`Listening on port ${port}`)
 })

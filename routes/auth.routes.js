@@ -9,6 +9,6 @@ const authController = require('../controllers/auth.controller')
 module.exports = router
 
 
-router.post('/admin', routeGuard.isNotAuthenticated, authController.admin)
+router.post('/login', authController.admin)
 
 router.post('/logout', routeGuard.isAuthenticated, authController.doLogout)

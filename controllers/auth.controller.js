@@ -9,19 +9,19 @@ module.exports.admin = (req, res, next) => {
   const {email, password} = req.body
   
   if (!email || !password) {
-    throw createError(400, "Missing credentials")
+    throw createError(400, "Ingresa tu usuario y/o contraseña")
   }
 
   User.findOne({email: email})
     .then((user) => {
       if (!user) {
-        throw createError(404, "User not found, please try again")
+        throw createError(404, "Usuario no encontrado, por favor, intenta nuevamente")
       } else {
         return user
           .checkPassword(password)
           .then((match) => {
             if (!match) {
-              throw createError(400, "Invalid password, please try again")
+              throw createError(400, "Error de usuario y/o contraseña")
             } else {
               req.session.user = user
               if (user.role === "Admin") {
