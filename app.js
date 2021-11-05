@@ -50,6 +50,7 @@ const singleRouter = require('./routes/single.routes')
 const socialRouter = require('./routes/social.routes')
 const spotRouter = require('./routes/spot.routes')
 const blogRouter = require('./routes/blog.routes')
+const vigilanciaRouter = require('./routes/vigilancia.routes')
 app.use('/', adminRouter)
 app.use('/', authRouter)
 app.use('/', commentRouter)
@@ -62,6 +63,7 @@ app.use('/', singleRouter)
 app.use('/', socialRouter)
 app.use('/', spotRouter)
 app.use('/', blogRouter)
+app.use('/', vigilanciaRouter)
 
 
 // catch 404 and forward to error handler
