@@ -30,7 +30,6 @@ const vigilanciaSchema = new Schema({
         virtuals: true,
         transform: (doc, ret) => {
             ret.id = doc._id
-            ret.date = doc.createdAt
             delete ret._id
             delete ret.__v
             delete ret.createdAt

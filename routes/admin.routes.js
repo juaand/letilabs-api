@@ -8,4 +8,4 @@ const commentController = require('../controllers/comment.controller')
 
 module.exports = router
 
-router.get('/admin-edit', routeGuard.isAuthenticated, adminController.getAdmin)
+router.get('/farmvigdata', routeGuard.isAuthenticated, adminController.getFarmVigData)
