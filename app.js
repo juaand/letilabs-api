@@ -72,7 +72,7 @@ app.use(function (error, req, res, next) {
     error = createError(404, 'Resource not found')
   }
 
-  data.message = error.message
+  data.message = data.errors.name
   res.json(data)
 })
 

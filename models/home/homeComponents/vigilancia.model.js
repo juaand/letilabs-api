@@ -10,7 +10,7 @@ const vigilanciaSchema = new Schema({
     },
     lastname: {
         type: String,
-        maxLength: [50, "El apellido ha llegado al máximo de caracteres permitidos."]
+        maxLength: [75, "El apellido ha llegado al máximo de caracteres permitidos."]
     },
     name: {
         type: String,

@@ -12,5 +12,4 @@ router.get('/vigilancia/:id/delete',
   vigilanciaController.dropVigilanciaCard)
 
 router.post('/vigilancia',
-  routeGuard.isAuthenticated,
   vigilanciaController.addVigilancia)
