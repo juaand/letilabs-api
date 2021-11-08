@@ -5,13 +5,16 @@ const vigilanciaSchema = new Schema({
         type: Date
     },
     effects: {
-        type: String
+        type: String,
+        maxLength: [200, "Efecto(s) secundario(s) ha excedido el máximo de caracteres permitidos para el campo."]
     },
     lastname: {
-        type: String
+        type: String,
+        maxLength: [50, "El apellido ha llegado al máximo de caracteres permitidos."]
     },
     name: {
-        type: String
+        type: String,
+        maxLength: [50, "El nombre ha llegado al máximo de caracteres permitidos."]
     },
     medicine: {
         type: String
