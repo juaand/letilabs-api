@@ -1,17 +1,10 @@
 // controllers/vigilancia.controllers.js
 
 const Vigilancia = require('../models/home/homeComponents/vigilancia.model')
-const createError = require("http-errors")
 
 
 module.exports.addVigilancia = (req, res, next) => {
   const {name, lastname, sex, medicine, date, effects, prescribed} = req.body
-
-  const formatDate = (d) => {
-    var str = d
-    darr = str.split('/')
-    return new Date(parseInt(darr[2]), parseInt(darr[1]) - 1, parseInt(darr[0]))
-  }
 
   Vigilancia.create({
     name,
@@ -26,4 +19,23 @@ module.exports.addVigilancia = (req, res, next) => {
       res.status(201).json(newVigilancia)
     })
     .catch(next)
+}
+
+
+module.exports.dropVigilanciaCard = (req, res, next) => {
+  const id = req.params.id
+  const userRole = req.session.user.role
+
+  if (userRole === 'Admin') {
+    Vigilancia.findByIdAndDelete(id)
+      .then(() => {
+        console.log('Vigilancia eliminada')
+        res.status(204).json({message: 'El comentario fue eliminado.'})
+      })
+      .catch(next)
+  } else {
+    return res
+      .status(403)
+      .json({message: "No posee suficiente privilegios para hacer esta tarea"})
+  }
 }
