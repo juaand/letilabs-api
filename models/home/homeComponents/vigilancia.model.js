@@ -7,7 +7,7 @@ const vigilanciaSchema = new Schema({
     effects: {
         type: String
     },
-    lastName: {
+    lastname: {
         type: String
     },
     name: {
@@ -17,12 +17,12 @@ const vigilanciaSchema = new Schema({
         type: String
     },
     prescribed: {
-      type: String,
-      enum: ['Si', 'No']
+        type: String,
+        enum: ['Si', 'No']
     },
     sex: {
-      type: String,
-      enum: ['F', 'M']
+        type: String,
+        enum: ['F', 'M']
     }
 }, {
     timestamps: true,
@@ -32,7 +32,6 @@ const vigilanciaSchema = new Schema({
             ret.id = doc._id
             delete ret._id
             delete ret.__v
-            delete ret.createdAt
             delete ret.updatedAt
             return ret
         }
