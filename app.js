@@ -42,10 +42,12 @@ const adminRouter = require('./routes/admin.routes.js')
 const authRouter = require('./routes/auth.routes.js')
 const vigilanciaRouter = require('./routes/vigilancia.routes')
 const contentRouter = require('./routes/content.routes')
+const searchRouter = require('./routes/search.routes')
 app.use('/', adminRouter)
 app.use('/', authRouter)
 app.use('/', vigilanciaRouter)
 app.use('/', contentRouter)
+app.use('/', searchRouter)
 
 
 // catch 404 and forward to error handler
@@ -74,7 +76,7 @@ app.use(function (error, req, res, next) {
     error = createError(404, 'Resource not found')
   }
 
-  data.message = data.errors.name
+  data.message = data?.errors?.name
   res.json(data)
 })
 
