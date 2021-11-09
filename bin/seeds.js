@@ -19,6 +19,67 @@ const petN = 3
 const userIds = []
 const spotIds = []
 
+
+////////////////////////////
+
+
+const HomeSearch = require('../models/home/homeSearch.model');
+const HomePage = require('../models/home/home.model')
+const unidadesNegocio = require('../data/unidadesNegocio')
+const portfolioData = require('../data/dataPortafolio')
+const bussinessUnitsDescs = []; 
+const portfolioTitles = [];
+const portfolioDescs = [];
+
+unidadesNegocio.forEach(unidad => {
+  bussinessUnitsDescs.push(unidad.desc)
+})
+portfolioData.forEach(unidad => {
+  portfolioTitles.push(unidad.title)
+  portfolioDescs.push(unidad.desc)
+})
+
+
+Promise.all([
+  HomeSearch.deleteMany(),
+  HomePage.deleteMany()
+])
+.then(() => {
+  console.log('all databases cleaned')
+  const homeSearch = new HomeSearch({
+    url: 'https://letilabs-dev.herokuapp.com/',
+    genericContentAboutUs: 'Laboratorios Leti es un laboratorio farmacéutico venezolano que desde hace 70 años, crea soluciones de salud a través de la producción y comercialización de un amplio portafolio de medicamentos desarrollados con tecnología y seguridad, de la mano de un talento humano caliﬁcado que trabaja día a día para acompañar a los venezolanos.',
+    aboutUsButtonTitle: 'Conoce más sobre nosotros',
+    carrouselTitle: 'Nuestros productos',
+    bussinesUnitsTitle: 'Nos conformamos de 3 unidades de negocio',
+    bussinesUnitsDescriptions: bussinessUnitsDescs,
+    portfolio4TypesTitle: 'Nuestro portafolio cuenta con 4 tipos de medicamentos',
+    portfolio4TypesTitles: portfolioTitles,
+    portfolio4TypesDescriptions: portfolioDescs,
+    knowThemallButtonTitle: 'Conócelos todos',
+    findProductTitle: 'Encuentra un producto...',
+    farmacología: {
+      title: 'Farmacovigilancia',
+      question: '¿Tuviste algún efecto adverso con alguno de nuestros productos?',
+      buttonTitle: 'Infórmanos aquí',
+    }
+  })
+  const aboutUsSearch = new AboutUsSearch({
+    developingSolutionsTitle: '',
+    contentWithSecondImg: '',
+    secondSliderTitle: '',
+    timeLine: portfolioDescs,
+    letiLabLatamTitle: '',
+    megatDescription: '',
+    megatButtonTitle: ''
+  })
+  homeSearch.save()
+    .then(() => console.log(`hamepageSearch created`))
+    .catch(error => console.log(error))
+})
+.catch(error => console.log(error))
+
+
 Promise.all([
   User.deleteMany(),
   Spot.deleteMany(),

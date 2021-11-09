@@ -6,6 +6,10 @@ const EMAIL_PATTERN = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\"
 
 const homeSchema = new Schema(
   {
+    url: {
+      type: String,
+      required: true
+    },
     video: {
       type: String,
       required: true
@@ -43,7 +47,7 @@ const homeSchema = new Schema(
       enum: medicalSpecialities.map((c) => c.id),
       default: []
     },
-    Farmacología: {
+    farmacología: {
       title: {
         type: String,
         required: true
