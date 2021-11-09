@@ -5,14 +5,18 @@ const SiteContent = require('../models/siteContent.model')
 module.exports.createContent = (req, res, next) => {
   const {name, url, content} = req.body
 
-  console.log(content)
+  const dataArr = new Set(content)
+
+  SiteContent.deleteMany()
 
   SiteContent.find({name})
     .then(response => {
       if (response.length) {
         SiteContent.findOneAndUpdate({name}, {$set: {content}})
-          .then((newContent) => {
-            res.status(201).json(newContent)
+          .then(() => {
+            res.status(201).json({
+              message: 'Contenido ya existe'
+            })
           })
           .catch(next)
       } else {
@@ -20,7 +24,7 @@ module.exports.createContent = (req, res, next) => {
         //   res.status(201).json(newContent)
         // })
         //   .catch(next)
-        content.forEach(el => {
+        dataArr.forEach(el => {
           SiteContent.create({name, url, content: el})
             .then(() => {
               res.status(201).json({
