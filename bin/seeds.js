@@ -2,91 +2,201 @@ require('../config/db.config')
 require('dotenv').config()
 
 const User = require('../models/user.model')
-const Spot = require('../models/spot.model')
-const Comment = require('../models/comment.model')
-const Pet = require('../models/pet.model')
-const Like = require('../models/like.model')
-const Blog = require('../models/blog.model')
 const faker = require('faker')
-const database = require('../data/mappet.json')
 
 const userN = 30
-const spotN = 3
-const commentN = 3
-const blogN = 10
-const petN = 3
-
-const userIds = []
-const spotIds = []
 
 
-////////////////////////////
 
+////////////   HOME  ///////////////////
 
-const HomeSearch = require('../models/home/homeSearch.model');
-const HomePage = require('../models/home/home.model')
-const unidadesNegocio = require('../data/unidadesNegocio')
+const CarrouselHome = require('../models/home/homeComponents/carrouselHome.model')
+const FarmacoVigilancia = require('../models/home/homeComponents/farmacoVigilancia.model')
+const MeetPeopleWorkWithUsHome = require('../models/home/homeComponents/meetPeopleWorkWithUsHome.model')
+const ModalFarmacoVigilancia = require('../models/home/homeComponents/modalFarmacoVigilancia.model')
+const Portfolio = require('../models/home/homeComponents/portfolio.model')
+const UnidadesNegocio = require('../models/home/homeComponents/unidadesNegocio.model')
+const UsInfo = require('../models/home/homeComponents/usInfo.model')
+const Video = require('../models/home/homeComponents/video.model')
+
+const carrouselHomeData = require('../data/homeCarousel')
 const portfolioData = require('../data/dataPortafolio')
-const bussinessUnitsDescs = []; 
-const portfolioTitles = [];
-const portfolioDescs = [];
-
-unidadesNegocio.forEach(unidad => {
-  bussinessUnitsDescs.push(unidad.desc)
-})
-portfolioData.forEach(unidad => {
-  portfolioTitles.push(unidad.title)
-  portfolioDescs.push(unidad.desc)
-})
-
+const meetPeopleWorkWithUsData = require('../data/dataMeetPeopleWorkWhitUs')
+const unidadesNegocioData = require('../data/unidadesNegocio')
 
 Promise.all([
-  HomeSearch.deleteMany(),
-  HomePage.deleteMany()
+  CarrouselHome.deleteMany(),
+  FarmacoVigilancia.deleteMany(),
+  MeetPeopleWorkWithUsHome.deleteMany(),
+  ModalFarmacoVigilancia.deleteMany(),
+  Portfolio.deleteMany(),
+  UnidadesNegocio.deleteMany(),
+  UsInfo.deleteMany(),
+  Video.deleteMany(),
 ])
 .then(() => {
   console.log('all databases cleaned')
-  const homeSearch = new HomeSearch({
-    url: 'https://letilabs-dev.herokuapp.com/',
-    genericContentAboutUs: 'Laboratorios Leti es un laboratorio farmacéutico venezolano que desde hace 70 años, crea soluciones de salud a través de la producción y comercialización de un amplio portafolio de medicamentos desarrollados con tecnología y seguridad, de la mano de un talento humano caliﬁcado que trabaja día a día para acompañar a los venezolanos.',
-    aboutUsButtonTitle: 'Conoce más sobre nosotros',
-    carrouselTitle: 'Nuestros productos',
-    bussinesUnitsTitle: 'Nos conformamos de 3 unidades de negocio',
-    bussinesUnitsDescriptions: bussinessUnitsDescs,
-    portfolio4TypesTitle: 'Nuestro portafolio cuenta con 4 tipos de medicamentos',
-    portfolio4TypesTitles: portfolioTitles,
-    portfolio4TypesDescriptions: portfolioDescs,
-    knowThemallButtonTitle: 'Conócelos todos',
-    findProductTitle: 'Encuentra un producto...',
-    farmacología: {
-      title: 'Farmacovigilancia',
-      question: '¿Tuviste algún efecto adverso con alguno de nuestros productos?',
-      buttonTitle: 'Infórmanos aquí',
-    }
+  carrouselHomeData.forEach(unidad => {
+    const carrouselHome = new CarrouselHome({
+      title: unidad.title,
+      name: unidad.name,
+      img: unidad.img,
+      desc: unidad.desc,
+    })
+    carrouselHome.save()
+    .then(() => console.log(`carrouselHome created`))
+    .catch(error => console.log(error))
   })
-  const aboutUsSearch = new AboutUsSearch({
-    developingSolutionsTitle: '',
-    contentWithSecondImg: '',
-    secondSliderTitle: '',
-    timeLine: portfolioDescs,
-    letiLabLatamTitle: '',
-    megatDescription: '',
-    megatButtonTitle: ''
+  const farmacoVigilancia = new FarmacoVigilancia({
+    title: 'Farmacovigilancia',
+    subTitle: '¿Tuviste algún efecto adverso con alguno de nuestro productos?',
+    buttonTitle: 'Infórmanos aquí',
   })
-  homeSearch.save()
-    .then(() => console.log(`hamepageSearch created`))
+  farmacoVigilancia.save()
+    .then(() => console.log(`farmacoVigilancia created`))
+    .catch(error => console.log(error))
+  meetPeopleWorkWithUsData.forEach(unidad => {
+    const meetPeopleWorkWithUsHome = new MeetPeopleWorkWithUsHome({
+      title: unidad.title,
+      button: unidad.button,
+      img: unidad.img,
+    })
+    meetPeopleWorkWithUsHome.save()
+      .then(() => console.log(`meetPeopleWorkWithUsHome created`))
+      .catch(error => console.log(error))
+  })
+  const modalFarmacoVigilancia = new ModalFarmacoVigilancia({
+    title: '.Estamos para cuidarte',
+    subTitle: 'Farmacovigilancia',
+    description: 'Facilita la recolección, vigilancia, investigación y evaluación de la información sobre reacciones adversas de los medicamentos, lo que permite realizar correctivos y establecer la seguridad terapéutica de los mismos.',
+    blueDescription: 'Nos preocupa saber si alguno de nuestros productos le causó algún efecto adverso, así podemos trabajar para ayudarlo.',
+    name: 'Nombre del paciente',
+    surname: 'Apellido del paciente',
+    birthday: 'Fecha de nacimiento',
+    gender: 'Género',
+    medicament: 'Medicamento que tomó',
+    prescrit: '¿El medicamento fue prescrito?',
+    describe: 'Describa detalladamente el/los efectos presentados',
+  })
+  modalFarmacoVigilancia.save()
+    .then(() => console.log(`modalFarmacoVigilancia created`))
+    .catch(error => console.log(error))
+  portfolioData.forEach(unidad => {
+    const portfolio = new Portfolio({
+      superiorTitle: unidad.superiorTitle,
+      title: unidad.title,
+      description: unidad.desc,
+    })
+    portfolio.save()
+      .then(() => console.log(`portfolio created`))
+      .catch(error => console.log(error))
+  })
+  unidadesNegocioData.forEach(unidad => {
+    const unidadesNegocio = new UnidadesNegocio({
+      name: unidad.name,
+      logo: unidad.logo,
+      desc: unidad.desc,
+      url: unidad.url,
+    })
+    unidadesNegocio.save()
+      .then(() => console.log(`portfolio created`))
+      .catch(error => console.log(error))
+  })
+  const usInfo = new UsInfo({
+    description: 'Laboratorios Leti es un laboratorio farmacéutico venezolano que desde hace 70 años, crea soluciones de salud a través de la producción y comercialización de un amplio portafolio de medicamentos desarrollados con tecnología y seguridad, de la mano de un talento humano caliﬁcado que trabaja día a día para acompañar a los venezolanos.',
+    url: '/sobre-nosotros',
+    buttonTitle: 'Conoce más sobre nosotros',
+  })
+  usInfo.save()
+    .then(() => console.log(`usInfo created`))
+    .catch(error => console.log(error))
+  const video = new Video({
+    url: './images/play.svg',
+  })
+  video.save()
+    .then(() => console.log(`video created`))
     .catch(error => console.log(error))
 })
 .catch(error => console.log(error))
 
+////////////////////////////////////////
+
+
+////////////   About Us  ///////////////
+
+const Banner = require('../models/aboutUs/aboutUsComponents/banner.model')
+const Gallery = require('../models/aboutUs/aboutUsComponents/gallery.model')
+const MarcandoPauta = require('../models/aboutUs/aboutUsComponents/marcandoPauta.model')
+const Megat = require('../models/aboutUs/aboutUsComponents/megat.model')
+const Timeline = require('../models/aboutUs/aboutUsComponents/timeline.model')
+
+const dataGallery = require('../data/dataGallery')
+const timelineData = require('../data/timeline')
+
+Promise.all([
+  Banner.deleteMany(),
+  FarmacoVigilancia.deleteMany(),
+  MeetPeopleWorkWithUsHome.deleteMany(),
+  ModalFarmacoVigilancia.deleteMany(),
+  Portfolio.deleteMany(),
+  UsInfo.deleteMany(),
+  Video.deleteMany(),
+])
+.then(() => {
+  console.log('all databases cleaned')
+  const banner = new Banner({
+    description: 'Desarrollamos soluciones que marcan la diferencia en la vida de los venezolanos',
+    imgURL: './images/play.svg',
+  })
+  banner.save()
+    .then(() => console.log(`banner created`))
+    .catch(error => console.log(error))
+  dataGallery.forEach(unidad => {
+    const gallery = new Gallery({
+      mainTitle: unidad.mainTitle,
+      title: unidad.title,
+      imgPath: unidad.imgPath,
+    })
+    gallery.save()
+    .then(() => console.log(`gallery created`))
+    .catch(error => console.log(error))
+  })
+  const marcandoPauta = new MarcandoPauta({
+    description: 'Contamos con un talento humano calificado y cualificado que con su ingenio e increíble calidad humana, trabajan día a día por los venezolanos que velan por su salud y la de los demás',
+    imgURL: './images/play.svg',
+  })
+  marcandoPauta.save()
+    .then(() => console.log(`marcandoPauta created`))
+    .catch(error => console.log(error))
+  const megat = new Megat({
+    title: 'Laboratorios Leti en latinoamérica',
+    description: 'Empresa homóloga de Laboratorios Leti que desarrolla productos de nuestro portafolio para los ecuatorianos',
+    url: 'https://megat.com.ec/',
+    buttonTitle: 'Conocer Megat',
+  })
+  megat.save()
+    .then(() => console.log(`megat created`))
+    .catch(error => console.log(error))
+  timelineData.forEach(unidad => {
+    const timeline = new Timeline({
+      year: unidad.year,
+      imgURL: unidad.imgURL,
+      desc: unidad.desc,
+    })
+    timeline.save()
+      .then(() => console.log(`timeline created`))
+      .catch(error => console.log(error))
+    })
+  })
+.catch(error => console.log(error))
+
+////////////////////////////////////////
+
+
+////////////   USERS  //////////////////
 
 Promise.all([
   User.deleteMany(),
-  Spot.deleteMany(),
-  Pet.deleteMany(),
-  Comment.deleteMany(),
-  Like.deleteMany(),
-  Blog.deleteMany()
 ])
   .then(() => {
     console.log('all databases cleaned')
@@ -105,108 +215,6 @@ Promise.all([
           }
         })
         user.save()
-          .then(u => {
-            userIds.push(u._id)
-            console.log(`user added: ${u.name}`)
-            for (k = 0; k < petN; k++) {
-              const pet = new Pet({
-                creatorId: u._id,
-                animal: faker.random.arrayElement(['Dog', 'Cat', 'Bird']),
-                name: faker.name.firstName(),
-                age: faker.random.number(),
-                breed: faker.lorem.word(),
-                avatar: faker.random.image('animal')
-              })
-              pet.save()
-                .then(() => console.log(`pet added to ${u.name}`))
-                .catch(error => console.log(error))
-            }
-
-            for (let m = 0; m < spotN; m++) {
-              const spot = new Spot({
-                creatorId: userIds[Math.floor(Math.random() * userIds.length)],
-                name: faker.lorem.words(),
-                content: faker.lorem.paragraph(),
-                pictures: faker.random.image(),
-                url: faker.internet.url(),
-                // category: database[m].category,
-                category: faker.random.arrayElement([
-                  'activities',
-                  'animal-shelter',
-                  'beach',
-                  'events',
-                  'grooming',
-                  'hiking',
-                  'hotel',
-                  'ong',
-                  'park',
-                  'pipican',
-                  'restaurants',
-                  'services',
-                  'store',
-                  'tour',
-                  'training',
-                  'veterinary',
-                  'veterinary',
-                  'walk'
-                ]),
-                lat: database[m].geometry.coordinates[1],
-                lng: database[m].geometry.coordinates[0],
-                rate: faker.random.number({min: 0, max: 5}).toFixed(1),
-                phone: faker.phone.phoneNumber(),
-                city: faker.random.arrayElement([
-                  'Madrid',
-                  'Barcelona',
-                  'Valencia',
-                  'Bilbao',
-                  'Sevilla',
-                  'A Coruña',
-                  'Gijón',
-                  'Santander',
-                  'León',
-                  'Albacete',
-                  'Murcia',
-                  'Galicia',
-                  'San Sebastian'
-                ]),
-                address: faker.address.streetAddress(),
-                zipCode: faker.address.zipCode(),
-                days: faker.random.arrayElement([
-                  'Mon',
-                  'Tue',
-                  'Wed',
-                  'Thu',
-                  'Fri',
-                  'Sat',
-                  'Sun'
-                ]),
-                open: [10,14],
-                close: [16,20],
-                email: faker.internet.email(),
-                instagram: faker.name.firstName(),
-                facebook: faker.internet.url(),
-                createdAt: faker.date.past()
-              })
-              spot.save()
-                .then(s => {
-                  spotIds.push(s._id)
-                  console.log(`spot added`)
-                  for (let k = 0; k < commentN; k++) {
-                    const comment = new Comment({
-                      authorId: userIds[Math.floor(Math.random() * userIds.length)],
-                      spotId: s._id,
-                      content: faker.lorem.paragraph(),
-                      createdAt: faker.date.past()
-                    })
-                    comment.save()
-                      .then(c => console.log(`comment added by ${c.authorId}`))
-                      .catch(error => console.log(error))
-                  }
-                })
-                .catch(error => console.log(error))
-            }
-          })
-          .catch(error => console.log(error))
       } else if (i >= 20 && i < 29) {
         const user = new User({
           name: faker.name.findName(),
@@ -222,40 +230,6 @@ Promise.all([
           }
         })
         user.save()
-          .then(u => {
-            console.log(`Editor added ${u._id}`)
-            for (let i = 0; i < blogN; i++) {
-              const blog = new Blog({
-                title: faker.name.jobTitle(),
-                content: faker.lorem.paragraphs(faker.random.number({min: 5, max: 30})),
-                authorId: u._id,
-                picPath: faker.random.image(),
-                tags: faker.random.arrayElement([
-                  'activities',
-                  'animal-shelter',
-                  'beach',
-                  'events',
-                  'grooming',
-                  'hiking',
-                  'hotel',
-                  'ong',
-                  'park',
-                  'pipican',
-                  'restaurants',
-                  'services',
-                  'store',
-                  'tour',
-                  'training',
-                  'veterinary',
-                  'veterinary',
-                  'walk'
-                ])
-              })
-              blog.save()
-                .then(b => console.log(`blog added for editor ${b.authorId}`))
-                .catch(error => console.log(error))
-            }
-          })
       } else {
         const user = new User({
           name: faker.name.findName(),
@@ -277,3 +251,23 @@ Promise.all([
     }
   })
   .catch(error => console.log(error))
+
+  ////////////////////////////////////////
+
+
+  ////////////////////////////////////////
+
+
+  ////////////////////////////////////////
+
+
+  ////////////////////////////////////////
+
+
+  ////////////////////////////////////////
+
+
+  ////////////////////////////////////////
+
+
+  ////////////////////////////////////////

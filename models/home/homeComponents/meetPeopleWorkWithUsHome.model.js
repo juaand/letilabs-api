@@ -7,11 +7,11 @@ const meetPeopleWorkWithUsHomeSchema = new Schema(
       type: String,
       required: true
     },
-    img: {
+    button: {
       type: String,
       required: true
     },
-    buttonTitle: {
+    img: {
       type: String,
       required: true
     },

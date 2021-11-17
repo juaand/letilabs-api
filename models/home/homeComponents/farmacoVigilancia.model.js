@@ -1,21 +1,17 @@
-// models/carrouselHome.model.js
+// models/farmacoVigilancia.model.js
 const { Schema, model } = require('mongoose')
 
-const carrouselHomeSchema = new Schema(
+const farmacoVigilanciaSchema = new Schema(
   {
     title: {
       type: String,
       required: true
     },
-    name: {
+    subTitle: {
       type: String,
       required: true
     },
-    img: {
-      type: String,
-      required: true
-    },
-    desc: {
+    buttonTitle: {
       type: String,
       required: true
     },
@@ -23,4 +19,4 @@ const carrouselHomeSchema = new Schema(
   { timestamps: true }
 )
 
-module.exports = model('CarrouselHome', carrouselHomeSchema)
+module.exports = model('FarmacoVigilancia', farmacoVigilanciaSchema)

@@ -5,7 +5,7 @@ const SiteContent = require('../models/siteContent.model')
 module.exports.searchContent = (req, res, next) => {
   const searchTerm = req.params.search
 
-  SiteContent.find({content: {$regex: searchTerm, $options: 'i'}})
+  SiteContent.find({"$text": {"$search": searchTerm}})
     .then(isMatch => {
       res.status(201).json(isMatch)
     })
