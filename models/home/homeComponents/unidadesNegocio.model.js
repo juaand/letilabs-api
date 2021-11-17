@@ -1,17 +1,13 @@
-// models/carrouselHome.model.js
+// models/unidadesNegocio.model.js
 const { Schema, model } = require('mongoose')
 
-const carrouselHomeSchema = new Schema(
+const unidadesNegocioSchema = new Schema(
   {
-    title: {
-      type: String,
-      required: true
-    },
     name: {
       type: String,
       required: true
     },
-    img: {
+    logo: {
       type: String,
       required: true
     },
@@ -19,8 +15,12 @@ const carrouselHomeSchema = new Schema(
       type: String,
       required: true
     },
+    url: {
+      type: String,
+      required: true
+    },
   },
   { timestamps: true }
 )
 
-module.exports = model('CarrouselHome', carrouselHomeSchema)
+module.exports = model('UnidadesNegocio', unidadesNegocioSchema)

@@ -1,4 +1,4 @@
-// models/like.model.js
+// models/timeline.model.js
 const { Schema, model} = require('mongoose')
 
 const timelineSchema = new Schema(
@@ -11,7 +11,7 @@ const timelineSchema = new Schema(
       type: String,
       required: true
     },
-    description: {
+    desc: {
       type: String,
       required: true
     },

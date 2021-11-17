@@ -1,21 +1,21 @@
-// models/carrouselHome.model.js
-const { Schema, model } = require('mongoose')
+// models/megat.model.js
+const { Schema, model} = require('mongoose')
 
-const carrouselHomeSchema = new Schema(
+const megatSchema = new Schema(
   {
     title: {
       type: String,
       required: true
     },
-    name: {
+    description: {
       type: String,
       required: true
     },
-    img: {
+    url: {
       type: String,
       required: true
     },
-    desc: {
+    buttonTitle: {
       type: String,
       required: true
     },
@@ -23,4 +23,4 @@ const carrouselHomeSchema = new Schema(
   { timestamps: true }
 )
 
-module.exports = model('CarrouselHome', carrouselHomeSchema)
+module.exports = model('Megat', megatSchema)

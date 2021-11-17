@@ -1,8 +1,12 @@
-// models/like.model.js
+// models/gallery.model.js
 const { Schema, model} = require('mongoose')
 
-const dataGallerySchema = new Schema(
+const gallerySchema = new Schema(
   {
+    mainTitle: {
+      type: String,
+      required: true
+    },
     title: {
       type: String,
       required: true
@@ -15,4 +19,4 @@ const dataGallerySchema = new Schema(
   { timestamps: true }
 )
 
-module.exports = model('DataGallery', dataGallerySchema)
+module.exports = model('Gallery', gallerySchema)

@@ -12,19 +12,6 @@ const siteContentSchema = new Schema(
     content: {
       type: String,
     }
-  },
-  {
-    timestamps: true,
-    toJSON: {
-      virtuals: true,
-      transform: (doc, ret) => {
-        ret.id = doc._id
-        delete ret._id
-        delete ret.__v
-        delete ret.updatedAt
-        return ret
-      }
-    }
   }
 )
 
