@@ -6,7 +6,7 @@ const vigilanciaSchema = new Schema({
     },
     effects: {
         type: String,
-        maxLength: [200, "Efecto(s) secundario(s) ha excedido el máximo de caracteres permitidos para el campo."]
+        maxLength: [400, "Efecto(s) secundario(s) ha excedido el máximo de caracteres permitidos para el campo."]
     },
     lastname: {
         type: String,
@@ -17,7 +17,8 @@ const vigilanciaSchema = new Schema({
         maxLength: [50, "El nombre ha llegado al máximo de caracteres permitidos."]
     },
     medicine: {
-        type: String
+        type: String,
+        enum: ['Alivet', 'Antux', 'Letisan', 'Migren', 'Monosulpa'],
     },
     prescribed: {
         type: String,
