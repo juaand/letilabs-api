@@ -43,8 +43,3 @@ const vigilanciaSchema = new Schema({
 })
 
 module.exports = model("Vigilancia", vigilanciaSchema)
-
-
-
-
-
