@@ -66,7 +66,7 @@ module.exports.getCarouselInicio = (req, res, next) => {
   if (userRole === 'Admin') {
     CarouselInicio.find()
       .then((data) => {
-        res.status(201).json(data[0])
+        res.status(201).json(data)
       })
       .catch(next)
   } else {
@@ -81,7 +81,7 @@ module.exports.getUnidadesInicio = (req, res, next) => {
   if (userRole === 'Admin') {
     UnidadesInicio.find()
       .then((data) => {
-        res.status(201).json(data[0])
+        res.status(201).json(data)
       })
       .catch(next)
   } else {
@@ -151,6 +151,47 @@ module.exports.updateFarmacoData = (req, res, next) => {
     FarmacoInicio.findByIdAndUpdate(id, req.body, {new: true})
       .then((data) => {
         res.status(201).json(data)
+      })
+      .catch(next)
+  } else {
+    req.session.destroy()
+    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+  }
+}
+
+module.exports.deleteCarouselItem = (req, res, next) => {
+  const userRole = req.session.user.role
+  const id = req.params.id
+
+  if (userRole === 'Admin') {
+    CarouselInicio.findByIdAndDelete(id)
+      .then(() => {
+        CarouselInicio.find()
+          .then((data) => {
+            res.status(201).json(data)
+          })
+          .catch(next)
+      })
+      .catch(next)
+  } else {
+    req.session.destroy()
+    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+  }
+}
+
+
+module.exports.deleteUnitlItem = (req, res, next) => {
+  const userRole = req.session.user.role
+  const id = req.params.id
+
+  if (userRole === 'Admin') {
+    UnidadesInicio.findByIdAndDelete(id)
+      .then(() => {
+        UnidadesInicio.find()
+          .then((data) => {
+            res.status(201).json(data)
+          })
+          .catch(next)
       })
       .catch(next)
   } else {

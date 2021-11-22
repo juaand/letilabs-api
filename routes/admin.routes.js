@@ -16,3 +16,5 @@ router.get('/portfolioiniciodata', routeGuard.isAuthenticated, adminController.g
 router.patch('/updateportfoliodata', routeGuard.isAuthenticated, adminController.updatePortfolioData)
 router.get('/farmacoiniciodata', routeGuard.isAuthenticated, adminController.getFarmacoInicio)
 router.patch('/updatefarmacoiniciodata', routeGuard.isAuthenticated, adminController.updateFarmacoData)
+router.get('/deletecaritem/:id', routeGuard.isAuthenticated, adminController.deleteCarouselItem)
+router.get('/deleteunititem/:id', routeGuard.isAuthenticated, adminController.deleteUnitlItem)

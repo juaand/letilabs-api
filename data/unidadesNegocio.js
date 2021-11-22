@@ -1,9 +1,9 @@
 module.exports = [
   {
-    name: 'Leti',
+    name: 'Laboratorios Leti',
     logo: 'Leti',
     desc: 'Desarrollamos las más grandes marcas de medicinas OTC del país, así como productos éticos de alta calidad',
-    url: '/leti',
+    url: '/laboratorios-leti',
   },
   {
     name: 'Genven',
