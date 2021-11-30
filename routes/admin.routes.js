@@ -7,6 +7,10 @@ const adminController = require('../controllers/admin.controller')
 
 module.exports = router
 
+/////////////////////////////////////////////////////////////////////
+////////////////////////// INICIO CRUD //////////////////////////////
+/////////////////////////////////////////////////////////////////////
+
 router.get('/farmvigdata', routeGuard.isAuthenticated, adminController.getFarmVigData)
 router.get('/usinfodata', routeGuard.isAuthenticated, adminController.getUsInfo)
 router.patch('/updateusinfodata', routeGuard.isAuthenticated, adminController.updateUsInfoData)
@@ -18,3 +22,17 @@ router.get('/farmacoiniciodata', routeGuard.isAuthenticated, adminController.get
 router.patch('/updatefarmacoiniciodata', routeGuard.isAuthenticated, adminController.updateFarmacoData)
 router.get('/deletecaritem/:id', routeGuard.isAuthenticated, adminController.deleteCarouselItem)
 router.get('/deleteunititem/:id', routeGuard.isAuthenticated, adminController.deleteUnitlItem)
+
+/////////////////////////////////////////////////////////////////////
+////////////////////////// SOBRE NOSOTROS CRUD //////////////////////////////
+/////////////////////////////////////////////////////////////////////
+
+router.get('/timelineaboutusdata', routeGuard.isAuthenticated, adminController.getTimeLine)
+router.get('/bannerdata', routeGuard.isAuthenticated, adminController.getBanner)
+router.patch('/updatebannerdata', routeGuard.isAuthenticated, adminController.updateBannerData)
+router.get('/marcandopautadata', routeGuard.isAuthenticated, adminController.getMarcandoPauta)
+router.patch('/updatemarcandopautadata', routeGuard.isAuthenticated, adminController.updateMarcandoPautaData)
+router.get('/megatdata', routeGuard.isAuthenticated, adminController.getMegat)
+router.patch('/updatemegatdata', routeGuard.isAuthenticated, adminController.updateMegatData)
+router.get('/galleryaboutusdata', routeGuard.isAuthenticated, adminController.getGallery)
+

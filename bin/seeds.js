@@ -137,12 +137,10 @@ const timelineData = require('../data/timeline')
 
 Promise.all([
   Banner.deleteMany(),
-  FarmacoVigilancia.deleteMany(),
-  MeetPeopleWorkWithUsHome.deleteMany(),
-  ModalFarmacoVigilancia.deleteMany(),
-  Portfolio.deleteMany(),
-  UsInfo.deleteMany(),
-  Video.deleteMany(),
+  Gallery.deleteMany(),
+  MarcandoPauta.deleteMany(),
+  Megat.deleteMany(),
+  Timeline.deleteMany(),
 ])
   .then(() => {
     console.log('all databases cleaned')
