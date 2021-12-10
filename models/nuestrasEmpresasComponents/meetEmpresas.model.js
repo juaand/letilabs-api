@@ -1,7 +1,7 @@
-// models/like.model.js
+// models/meetEmpresas.model.js
 const { Schema, model, ObjectId } = require('mongoose')
 
-const meetPeopleWorkWithUsHomeSchema = new Schema(
+const meetEmpresasSchema = new Schema(
   {
     title: {
       type: String,
@@ -23,4 +23,4 @@ const meetPeopleWorkWithUsHomeSchema = new Schema(
   { timestamps: true }
 )
 
-module.exports = model('MeetPeopleWorkWithUsHome', meetPeopleWorkWithUsHomeSchema)
+module.exports = model('MeetEmpresas', meetEmpresasSchema)

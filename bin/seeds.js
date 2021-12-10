@@ -9,8 +9,9 @@ const userN = 30
 const vigilanciaN = 3
 
 
-
+////////////////////////////////////////
 ////////////   HOME  ///////////////////
+////////////////////////////////////////
 
 const CarrouselHome = require('../models/home/homeComponents/carrouselHome.model')
 const FarmacoVigilancia = require('../models/home/homeComponents/farmacoVigilancia.model')
@@ -61,6 +62,7 @@ Promise.all([
       const meetPeopleWorkWithUsHome = new MeetPeopleWorkWithUsHome({
         title: unidad.title,
         button: unidad.button,
+        url: unidad.url,
         img: unidad.img,
       })
       meetPeopleWorkWithUsHome.save()
@@ -124,7 +126,9 @@ Promise.all([
 ////////////////////////////////////////
 
 
+////////////////////////////////////////
 ////////////   About Us  ///////////////
+////////////////////////////////////////
 
 const Banner = require('../models/aboutUs/aboutUsComponents/banner.model')
 const Gallery = require('../models/aboutUs/aboutUsComponents/gallery.model')
@@ -185,6 +189,88 @@ Promise.all([
       })
       timeline.save()
         .then(() => console.log(`timeline created`))
+        .catch(error => console.log(error))
+    })
+  })
+  .catch(error => console.log(error))
+
+////////////////////////////////////////
+
+/////////////////////////////////////////
+////////// NUESTRAS EMPRESAS ////////////
+/////////////////////////////////////////
+
+const BannerEmpresas = require('../models/nuestrasEmpresasComponents/bannerEmpresas.model')
+const Banner2Empresas = require('../models/nuestrasEmpresasComponents/banner2Empresas.model')
+const Banner3Empresas = require('../models/nuestrasEmpresasComponents/bannerEmpresas.model')
+const Banner4Empresas = require('../models/nuestrasEmpresasComponents/bannerEmpresas.model')
+const MeetEmpresas = require('../models/nuestrasEmpresasComponents/meetEmpresas.model')
+const UnidadesNegocioEmpresas = require('../models/nuestrasEmpresasComponents/unidadesNegocioEmpresas.model')
+
+
+const meetEmpresasData = require('../data/dataMeetEmpresas')
+const unidadesEmpresasData = require('../data/unidadesNegocioEmpresasData')
+
+Promise.all([
+  BannerEmpresas.deleteMany(),
+  Banner2Empresas.deleteMany(),
+  Banner3Empresas.deleteMany(),
+  Banner4Empresas.deleteMany(),
+  MeetEmpresas.deleteMany(),
+  UnidadesNegocioEmpresas.deleteMany(),
+])
+  .then(() => {
+    console.log('all databases cleaned')
+    const bannerEmpresas = new BannerEmpresas({
+      description: 'Nos conformamos por tres grandes unidades de negocio, que se dedican a diferentes áreas, pero trabajan entre ellas para lograr <span className="blue-text">mejores resultados</span>',
+      imgURL: '/images/our-companies-bg.png',
+    })
+    bannerEmpresas.save()
+      .then(() => console.log(`banner created`))
+      .catch(error => console.log(error))
+    unidadesEmpresasData.forEach(unidad => {
+      const unidadesNegocioEmpresas = new UnidadesNegocioEmpresas({
+        name: unidad.name,
+        desc: unidad.desc,
+        info: unidad.info,
+      })
+      unidadesNegocioEmpresas.save()
+        .then(() => console.log(`unidadesNegocioEmpresas created`))
+        .catch(error => console.log(error))
+    })
+    const banner2Empresas = new Banner2Empresas({
+      description: 'A través de esta relación de sinergia, es que logramos nuestros objetivos',
+      description2: 'Ofrecer gran variedad y efectivos productos',
+      imgURL: './images/ulgarin.png',
+      img2URL: './images/azitomicina.png',
+      img3URL: './images/diklason.png',
+    })
+    banner2Empresas.save()
+      .then(() => console.log(`Banner2Empresas created`))
+      .catch(error => console.log(error))
+    const banner3Empresas = new BannerEmpresas({
+      description: 'Innovar en el mercado farmacéutico',
+      imgURL: '.',
+    })
+    banner3Empresas.save()
+      .then(() => console.log(`banner 3 created`))
+      .catch(error => console.log(error))
+    const banner4Empresas = new BannerEmpresas({
+      description: 'Cuidar la salud de los venezolanos',
+      imgURL: './images/cuidar.png',
+    })
+    banner4Empresas.save()
+      .then(() => console.log(`banner 4 created`))
+      .catch(error => console.log(error))
+    meetEmpresasData.forEach(unidad => {
+      const meetEmpresas = new MeetEmpresas({
+        title: unidad.title,
+        button: unidad.button,
+        url: unidad.url,
+        img: unidad.img
+      })
+      meetEmpresas.save()
+        .then(() => console.log(`MeetEmpresas created`))
         .catch(error => console.log(error))
     })
   })
