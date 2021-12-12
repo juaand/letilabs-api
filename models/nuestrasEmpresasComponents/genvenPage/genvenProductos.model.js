@@ -1,17 +1,21 @@
-// models/nuestrasEmpresasComponents/bannerEmpresas.model.js
+// models/nuestrasEmpresasComponents/biocontrolledCarrousel.model.js
 const { Schema, model} = require('mongoose')
 
-const banner3EmpresasSchema = new Schema(
+const genvenProductosSchema = new Schema(
   {
     description: {
       type: String,
       required: true
     },
-    description2: {
+    buttonTitle: {
       type: String,
       required: true
     },
-    imgURL: {
+    buttonLink: {
+      type: String,
+      required: true
+    },
+    img1URL: {
       type: String,
       required: true
     },
@@ -27,4 +31,4 @@ const banner3EmpresasSchema = new Schema(
   { timestamps: true }
 )
 
-module.exports = model('Banner3Empresas', banner3EmpresasSchema)
+module.exports = model('GenvenProductos', genvenProductosSchema)

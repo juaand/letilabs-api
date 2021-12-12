@@ -201,9 +201,9 @@ Promise.all([
 /////////////////////////////////////////
 
 const BannerEmpresas = require('../models/nuestrasEmpresasComponents/bannerEmpresas.model')
-const Banner2Empresas = require('../models/nuestrasEmpresasComponents/banner2Empresas.model')
-const Banner3Empresas = require('../models/nuestrasEmpresasComponents/bannerEmpresas.model')
-const Banner4Empresas = require('../models/nuestrasEmpresasComponents/bannerEmpresas.model')
+const BannerProductos = require('../models/nuestrasEmpresasComponents/bannerProductos.model')
+const CuidarEmpresas = require('../models/nuestrasEmpresasComponents/cuidarEmpresas.model')
+const InnovarEmpresas = require('../models/nuestrasEmpresasComponents/innovarEmpresas.model')
 const MeetEmpresas = require('../models/nuestrasEmpresasComponents/meetEmpresas.model')
 const UnidadesNegocioEmpresas = require('../models/nuestrasEmpresasComponents/unidadesNegocioEmpresas.model')
 
@@ -213,9 +213,9 @@ const unidadesEmpresasData = require('../data/unidadesNegocioEmpresasData')
 
 Promise.all([
   BannerEmpresas.deleteMany(),
-  Banner2Empresas.deleteMany(),
-  Banner3Empresas.deleteMany(),
-  Banner4Empresas.deleteMany(),
+  BannerProductos.deleteMany(),
+  CuidarEmpresas.deleteMany(),
+  InnovarEmpresas.deleteMany(),
   MeetEmpresas.deleteMany(),
   UnidadesNegocioEmpresas.deleteMany(),
 ])
@@ -238,28 +238,28 @@ Promise.all([
         .then(() => console.log(`unidadesNegocioEmpresas created`))
         .catch(error => console.log(error))
     })
-    const banner2Empresas = new Banner2Empresas({
+    const bannerProductos = new BannerProductos({
       description: 'A través de esta relación de sinergia, es que logramos nuestros objetivos',
       description2: 'Ofrecer gran variedad y efectivos productos',
       imgURL: './images/ulgarin.png',
       img2URL: './images/azitomicina.png',
       img3URL: './images/diklason.png',
     })
-    banner2Empresas.save()
-      .then(() => console.log(`Banner2Empresas created`))
+    bannerProductos.save()
+      .then(() => console.log(`BannerProductos created`))
       .catch(error => console.log(error))
-    const banner3Empresas = new BannerEmpresas({
-      description: 'Innovar en el mercado farmacéutico',
-      imgURL: '.',
-    })
-    banner3Empresas.save()
-      .then(() => console.log(`banner 3 created`))
-      .catch(error => console.log(error))
-    const banner4Empresas = new BannerEmpresas({
+    const cuidarEmpresas = new CuidarEmpresas({
       description: 'Cuidar la salud de los venezolanos',
       imgURL: './images/cuidar.png',
     })
-    banner4Empresas.save()
+    cuidarEmpresas.save()
+      .then(() => console.log(`cuidar empresas created`))
+      .catch(error => console.log(error))
+    const innovarEmpresas = new InnovarEmpresas({
+      description: 'Innovar en el mercado farmacéutico',
+      imgURL: '.',
+    })
+    innovarEmpresas.save()
       .then(() => console.log(`banner 4 created`))
       .catch(error => console.log(error))
     meetEmpresasData.forEach(unidad => {
@@ -273,6 +273,209 @@ Promise.all([
         .then(() => console.log(`MeetEmpresas created`))
         .catch(error => console.log(error))
     })
+  })
+  .catch(error => console.log(error))
+
+////////////////////////////////////////
+
+
+/////////////////////////////////////////
+///////////// LAB LETI PAGE /////////////
+/////////////////////////////////////////
+
+const BannerLetiPage = require('../models/nuestrasEmpresasComponents/laboratoriosLetiPage/bannerLetiPage.model')
+const InfoCardsLetiPage = require('../models/nuestrasEmpresasComponents/laboratoriosLetiPage/infoCardsLetiPage.model')
+const LetiTimeLine = require('../models/nuestrasEmpresasComponents/laboratoriosLetiPage/letiTimeLine.model')
+const EquipoLetiPage = require('../models/nuestrasEmpresasComponents/laboratoriosLetiPage/equipoLetiPage.model')
+
+
+const letiTimeLineData = require('../data/letiTimeline')
+const letiData = require('../data/dataLeti')
+
+Promise.all([
+  BannerLetiPage.deleteMany(),
+  InfoCardsLetiPage.deleteMany(),
+  LetiTimeLine.deleteMany(),
+  EquipoLetiPage.deleteMany(),
+])
+  .then(() => {
+    console.log('all databases cleaned')
+    const bannerLetiPage = new BannerLetiPage({
+      description: 'Esta es la unidad que se encarga de desarrollar la gama de productos que abarca diferentes áreas terapéuticas: cardiovascular, metabolismo, gástrica, respiratoria, neurológicas, músculo-esqueléticas, dolor, antibióticos, vitaminas, tanto para el paciente pediátrico como para el paciente adulto.',
+      imgURL: './images/laboratorios-leti.svg',
+    })
+    bannerLetiPage.save()
+      .then(() => console.log(`bannerletipage created`))
+      .catch(error => console.log(error))
+      letiData.forEach(unidad => {
+      const infoCardsLetiPage = new InfoCardsLetiPage({
+        title: unidad.title,
+        info: unidad.info,
+      })
+      infoCardsLetiPage.save()
+        .then(() => console.log(`infoCardsLetiPage created`))
+        .catch(error => console.log(error))
+    })
+    letiTimeLineData.forEach(unidad => {
+      const letiTimeLine = new LetiTimeLine({
+        imgURL: unidad.imgURL,
+        desc: unidad.desc,
+      })
+      letiTimeLine.save()
+        .then(() => console.log(`letiTimeLine created`))
+        .catch(error => console.log(error))
+    })
+    const equipoLetiPage = new EquipoLetiPage({
+      description: 'Cuidar la salud de los venezolanos',
+      person: 'Ramón, director de unidad',
+      buttonTitle: 'Conoce nuestra filosofía',
+      buttonLink: '/equipo',
+      imgURL: './images/equipo.jpg',
+    })
+    equipoLetiPage.save()
+      .then(() => console.log(`equipo leti page created`))
+      .catch(error => console.log(error))
+  })
+  .catch(error => console.log(error))
+
+////////////////////////////////////////
+
+/////////////////////////////////////////
+////////// BIOCONTROLLED PAGE ///////////
+/////////////////////////////////////////
+
+const BannerBiocontrolledPage = require('../models/nuestrasEmpresasComponents/biocontrolledPage/bannerBiocontrolledPage.model')
+const InfoCardsBiocontrolledPage = require('../models/nuestrasEmpresasComponents/biocontrolledPage/infoCardsBiocontrolledPage.model')
+const CarrouselBiocontrolledPage = require('../models/nuestrasEmpresasComponents/biocontrolledPage/biocontrolledCarrousel.model')
+const BiocontrolledTimeLine = require('../models/nuestrasEmpresasComponents/biocontrolledPage/biocontrolledTimeLine.model')
+const EquipoBiocontrolledPage = require('../models/nuestrasEmpresasComponents/biocontrolledPage/equipoBiocontrolledPage.model')
+
+
+const biocontrolledCarrousel = require('../data/biocontrolledCarousel')
+const biocontrolledTimeLineData = require('../data/biocontrolledTimeline')
+const dataBiocontrolled = require('../data/dataBiocontrolled')
+
+Promise.all([
+  BannerBiocontrolledPage.deleteMany(),
+  InfoCardsBiocontrolledPage.deleteMany(),
+  CarrouselBiocontrolledPage.deleteMany(),
+  BiocontrolledTimeLine.deleteMany(),
+  EquipoBiocontrolledPage.deleteMany(),
+])
+  .then(() => {
+    console.log('all databases cleaned')
+    const bannerBiocontrolledPage = new BannerBiocontrolledPage({
+      description: 'Esta es la unidad de explorar nuevas maneras y eficaces maneras de desarrollar medicamentos, gracias a <span className="blue-text">Biocontrolled</span> es que nos mantenemos a la vanguardia y podemos seguir ofreciendo productos cada vez más beneficiosos.',
+      imgURL: './images/biocontrolled.svg',
+    })
+    bannerBiocontrolledPage.save()
+      .then(() => console.log(`bannerletipage created`))
+      .catch(error => console.log(error))
+      dataBiocontrolled.forEach(unidad => {
+      const infoCardsBiocontrolledPage = new InfoCardsBiocontrolledPage({
+        title: unidad.title,
+        info: unidad.info,
+      })
+      infoCardsBiocontrolledPage.save()
+        .then(() => console.log(`infoCardsBiocontrolledPage created`))
+        .catch(error => console.log(error))
+    })
+    biocontrolledCarrousel.forEach(unidad => {
+      const carrouselBiocontrolledPage = new CarrouselBiocontrolledPage({
+        info: unidad.info,
+      })
+      carrouselBiocontrolledPage.save()
+        .then(() => console.log(`infoCardsBiocontrolledPage created`))
+        .catch(error => console.log(error))
+    })
+    biocontrolledTimeLineData.forEach(unidad => {
+      const biocontrolledTimeLine = new BiocontrolledTimeLine({
+        imgURL: unidad.imgURL,
+        desc: unidad.desc,
+      })
+      biocontrolledTimeLine.save()
+        .then(() => console.log(`biocontrolledTimeLine created`))
+        .catch(error => console.log(error))
+    })
+    const equipoBiocontrolledPage = new EquipoBiocontrolledPage({
+      description: 'El laboratorio más grande y más importante por la cantidad de ventas que tenía, cantidad de productos, cantidad de categoríasdonde participaba.',
+      person: 'Ramón, director de unidad',
+      buttonTitle: 'Conoce nuestra filosofía',
+      buttonLink: '/equipo',
+      imgURL: './images/equipo.jpg',
+    })
+    equipoBiocontrolledPage.save()
+      .then(() => console.log(`equipo Biocontrolled page created`))
+      .catch(error => console.log(error))
+  })
+  .catch(error => console.log(error))
+
+////////////////////////////////////////
+
+/////////////////////////////////////////
+////////////// GENVEN PAGE //////////////
+/////////////////////////////////////////
+
+const BannerGenvenPage = require('../models/nuestrasEmpresasComponents/genvenPage/bannerGenvenPage.model')
+const VideoGenvenPage = require('../models/nuestrasEmpresasComponents/genvenPage/videoGenvenPage.model')
+const ProductosGenvenPage = require('../models/nuestrasEmpresasComponents/genvenPage/genvenProductos.model')
+const GenvenTimeLine = require('../models/nuestrasEmpresasComponents/genvenPage/genvenTimeLine.model')
+const EquipoGenvenPage = require('../models/nuestrasEmpresasComponents/genvenPage/equipoGenvenPage.model')
+
+const genvenTimeLineData = require('../data/genvenTimeline')
+
+Promise.all([
+  BannerGenvenPage.deleteMany(),
+  VideoGenvenPage.deleteMany(),
+  ProductosGenvenPage.deleteMany(),
+  GenvenTimeLine.deleteMany(),
+  EquipoGenvenPage.deleteMany(),
+])
+  .then(() => {
+    console.log('all databases cleaned')
+    const bannerGenvenPage = new BannerGenvenPage({
+      description: '<span className="blue-text">Genven Genéricos Venezolanos,</span> es nuestra línea de genéricos de Laboratorios Leti S.A.V, con más de 25 años en el mercado farmacéutico venezolano.<br /><br />Esta planta de manufactura cuenta con <span className="blue-text">tecnología de punta y estrictos controles de calidad</span> en el proceso de fabricación de sus productos, lo que se traduce en medicamentos de comprobada eficacia terapéutica, que cumplen con los rigurosos controles exigidos por las Autoridades Sanitarias nacionales.',
+      imgURL: './images/genven.svg',
+    })
+    bannerGenvenPage.save()
+      .then(() => console.log(`bannerletipage created`))
+      .catch(error => console.log(error))
+      const videoGenvenPage = new VideoGenvenPage({
+        videoURL: 'video',
+      })
+      videoGenvenPage.save()
+        .then(() => console.log(`videoGenvenPage created`))
+        .catch(error => console.log(error))
+    const productosGenvenPage = new ProductosGenvenPage({
+      description: 'Ofrecemos terapias en las principales áreas terapéuticas: Cardiovascular, anti-infecciosos, anti-inflamatorios y analgésicos.',
+      buttonTitle: 'Conoce los productos',
+      buttonLink: '/productos',
+      img1URL: './images/genven001.png',
+      img2URL: './images/genven002.png',
+      img3URL: './images/genven003.png',
+    })
+    productosGenvenPage.save()
+      .then(() => console.log(`equipo Biocontrolled page created`))
+      .catch(error => console.log(error))
+    genvenTimeLineData.forEach(unidad => {
+      const genvenTimeLine = new GenvenTimeLine({
+        imgURL: unidad.imgURL,
+        desc: unidad.desc,
+      })
+      genvenTimeLine.save()
+        .then(() => console.log(`genvenTimeLine created`))
+        .catch(error => console.log(error))
+    })
+    const equipoGenvenPage = new EquipoGenvenPage({
+      description: 'El laboratorio más grande y más importante por la cantidad de ventas que tenía, cantidad de productos, cantidad de categoríasdonde participaba.',
+      person: 'Ramón, director de unidad',
+      buttonTitle: 'Conoce nuestra filosofía',
+      buttonLink: '/equipo',
+      imgURL: './images/equipo.jpg',
+    })
+    equipoGenvenPage.save()
+      .then(() => console.log(`equipo Genven page created`))
+      .catch(error => console.log(error))
   })
   .catch(error => console.log(error))
 
