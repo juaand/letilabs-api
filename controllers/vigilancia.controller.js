@@ -21,7 +21,6 @@ module.exports.addVigilancia = (req, res, next) => {
     .catch(next)
 }
 
-
 module.exports.dropVigilanciaCard = (req, res, next) => {
   const id = req.params.id
   const userRole = req.session.user.role
