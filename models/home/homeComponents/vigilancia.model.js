@@ -18,7 +18,7 @@ const vigilanciaSchema = new Schema({
     },
     medicine: {
         type: String,
-        enum: ['Alivet', 'Antux', 'Letisan', 'Migren', 'Monosulpa'],
+        required: true
     },
     prescribed: {
         type: String,
