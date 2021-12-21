@@ -43,11 +43,13 @@ const authRouter = require('./routes/auth.routes.js')
 const vigilanciaRouter = require('./routes/vigilancia.routes')
 const contentRouter = require('./routes/content.routes')
 const searchRouter = require('./routes/search.routes')
+const productRouter = require('./routes/product.routes')
 app.use('/', adminRouter)
 app.use('/', authRouter)
 app.use('/', vigilanciaRouter)
 app.use('/', contentRouter)
 app.use('/', searchRouter)
+app.use('/', productRouter)
 
 
 // catch 404 and forward to error handler
