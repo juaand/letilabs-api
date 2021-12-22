@@ -36,7 +36,7 @@ const vadevecumSchema = new Schema(
       required: true
     },
     therapeutic_group: {
-      type: String,
+      type: [String],
       required: true
     },
     category: {
