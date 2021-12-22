@@ -571,9 +571,11 @@ Promise.all([
     for (let i = 1; i < 20; i++) {
       const blog = new Blog({
         title: faker.lorem.sentence(),
-        subtitle: faker.lorem.sentence(),
+        subTitle: faker.lorem.sentence(),
         urlToPic: `https://picsum.photos/id/${i+1000}/1440/800`,
         content: faker.lorem.paragraphs(),
+        outstanding: false,
+        publishDate: faker.date.past(),
       })
       blog.save()
         .then(() => console.log(`new added`))
