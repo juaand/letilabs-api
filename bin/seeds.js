@@ -4,6 +4,7 @@ require('dotenv').config()
 const User = require('../models/user.model')
 const Vigilancia = require('../models/home/homeComponents/vigilancia.model')
 const faker = require('faker')
+const Blog = require('../models/blog.model')
 
 const userN = 30
 const vigilanciaN = 3
@@ -21,11 +22,11 @@ const Portfolio = require('../models/home/homeComponents/portfolio.model')
 const UnidadesNegocio = require('../models/home/homeComponents/unidadesNegocio.model')
 const UsInfo = require('../models/home/homeComponents/usInfo.model')
 const Video = require('../models/home/homeComponents/video.model')
-
 const carrouselHomeData = require('../data/homeCarousel')
 const portfolioData = require('../data/dataPortafolio')
 const meetPeopleWorkWithUsData = require('../data/dataMeetPeopleWorkWhitUs')
 const unidadesNegocioData = require('../data/unidadesNegocio')
+
 
 Promise.all([
   CarrouselHome.deleteMany(),
@@ -307,7 +308,7 @@ Promise.all([
     bannerLetiPage.save()
       .then(() => console.log(`bannerletipage created`))
       .catch(error => console.log(error))
-      letiData.forEach(unidad => {
+    letiData.forEach(unidad => {
       const infoCardsLetiPage = new InfoCardsLetiPage({
         title: unidad.title,
         info: unidad.info,
@@ -371,7 +372,7 @@ Promise.all([
     bannerBiocontrolledPage.save()
       .then(() => console.log(`bannerletipage created`))
       .catch(error => console.log(error))
-      dataBiocontrolled.forEach(unidad => {
+    dataBiocontrolled.forEach(unidad => {
       const infoCardsBiocontrolledPage = new InfoCardsBiocontrolledPage({
         title: unidad.title,
         info: unidad.info,
@@ -440,12 +441,12 @@ Promise.all([
     bannerGenvenPage.save()
       .then(() => console.log(`bannerletipage created`))
       .catch(error => console.log(error))
-      const videoGenvenPage = new VideoGenvenPage({
-        videoURL: 'video',
-      })
-      videoGenvenPage.save()
-        .then(() => console.log(`videoGenvenPage created`))
-        .catch(error => console.log(error))
+    const videoGenvenPage = new VideoGenvenPage({
+      videoURL: 'video',
+    })
+    videoGenvenPage.save()
+      .then(() => console.log(`videoGenvenPage created`))
+      .catch(error => console.log(error))
     const productosGenvenPage = new ProductosGenvenPage({
       description: 'Ofrecemos terapias en las principales áreas terapéuticas: Cardiovascular, anti-infecciosos, anti-inflamatorios y analgésicos.',
       buttonTitle: 'Conoce los productos',
@@ -498,7 +499,7 @@ Promise.all([
           avatar: faker.image.image(),
           bio: faker.lorem.paragraph(),
           createdAt: faker.date.past(),
-          password: 'Mappet123',
+          password: 'GrupoLeti123',
           activation: {
             active: true
           }
@@ -560,8 +561,26 @@ Promise.all([
   })
   .catch(error => console.log(error))
 
-  ////////////////////////////////////////
+/////////////////NEWS////////////////////
 
+Promise.all([
+  Blog.deleteMany()
+])
+  .then(() => {
+    console.log('blog cleaned')
+    for (let i = 1; i < 20; i++) {
+      const blog = new Blog({
+        title: faker.lorem.sentence(),
+        subtitle: faker.lorem.sentence(),
+        urlToPic: `https://picsum.photos/id/${i+1000}/1440/800`,
+        content: faker.lorem.paragraphs(),
+      })
+      blog.save()
+        .then(() => console.log(`new added`))
+        .catch(error => console.log(error))
+    }
+  })
+  .catch(error => console.log(error))
 
   ////////////////////////////////////////
 
