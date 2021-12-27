@@ -9,3 +9,16 @@ module.exports.getNews = (req, res, next) => {
     })
     .catch(next)
 }
+
+module.exports.getRandomNews = (req, res, next) => {
+
+  Blog.aggregate([
+    {
+      $sample: {size: 2}
+    }
+  ])
+    .then(response => {
+      res.status(201).json(response)
+    })
+    .catch(next)
+}
