@@ -7,3 +7,4 @@ const searchController = require('../controllers/search.controller')
 module.exports = router
 
 router.get('/search/:search', searchController.searchContent)
+router.post('/buscarnoticia', searchController.searchNews)

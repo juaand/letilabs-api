@@ -1,5 +1,6 @@
 // controllers/content.controllers.js
 const SiteContent = require('../models/siteContent.model')
+const News = require('../models/blog.model')
 
 
 module.exports.searchContent = (req, res, next) => {
@@ -12,4 +13,14 @@ module.exports.searchContent = (req, res, next) => {
     })
     .catch(next)
 
+}
+
+module.exports.searchNews = (req, res, next) => {
+  const {search} = req.body
+
+  News.find({title: {$regex: search, $options: 'i'}})
+    .then(isMatch => {
+      res.status(201).json(isMatch)
+    })
+    .catch(next)
 }
