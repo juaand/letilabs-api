@@ -12,7 +12,7 @@ module.exports = router
 /////////////////////////////////////////////////////////////////////
 
 router.get('/farmvigdata', routeGuard.isAuthenticated, adminController.getFarmVigData)
-router.get('/usinfodata', routeGuard.isAuthenticated, adminController.getUsInfo)
+router.get('/usinfodata', adminController.getUsInfo)
 router.patch('/updateusinfodata', routeGuard.isAuthenticated, adminController.updateUsInfoData)
 router.get('/carouseliniciodata', routeGuard.isAuthenticated, adminController.getCarouselInicio)
 router.get('/unidadesiniciodata', routeGuard.isAuthenticated, adminController.getUnidadesInicio)

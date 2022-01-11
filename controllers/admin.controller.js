@@ -35,18 +35,12 @@ module.exports.getFarmVigData = (req, res, next) => {
 /////////////////////////////////////////////////////////////////////
 
 module.exports.getUsInfo = (req, res, next) => {
-  const userRole = req.session.user.role
+  UsInfo.find()
+    .then((data) => {
+      res.status(201).json(data[0])
+    })
+    .catch(next)
 
-  if (userRole === 'Admin') {
-    UsInfo.find()
-      .then((data) => {
-        res.status(201).json(data[0])
-      })
-      .catch(next)
-  } else {
-    req.session.destroy()
-    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
-  }
 }
 
 module.exports.updateUsInfoData = (req, res, next) => {
