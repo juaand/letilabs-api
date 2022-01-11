@@ -7,7 +7,11 @@ const unidadesNegocioEmpresasSchema = new Schema(
       type: String,
       required: true
     },
-    desc: {
+    logo: {
+      type: String,
+      required: true
+    },
+    url: {
       type: String,
       required: true
     },
