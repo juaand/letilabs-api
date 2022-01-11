@@ -232,7 +232,8 @@ Promise.all([
     unidadesEmpresasData.forEach(unidad => {
       const unidadesNegocioEmpresas = new UnidadesNegocioEmpresas({
         name: unidad.name,
-        desc: unidad.desc,
+        logo: unidad.logo,
+        url: unidad.url,
         info: unidad.info,
       })
       unidadesNegocioEmpresas.save()

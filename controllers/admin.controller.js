@@ -11,7 +11,12 @@ const Banner = require('../models/aboutUs/aboutUsComponents/banner.model')
 const MarcandoPauta = require('../models/aboutUs/aboutUsComponents/marcandoPauta.model')
 const Megat = require('../models/aboutUs/aboutUsComponents/megat.model')
 const Gallery = require('../models/aboutUs/aboutUsComponents/gallery.model')
-
+const BannerOC = require('../models/nuestrasEmpresasComponents/bannerEmpresas.model')
+const OurCompaniesOC = require('../models/nuestrasEmpresasComponents/unidadesNegocioEmpresas.model')
+const ProductsBannerOC = require('../models/nuestrasEmpresasComponents/bannerProductos.model')
+const InnovationOC = require('../models/nuestrasEmpresasComponents/innovarEmpresas.model')
+const CareOC = require('../models/nuestrasEmpresasComponents/cuidarEmpresas.model')
+const BottomOC = require('../models/nuestrasEmpresasComponents/meetEmpresas.model')
 
 module.exports.getFarmVigData = (req, res, next) => {
   const userRole = req.session.user.role
@@ -322,6 +327,218 @@ module.exports.getGallery = (req, res, next) => {
 
   if (userRole === 'Admin') {
     Gallery.find()
+      .then((data) => {
+        res.status(201).json(data)
+      })
+      .catch(next)
+  } else {
+    req.session.destroy()
+    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+  }
+}
+
+/////////////////////////////////////////////////////////////////////
+///////////////////// NUESTRAS COMPAÑÍAS CRUD ///////////////////////////
+/////////////////////////////////////////////////////////////////////
+
+
+module.exports.getBannerOC = (req, res, next) => {
+  const userRole = req.session.user.role
+
+  if (userRole === 'Admin') {
+    BannerOC.find()
+      .then((data) => {
+        res.status(201).json(data[0])
+      })
+      .catch(next)
+  } else {
+    req.session.destroy()
+    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+  }
+}
+
+module.exports.updateBannerDataOC = (req, res, next) => {
+  const userRole = req.session.user.role
+  const {description, imgURL, id} = req.body
+
+
+  if (userRole === 'Admin') {
+    BannerOC.findByIdAndUpdate(id, req.body, {new: true})
+      .then((data) => {
+        res.status(201).json(data)
+      })
+      .catch(next)
+  } else {
+    req.session.destroy()
+    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+  }
+}
+
+module.exports.getOurCompaniesOC = (req, res, next) => {
+  const userRole = req.session.user.role
+
+  if (userRole === 'Admin') {
+    OurCompaniesOC.find()
+      .then((data) => {
+        res.status(201).json(data)
+      })
+      .catch(next)
+  } else {
+    req.session.destroy()
+    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+  }
+}
+
+module.exports.updateOurCompaniesOC = (req, res, next) => {
+  const userRole = req.session.user.role
+  const {desc, url, logo, id} = req.body
+
+
+  if (userRole === 'Admin') {
+    OurCompaniesOC.findByIdAndUpdate(id, req.body, {new: true})
+      .then((data) => {
+        res.status(201).json(data)
+      })
+      .catch(next)
+  } else {
+    req.session.destroy()
+    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+  }
+}
+
+module.exports.getBannerProductsOC = (req, res, next) => {
+  const userRole = req.session.user.role
+
+  if (userRole === 'Admin') {
+    ProductsBannerOC.find()
+      .then((data) => {
+        res.status(201).json(data[0])
+      })
+      .catch(next)
+  } else {
+    req.session.destroy()
+    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+  }
+}
+
+module.exports.updateBannerProductsOC = (req, res, next) => {
+  const userRole = req.session.user.role
+  const {desc, url, logo, id} = req.body
+
+
+  if (userRole === 'Admin') {
+    ProductsBannerOC.findByIdAndUpdate(id, req.body, {new: true})
+      .then((data) => {
+        res.status(201).json(data[0])
+      })
+      .catch(next)
+  } else {
+    req.session.destroy()
+    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+  }
+}
+
+module.exports.getInnovationOC = (req, res, next) => {
+  const userRole = req.session.user.role
+
+  if (userRole === 'Admin') {
+    InnovationOC.find()
+      .then((data) => {
+        res.status(201).json(data[0])
+      })
+      .catch(next)
+  } else {
+    req.session.destroy()
+    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+  }
+}
+
+module.exports.updateInnovationOC = (req, res, next) => {
+  const userRole = req.session.user.role
+  const {description, imgURL, id} = req.body
+
+
+  if (userRole === 'Admin') {
+    InnovationOC.findByIdAndUpdate(id, req.body, {new: true})
+      .then((data) => {
+        res.status(201).json(data)
+      })
+      .catch(next)
+  } else {
+    req.session.destroy()
+    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+  }
+}
+
+module.exports.getCareOC = (req, res, next) => {
+  const userRole = req.session.user.role
+
+  if (userRole === 'Admin') {
+    CareOC.find()
+      .then((data) => {
+        res.status(201).json(data[0])
+      })
+      .catch(next)
+  } else {
+    req.session.destroy()
+    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+  }
+}
+
+module.exports.updateCareOC = (req, res, next) => {
+  const userRole = req.session.user.role
+  const {description, imgURL, id} = req.body
+
+
+  if (userRole === 'Admin') {
+    CareOC.findByIdAndUpdate(id, req.body, {new: true})
+      .then((data) => {
+        res.status(201).json(data)
+      })
+      .catch(next)
+  } else {
+    req.session.destroy()
+    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+  }
+}
+
+module.exports.getMarcandoPauta = (req, res, next) => {
+  const userRole = req.session.user.role
+
+  if (userRole === 'Admin') {
+    MarcandoPauta.find()
+      .then((data) => {
+        res.status(201).json(data[0])
+      })
+      .catch(next)
+  } else {
+    req.session.destroy()
+    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+  }
+}
+
+module.exports.getBottomOC = (req, res, next) => {
+  const userRole = req.session.user.role
+
+  if (userRole === 'Admin') {
+    BottomOC.find()
+      .then((data) => {
+        res.status(201).json(data)
+      })
+      .catch(next)
+  } else {
+    req.session.destroy()
+    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+  }
+}
+
+module.exports.updateBottomOC = (req, res, next) => {
+  const userRole = req.session.user.role
+  const {description, imgURL, id} = req.body
+
+
+  if (userRole === 'Admin') {
+    BottomOC.findByIdAndUpdate(id, req.body, {new: true})
       .then((data) => {
         res.status(201).json(data)
       })
