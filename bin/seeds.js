@@ -53,8 +53,8 @@ Promise.all([
     })
     const farmacoVigilancia = new FarmacoVigilancia({
       title: 'Farmacovigilancia',
-      subTitle: '¿Tuviste algún efecto adverso con alguno de nuestro productos?',
-      buttonTitle: 'Infórmanos aquí',
+      subTitle: '¿Tiene algún comentario o efecto adverso </br> de alguno de nuestro productos? ',
+      buttonTitle: '¡Su opinión es importante para nosotros!',
     })
     farmacoVigilancia.save()
       .then(() => console.log(`farmacoVigilancia created`))
@@ -73,8 +73,8 @@ Promise.all([
     const modalFarmacoVigilancia = new ModalFarmacoVigilancia({
       title: '.Estamos para cuidarte',
       subTitle: 'Farmacovigilancia',
-      description: 'Facilita la recolección, vigilancia, investigación y evaluación de la información sobre reacciones adversas de los medicamentos, lo que permite realizar correctivos y establecer la seguridad terapéutica de los mismos.',
-      blueDescription: 'Nos preocupa saber si alguno de nuestros productos le causó algún efecto adverso, así podemos trabajar para ayudarlo.',
+      description: 'Conscientes de la responsabilidad por ofrecer medicamentos de alta calidad, facilitamos la recolección, evaluación e investigación de la información sobre posibles reacciones adversas de nuestros medicamentos, para realizar correctivos y establecer la máxima seguridad terapéutica de los mismos.',
+      blueDescription: 'Nos preocupa saber si alguno de nuestros productos le causó algún efecto adverso, así podemos trabajar para ayudarle.',
       name: 'Nombre del paciente',
       surname: 'Apellido del paciente',
       birthday: 'Fecha de nacimiento',
@@ -108,7 +108,7 @@ Promise.all([
         .catch(error => console.log(error))
     })
     const usInfo = new UsInfo({
-      description: 'Laboratorios Leti es un laboratorio farmacéutico venezolano que desde hace 70 años, crea soluciones de salud a través de la producción y comercialización de un amplio portafolio de medicamentos desarrollados con tecnología y seguridad, de la mano de un talento humano caliﬁcado que trabaja día a día para acompañar a los venezolanos.',
+      description: 'Grupo Leti es un laboratorio farmacéutico venezolano que por más de 70 años ha generado soluciones de salud con la producción y comercialización de un amplio portafolio de medicamentos, sustentado por nuestro destacado y comprometido talento humano. Somos pioneros en el desarrollo del sector, con tecnología de vanguardia y cumpliendo los más altos estándares de calidad globales para mejorar la vida de todos constante y oportunamente.',
       url: '/sobre-nosotros',
       buttonTitle: 'Conoce más sobre nosotros',
     })
@@ -150,7 +150,7 @@ Promise.all([
   .then(() => {
     console.log('all databases cleaned')
     const banner = new Banner({
-      description: 'Desarrollamos soluciones que marcan la diferencia en la vida de los venezolanos',
+      description: 'Desarrollamos soluciones de salud que marcan la diferencia en la vida de los venezolanos',
       imgURL: './images/play.svg',
     })
     banner.save()
@@ -160,6 +160,7 @@ Promise.all([
       const gallery = new Gallery({
         mainTitle: unidad.mainTitle,
         title: unidad.title,
+        desc: unidad.desc,
         imgPath: unidad.imgPath,
       })
       gallery.save()
@@ -167,7 +168,7 @@ Promise.all([
         .catch(error => console.log(error))
     })
     const marcandoPauta = new MarcandoPauta({
-      description: 'Contamos con un talento humano calificado y cualificado que con su ingenio e increíble calidad humana, trabajan día a día por los venezolanos que velan por su salud y la de los demás',
+      description: 'Contamos con el mejor talento que con su ingenio e increíble calidad humana, trabajan muy comprometidos día a día por los venezolanos, velando por la salud de todo un país',
       imgURL: './images/play.svg',
     })
     marcandoPauta.save()
@@ -207,10 +208,12 @@ const CuidarEmpresas = require('../models/nuestrasEmpresasComponents/cuidarEmpre
 const InnovarEmpresas = require('../models/nuestrasEmpresasComponents/innovarEmpresas.model')
 const MeetEmpresas = require('../models/nuestrasEmpresasComponents/meetEmpresas.model')
 const UnidadesNegocioEmpresas = require('../models/nuestrasEmpresasComponents/unidadesNegocioEmpresas.model')
+const Vadevecum = require('../models/vadevecum.model')
 
 
 const meetEmpresasData = require('../data/dataMeetEmpresas')
 const unidadesEmpresasData = require('../data/unidadesNegocioEmpresasData')
+const vadevecumData = require('../data/vadevecum')
 
 Promise.all([
   BannerEmpresas.deleteMany(),
@@ -223,7 +226,7 @@ Promise.all([
   .then(() => {
     console.log('all databases cleaned')
     const bannerEmpresas = new BannerEmpresas({
-      description: 'Nos conformamos por tres grandes unidades de negocio, que se dedican a diferentes áreas, pero trabajan entre ellas para lograr <span className="blue-text">mejores resultados</span>',
+      description: 'Sustentados por tres grandes unidades de negocio, que se ocupan de áreas específicas, y se integran entre ellas para lograr <span className="blue-text">mejores resultados</span>',
       imgURL: '/images/our-companies-bg.png',
     })
     bannerEmpresas.save()
@@ -273,6 +276,25 @@ Promise.all([
       })
       meetEmpresas.save()
         .then(() => console.log(`MeetEmpresas created`))
+        .catch(error => console.log(error))
+    })
+    vadevecumData.forEach(unidad => {
+      const vadevecum = new Vadevecum({
+        line: unidad.line,
+        name: unidad.name,
+        active_principle: unidad.active_principle,
+        composition: unidad.composition,
+        indication: unidad.indication,
+        posology: unidad.posology,
+        presentation: unidad.presentation,
+        health_register: unidad.health_register,
+        therapeutic_group: unidad.therapeutic_group,
+        category: unidad.category,
+        tv_spot: unidad.tv_spot,
+        trademarks: unidad.trademarks
+      })
+      vadevecum.save()
+        .then(() => console.log(`vadevecum created`))
         .catch(error => console.log(error))
     })
   })

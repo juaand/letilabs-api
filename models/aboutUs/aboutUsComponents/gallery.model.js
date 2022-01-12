@@ -11,6 +11,10 @@ const gallerySchema = new Schema(
       type: String,
       required: true
     },
+    desc: {
+      type: String,
+      required: true
+    },
     imgPath: {
       type: String,
       required: true

@@ -1,22 +1,22 @@
 module.exports = [
   {
     superiorTitle: 'Nuestro portafolio cuenta con 4 tipos de medicamentos',
-    title: 'Libre consumo (OTC)',
-    desc: 'Son los medicamentos que puedes adquirir sin prescripción '
+    title: 'Libre prescripción (OTC)',
+    desc: 'Medicamentos que se pueden adquirir sin prescripción médica'
   },
   {
     superiorTitle: 'Nuestro portafolio cuenta con 4 tipos de medicamentos',
     title: 'Con prescripción (Éticos)',
-    desc: 'Son los medicamentos prescritos por tu médico o profesional tratante'
+    desc: 'Productos Farmacéuticos que requieren de la recomendación médica o de un profesional tratante'
   },
   {
     superiorTitle: 'Nuestro portafolio cuenta con 4 tipos de medicamentos',
     title: 'Genéricos',
-    desc: 'Son copias de medicamentos de marca que tienen exactamente la misma calidad, dosis, uso, seguridad y potencia que el medicamento original'
+    desc: 'Soluciones galénicas de eficacia comprobada en distintos grupos terapéuticos al alcance de todos'
   },
   {
     superiorTitle: 'Nuestro portafolio cuenta con 4 tipos de medicamentos',
-    title: 'Naturales',
-    desc: 'Son medicamentos provenientes de hierbas medicinales con propiedades terapéuticas y curativas, que han sido avalados por estudios'
+    title: 'Fitomedicamentos',
+    desc: 'Medicamentos con principios activos naturales estandarizados, con aval científico y licencias internacionales'
   }
 ]

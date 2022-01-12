@@ -41,15 +41,12 @@ const vadevecumSchema = new Schema(
     },
     category: {
       type: String,
-      required: true
     },
     tv_spot: {
       type: [String],
-      required: true
     },
     trademarks: {
       type: String,
-      required: true
     }
   },
   { timestamps: true }
