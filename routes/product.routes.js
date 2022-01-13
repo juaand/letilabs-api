@@ -9,3 +9,5 @@ const productController = require('../controllers/product.controller')
 module.exports = router
 
 router.post('/producstdata', productController.getProduct)
+
+router.get('/listado-productos', productController.getProductsList)
