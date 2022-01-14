@@ -344,6 +344,8 @@ Promise.all([
       const letiTimeLine = new LetiTimeLine({
         imgURL: unidad.imgURL,
         desc: unidad.desc,
+        button: unidad.button,
+        url: unidad.url
       })
       letiTimeLine.save()
         .then(() => console.log(`letiTimeLine created`))

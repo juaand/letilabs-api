@@ -17,6 +17,13 @@ const ProductsBannerOC = require('../models/nuestrasEmpresasComponents/bannerPro
 const InnovationOC = require('../models/nuestrasEmpresasComponents/innovarEmpresas.model')
 const CareOC = require('../models/nuestrasEmpresasComponents/cuidarEmpresas.model')
 const BottomOC = require('../models/nuestrasEmpresasComponents/meetEmpresas.model')
+const BannerOCLeti = require('../models/nuestrasEmpresasComponents/laboratoriosLetiPage/bannerLetiPage.model')
+const OurCompaniesOCInfoCardsLeti = require('../models/nuestrasEmpresasComponents/laboratoriosLetiPage/infoCardsLetiPage.model')
+const EquipoLetiPageOC = require('../models/nuestrasEmpresasComponents/laboratoriosLetiPage/equipoLetiPage.model')
+const TimeLineLetiOC = require('../models/nuestrasEmpresasComponents/laboratoriosLetiPage/letiTimeLine.model')
+
+
+
 
 module.exports.getFarmVigData = (req, res, next) => {
   const userRole = req.session.user.role
@@ -534,3 +541,136 @@ module.exports.updateBottomOC = (req, res, next) => {
     res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
   }
 }
+
+//////////////////////////////////////////////////////////////////////
+//////////////// NUESTRAS COMPAÑÍAS LETI CRUD ////////////////////////
+/////////////////////////////////////////////////////////////////////
+
+module.exports.getBannerOCLeti = (req, res, next) => {
+  const userRole = req.session.user.role
+
+  if (userRole === 'Admin') {
+    BannerOCLeti.find()
+      .then((data) => {
+        res.status(201).json(data[0])
+      })
+      .catch(next)
+  } else {
+    req.session.destroy()
+    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+  }
+}
+
+module.exports.updateBannerDataOCLeti = (req, res, next) => {
+  const userRole = req.session.user.role
+  const {description, imgURL, id} = req.body
+
+
+  if (userRole === 'Admin') {
+    BannerOCLeti.findByIdAndUpdate(id, req.body, {new: true})
+      .then((data) => {
+        res.status(201).json(data)
+      })
+      .catch(next)
+  } else {
+    req.session.destroy()
+    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+  }
+}
+
+module.exports.getOurCompaniesInfoCardsLeti = (req, res, next) => {
+  const userRole = req.session.user.role
+
+  if (userRole === 'Admin') {
+    OurCompaniesOCInfoCardsLeti.find()
+      .then((data) => {
+        res.status(201).json(data)
+      })
+      .catch(next)
+  } else {
+    req.session.destroy()
+    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+  }
+}
+
+module.exports.updateOurCompaniesInfoCardsLeti = (req, res, next) => {
+  const userRole = req.session.user.role
+  const {desc, url, logo, id} = req.body
+
+
+  if (userRole === 'Admin') {
+    OurCompaniesOCInfoCardsLeti.findByIdAndUpdate(id, req.body, {new: true})
+      .then((data) => {
+        res.status(201).json(data)
+      })
+      .catch(next)
+  } else {
+    req.session.destroy()
+    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+  }
+}
+
+module.exports.getEquipoLetiOC = (req, res, next) => {
+  const userRole = req.session.user.role
+
+  if (userRole === 'Admin') {
+    EquipoLetiPageOC.find()
+      .then((data) => {
+        res.status(201).json(data[0])
+      })
+      .catch(next)
+  } else {
+    req.session.destroy()
+    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+  }
+}
+
+module.exports.updateEquipoLetiOC = (req, res, next) => {
+  const userRole = req.session.user.role
+  const {desc, url, logo, id} = req.body
+
+
+  if (userRole === 'Admin') {
+    EquipoLetiPageOC.findByIdAndUpdate(id, req.body, {new: true})
+      .then((data) => {
+        res.status(201).json(data[0])
+      })
+      .catch(next)
+  } else {
+    req.session.destroy()
+    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+  }
+}
+
+module.exports.getTimeLineLeti = (req, res, next) => {
+  const userRole = req.session.user.role
+
+  if (userRole === 'Admin') {
+    TimeLineLetiOC.find()
+      .then((data) => {
+        res.status(201).json(data[0])
+      })
+      .catch(next)
+  } else {
+    req.session.destroy()
+    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+  }
+}
+/// pendiente add ///
+module.exports.addTimeLineLetiData = (req, res, next) => {
+  const userRole = req.session.user.role
+  const {description, imgURL, id} = req.body
+
+
+  if (userRole === 'Admin') {
+    TimeLineLetiOC.findByIdAndUpdate(id, req.body, {new: true})
+      .then((data) => {
+        res.status(201).json(data)
+      })
+      .catch(next)
+  } else {
+    req.session.destroy()
+    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+  }
+}
+
