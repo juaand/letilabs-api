@@ -21,6 +21,12 @@ const BannerOCLeti = require('../models/nuestrasEmpresasComponents/laboratoriosL
 const OurCompaniesOCInfoCardsLeti = require('../models/nuestrasEmpresasComponents/laboratoriosLetiPage/infoCardsLetiPage.model')
 const EquipoLetiPageOC = require('../models/nuestrasEmpresasComponents/laboratoriosLetiPage/equipoLetiPage.model')
 const TimeLineLetiOC = require('../models/nuestrasEmpresasComponents/laboratoriosLetiPage/letiTimeLine.model')
+const BannerOCBiocontrolled = require('../models/nuestrasEmpresasComponents/biocontrolledPage/bannerBiocontrolledPage.model')
+const OurCompaniesOCInfoCardsBiocontrolled = require('../models/nuestrasEmpresasComponents/biocontrolledPage/infoCardsBiocontrolledPage.model')
+const EquipoBiocontrolledPageOC = require('../models/nuestrasEmpresasComponents/biocontrolledPage/equipoBiocontrolledPage.model')
+const TimeLineBiocontrolledOC = require('../models/nuestrasEmpresasComponents/biocontrolledPage/biocontrolledTimeLine.model')
+const CarrouselBiocontrolledOC = require('../models/nuestrasEmpresasComponents/biocontrolledPage/biocontrolledCarrousel.model')
+
 
 
 
@@ -674,3 +680,166 @@ module.exports.addTimeLineLetiData = (req, res, next) => {
   }
 }
 
+//////////////////////////////////////////////////////////////////////
+///////////// NUESTRAS COMPAÑÍAS BIOCONTROLLED CRUD //////////////////
+/////////////////////////////////////////////////////////////////////
+
+module.exports.getBannerOCBiocontrolled = (req, res, next) => {
+  const userRole = req.session.user.role
+
+  if (userRole === 'Admin') {
+    BannerOCBiocontrolled.find()
+      .then((data) => {
+        res.status(201).json(data[0])
+      })
+      .catch(next)
+  } else {
+    req.session.destroy()
+    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+  }
+}
+
+module.exports.updateBannerDataOCBiocontrolled = (req, res, next) => {
+  const userRole = req.session.user.role
+  const {description, imgURL, id} = req.body
+
+
+  if (userRole === 'Admin') {
+    BannerOCBiocontrolled.findByIdAndUpdate(id, req.body, {new: true})
+      .then((data) => {
+        res.status(201).json(data)
+      })
+      .catch(next)
+  } else {
+    req.session.destroy()
+    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+  }
+}
+
+module.exports.getOurCompaniesInfoCardsBiocontrolled = (req, res, next) => {
+  const userRole = req.session.user.role
+
+  if (userRole === 'Admin') {
+    OurCompaniesOCInfoCardsBiocontrolled.find()
+      .then((data) => {
+        res.status(201).json(data)
+      })
+      .catch(next)
+  } else {
+    req.session.destroy()
+    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+  }
+}
+
+module.exports.updateOurCompaniesInfoCardsBiocontrolled = (req, res, next) => {
+  const userRole = req.session.user.role
+  const {desc, url, logo, id} = req.body
+
+
+  if (userRole === 'Admin') {
+    OurCompaniesOCInfoCardsBiocontrolled.findByIdAndUpdate(id, req.body, {new: true})
+      .then((data) => {
+        res.status(201).json(data)
+      })
+      .catch(next)
+  } else {
+    req.session.destroy()
+    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+  }
+}
+
+module.exports.getEquipoBiocontrolledOC = (req, res, next) => {
+  const userRole = req.session.user.role
+
+  if (userRole === 'Admin') {
+    EquipoBiocontrolledPageOC.find()
+      .then((data) => {
+        res.status(201).json(data[0])
+      })
+      .catch(next)
+  } else {
+    req.session.destroy()
+    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+  }
+}
+
+module.exports.updateEquipoBiocontrolledOC = (req, res, next) => {
+  const userRole = req.session.user.role
+  const {desc, url, logo, id} = req.body
+
+
+  if (userRole === 'Admin') {
+    EquipoBiocontrolledPageOC.findByIdAndUpdate(id, req.body, {new: true})
+      .then((data) => {
+        res.status(201).json(data[0])
+      })
+      .catch(next)
+  } else {
+    req.session.destroy()
+    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+  }
+}
+
+module.exports.getTimeLineBiocontrolled = (req, res, next) => {
+  const userRole = req.session.user.role
+
+  if (userRole === 'Admin') {
+    TimeLineBiocontrolledOC.find()
+      .then((data) => {
+        res.status(201).json(data[0])
+      })
+      .catch(next)
+  } else {
+    req.session.destroy()
+    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+  }
+}
+/// pendiente add ///
+module.exports.addTimeLineBiocontrolledData = (req, res, next) => {
+  const userRole = req.session.user.role
+  const {description, imgURL, id} = req.body
+
+
+  if (userRole === 'Admin') {
+    TimeLineBiocontrolledOC.findByIdAndUpdate(id, req.body, {new: true})
+      .then((data) => {
+        res.status(201).json(data)
+      })
+      .catch(next)
+  } else {
+    req.session.destroy()
+    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+  }
+}
+
+module.exports.getCarrouselBiocontrolled = (req, res, next) => {
+  const userRole = req.session.user.role
+
+  if (userRole === 'Admin') {
+    CarrouselBiocontrolledOC.find()
+      .then((data) => {
+        res.status(201).json(data[0])
+      })
+      .catch(next)
+  } else {
+    req.session.destroy()
+    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+  }
+}
+/// pendiente add ///
+module.exports.addCarrouselBiocontrolledData = (req, res, next) => {
+  const userRole = req.session.user.role
+  const {description, imgURL, id} = req.body
+
+
+  if (userRole === 'Admin') {
+    CarrouselBiocontrolledOC.findByIdAndUpdate(id, req.body, {new: true})
+      .then((data) => {
+        res.status(201).json(data)
+      })
+      .catch(next)
+  } else {
+    req.session.destroy()
+    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+  }
+}

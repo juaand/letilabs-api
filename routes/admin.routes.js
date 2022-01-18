@@ -53,7 +53,7 @@ router.patch('/updatecareoc', routeGuard.isAuthenticated, adminController.update
 router.get('/bottomoc', routeGuard.isAuthenticated, adminController.getBottomOC)
 router.patch('/updatebottomoc', routeGuard.isAuthenticated, adminController.updateBottomOC)
 
-/////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////
 ////////////////// NUESTRAS COMPAÑÍAS LETI CRUD //////////////////////
 /////////////////////////////////////////////////////////////////////
 
@@ -65,5 +65,21 @@ router.get('/ocequipoleti', routeGuard.isAuthenticated, adminController.getEquip
 router.patch('/updateocequipoleti', routeGuard.isAuthenticated, adminController.updateEquipoLetiOC)
 router.get('/octimelineleti', routeGuard.isAuthenticated, adminController.getTimeLineLeti)
 router.patch('/addoctimelineleti', routeGuard.isAuthenticated, adminController.addTimeLineLetiData)
+
+//////////////////////////////////////////////////////////////////////
+/////////////// NUESTRAS COMPAÑÍAS BIOCONTROLLED CRUD ////////////////
+/////////////////////////////////////////////////////////////////////
+
+router.get('/bannerdataocbiocontrolled', routeGuard.isAuthenticated, adminController.getBannerOCBiocontrolled)
+router.patch('/updatebannerdataocbiocontrolled', routeGuard.isAuthenticated, adminController.updateBannerDataOCBiocontrolled)
+router.get('/ourcompaniesinforcardsbiocontrolled', routeGuard.isAuthenticated, adminController.getOurCompaniesInfoCardsBiocontrolled)
+router.patch('/updateourcompaniesinfocardsbiocontrolled', routeGuard.isAuthenticated, adminController.updateOurCompaniesInfoCardsBiocontrolled)
+router.get('/ocequipobiocontrolled', routeGuard.isAuthenticated, adminController.getEquipoBiocontrolledOC)
+router.patch('/updateocequipobiocontrolled', routeGuard.isAuthenticated, adminController.updateEquipoBiocontrolledOC)
+router.get('/octimelinebiocontrolled', routeGuard.isAuthenticated, adminController.getTimeLineBiocontrolled)
+router.patch('/addoctimelinebiocontrolled', routeGuard.isAuthenticated, adminController.addTimeLineBiocontrolledData)
+router.get('/occarrouselbiocontrolled', routeGuard.isAuthenticated, adminController.getCarrouselBiocontrolled)
+router.patch('/addoccarrouselbiocontrolled', routeGuard.isAuthenticated, adminController.addCarrouselBiocontrolledData)
+
 
 
