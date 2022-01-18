@@ -20,7 +20,13 @@ module.exports.searchNews = (req, res, next) => {
   News.find({title: {$regex: data.search, $options: 'i'}})
     .then(isMatch => {
       if (data.tag.length > 0) {
-        res.status(201).json(isMatch.filter(el => el.tag.includes(data.tag)))
+        res.status(201).json(isMatch.filter(el => {
+          for (let i = 0; i < data.tag.length; i++) {
+            if (el.tag.includes(data.tag[i])) {
+              return el
+            }
+          }
+        }))
       } else {
         res.status(201).json(isMatch)
       }
