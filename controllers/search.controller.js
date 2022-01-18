@@ -15,11 +15,16 @@ module.exports.searchContent = (req, res, next) => {
 }
 
 module.exports.searchNews = (req, res, next) => {
-  const {search} = req.body
+  const {data} = req.body
 
-  News.find({title: {$regex: search, $options: 'i'}})
+  News.find({title: {$regex: data.search, $options: 'i'}})
     .then(isMatch => {
-      res.status(201).json(isMatch)
+      if (data.tag.length > 0) {
+        res.status(201).json(isMatch.filter(el => el.tag.includes(data.tag)))
+      } else {
+        res.status(201).json(isMatch)
+      }
     })
     .catch(next)
+
 }
