@@ -392,7 +392,8 @@ Promise.all([
     console.log('all databases cleaned')
     const bannerBiocontrolledPage = new BannerBiocontrolledPage({
       description: 'Esta es la unidad de explorar nuevas maneras y eficaces maneras de desarrollar medicamentos, gracias a <span className="blue-text">Biocontrolled</span> es que nos mantenemos a la vanguardia y podemos seguir ofreciendo productos cada vez más beneficiosos.',
-      imgURL: './images/biocontrolled.svg',
+      imgURL: './images/biocontrolled-banner.56fafa30.png',
+      logo: './images/biocontrolled.svg',
     })
     bannerBiocontrolledPage.save()
       .then(() => console.log(`bannerletipage created`))
@@ -418,6 +419,8 @@ Promise.all([
       const biocontrolledTimeLine = new BiocontrolledTimeLine({
         imgURL: unidad.imgURL,
         desc: unidad.desc,
+        buttonTitle: unidad.buttonTitle,
+        buttonLink: unidad.buttonLink,
       })
       biocontrolledTimeLine.save()
         .then(() => console.log(`biocontrolledTimeLine created`))
@@ -427,8 +430,8 @@ Promise.all([
       description: 'El laboratorio más grande y más importante por la cantidad de ventas que tenía, cantidad de productos, cantidad de categoríasdonde participaba.',
       person: 'Ramón, director de unidad',
       buttonTitle: 'Conoce nuestra filosofía',
-      buttonLink: '/equipo',
-      imgURL: './images/equipo.jpg',
+      buttonLink: '/nuestra-filosofia',
+      imgURL: './images/bicontrolled-bottom.97386a3b.jpg',
     })
     equipoBiocontrolledPage.save()
       .then(() => console.log(`equipo Biocontrolled page created`))
