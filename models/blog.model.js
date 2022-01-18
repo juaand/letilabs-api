@@ -23,6 +23,10 @@ const blogSchema = new Schema(
       type: Boolean,
       required: [true, 'Outstanding is required'],
     },
+    tag: {
+      type: [String],
+      required: [true, 'Tag is required'],
+    },
     publishDate: {
       type: Date,
       required: [true, 'PublishDate is required'],

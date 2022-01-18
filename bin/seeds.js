@@ -597,10 +597,11 @@ Promise.all([
       const blog = new Blog({
         title: faker.lorem.sentence(),
         subTitle: faker.lorem.sentence(),
-        urlToPic: `https://picsum.photos/id/${i+1000}/1440/800`,
+        urlToPic: `https://picsum.photos/id/${i + 1000}/1440/800`,
         content: faker.lorem.paragraphs(),
         outstanding: false,
         publishDate: faker.date.past(),
+        tag: faker.random.arrayElement(["Grupo Leti", "Educativo", "Innovación", "Nuestra gente", "Investigación", "Salud y bienestar"]),
       })
       blog.save()
         .then(() => console.log(`new added`))

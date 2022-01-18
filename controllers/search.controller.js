@@ -12,7 +12,6 @@ module.exports.searchContent = (req, res, next) => {
       res.status(201).json(isMatch)
     })
     .catch(next)
-
 }
 
 module.exports.searchNews = (req, res, next) => {
