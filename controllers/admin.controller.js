@@ -818,7 +818,7 @@ module.exports.getCarrouselBiocontrolled = (req, res, next) => {
   if (userRole === 'Admin') {
     CarrouselBiocontrolledOC.find()
       .then((data) => {
-        res.status(201).json(data[0])
+        res.status(201).json(data)
       })
       .catch(next)
   } else {
