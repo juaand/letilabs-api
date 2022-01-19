@@ -47,6 +47,10 @@ const vadevecumSchema = new Schema(
     },
     trademarks: {
       type: String,
+    },
+    show_in_home: {
+      type: Boolean,
+      default: false
     }
   },
   { timestamps: true }

@@ -292,7 +292,7 @@ Promise.all([
         therapeutic_group: unidad.therapeutic_group,
         category: unidad.category,
         tv_spot: unidad.tv_spot,
-        trademarks: unidad.trademarks
+        trademarks: unidad.trademarks,
       })
       vadevecum.save()
         .then(() => console.log(`vadevecum created`))

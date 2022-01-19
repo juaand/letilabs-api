@@ -26,7 +26,7 @@ const OurCompaniesOCInfoCardsBiocontrolled = require('../models/nuestrasEmpresas
 const EquipoBiocontrolledPageOC = require('../models/nuestrasEmpresasComponents/biocontrolledPage/equipoBiocontrolledPage.model')
 const TimeLineBiocontrolledOC = require('../models/nuestrasEmpresasComponents/biocontrolledPage/biocontrolledTimeLine.model')
 const CarrouselBiocontrolledOC = require('../models/nuestrasEmpresasComponents/biocontrolledPage/biocontrolledCarrousel.model')
-
+const Vadevecum = require('../models/vadevecum.model')
 
 
 
@@ -103,6 +103,14 @@ module.exports.getUnidadesInicio = (req, res, next) => {
 
 module.exports.getPortfolioInicio = (req, res, next) => {
   PortfolioInicio.find()
+    .then((data) => {
+      res.status(201).json(data)
+    })
+    .catch(next)
+}
+
+module.exports.getVadevecumData = (req, res, next) => {
+  Vadevecum.find()
     .then((data) => {
       res.status(201).json(data)
     })

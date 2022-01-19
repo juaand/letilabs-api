@@ -17,6 +17,7 @@ router.patch('/updateusinfodata', routeGuard.isAuthenticated, adminController.up
 router.get('/carouseliniciodata', routeGuard.isAuthenticated, adminController.getCarouselInicio)
 router.get('/unidadesiniciodata', adminController.getUnidadesInicio)
 router.get('/portfolioiniciodata', adminController.getPortfolioInicio)
+router.get('/vadevecumdata', adminController.getVadevecumData)
 router.patch('/updateportfoliodata', routeGuard.isAuthenticated, adminController.updatePortfolioData)
 router.get('/farmacoiniciodata', routeGuard.isAuthenticated, adminController.getFarmacoInicio)
 router.patch('/updatefarmacoiniciodata', routeGuard.isAuthenticated, adminController.updateFarmacoData)
