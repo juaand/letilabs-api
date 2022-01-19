@@ -222,6 +222,7 @@ Promise.all([
   InnovarEmpresas.deleteMany(),
   MeetEmpresas.deleteMany(),
   UnidadesNegocioEmpresas.deleteMany(),
+  Vadevecum.deleteMany(),
 ])
   .then(() => {
     console.log('all databases cleaned')
