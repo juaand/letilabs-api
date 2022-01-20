@@ -27,6 +27,7 @@ const EquipoBiocontrolledPageOC = require('../models/nuestrasEmpresasComponents/
 const TimeLineBiocontrolledOC = require('../models/nuestrasEmpresasComponents/biocontrolledPage/biocontrolledTimeLine.model')
 const CarrouselBiocontrolledOC = require('../models/nuestrasEmpresasComponents/biocontrolledPage/biocontrolledCarrousel.model')
 const Vadevecum = require('../models/vadevecum.model')
+const Video = require('../models/home/homeComponents/video.model')
 
 
 
@@ -68,6 +69,22 @@ module.exports.updateUsInfoData = (req, res, next) => {
 
   if (userRole === 'Admin') {
     UsInfo.findByIdAndUpdate(id, req.body, {new: true})
+      .then((data) => {
+        res.status(201).json(data)
+      })
+      .catch(next)
+  } else {
+    req.session.destroy()
+    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+  }
+}
+
+module.exports.updateVideoData = (req, res, next) => {
+  const userRole = req.session.user.role
+  const {videoUrl} = req.body
+
+  if (userRole === 'Admin') {
+    Video.findOneAndUpdate({}, req.body, {new: true})
       .then((data) => {
         res.status(201).json(data)
       })
