@@ -116,7 +116,7 @@ Promise.all([
       .then(() => console.log(`usInfo created`))
       .catch(error => console.log(error))
     const video = new Video({
-      url: './images/play.svg',
+      url: 'play.svg',
     })
     video.save()
       .then(() => console.log(`video created`))
@@ -151,7 +151,7 @@ Promise.all([
     console.log('all databases cleaned')
     const banner = new Banner({
       description: 'Desarrollamos soluciones de salud que marcan la diferencia en la vida de los venezolanos',
-      imgURL: './images/play.svg',
+      imgURL: 'play.svg',
     })
     banner.save()
       .then(() => console.log(`banner created`))
@@ -169,7 +169,7 @@ Promise.all([
     })
     const marcandoPauta = new MarcandoPauta({
       description: 'Contamos con el mejor talento que con su ingenio e increíble calidad humana, trabajan muy comprometidos día a día por los venezolanos, velando por la salud de todo un país',
-      imgURL: './images/play.svg',
+      imgURL: 'play.svg',
     })
     marcandoPauta.save()
       .then(() => console.log(`marcandoPauta created`))
@@ -228,7 +228,7 @@ Promise.all([
     console.log('all databases cleaned')
     const bannerEmpresas = new BannerEmpresas({
       description: 'Sustentados por tres grandes unidades de negocio, que se ocupan de áreas específicas, y se integran entre ellas para lograr <span className="blue-text">mejores resultados</span>',
-      imgURL: '/images/our-companies-bg.png',
+      imgURL: 'our-companies-bg.png',
     })
     bannerEmpresas.save()
       .then(() => console.log(`banner created`))
@@ -247,16 +247,16 @@ Promise.all([
     const bannerProductos = new BannerProductos({
       description: 'A través de esta relación de sinergia, es que logramos nuestros objetivos',
       description2: 'Ofrecer gran variedad y efectivos productos',
-      imgURL: './images/ulgarin.png',
-      img2URL: './images/azitomicina.png',
-      img3URL: './images/diklason.png',
+      imgURL: 'ulgarin.png',
+      img2URL: 'azitomicina.png',
+      img3URL: 'diklason.png',
     })
     bannerProductos.save()
       .then(() => console.log(`BannerProductos created`))
       .catch(error => console.log(error))
     const cuidarEmpresas = new CuidarEmpresas({
       description: 'Cuidar la salud de los venezolanos',
-      imgURL: './images/cuidar.png',
+      imgURL: 'cuidar.png',
     })
     cuidarEmpresas.save()
       .then(() => console.log(`cuidar empresas created`))
@@ -327,7 +327,7 @@ Promise.all([
     console.log('all databases cleaned')
     const bannerLetiPage = new BannerLetiPage({
       description: 'Esta es la unidad que se encarga de desarrollar la gama de productos que abarca diferentes áreas terapéuticas: cardiovascular, metabolismo, gástrica, respiratoria, neurológicas, músculo-esqueléticas, dolor, antibióticos, vitaminas, tanto para el paciente pediátrico como para el paciente adulto.',
-      imgURL: './images/laboratorios-leti.svg',
+      imgURL: 'leti.svg',
     })
     bannerLetiPage.save()
       .then(() => console.log(`bannerletipage created`))
@@ -357,7 +357,7 @@ Promise.all([
       person: 'Ramón, director de unidad',
       buttonTitle: 'Conoce nuestra filosofía',
       buttonLink: '/equipo',
-      imgURL: './images/equipo.jpg',
+      imgURL: 'equipo.jpg',
     })
     equipoLetiPage.save()
       .then(() => console.log(`equipo leti page created`))
@@ -393,8 +393,8 @@ Promise.all([
     console.log('all databases cleaned')
     const bannerBiocontrolledPage = new BannerBiocontrolledPage({
       description: 'Esta es la unidad de explorar nuevas maneras y eficaces maneras de desarrollar medicamentos, gracias a <span className="blue-text">Biocontrolled</span> es que nos mantenemos a la vanguardia y podemos seguir ofreciendo productos cada vez más beneficiosos.',
-      imgURL: './images/biocontrolled-banner.56fafa30.png',
-      logo: './images/biocontrolled.svg',
+      imgURL: 'biocontrolled-banner.png',
+      logo: 'biocontrolled.svg',
     })
     bannerBiocontrolledPage.save()
       .then(() => console.log(`bannerletipage created`))
@@ -432,7 +432,7 @@ Promise.all([
       person: 'Ramón, director de unidad',
       buttonTitle: 'Conoce nuestra filosofía',
       buttonLink: '/nuestra-filosofia',
-      imgURL: './images/bicontrolled-bottom.97386a3b.jpg',
+      imgURL: 'bicontrolled-bottom.jpg',
     })
     equipoBiocontrolledPage.save()
       .then(() => console.log(`equipo Biocontrolled page created`))
@@ -465,7 +465,7 @@ Promise.all([
     console.log('all databases cleaned')
     const bannerGenvenPage = new BannerGenvenPage({
       description: '<span className="blue-text">Genven Genéricos Venezolanos,</span> es nuestra línea de genéricos de Laboratorios Leti S.A.V, con más de 25 años en el mercado farmacéutico venezolano.<br /><br />Esta planta de manufactura cuenta con <span className="blue-text">tecnología de punta y estrictos controles de calidad</span> en el proceso de fabricación de sus productos, lo que se traduce en medicamentos de comprobada eficacia terapéutica, que cumplen con los rigurosos controles exigidos por las Autoridades Sanitarias nacionales.',
-      imgURL: './images/genven.svg',
+      imgURL: 'genven.svg',
     })
     bannerGenvenPage.save()
       .then(() => console.log(`bannerletipage created`))
@@ -480,9 +480,9 @@ Promise.all([
       description: 'Ofrecemos terapias en las principales áreas terapéuticas: Cardiovascular, anti-infecciosos, anti-inflamatorios y analgésicos.',
       buttonTitle: 'Conoce los productos',
       buttonLink: '/productos',
-      img1URL: './images/genven001.png',
-      img2URL: './images/genven002.png',
-      img3URL: './images/genven003.png',
+      img1URL: 'genven001.png',
+      img2URL: 'genven002.png',
+      img3URL: 'genven003.png',
     })
     productosGenvenPage.save()
       .then(() => console.log(`equipo Biocontrolled page created`))
@@ -501,7 +501,7 @@ Promise.all([
       person: 'Ramón, director de unidad',
       buttonTitle: 'Conoce nuestra filosofía',
       buttonLink: '/equipo',
-      imgURL: './images/equipo.jpg',
+      imgURL: 'equipo.jpg',
     })
     equipoGenvenPage.save()
       .then(() => console.log(`equipo Genven page created`))
