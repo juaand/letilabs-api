@@ -60,7 +60,7 @@ router.patch('/updatebottomoc', routeGuard.isAuthenticated, adminController.upda
 
 router.get('/bannerdataocleti', routeGuard.isAuthenticated, adminController.getBannerOCLeti)
 router.patch('/updatebannerdataocleti', routeGuard.isAuthenticated, adminController.updateBannerDataOCLeti)
-router.get('/ourcompaniesinforcardsleti', routeGuard.isAuthenticated, adminController.getOurCompaniesInfoCardsLeti)
+router.get('/ourcompaniesinfocardsleti', routeGuard.isAuthenticated, adminController.getOurCompaniesInfoCardsLeti)
 router.patch('/updateourcompaniesinfocardsleti', routeGuard.isAuthenticated, adminController.updateOurCompaniesInfoCardsLeti)
 router.get('/ocequipoleti', routeGuard.isAuthenticated, adminController.getEquipoLetiOC)
 router.patch('/updateocequipoleti', routeGuard.isAuthenticated, adminController.updateEquipoLetiOC)
@@ -73,7 +73,7 @@ router.patch('/addoctimelineleti', routeGuard.isAuthenticated, adminController.a
 
 router.get('/bannerdataocbiocontrolled', routeGuard.isAuthenticated, adminController.getBannerOCBiocontrolled)
 router.patch('/updatebannerdataocbiocontrolled', routeGuard.isAuthenticated, adminController.updateBannerDataOCBiocontrolled)
-router.get('/ourcompaniesinforcardsbiocontrolled', routeGuard.isAuthenticated, adminController.getOurCompaniesInfoCardsBiocontrolled)
+router.get('/ourcompaniesinfocardsbiocontrolled', routeGuard.isAuthenticated, adminController.getOurCompaniesInfoCardsBiocontrolled)
 router.patch('/updateourcompaniesinfocardsbiocontrolled', routeGuard.isAuthenticated, adminController.updateOurCompaniesInfoCardsBiocontrolled)
 router.get('/ocequipobiocontrolled', routeGuard.isAuthenticated, adminController.getEquipoBiocontrolledOC)
 router.patch('/updateocequipobiocontrolled', routeGuard.isAuthenticated, adminController.updateEquipoBiocontrolledOC)
@@ -82,5 +82,18 @@ router.patch('/addoctimelinebiocontrolled', routeGuard.isAuthenticated, adminCon
 router.get('/occarrouselbiocontrolled', routeGuard.isAuthenticated, adminController.getCarrouselBiocontrolled)
 router.patch('/addoccarrouselbiocontrolled', routeGuard.isAuthenticated, adminController.addCarrouselBiocontrolledData)
 
+//////////////////////////////////////////////////////////////////////
+/////////////////// NUESTRAS COMPAÑÍAS GENVEN CRUD //////////////////
+/////////////////////////////////////////////////////////////////////
 
+router.get('/bannerdataocgenven', routeGuard.isAuthenticated, adminController.getBannerOCGenven)
+router.patch('/updatebannerdataocgenven', routeGuard.isAuthenticated, adminController.updateBannerDataOCGenven)
+router.get('/ourcompaniesvideogenven', routeGuard.isAuthenticated, adminController.getOurCompaniesVideoGenven)
+router.patch('/updateourcompaniesvideogenven', routeGuard.isAuthenticated, adminController.updateOurCompaniesVideoGenven)
+router.get('/ocequipogenven', routeGuard.isAuthenticated, adminController.getEquipoGenvenOC)
+router.patch('/updateocequipogenven', routeGuard.isAuthenticated, adminController.updateEquipoGenvenOC)
+router.get('/octimelinegenven', routeGuard.isAuthenticated, adminController.getTimeLineGenven)
+router.patch('/addoctimelinegenven', routeGuard.isAuthenticated, adminController.addTimeLineGenvenData)
+router.get('/ocproductosgenven', routeGuard.isAuthenticated, adminController.getProductosGenven)
+router.patch('/addocproductosgenven', routeGuard.isAuthenticated, adminController.addProductosGenvenData)
 
