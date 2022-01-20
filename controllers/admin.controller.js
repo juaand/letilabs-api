@@ -26,6 +26,11 @@ const OurCompaniesOCInfoCardsBiocontrolled = require('../models/nuestrasEmpresas
 const EquipoBiocontrolledPageOC = require('../models/nuestrasEmpresasComponents/biocontrolledPage/equipoBiocontrolledPage.model')
 const TimeLineBiocontrolledOC = require('../models/nuestrasEmpresasComponents/biocontrolledPage/biocontrolledTimeLine.model')
 const CarrouselBiocontrolledOC = require('../models/nuestrasEmpresasComponents/biocontrolledPage/biocontrolledCarrousel.model')
+const BannerOCGenven = require('../models/nuestrasEmpresasComponents/genvenPage/bannerGenvenPage.model')
+const OurCompaniesOCVideoGenven = require('../models/nuestrasEmpresasComponents/genvenPage/videoGenvenPage.model')
+const EquipoGenvenPageOC = require('../models/nuestrasEmpresasComponents/genvenPage/equipoGenvenPage.model')
+const TimeLineGenvenOC = require('../models/nuestrasEmpresasComponents/genvenPage/genvenTimeLine.model')
+const ProductosGenvenOC = require('../models/nuestrasEmpresasComponents/genvenPage/genvenProductos.model')
 const Vadevecum = require('../models/vadevecum.model')
 
 
@@ -662,7 +667,7 @@ module.exports.getTimeLineLeti = (req, res, next) => {
   if (userRole === 'Admin') {
     TimeLineLetiOC.find()
       .then((data) => {
-        res.status(201).json(data[0])
+        res.status(201).json(data)
       })
       .catch(next)
   } else {
@@ -842,6 +847,170 @@ module.exports.addCarrouselBiocontrolledData = (req, res, next) => {
 
   if (userRole === 'Admin') {
     CarrouselBiocontrolledOC.findByIdAndUpdate(id, req.body, {new: true})
+      .then((data) => {
+        res.status(201).json(data)
+      })
+      .catch(next)
+  } else {
+    req.session.destroy()
+    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+  }
+}
+
+//////////////////////////////////////////////////////////////////////
+///////////// NUESTRAS COMPAÑÍAS GENVEN CRUD //////////////////
+/////////////////////////////////////////////////////////////////////
+
+module.exports.getBannerOCGenven = (req, res, next) => {
+  const userRole = req.session.user.role
+
+  if (userRole === 'Admin') {
+    BannerOCGenven.find()
+      .then((data) => {
+        res.status(201).json(data[0])
+      })
+      .catch(next)
+  } else {
+    req.session.destroy()
+    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+  }
+}
+
+module.exports.updateBannerDataOCGenven = (req, res, next) => {
+  const userRole = req.session.user.role
+  const {description, imgURL, id} = req.body
+
+
+  if (userRole === 'Admin') {
+    BannerOCGenven.findByIdAndUpdate(id, req.body, {new: true})
+      .then((data) => {
+        res.status(201).json(data)
+      })
+      .catch(next)
+  } else {
+    req.session.destroy()
+    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+  }
+}
+
+module.exports.getOurCompaniesVideoGenven = (req, res, next) => {
+  const userRole = req.session.user.role
+
+  if (userRole === 'Admin') {
+    OurCompaniesOCVideoGenven.find()
+      .then((data) => {
+        res.status(201).json(data)
+      })
+      .catch(next)
+  } else {
+    req.session.destroy()
+    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+  }
+}
+
+module.exports.updateOurCompaniesVideoGenven = (req, res, next) => {
+  const userRole = req.session.user.role
+  const {desc, url, logo, id} = req.body
+
+
+  if (userRole === 'Admin') {
+    OurCompaniesOCVideoGenven.findByIdAndUpdate(id, req.body, {new: true})
+      .then((data) => {
+        res.status(201).json(data)
+      })
+      .catch(next)
+  } else {
+    req.session.destroy()
+    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+  }
+}
+
+module.exports.getEquipoGenvenOC = (req, res, next) => {
+  const userRole = req.session.user.role
+
+  if (userRole === 'Admin') {
+    EquipoGenvenPageOC.find()
+      .then((data) => {
+        res.status(201).json(data[0])
+      })
+      .catch(next)
+  } else {
+    req.session.destroy()
+    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+  }
+}
+
+module.exports.updateEquipoGenvenOC = (req, res, next) => {
+  const userRole = req.session.user.role
+  const {desc, url, logo, id} = req.body
+
+
+  if (userRole === 'Admin') {
+    EquipoGenvenPageOC.findByIdAndUpdate(id, req.body, {new: true})
+      .then((data) => {
+        res.status(201).json(data[0])
+      })
+      .catch(next)
+  } else {
+    req.session.destroy()
+    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+  }
+}
+
+module.exports.getTimeLineGenven = (req, res, next) => {
+  const userRole = req.session.user.role
+
+  if (userRole === 'Admin') {
+    TimeLineGenvenOC.find()
+      .then((data) => {
+        res.status(201).json(data)
+      })
+      .catch(next)
+  } else {
+    req.session.destroy()
+    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+  }
+}
+/// pendiente add ///
+module.exports.addTimeLineGenvenData = (req, res, next) => {
+  const userRole = req.session.user.role
+  const {description, imgURL, id} = req.body
+
+
+  if (userRole === 'Admin') {
+    TimeLineGenvenOC.findByIdAndUpdate(id, req.body, {new: true})
+      .then((data) => {
+        res.status(201).json(data)
+      })
+      .catch(next)
+  } else {
+    req.session.destroy()
+    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+  }
+}
+
+module.exports.getProductosGenven = (req, res, next) => {
+  const userRole = req.session.user.role
+
+  if (userRole === 'Admin') {
+    ProductosGenvenOC.find()
+      .then((data) => {
+        res.status(201).json(data)
+      })
+      .catch(next)
+  } else {
+    req.session.destroy()
+    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+  }
+}
+/// pendiente add ///
+module.exports.addProductosGenvenData = (req, res, next) => {
+  const userRole = req.session.user.role
+  const {description, imgURL, id} = req.body
+
+
+  if (userRole === 'Admin') {
+    ProductosGenvenOC.findByIdAndUpdate(id, req.body, {new: true})
       .then((data) => {
         res.status(201).json(data)
       })
