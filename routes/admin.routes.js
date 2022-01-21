@@ -24,6 +24,7 @@ router.patch('/updatefarmacoiniciodata', routeGuard.isAuthenticated, adminContro
 router.get('/deletecaritem/:id', routeGuard.isAuthenticated, adminController.deleteCarouselItem)
 router.get('/deleteunititem/:id', routeGuard.isAuthenticated, adminController.deleteUnitlItem)
 router.patch('/updatevideodata', routeGuard.isAuthenticated, adminController.updateVideoData)
+router.get('/videoiniciodata', routeGuard.isAuthenticated, adminController.getVideoData)
 
 /////////////////////////////////////////////////////////////////////
 ////////////////////////// SOBRE NOSOTROS CRUD //////////////////////////////
