@@ -29,6 +29,7 @@ router.get('/deleteunititem/:id', routeGuard.isAuthenticated, adminController.de
 /////////////////////////////////////////////////////////////////////
 
 router.get('/timelineaboutusdata', routeGuard.isAuthenticated, adminController.getTimeLine)
+router.patch('/updatetimelineaboutus/:id', routeGuard.isAuthenticated, adminController.updateTimeLineAboutUs)
 router.get('/bannerdata', routeGuard.isAuthenticated, adminController.getBanner)
 router.patch('/updatebannerdata', routeGuard.isAuthenticated, adminController.updateBannerData)
 router.get('/marcandopautadata', routeGuard.isAuthenticated, adminController.getMarcandoPauta)

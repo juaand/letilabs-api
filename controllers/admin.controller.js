@@ -238,6 +238,25 @@ module.exports.getTimeLine = (req, res, next) => {
   }
 }
 
+module.exports.updateTimeLineAboutUs = (req, res, next) => {
+  const userRole = req.session.user.role
+
+  const {year, desc, imgURL, id} = req.body
+  console.log(req.params)
+  console.log(req.body)
+
+  if (userRole === 'Admin') {
+    TimeLine.findByIdAndUpdate(id, req.body, {new: true})
+      .then((data) => {
+        res.status(201).json(data)
+      })
+      .catch(next)
+  } else {
+    req.session.destroy()
+    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+  }
+}
+
 module.exports.getBanner = (req, res, next) => {
   const userRole = req.session.user.role
 
