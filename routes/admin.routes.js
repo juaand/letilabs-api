@@ -23,6 +23,8 @@ router.get('/farmacoiniciodata', routeGuard.isAuthenticated, adminController.get
 router.patch('/updatefarmacoiniciodata', routeGuard.isAuthenticated, adminController.updateFarmacoData)
 router.get('/deletecaritem/:id', routeGuard.isAuthenticated, adminController.deleteCarouselItem)
 router.get('/deleteunititem/:id', routeGuard.isAuthenticated, adminController.deleteUnitlItem)
+router.patch('/updatevideodata', routeGuard.isAuthenticated, adminController.updateVideoData)
+router.get('/videoiniciodata', routeGuard.isAuthenticated, adminController.getVideoData)
 
 /////////////////////////////////////////////////////////////////////
 ////////////////////////// SOBRE NOSOTROS CRUD //////////////////////////////
