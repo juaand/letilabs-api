@@ -33,7 +33,7 @@ const TimeLineGenvenOC = require('../models/nuestrasEmpresasComponents/genvenPag
 const ProductosGenvenOC = require('../models/nuestrasEmpresasComponents/genvenPage/genvenProductos.model')
 const Vadevecum = require('../models/vadevecum.model')
 const Video = require('../models/home/homeComponents/video.model')
-
+const BottomHomeData = require('../models/home/homeComponents/meetPeopleWorkWithUsHome.model')
 
 
 
@@ -85,26 +85,26 @@ module.exports.updateUsInfoData = (req, res, next) => {
 }
 
 module.exports.getVideoData = (req, res, next) => {
-  const userRole = req.session.user.role
 
-  if (userRole === 'Admin') {
-    Video.find()
-      .then((data) => {
-        res.status(201).json(data)
-      })
-      .catch(next)
-  } else {
-    req.session.destroy()
-    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
-  }
+  Video.find()
+    .then((data) => {
+      res.status(201).json(data)
+    })
+    .catch(next)
+
+}
+
+module.exports.getHomeBottomData = (req, res, next) => {
+  BottomHomeData.find()
+    .then((data) => {
+      res.status(201).json(data)
+    })
+    .catch(next)
 }
 
 module.exports.updateVideoData = (req, res, next) => {
   const userRole = req.session.user.role
   const {url, id} = req.body
-
-  console.log('url', url)
-  console.log('id', id)
 
   if (userRole === 'Admin') {
     Video.findByIdAndUpdate(id, req.body, {new: true})
@@ -151,6 +151,7 @@ module.exports.getPortfolioInicio = (req, res, next) => {
 
 module.exports.getVadevecumData = (req, res, next) => {
   Vadevecum.find()
+    .sort({name: 1})
     .then((data) => {
       res.status(201).json(data)
     })
@@ -175,18 +176,11 @@ module.exports.updatePortfolioData = (req, res, next) => {
 }
 
 module.exports.getFarmacoInicio = (req, res, next) => {
-  const userRole = req.session.user.role
-
-  if (userRole === 'Admin') {
-    FarmacoInicio.find()
-      .then((data) => {
-        res.status(201).json(data[0])
-      })
-      .catch(next)
-  } else {
-    req.session.destroy()
-    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
-  }
+  FarmacoInicio.find()
+    .then((data) => {
+      res.status(201).json(data[0])
+    })
+    .catch(next)
 }
 
 module.exports.updateFarmacoData = (req, res, next) => {
@@ -1073,4 +1067,33 @@ module.exports.addProductosGenvenData = (req, res, next) => {
     req.session.destroy()
     res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
   }
+}
+
+//////////////////////////////////////////////////////////////////////
+/////////////////////////// PRODUCTOS CRUD //////////////////////////
+/////////////////////////////////////////////////////////////////////
+
+module.exports.addProductoToHomeCarrousel = (req, res, next) => {
+  const id = req.params.id
+  const userRole = req.session.user.role
+  const {show_in_home} = req.body
+
+  console.log(show_in_home, id, userRole)
+
+  if (userRole === 'Admin') {
+    Vadevecum.findByIdAndUpdate(id, req.body, {new: true})
+      .then(() => {
+        Vadevecum.find()
+          .sort({name: 1})
+          .then(data => {
+            res.status(201).json(data)
+          })
+          .catch(next)
+      })
+      .catch(next)
+  } else {
+    req.session.destroy()
+    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+  }
+
 }
