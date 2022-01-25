@@ -126,6 +126,57 @@ Promise.all([
 
 ////////////////////////////////////////
 
+/////////////////////////////////////////
+///////////// AREAS TERAPEUTICAS /////////////
+/////////////////////////////////////////
+
+const BannerAT = require('../models/home/homeComponents/areasterapeuticas/bannerAT.model')
+const TimeLineAT = require('../models/home/homeComponents/areasterapeuticas/timeLineAT.model')
+const BottomCtaAT = require('../models/home/homeComponents/areasterapeuticas/bottomCtaAT.model')
+
+const timeLineATData = require('../data/areasTeraData')
+const bottomCtaATData = require('../data/bottomCtaATData')
+
+Promise.all([
+  BannerAT.deleteMany(),
+  TimeLineAT.deleteMany(),
+  BottomCtaAT.deleteMany(),
+])
+  .then(() => {
+    console.log('all databases cleaned')
+    const bannerAT = new BannerAT({
+      title: 'Áreas terapéuticas',
+      description: 'Atendemos una variedad de áreas terapéuticas para cubrir con las necesidades de salud de los venezolanos y asegurar el bienestar del país',
+      imgURL: 'areas-terapeuticas-banner.png',
+    })
+    bannerAT.save()
+      .then(() => console.log(`BannerAT created`))
+      .catch(error => console.log(error))
+      timeLineATData.forEach(unidad => {
+      const timeLineAT = new TimeLineAT({
+        imgURL: unidad.imgURL,
+        desc: unidad.desc,
+        title: unidad.title,
+      })
+      timeLineAT.save()
+        .then(() => console.log(`timeLineAT created`))
+        .catch(error => console.log(error))
+    })
+    bottomCtaATData.forEach(unidad => {
+      const bottomCtaAT = new BottomCtaAT({
+        title: unidad.title,
+        buttonTitle: unidad.buttonTitle,
+        buttonLink: unidad.buttonLink,
+        img: unidad.img,
+      })
+      bottomCtaAT.save()
+        .then(() => console.log(`BottomCtaAT created`))
+        .catch(error => console.log(error))
+    })
+  })
+  .catch(error => console.log(error))
+
+////////////////////////////////////////
 
 ////////////////////////////////////////
 ////////////   About Us  ///////////////
