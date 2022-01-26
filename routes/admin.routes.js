@@ -19,12 +19,14 @@ router.get('/unidadesiniciodata', adminController.getUnidadesInicio)
 router.get('/portfolioiniciodata', adminController.getPortfolioInicio)
 router.get('/vadevecumdata', adminController.getVadevecumData)
 router.patch('/updateportfoliodata', routeGuard.isAuthenticated, adminController.updatePortfolioData)
-router.get('/farmacoiniciodata', routeGuard.isAuthenticated, adminController.getFarmacoInicio)
+router.get('/farmacoiniciodata', adminController.getFarmacoInicio)
 router.patch('/updatefarmacoiniciodata', routeGuard.isAuthenticated, adminController.updateFarmacoData)
 router.get('/deletecaritem/:id', routeGuard.isAuthenticated, adminController.deleteCarouselItem)
 router.get('/deleteunititem/:id', routeGuard.isAuthenticated, adminController.deleteUnitlItem)
 router.patch('/updatevideodata', routeGuard.isAuthenticated, adminController.updateVideoData)
-router.get('/videoiniciodata', routeGuard.isAuthenticated, adminController.getVideoData)
+router.get('/videoiniciodata', adminController.getVideoData)
+router.get('/homebottomdata', adminController.getHomeBottomData)
+
 
 /////////////////////////////////////////////////////////////////////
 ////////////////////////// SOBRE NOSOTROS CRUD //////////////////////////////
@@ -99,4 +101,14 @@ router.get('/octimelinegenven', routeGuard.isAuthenticated, adminController.getT
 router.patch('/addoctimelinegenven', routeGuard.isAuthenticated, adminController.addTimeLineGenvenData)
 router.get('/ocproductosgenven', routeGuard.isAuthenticated, adminController.getProductosGenven)
 router.patch('/addocproductosgenven', routeGuard.isAuthenticated, adminController.addProductosGenvenData)
+
+//////////////////////////////////////////////////////////////////////
+/////////////////// PRODUCTOS CRUD //////////////////
+/////////////////////////////////////////////////////////////////////
+
+router.post('/addprodtohomescreen/:id', routeGuard.isAuthenticated, adminController.addProductoToHomeCarrousel)
+
+router.get('/producto/:id/delete', routeGuard.isAuthenticated, adminController.deleteProduct)
+
+router.patch('/producto/:id/update', routeGuard.isAuthenticated, adminController.updateProduct)
 
