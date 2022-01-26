@@ -1115,3 +1115,25 @@ module.exports.deleteProduct = (req, res, next) => {
     res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
   }
 }
+
+module.exports.updateProduct = (req, res, next) => {
+  const id = req.params.id
+  const userRole = req.session.user.role
+  const {name, picPath, QRpath, line, composition, health_register, active_principle, posology} = req.body
+
+  if (userRole === 'Admin') {
+    Vadevecum.findByIdAndUpdate(id, req.body, {new: true})
+      .then(() => {
+        Vadevecum.find()
+          .sort({name: 1})
+          .then(data => {
+            res.status(201).json(data)
+          })
+          .catch(next)
+      })
+      .catch(next)
+  } else {
+    req.session.destroy()
+    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+  }
+}

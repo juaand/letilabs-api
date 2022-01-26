@@ -107,5 +107,8 @@ router.patch('/addocproductosgenven', routeGuard.isAuthenticated, adminControlle
 /////////////////////////////////////////////////////////////////////
 
 router.post('/addprodtohomescreen/:id', routeGuard.isAuthenticated, adminController.addProductoToHomeCarrousel)
+
 router.get('/producto/:id/delete', routeGuard.isAuthenticated, adminController.deleteProduct)
+
+router.patch('/producto/:id/update', routeGuard.isAuthenticated, adminController.updateProduct)
 
