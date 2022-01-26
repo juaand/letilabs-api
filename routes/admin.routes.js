@@ -112,3 +112,5 @@ router.get('/producto/:id/delete', routeGuard.isAuthenticated, adminController.d
 
 router.patch('/producto/:id/update', routeGuard.isAuthenticated, adminController.updateProduct)
 
+router.post('/crear-producto', routeGuard.isAuthenticated, adminController.createProduct)
+
