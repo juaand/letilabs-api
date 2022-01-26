@@ -562,6 +562,250 @@ Promise.all([
 
 ////////////////////////////////////////
 
+///////////////////////////////////////////
+/////// INVESTIGACIÓN Y DESARROLLO ////////
+///////////////////////////////////////////
+
+const BannerID = require('../models/I+D/I+D components/bannerID.model')
+const InfoCardsID = require('../models/I+D/I+D components/infoCardsID.model')
+const ObjetivosID = require('../models/I+D/I+D components/objetivosID.model')
+const BottomCtaID = require('../models/I+D/I+D components/bottomCtaID.model')
+
+const infocardsIDData = require('../data/dataIyd')
+const objetivosIDData = require('../data/dataGoals')
+const bottomCtaIDData = require('../data/bottomCtaIDData')
+
+Promise.all([
+  BannerID.deleteMany(),
+  InfoCardsID.deleteMany(),
+  ObjetivosID.deleteMany(),
+  BottomCtaID.deleteMany(),
+])
+  .then(() => {
+    console.log('all databases cleaned')
+    const bannerID = new BannerID({
+      title: 'Pilares de I&D',
+      description: 'Para nosotros siempre ha sido prioridad contar con la tecnlogía e infraestructura que nos permita desarrollar los mejores productos, y además en las cantidades necesarias para cuidar de la salud de todo el país.',
+      imgURL: 'iyd-banner.png',
+    })
+    bannerID.save()
+      .then(() => console.log(`BannerAT created`))
+      .catch(error => console.log(error))
+      infocardsIDData.forEach(unidad => {
+        const infoCardsID = new InfoCardsID({
+          title: unidad.title,
+          info: unidad.info,
+          btn: unidad.btn,
+        })
+        infoCardsID.save()
+          .then(() => console.log(`infoCardsID created`))
+          .catch(error => console.log(error))
+      })
+      objetivosIDData.forEach(unidad => {
+      const objetivosID = new ObjetivosID({
+        desc: unidad.desc,
+        title: unidad.title,
+      })
+      objetivosID.save()
+        .then(() => console.log(`ObjetivosID created`))
+        .catch(error => console.log(error))
+    })
+    bottomCtaIDData.forEach(unidad => {
+      const bottomCtaID = new BottomCtaID({
+        title: unidad.title,
+        buttonTitle: unidad.buttonTitle,
+        buttonLink: unidad.buttonLink,
+        img: unidad.img,
+      })
+      bottomCtaID.save()
+        .then(() => console.log(`BottomCtaID created`))
+        .catch(error => console.log(error))
+    })
+  })
+  .catch(error => console.log(error))
+
+////////////////////////////////////////
+
+///////////////////////////////////////////
+/////// INVESTIGACIÓN Y DESARROLLO ////////
+/////////////// TECNOLOGÍA ////////////////
+///////////////////////////////////////////
+
+const BannerTecnologiaID = require('../models/I+D/tecnologia/bannerTecnologiaID.model')
+const VideoTecnologiaID = require('../models/I+D/tecnologia/videoTecnologiaID.model')
+const MapTecnologiaID = require('../models/I+D/tecnologia/mapTecnologiaID.model')
+const BottomCtaTecnologiaID = require('../models/I+D/tecnologia/bottomCtaTecnologiaID.model')
+
+const bottomCtaTecnologiaIDData = require('../data/bottomCtaIDData')
+
+Promise.all([
+  BannerID.deleteMany(),
+  InfoCardsID.deleteMany(),
+  ObjetivosID.deleteMany(),
+  BottomCtaID.deleteMany(),
+])
+  .then(() => {
+    console.log('all databases cleaned')
+    const bannerTecnologiaID = new BannerTecnologiaID({
+      title: 'Tecnología',
+      description: 'Nuestra planta está ubicada en Guarenas, estado Miranda, y es la planta producción de fármacos más grande a nivel nacional. Cuenta con la única planta de cefalosporínicos existentes en Venezuela y una de las pocas penicilínicos, siendo modelo de Latinoamérica.',
+      imgURL: 'tech-banner.png',
+    })
+    bannerTecnologiaID.save()
+      .then(() => console.log(`BannerTecnologiaID created`))
+      .catch(error => console.log(error))
+    const videoTecnologiaID = new VideoTecnologiaID({
+      title: 'Tecnología',
+      videoURL: 'tech-video-bg.jpg',
+    })
+    videoTecnologiaID.save()
+      .then(() => console.log(`videoTecnologiaID created`))
+      .catch(error => console.log(error))
+    const mapTecnologiaID = new MapTecnologiaID({
+      description: 'Esta planta está en permanente evolución y actualización, lo que nos permite ofrecer lo mejor para el país.',
+      mapURL: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3923.3027990354635!2d-66.60681018437528!3d10.476778867515785!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8c2bab2979a6bf65%3A0x65628f1b4b1ee745!2sLaboratorios%20Leti%20S.A.V!5e0!3m2!1ses!2ses!4v1639765114758!5m2!1ses!2ses',
+    })
+    mapTecnologiaID.save()
+      .then(() => console.log(`mapTecnologiaAT created`))
+      .catch(error => console.log(error))
+    bottomCtaTecnologiaIDData.forEach(unidad => {
+      const bottomCtaTecnologiaID = new BottomCtaTecnologiaID({
+        title: unidad.title,
+        buttonTitle: unidad.buttonTitle,
+        buttonLink: unidad.buttonLink,
+        img: unidad.img,
+      })
+      bottomCtaTecnologiaID.save()
+        .then(() => console.log(`BottomCtaTecnologiaID created`))
+        .catch(error => console.log(error))
+    })
+  })
+  .catch(error => console.log(error))
+
+////////////////////////////////////////
+
+///////////////////////////////////////////
+/////// INVESTIGACIÓN Y DESARROLLO ////////
+////////////// MANUFACTURA ////////////////
+///////////////////////////////////////////
+
+const BannerManufacturaID = require('../models/I+D/manufactura/bannerManufacturaID.model')
+const CarrouselManufacturaID = require('../models/I+D/manufactura/manufacturaCarrousel.model')
+const CertificadoManufacturaID = require('../models/I+D/manufactura/certificadoManufacturaID.model')
+const BottomCtaManufacturaID = require('../models/I+D/manufactura/bottomCtaManufacturaID.model')
+
+const manufactureCarrousel = require('../data/manufactureCarousel')
+const bottomCtaManufacturaIDData = require('../data/bottomCtaManufacturaIDData')
+
+Promise.all([
+  BannerManufacturaID.deleteMany(),
+  CarrouselManufacturaID.deleteMany(),
+  CertificadoManufacturaID.deleteMany(),
+  BottomCtaManufacturaID.deleteMany(),
+])
+  .then(() => {
+    console.log('all databases cleaned')
+    const bannerManufacturaID = new BannerManufacturaID({
+      title: 'Manufactura',
+      description: 'Diariamente se manufacturan XX cantidades de todo tipo de medicinas, que salen de la planta para ser distribuidos en todo el país.',
+      imgURL: 'manufacture-banner.png',
+    })
+    bannerManufacturaID.save()
+      .then(() => console.log(`BannerManufacturaID created`))
+      .catch(error => console.log(error))
+    const certificadoManufacturaID = new CertificadoManufacturaID({
+      title: 'Cumplimos con todas las regulaciones',
+      desc: 'Para producir medicamentos en Venezuela, primero hay que cumplir con varias exigencias para asegurar que el producto sea seguro y de calidad.',
+      imgURL: 'certificado.jpg',
+      imgDesc: '(Certificado, sello o documento que avale el cumplimiento)',
+    })
+    certificadoManufacturaID.save()
+      .then(() => console.log(`certificadoManufacturaID created`))
+      .catch(error => console.log(error))
+    manufactureCarrousel.forEach(unidad => {
+      const carrouselManufacturaID = new CarrouselManufacturaID({
+        title: unidad.title,
+        info: unidad.info,
+      })
+      carrouselManufacturaID.save()
+        .then(() => console.log(`CarrouselManufacturaID created`))
+        .catch(error => console.log(error))
+    })
+    bottomCtaManufacturaIDData.forEach(unidad => {
+      const bottomCtaManufacturaID = new BottomCtaManufacturaID({
+        title: unidad.title,
+        buttonTitle: unidad.buttonTitle,
+        buttonLink: unidad.buttonLink,
+        img: unidad.img,
+      })
+      bottomCtaManufacturaID.save()
+        .then(() => console.log(`BottomCtaManufacturaID created`))
+        .catch(error => console.log(error))
+    })
+  })
+  .catch(error => console.log(error))
+
+////////////////////////////////////////
+
+///////////////////////////////////////////
+/////// INVESTIGACIÓN Y DESARROLLO ////////
+//////////////// ALIANZAS /////////////////
+///////////////////////////////////////////
+
+const BannerAlianzasID = require('../models/I+D/alianzas/bannerAlianzasID.model')
+const CarrouselTitleAlianzasID = require('../models/I+D/alianzas/alianzaTitleCarrousel.model')
+const ContribucionAlianzasID = require('../models/I+D/alianzas/contribucionAlianzasID.model')
+const BottomCtaAlianzasID = require('../models/I+D/alianzas/bottomCtaAlianzasID.model')
+
+const bottomCtaAlianzasIDData = require('../data/bottomCtaAlianzasIDData')
+
+Promise.all([
+  BannerAlianzasID.deleteMany(),
+  CarrouselTitleAlianzasID.deleteMany(),
+  ContribucionAlianzasID.deleteMany(),
+  BottomCtaAlianzasID.deleteMany(),
+])
+  .then(() => {
+    console.log('all databases cleaned')
+    const bannerAlianzasID = new BannerAlianzasID({
+      title: 'Alianzas',
+      description: 'Para lograr nuestro propósito de cuidar de la salud de los venezolanos, es importante contar con aliados que aporten al proceso y nos ayuden a ofrecer lo mejor.',
+      imgURL: 'alliances-banner.png',
+    })
+    bannerAlianzasID.save()
+      .then(() => console.log(`BannerAlianzasID created`))
+      .catch(error => console.log(error))
+    const contribucionAlianzasID = new ContribucionAlianzasID({
+      title: '¡Tu contribución cuenta!',
+      desc1: '¿Quieres aliarte con nosotros?',
+      desc2: 'Compártenos tu iniciativa aquí o contáctanos.',
+      phone: '+582123602511',
+      email: 'comunicaciones.leti@leti.com.ve',
+    })
+    contribucionAlianzasID .save()
+      .then(() => console.log(`contribucionAlianzasID  created`))
+      .catch(error => console.log(error))
+    const carrouselTitleAlianzasID = new CarrouselTitleAlianzasID({
+      title: 'Nuestros aliados en el tiempo',
+    })
+    carrouselTitleAlianzasID.save()
+      .then(() => console.log(`carrouselTitleAlianzasID created`))
+      .catch(error => console.log(error))
+    bottomCtaAlianzasIDData.forEach(unidad => {
+      const bottomCtaAlianzasID = new BottomCtaAlianzasID({
+        title: unidad.title,
+        buttonTitle: unidad.buttonTitle,
+        buttonLink: unidad.buttonLink,
+        img: unidad.img,
+      })
+      bottomCtaAlianzasID.save()
+        .then(() => console.log(`BottomCtaAlianzasID created`))
+        .catch(error => console.log(error))
+    })
+  })
+  .catch(error => console.log(error))
+
+////////////////////////////////////////
 
 ////////////   USERS  //////////////////
 
