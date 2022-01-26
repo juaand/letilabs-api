@@ -639,10 +639,10 @@ const BottomCtaTecnologiaID = require('../models/I+D/tecnologia/bottomCtaTecnolo
 const bottomCtaTecnologiaIDData = require('../data/bottomCtaIDData')
 
 Promise.all([
-  BannerID.deleteMany(),
-  InfoCardsID.deleteMany(),
-  ObjetivosID.deleteMany(),
-  BottomCtaID.deleteMany(),
+  BannerTecnologiaID.deleteMany(),
+  VideoTecnologiaID.deleteMany(),
+  MapTecnologiaID.deleteMany(),
+  BottomCtaTecnologiaID.deleteMany(),
 ])
   .then(() => {
     console.log('all databases cleaned')
@@ -802,6 +802,164 @@ Promise.all([
         .then(() => console.log(`BottomCtaAlianzasID created`))
         .catch(error => console.log(error))
     })
+  })
+  .catch(error => console.log(error))
+
+////////////////////////////////////////
+
+////////////////////////////////////////////
+/////// PROPOSITO Y RESPONSABILIDAD ////////
+///////////////////////////////////////////
+
+const BannerProposito = require('../models/propositoYResponsabilidad/bannerProposito.model')
+const VideoProposito = require('../models/propositoYResponsabilidad/videoProposito.model')
+const TimeLineProposito = require('../models/propositoYResponsabilidad/propositoTimeLine.model')
+const TituloFormProposito = require('../models/propositoYResponsabilidad/farmTitleProposito.model')
+
+const timelinePropositoData = require('../data/purposeTimeline')
+
+Promise.all([
+  BannerProposito.deleteMany(),
+  VideoProposito.deleteMany(),
+  TimeLineProposito.deleteMany(),
+  TituloFormProposito.deleteMany(),
+])
+  .then(() => {
+    console.log('all databases cleaned')
+    const bannerProposito = new BannerProposito({
+      title: 'Propósito y responsabilidad social',
+      description: 'Ratificamos nuestro compromiso con Venezuela para marcar la diferencia en la vida de todos los venezolanos, acompañándolos en todo momento.',
+      imgURL: 'purpose-bg.png',
+    })
+    bannerProposito.save()
+      .then(() => console.log(`bannerProposito created`))
+      .catch(error => console.log(error))
+    const videoProposito = new VideoProposito({
+      title: 'Propósito y responsabilidad social',
+      videoURL: 'purpose-video.6ea9cbcd.jpg',
+    })
+    videoProposito.save()
+      .then(() => console.log(`videoProposito created`))
+      .catch(error => console.log(error))
+    const tituloFormProposito = new TituloFormProposito({
+      title: 'Estamos para cuidarte',
+    })
+    tituloFormProposito.save()
+      .then(() => console.log(`TituloFormProposito created`))
+      .catch(error => console.log(error))
+      timelinePropositoData.forEach(unidad => {
+      const timeLineProposito = new TimeLineProposito({
+        desc: unidad.desc,
+        imgURL: unidad.imgURL,
+      })
+      timeLineProposito.save()
+        .then(() => console.log(`timeLineProposito created`))
+        .catch(error => console.log(error))
+    })
+  })
+  .catch(error => console.log(error))
+
+////////////////////////////////////////
+
+////////////////////////////////////////////
+/////// NUESTRA GENTE ////////
+///////////////////////////////////////////
+
+const BannerNuestraGente = require('../models/nuestraGente/bannerNuestraGente.model')
+const TresEquiposNuestraGente = require('../models/nuestraGente/tresEquiposNuestraGente.model')
+const EquipoNuestraGente = require('../models/nuestraGente/equipoNuestraGente.model')
+const BottomCtaNuestraGente = require('../models/nuestraGente/bottomCtaNuestraGente.model')
+
+const tresEquiposNuestraGenteData = require('../data/dataOurPeople')
+const bottomCtaNuestraGenteData = require('../data/bottomCtaNuestraGenteData')
+
+Promise.all([
+  BannerNuestraGente.deleteMany(),
+  TresEquiposNuestraGente.deleteMany(),
+  EquipoNuestraGente.deleteMany(),
+  BottomCtaNuestraGente.deleteMany(),
+])
+  .then(() => {
+    console.log('all databases cleaned')
+    const bannerNuestraGente = new BannerNuestraGente({
+      title: 'Contamos con un talento humano especializado que tienen años trabajando en el campo, y más importante, trabajando con nosotros',
+      description: 'Gracias a nuestro talento es posible desarrollar nuestro amplio y diverso portafolio, que cuidan de la salud de todo el país.',
+      imgURL: 'our-people-bg.png',
+    })
+    bannerNuestraGente.save()
+      .then(() => console.log(`bannerNuestraGente created`))
+      .catch(error => console.log(error))
+    tresEquiposNuestraGenteData.forEach(unidad => {
+    const tresEquiposNuestraGente = new TresEquiposNuestraGente({
+        mainTitle: unidad.mainTitle,
+        imgURL: unidad.imgURL,
+        title: unidad.title,
+        info: unidad.info,
+      })
+      tresEquiposNuestraGente.save()
+        .then(() => console.log(`tresEquiposNuestraGente created`))
+        .catch(error => console.log(error))
+    })
+    const equipoNuestraGente = new EquipoNuestraGente({
+      buttonTitle: 'Conoce nuestra filosofía',
+      buttonLink: '/nuestra-filosofia',
+      title: 'Liderados por profesionales de trayectoria',
+      description: '(Cita director de Laboratorios Leti)',
+      person: 'Nombre director',
+      imgURL: 'director-image.b5c965fe.jpg',
+    })
+    equipoNuestraGente.save()
+      .then(() => console.log(`equipoNuestraGente created`))
+      .catch(error => console.log(error))
+    bottomCtaNuestraGenteData.forEach(unidad => {
+      const bottomCtaNuestraGente = new BottomCtaNuestraGente({
+        title: unidad.title,
+        buttonTitle: unidad.buttonTitle,
+        buttonLink: unidad.buttonLink,
+        img: unidad.img,
+      })
+      bottomCtaNuestraGente.save()
+        .then(() => console.log(`bottomCtaNuestraGente created`))
+        .catch(error => console.log(error))
+    })
+  })
+  .catch(error => console.log(error))
+
+////////////////////////////////////////
+
+////////////////////////////////////////////
+/////////////// PRODUCTOS /////////////////
+///////////////////////////////////////////
+
+const BannerProductosPage = require('../models/ProductosPage/bannerProductosPage.model')
+const EresMedicoProductos = require('../models/ProductosPage/eresMedicoProductos.model')
+
+Promise.all([
+  BannerProductos.deleteMany(),
+  EresMedicoProductos.deleteMany(),
+])
+  .then(() => {
+    console.log('all databases cleaned')
+    const bannerProductosPage = new BannerProductosPage({
+      title: 'Trabajamos cada día para poner nuestros conocimientos y habilidades al servicio de las personas:',
+      description: 'Desarrollando y poniendo a su disposición productos que abarquen una amplia gama de necesidades.',
+      imgURL: 'products-banner.76b04eb3.png',
+      button1Title: 'Conoce todos los productos',
+      button1Link: '/listado-de-productos',
+      button2Title: 'Descubre nuestras áreas terapéuticas',
+      button2Link: '/areas-tearapeuticas',
+    })
+    bannerProductosPage.save()
+      .then(() => console.log(`bannerProductosPage created`))
+      .catch(error => console.log(error))
+    const eresMedicoProductos = new EresMedicoProductos({
+      title: '¿Eres médico y quieres información especial sobre algún producto?',
+      buttonTitle: 'Escríbenos aquí',
+      imgURL: 'products-bottom-bg.1c82992e.jpg',
+    })
+    eresMedicoProductos.save()
+      .then(() => console.log(`eresMedicoProductos created`))
+      .catch(error => console.log(error))
   })
   .catch(error => console.log(error))
 
