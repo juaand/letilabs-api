@@ -636,12 +636,15 @@ const BannerTecnologiaID = require('../models/I+D/tecnologia/bannerTecnologiaID.
 const VideoTecnologiaID = require('../models/I+D/tecnologia/videoTecnologiaID.model')
 const MapTecnologiaID = require('../models/I+D/tecnologia/mapTecnologiaID.model')
 const BottomCtaTecnologiaID = require('../models/I+D/tecnologia/bottomCtaTecnologiaID.model')
+const CarrouselTecnologiaID = require('../models/I+D/tecnologia/carrouselTecnologiaID.model')
 
 const bottomCtaTecnologiaIDData = require('../data/bottomCtaIDData')
+const carrouselTecnologiaData = require('../data/tecnologiaCarousel')
 
 Promise.all([
   BannerTecnologiaID.deleteMany(),
   VideoTecnologiaID.deleteMany(),
+  CarrouselTecnologiaID.deleteMany(),
   MapTecnologiaID.deleteMany(),
   BottomCtaTecnologiaID.deleteMany(),
 ])
@@ -662,6 +665,17 @@ Promise.all([
     videoTecnologiaID.save()
       .then(() => console.log(`videoTecnologiaID created`))
       .catch(error => console.log(error))
+    carrouselTecnologiaData.forEach(unidad => {
+    const carrouselTecnologiaID = new CarrouselTecnologiaID({
+        mainTitle: unidad.mainTitle,
+        title: unidad.title,
+        description: unidad.description,
+        imgURL: unidad.imgURL,
+      })
+    carrouselTecnologiaID.save()
+        .then(() => console.log(`carrouselTecnologiaID created`))
+        .catch(error => console.log(error))
+    })
     const mapTecnologiaID = new MapTecnologiaID({
       description: 'Esta planta está en permanente evolución y actualización, lo que nos permite ofrecer lo mejor para el país.',
       mapURL: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3923.3027990354635!2d-66.60681018437528!3d10.476778867515785!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8c2bab2979a6bf65%3A0x65628f1b4b1ee745!2sLaboratorios%20Leti%20S.A.V!5e0!3m2!1ses!2ses!4v1639765114758!5m2!1ses!2ses',
@@ -875,6 +889,7 @@ const BannerNuestraGente = require('../models/nuestraGente/bannerNuestraGente.mo
 const TresEquiposNuestraGente = require('../models/nuestraGente/tresEquiposNuestraGente.model')
 const EquipoNuestraGente = require('../models/nuestraGente/equipoNuestraGente.model')
 const BottomCtaNuestraGente = require('../models/nuestraGente/bottomCtaNuestraGente.model')
+const CarrerasNuestraGente = require('../models/nuestraGente/carrerasNuestraGente.model copy')
 
 const tresEquiposNuestraGenteData = require('../data/dataOurPeople')
 const bottomCtaNuestraGenteData = require('../data/bottomCtaNuestraGenteData')
@@ -884,6 +899,7 @@ Promise.all([
   TresEquiposNuestraGente.deleteMany(),
   EquipoNuestraGente.deleteMany(),
   BottomCtaNuestraGente.deleteMany(),
+  CarrerasNuestraGente.deleteMany(),
 ])
   .then(() => {
     console.log('all databases cleaned')
@@ -906,6 +922,15 @@ Promise.all([
         .then(() => console.log(`tresEquiposNuestraGente created`))
         .catch(error => console.log(error))
     })
+    const carrerasNuestraGente = new CarrerasNuestraGente({
+      title: 'Carreras',
+      description: 'Entérate de las posiciones que tenemos abiertas en el grupo',
+      buttonTitle: 'Trabaja con nosotros',
+      buttonLink: '/posiciones',
+    })
+    carrerasNuestraGente.save()
+      .then(() => console.log(`carrerasNuestraGente created`))
+      .catch(error => console.log(error))
     const equipoNuestraGente = new EquipoNuestraGente({
       buttonTitle: 'Conoce nuestra filosofía',
       buttonLink: '/nuestra-filosofia',
