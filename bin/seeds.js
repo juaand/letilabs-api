@@ -152,7 +152,7 @@ Promise.all([
     bannerAT.save()
       .then(() => console.log(`BannerAT created`))
       .catch(error => console.log(error))
-      timeLineATData.forEach(unidad => {
+    timeLineATData.forEach(unidad => {
       const timeLineAT = new TimeLineAT({
         imgURL: unidad.imgURL,
         desc: unidad.desc,
@@ -591,17 +591,17 @@ Promise.all([
     bannerID.save()
       .then(() => console.log(`BannerAT created`))
       .catch(error => console.log(error))
-      infocardsIDData.forEach(unidad => {
-        const infoCardsID = new InfoCardsID({
-          title: unidad.title,
-          info: unidad.info,
-          btn: unidad.btn,
-        })
-        infoCardsID.save()
-          .then(() => console.log(`infoCardsID created`))
-          .catch(error => console.log(error))
+    infocardsIDData.forEach(unidad => {
+      const infoCardsID = new InfoCardsID({
+        title: unidad.title,
+        info: unidad.info,
+        btn: unidad.btn,
       })
-      objetivosIDData.forEach(unidad => {
+      infoCardsID.save()
+        .then(() => console.log(`infoCardsID created`))
+        .catch(error => console.log(error))
+    })
+    objetivosIDData.forEach(unidad => {
       const objetivosID = new ObjetivosID({
         desc: unidad.desc,
         title: unidad.title,
@@ -756,7 +756,7 @@ const BannerAlianzasID = require('../models/I+D/alianzas/bannerAlianzasID.model'
 const CarrouselTitleAlianzasID = require('../models/I+D/alianzas/alianzaTitleCarrousel.model')
 const ContribucionAlianzasID = require('../models/I+D/alianzas/contribucionAlianzasID.model')
 const BottomCtaAlianzasID = require('../models/I+D/alianzas/bottomCtaAlianzasID.model')
-
+const CarrouselLogoAlianzasID = require('../models/I+D/alianzas/alianzaLogosCarrousel.model')
 const bottomCtaAlianzasIDData = require('../data/bottomCtaAlianzasIDData')
 
 Promise.all([
@@ -764,6 +764,7 @@ Promise.all([
   CarrouselTitleAlianzasID.deleteMany(),
   ContribucionAlianzasID.deleteMany(),
   BottomCtaAlianzasID.deleteMany(),
+  CarrouselLogoAlianzasID.deleteMany(),
 ])
   .then(() => {
     console.log('all databases cleaned')
@@ -782,8 +783,12 @@ Promise.all([
       phone: '+582123602511',
       email: 'comunicaciones.leti@leti.com.ve',
     })
-    contribucionAlianzasID .save()
+    contribucionAlianzasID.save()
       .then(() => console.log(`contribucionAlianzasID  created`))
+      .catch(error => console.log(error))
+    const carrouselLogoAlianzasID = new CarrouselLogoAlianzasID({})
+    carrouselLogoAlianzasID.save()
+      .then(() => console.log(`CarrouselLogoAlianzasID created`))
       .catch(error => console.log(error))
     const carrouselTitleAlianzasID = new CarrouselTitleAlianzasID({
       title: 'Nuestros aliados en el tiempo',
@@ -847,7 +852,7 @@ Promise.all([
     tituloFormProposito.save()
       .then(() => console.log(`TituloFormProposito created`))
       .catch(error => console.log(error))
-      timelinePropositoData.forEach(unidad => {
+    timelinePropositoData.forEach(unidad => {
       const timeLineProposito = new TimeLineProposito({
         desc: unidad.desc,
         imgURL: unidad.imgURL,
@@ -890,7 +895,7 @@ Promise.all([
       .then(() => console.log(`bannerNuestraGente created`))
       .catch(error => console.log(error))
     tresEquiposNuestraGenteData.forEach(unidad => {
-    const tresEquiposNuestraGente = new TresEquiposNuestraGente({
+      const tresEquiposNuestraGente = new TresEquiposNuestraGente({
         mainTitle: unidad.mainTitle,
         imgURL: unidad.imgURL,
         title: unidad.title,

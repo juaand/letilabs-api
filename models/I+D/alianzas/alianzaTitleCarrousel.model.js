@@ -6,7 +6,7 @@ const alianzaTitleCarrouselSchema = new Schema(
     title: {
       type: String,
       required: true
-    },
+    }
   },
   { timestamps: true }
 )
