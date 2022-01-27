@@ -9,3 +9,5 @@ const ianddController = require('../controllers/iandd.controller')
 module.exports = router
 
 router.get('/alliancelogos', ianddController.getLogos)
+
+router.get('/allianceinfocards', ianddController.getInfoCards)
