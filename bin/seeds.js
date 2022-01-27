@@ -841,7 +841,7 @@ Promise.all([
       .catch(error => console.log(error))
     const videoProposito = new VideoProposito({
       title: 'Propósito y responsabilidad social',
-      videoURL: 'purpose-video.6ea9cbcd.jpg',
+      videoURL: 'purpose-video.jpg',
     })
     videoProposito.save()
       .then(() => console.log(`videoProposito created`))
@@ -911,7 +911,7 @@ Promise.all([
       title: 'Liderados por profesionales de trayectoria',
       description: '(Cita director de Laboratorios Leti)',
       person: 'Nombre director',
-      imgURL: 'director-image.b5c965fe.jpg',
+      imgURL: 'director-image.jpg',
     })
     equipoNuestraGente.save()
       .then(() => console.log(`equipoNuestraGente created`))
@@ -948,7 +948,7 @@ Promise.all([
     const bannerProductosPage = new BannerProductosPage({
       title: 'Trabajamos cada día para poner nuestros conocimientos y habilidades al servicio de las personas:',
       description: 'Desarrollando y poniendo a su disposición productos que abarquen una amplia gama de necesidades.',
-      imgURL: 'products-banner.76b04eb3.png',
+      imgURL: 'products-banner.png',
       button1Title: 'Conoce todos los productos',
       button1Link: '/listado-de-productos',
       button2Title: 'Descubre nuestras áreas terapéuticas',
@@ -960,7 +960,7 @@ Promise.all([
     const eresMedicoProductos = new EresMedicoProductos({
       title: '¿Eres médico y quieres información especial sobre algún producto?',
       buttonTitle: 'Escríbenos aquí',
-      imgURL: 'products-bottom-bg.1c82992e.jpg',
+      imgURL: 'products-bottom-bg.jpg',
     })
     eresMedicoProductos.save()
       .then(() => console.log(`eresMedicoProductos created`))
