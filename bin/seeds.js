@@ -593,6 +593,7 @@ Promise.all([
       .catch(error => console.log(error))
     infocardsIDData.forEach(unidad => {
       const infoCardsID = new InfoCardsID({
+        picPath: unidad.picPath,
         title: unidad.title,
         info: unidad.info,
         btn: unidad.btn,
