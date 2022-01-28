@@ -969,6 +969,7 @@ const EresMedicoProductos = require('../models/ProductosPage/eresMedicoProductos
 Promise.all([
   BannerProductos.deleteMany(),
   EresMedicoProductos.deleteMany(),
+  BannerProductosPage.deleteMany(),
 ])
   .then(() => {
     console.log('all databases cleaned')
@@ -1001,6 +1002,7 @@ Promise.all([
 
 Promise.all([
   User.deleteMany(),
+  Vigilancia.deleteMany(),
 ])
   .then(() => {
     console.log('all databases cleaned')
@@ -1030,6 +1032,7 @@ Promise.all([
                 medicine: faker.random.arrayElement(['Alivet', 'Antux', 'Letisan', 'Migren', 'Monosulpa']),
                 prescribed: faker.random.arrayElement(['Si', 'No']),
                 sex: faker.random.arrayElement(['F', 'M']),
+                email: faker.internet.email()
               })
               vigilancia.save()
                 .then(vig => {

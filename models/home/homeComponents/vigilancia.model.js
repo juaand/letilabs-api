@@ -27,6 +27,10 @@ const vigilanciaSchema = new Schema({
     sex: {
         type: String,
         enum: ['F', 'M']
+    },
+    email: {
+        type: String,
+        required: true
     }
 }, {
     timestamps: true,
