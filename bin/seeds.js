@@ -344,6 +344,7 @@ Promise.all([
         category: unidad.category,
         tv_spot: unidad.tv_spot,
         trademarks: unidad.trademarks,
+        CPE: 'CPE' + Math.floor(Math.random() * 10000000000),
       })
       vadevecum.save()
         .then(() => console.log(`vadevecum created`))
@@ -666,13 +667,13 @@ Promise.all([
       .then(() => console.log(`videoTecnologiaID created`))
       .catch(error => console.log(error))
     carrouselTecnologiaData.forEach(unidad => {
-    const carrouselTecnologiaID = new CarrouselTecnologiaID({
+      const carrouselTecnologiaID = new CarrouselTecnologiaID({
         mainTitle: unidad.mainTitle,
         title: unidad.title,
         description: unidad.description,
         imgURL: unidad.imgURL,
       })
-    carrouselTecnologiaID.save()
+      carrouselTecnologiaID.save()
         .then(() => console.log(`carrouselTecnologiaID created`))
         .catch(error => console.log(error))
     })

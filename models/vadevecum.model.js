@@ -58,7 +58,27 @@ const vadevecumSchema = new Schema(
     },
     QRpath: {
       type: String,
-      default: 'https://firebasestorage.googleapis.com/v0/b/grupo-leti-fd84e.appspot.com/o/images%2Fqrcode.png?alt=media&token=197cc426-93ad-4cec-afbf-85315b6fe5e1'
+      default: 'https://firebasestorage.googleapis.com/v0/b/grupo-leti-fd84e.appspot.com/o/images%2Fbarcode.gif?alt=media&token=8610de5b-edbf-4db1-b591-2e6a20111363'
+    },
+    util_life: {
+      type: String,
+      default: 'Sin información de vida útil de este medicamento.'
+    },
+    CPE: {
+      type: String,
+      default: 'Sin información del CPE de este medicamento.'
+    },
+    how_to_use: {
+      type: String,
+      default: '- Sin información del uso de este medicamento.'
+    },
+    contraindications: {
+      type: String,
+      default: '- Sin información de las contraindicaciones de este medicamento.'
+    },
+    adverse_reactions: {
+      type: String,
+      default: '- Sin información de las reacciones adversas de este medicamento.'
     }
   },
   {timestamps: true}
