@@ -1090,7 +1090,7 @@ Promise.all([
         title: faker.lorem.sentence(),
         subTitle: faker.lorem.sentence(),
         urlToPic: `https://picsum.photos/id/${i + 1000}/1440/800`,
-        content: faker.lorem.paragraphs(),
+        content: faker.lorem.paragraphs(40),
         outstanding: i === 6 ? true : false,
         publishDate: faker.date.past(),
         tag: faker.random.arrayElement(["Grupo Leti", "Educativo", "Innovación", "Nuestra gente", "Investigación", "Salud y bienestar"]),
