@@ -2,7 +2,6 @@
 
 const express = require("express")
 const router = express.Router()
-const upload = require('../config/cloudinary.config')
 const routeGuard = require('../middlewares/auth.middleware')
 const authController = require('../controllers/auth.controller')
 
