@@ -202,7 +202,7 @@ Promise.all([
     console.log('all databases cleaned')
     const banner = new Banner({
       description: 'Desarrollamos soluciones de salud que marcan la diferencia en la vida de los venezolanos',
-      imgURL: 'play.svg',
+      imgURL: 'https://firebasestorage.googleapis.com/v0/b/grupo-leti-fd84e.appspot.com/o/images%2Fabout-us-bg.png?alt=media&token=a5452461-634a-4f31-828e-e7b3fe1a1170',
     })
     banner.save()
       .then(() => console.log(`banner created`))

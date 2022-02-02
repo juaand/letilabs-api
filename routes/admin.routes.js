@@ -31,7 +31,7 @@ router.get('/homebottomdata', adminController.getHomeBottomData)
 /////////////////////////////////////////////////////////////////////
 
 router.get('/timelineaboutusdata', routeGuard.isAuthenticated, adminController.getTimeLine)
-router.get('/bannerdata', routeGuard.isAuthenticated, adminController.getBanner)
+router.get('/bannerdata', adminController.getBanner)
 router.patch('/updatebannerdata', routeGuard.isAuthenticated, adminController.updateBannerData)
 router.get('/marcandopautadata', routeGuard.isAuthenticated, adminController.getMarcandoPauta)
 router.patch('/updatemarcandopautadata', routeGuard.isAuthenticated, adminController.updateMarcandoPautaData)
