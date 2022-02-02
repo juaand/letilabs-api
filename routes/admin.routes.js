@@ -43,17 +43,17 @@ router.get('/galleryaboutusdata', adminController.getGallery)
 ////////////////////////// NUESTRAS COMPAÑÍAS CRUD //////////////////////////////
 /////////////////////////////////////////////////////////////////////
 
-router.get('/bannerdataoc', routeGuard.isAuthenticated, adminController.getBannerOC)
+router.get('/bannerdataoc', adminController.getBannerOC)
 router.patch('/updatebannerdataoc', routeGuard.isAuthenticated, adminController.updateBannerDataOC)
-router.get('/ourcompaniesoc', routeGuard.isAuthenticated, adminController.getOurCompaniesOC)
+router.get('/ourcompaniesoc', adminController.getOurCompaniesOC)
 router.patch('/updateourcompaniesoc', routeGuard.isAuthenticated, adminController.updateOurCompaniesOC)
-router.get('/bannerproductsoc', routeGuard.isAuthenticated, adminController.getBannerProductsOC)
+router.get('/bannerproductsoc', adminController.getBannerProductsOC)
 router.patch('/updatebannerproductsoc', routeGuard.isAuthenticated, adminController.updateBannerProductsOC)
-router.get('/innovationoc', routeGuard.isAuthenticated, adminController.getInnovationOC)
+router.get('/innovationoc', adminController.getInnovationOC)
 router.patch('/updateinnovationoc', routeGuard.isAuthenticated, adminController.updateInnovationOC)
-router.get('/careoc', routeGuard.isAuthenticated, adminController.getCareOC)
+router.get('/careoc', adminController.getCareOC)
 router.patch('/updatecareoc', routeGuard.isAuthenticated, adminController.updateCareOC)
-router.get('/bottomoc', routeGuard.isAuthenticated, adminController.getBottomOC)
+router.get('/bottomoc', adminController.getBottomOC)
 router.patch('/updatebottomoc', routeGuard.isAuthenticated, adminController.updateBottomOC)
 
 //////////////////////////////////////////////////////////////////////

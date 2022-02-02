@@ -279,7 +279,7 @@ Promise.all([
     console.log('all databases cleaned')
     const bannerEmpresas = new BannerEmpresas({
       description: 'Sustentados por tres grandes unidades de negocio, que se ocupan de áreas específicas, y se integran entre ellas para lograr <span className="blue-text">mejores resultados</span>',
-      imgURL: 'our-companies-bg.png',
+      imgURL: 'https://firebasestorage.googleapis.com/v0/b/grupo-leti-fd84e.appspot.com/o/images%2Four-companies-bg.png?alt=media&token=03850ed2-9969-4881-bca4-db7a075f4048',
     })
     bannerEmpresas.save()
       .then(() => console.log(`banner created`))
@@ -307,14 +307,13 @@ Promise.all([
       .catch(error => console.log(error))
     const cuidarEmpresas = new CuidarEmpresas({
       description: 'Cuidar la salud de los venezolanos',
-      imgURL: 'cuidar.png',
+      imgURL: 'https://firebasestorage.googleapis.com/v0/b/grupo-leti-fd84e.appspot.com/o/images%2Fcuidar.png?alt=media&token=d4e8b6a0-d3d7-4808-8a7d-772344c55876',
     })
     cuidarEmpresas.save()
       .then(() => console.log(`cuidar empresas created`))
       .catch(error => console.log(error))
     const innovarEmpresas = new InnovarEmpresas({
       description: 'Innovar en el mercado farmacéutico',
-      imgURL: '.',
     })
     innovarEmpresas.save()
       .then(() => console.log(`banner 4 created`))

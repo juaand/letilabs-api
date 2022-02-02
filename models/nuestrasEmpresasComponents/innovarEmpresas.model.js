@@ -7,10 +7,6 @@ const innovarEmpresasSchema = new Schema(
       type: String,
       required: true
     },
-    imgURL: {
-      type: String,
-      required: true
-    },
   },
   { timestamps: true }
 )
