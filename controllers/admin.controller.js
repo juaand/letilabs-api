@@ -257,21 +257,6 @@ module.exports.updateBannerData = (req, res, next) => {
   }
 }
 
-module.exports.getMarcandoPauta = (req, res, next) => {
-  const userRole = req.session.user.role
-
-  if (userRole === 'Admin') {
-    MarcandoPauta.find()
-      .then((data) => {
-        res.status(201).json(data[0])
-      })
-      .catch(next)
-  } else {
-    req.session.destroy()
-    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
-  }
-}
-
 module.exports.updateMarcandoPautaData = (req, res, next) => {
   const userRole = req.session.user.role
   const {description, imgURL, id} = req.body
@@ -502,18 +487,11 @@ module.exports.updateCareOC = (req, res, next) => {
 }
 
 module.exports.getMarcandoPauta = (req, res, next) => {
-  const userRole = req.session.user.role
-
-  if (userRole === 'Admin') {
-    MarcandoPauta.find()
-      .then((data) => {
-        res.status(201).json(data[0])
-      })
-      .catch(next)
-  } else {
-    req.session.destroy()
-    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
-  }
+  MarcandoPauta.find()
+    .then((data) => {
+      res.status(201).json(data[0])
+    })
+    .catch(next)
 }
 
 module.exports.getBottomOC = (req, res, next) => {

@@ -220,7 +220,7 @@ Promise.all([
     })
     const marcandoPauta = new MarcandoPauta({
       description: 'Contamos con el mejor talento que con su ingenio e increíble calidad humana, trabajan muy comprometidos día a día por los venezolanos, velando por la salud de todo un país',
-      imgURL: 'play.svg',
+      imgURL: 'https://firebasestorage.googleapis.com/v0/b/grupo-leti-fd84e.appspot.com/o/images%2Fmarcando-pauta.png?alt=media&token=3d4b2d3b-fba5-4e1b-8cef-57350eaf650d',
     })
     marcandoPauta.save()
       .then(() => console.log(`marcandoPauta created`))
