@@ -331,18 +331,11 @@ module.exports.updateBannerDataOC = (req, res, next) => {
 }
 
 module.exports.getOurCompaniesOC = (req, res, next) => {
-  const userRole = req.session.user.role
-
-  if (userRole === 'Admin') {
-    OurCompaniesOC.find()
-      .then((data) => {
-        res.status(201).json(data)
-      })
-      .catch(next)
-  } else {
-    req.session.destroy()
-    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
-  }
+  OurCompaniesOC.find()
+    .then((data) => {
+      res.status(201).json(data)
+    })
+    .catch(next)
 }
 
 module.exports.updateOurCompaniesOC = (req, res, next) => {
@@ -363,18 +356,11 @@ module.exports.updateOurCompaniesOC = (req, res, next) => {
 }
 
 module.exports.getBannerProductsOC = (req, res, next) => {
-  const userRole = req.session.user.role
-
-  if (userRole === 'Admin') {
-    ProductsBannerOC.find()
-      .then((data) => {
-        res.status(201).json(data[0])
-      })
-      .catch(next)
-  } else {
-    req.session.destroy()
-    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
-  }
+  ProductsBannerOC.find()
+    .then((data) => {
+      res.status(201).json(data[0])
+    })
+    .catch(next)
 }
 
 module.exports.updateBannerProductsOC = (req, res, next) => {

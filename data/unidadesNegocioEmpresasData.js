@@ -1,7 +1,7 @@
 module.exports = [
         {
           id: 1,
-          name: 'Laboratorios Leti',
+          name: 'Leti',
           logo: 'Leti',
           url: '/leti',
           info: '<strong>Laboratorios Leti</strong> es una empresa 100% venezolana que ha ido fortaleciendo su portafolio, con áreas de productos de prescripción RX, sin prescripción OTC, de recomendación del especialista OTX, naturales FitoLeti, oncológicos, productos de nanotecnología, test genéticos, HIV que cuentan con tecnología de vanguardia y primera línea para ofrecer al venezolano medicamentos de alta calidad.'
