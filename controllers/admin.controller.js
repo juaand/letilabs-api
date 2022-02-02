@@ -218,33 +218,19 @@ module.exports.deleteUnitlItem = (req, res, next) => {
 
 
 module.exports.getTimeLine = (req, res, next) => {
-  const userRole = req.session.user.role
-
-  if (userRole === 'Admin') {
-    TimeLine.find()
-      .then((data) => {
-        res.status(201).json(data)
-      })
-      .catch(next)
-  } else {
-    req.session.destroy()
-    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
-  }
+  TimeLine.find()
+    .then((data) => {
+      res.status(201).json(data)
+    })
+    .catch(next)
 }
 
 module.exports.getBanner = (req, res, next) => {
-  const userRole = req.session.user.role
-
-  if (userRole === 'Admin') {
-    Banner.find()
-      .then((data) => {
-        res.status(201).json(data[0])
-      })
-      .catch(next)
-  } else {
-    req.session.destroy()
-    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
-  }
+  Banner.find()
+    .then((data) => {
+      res.status(201).json(data[0])
+    })
+    .catch(next)
 }
 
 module.exports.updateBannerData = (req, res, next) => {
@@ -256,21 +242,6 @@ module.exports.updateBannerData = (req, res, next) => {
     Banner.findByIdAndUpdate(id, req.body, {new: true})
       .then((data) => {
         res.status(201).json(data)
-      })
-      .catch(next)
-  } else {
-    req.session.destroy()
-    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
-  }
-}
-
-module.exports.getMarcandoPauta = (req, res, next) => {
-  const userRole = req.session.user.role
-
-  if (userRole === 'Admin') {
-    MarcandoPauta.find()
-      .then((data) => {
-        res.status(201).json(data[0])
       })
       .catch(next)
   } else {
@@ -297,18 +268,11 @@ module.exports.updateMarcandoPautaData = (req, res, next) => {
 }
 
 module.exports.getMegat = (req, res, next) => {
-  const userRole = req.session.user.role
-
-  if (userRole === 'Admin') {
-    Megat.find()
-      .then((data) => {
-        res.status(201).json(data[0])
-      })
-      .catch(next)
-  } else {
-    req.session.destroy()
-    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
-  }
+  Megat.find()
+    .then((data) => {
+      res.status(201).json(data[0])
+    })
+    .catch(next)
 }
 
 module.exports.updateMegatData = (req, res, next) => {
@@ -329,18 +293,11 @@ module.exports.updateMegatData = (req, res, next) => {
 }
 
 module.exports.getGallery = (req, res, next) => {
-  const userRole = req.session.user.role
-
-  if (userRole === 'Admin') {
-    Gallery.find()
-      .then((data) => {
-        res.status(201).json(data)
-      })
-      .catch(next)
-  } else {
-    req.session.destroy()
-    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
-  }
+  Gallery.find()
+    .then((data) => {
+      res.status(201).json(data)
+    })
+    .catch(next)
 }
 
 /////////////////////////////////////////////////////////////////////
@@ -509,18 +466,11 @@ module.exports.updateCareOC = (req, res, next) => {
 }
 
 module.exports.getMarcandoPauta = (req, res, next) => {
-  const userRole = req.session.user.role
-
-  if (userRole === 'Admin') {
-    MarcandoPauta.find()
-      .then((data) => {
-        res.status(201).json(data[0])
-      })
-      .catch(next)
-  } else {
-    req.session.destroy()
-    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
-  }
+  MarcandoPauta.find()
+    .then((data) => {
+      res.status(201).json(data[0])
+    })
+    .catch(next)
 }
 
 module.exports.getBottomOC = (req, res, next) => {

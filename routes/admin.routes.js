@@ -30,14 +30,14 @@ router.get('/homebottomdata', adminController.getHomeBottomData)
 ////////////////////////// SOBRE NOSOTROS CRUD //////////////////////////////
 /////////////////////////////////////////////////////////////////////
 
-router.get('/timelineaboutusdata', routeGuard.isAuthenticated, adminController.getTimeLine)
-router.get('/bannerdata', routeGuard.isAuthenticated, adminController.getBanner)
+router.get('/timelineaboutusdata', adminController.getTimeLine)
+router.get('/bannerdata', adminController.getBanner)
 router.patch('/updatebannerdata', routeGuard.isAuthenticated, adminController.updateBannerData)
-router.get('/marcandopautadata', routeGuard.isAuthenticated, adminController.getMarcandoPauta)
+router.get('/marcandopautadata', adminController.getMarcandoPauta)
 router.patch('/updatemarcandopautadata', routeGuard.isAuthenticated, adminController.updateMarcandoPautaData)
-router.get('/megatdata', routeGuard.isAuthenticated, adminController.getMegat)
+router.get('/megatdata', adminController.getMegat)
 router.patch('/updatemegatdata', routeGuard.isAuthenticated, adminController.updateMegatData)
-router.get('/galleryaboutusdata', routeGuard.isAuthenticated, adminController.getGallery)
+router.get('/galleryaboutusdata', adminController.getGallery)
 
 /////////////////////////////////////////////////////////////////////
 ////////////////////////// NUESTRAS COMPAÑÍAS CRUD //////////////////////////////

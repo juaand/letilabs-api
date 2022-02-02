@@ -202,7 +202,7 @@ Promise.all([
     console.log('all databases cleaned')
     const banner = new Banner({
       description: 'Desarrollamos soluciones de salud que marcan la diferencia en la vida de los venezolanos',
-      imgURL: 'play.svg',
+      imgURL: 'https://firebasestorage.googleapis.com/v0/b/grupo-leti-fd84e.appspot.com/o/images%2Fabout-us-bg.png?alt=media&token=a5452461-634a-4f31-828e-e7b3fe1a1170',
     })
     banner.save()
       .then(() => console.log(`banner created`))
@@ -220,7 +220,7 @@ Promise.all([
     })
     const marcandoPauta = new MarcandoPauta({
       description: 'Contamos con el mejor talento que con su ingenio e increíble calidad humana, trabajan muy comprometidos día a día por los venezolanos, velando por la salud de todo un país',
-      imgURL: 'play.svg',
+      imgURL: 'https://firebasestorage.googleapis.com/v0/b/grupo-leti-fd84e.appspot.com/o/images%2Fmarcando-pauta.png?alt=media&token=3d4b2d3b-fba5-4e1b-8cef-57350eaf650d',
     })
     marcandoPauta.save()
       .then(() => console.log(`marcandoPauta created`))
