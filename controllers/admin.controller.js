@@ -268,18 +268,11 @@ module.exports.updateMarcandoPautaData = (req, res, next) => {
 }
 
 module.exports.getMegat = (req, res, next) => {
-  const userRole = req.session.user.role
-
-  if (userRole === 'Admin') {
-    Megat.find()
-      .then((data) => {
-        res.status(201).json(data[0])
-      })
-      .catch(next)
-  } else {
-    req.session.destroy()
-    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
-  }
+  Megat.find()
+    .then((data) => {
+      res.status(201).json(data[0])
+    })
+    .catch(next)
 }
 
 module.exports.updateMegatData = (req, res, next) => {
