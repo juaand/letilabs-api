@@ -53,7 +53,7 @@ router.get('/innovationoc', adminController.getInnovationOC)
 router.patch('/updateinnovationoc', routeGuard.isAuthenticated, adminController.updateInnovationOC)
 router.get('/careoc', adminController.getCareOC)
 router.patch('/updatecareoc', routeGuard.isAuthenticated, adminController.updateCareOC)
-router.get('/bottomoc', routeGuard.isAuthenticated, adminController.getBottomOC)
+router.get('/bottomoc', adminController.getBottomOC)
 router.patch('/updatebottomoc', routeGuard.isAuthenticated, adminController.updateBottomOC)
 
 //////////////////////////////////////////////////////////////////////
