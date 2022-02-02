@@ -314,7 +314,6 @@ Promise.all([
       .catch(error => console.log(error))
     const innovarEmpresas = new InnovarEmpresas({
       description: 'Innovar en el mercado farmacéutico',
-      imgURL: '.',
     })
     innovarEmpresas.save()
       .then(() => console.log(`banner 4 created`))
