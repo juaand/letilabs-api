@@ -279,7 +279,7 @@ Promise.all([
     console.log('all databases cleaned')
     const bannerEmpresas = new BannerEmpresas({
       description: 'Sustentados por tres grandes unidades de negocio, que se ocupan de áreas específicas, y se integran entre ellas para lograr <span className="blue-text">mejores resultados</span>',
-      imgURL: 'our-companies-bg.png',
+      imgURL: 'https://firebasestorage.googleapis.com/v0/b/grupo-leti-fd84e.appspot.com/o/images%2Four-companies-bg.png?alt=media&token=03850ed2-9969-4881-bca4-db7a075f4048',
     })
     bannerEmpresas.save()
       .then(() => console.log(`banner created`))

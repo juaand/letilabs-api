@@ -43,7 +43,7 @@ router.get('/galleryaboutusdata', adminController.getGallery)
 ////////////////////////// NUESTRAS COMPAÑÍAS CRUD //////////////////////////////
 /////////////////////////////////////////////////////////////////////
 
-router.get('/bannerdataoc', routeGuard.isAuthenticated, adminController.getBannerOC)
+router.get('/bannerdataoc', adminController.getBannerOC)
 router.patch('/updatebannerdataoc', routeGuard.isAuthenticated, adminController.updateBannerDataOC)
 router.get('/ourcompaniesoc', routeGuard.isAuthenticated, adminController.getOurCompaniesOC)
 router.patch('/updateourcompaniesoc', routeGuard.isAuthenticated, adminController.updateOurCompaniesOC)
