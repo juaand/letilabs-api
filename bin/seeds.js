@@ -533,9 +533,9 @@ Promise.all([
       description: 'Ofrecemos terapias en las principales áreas terapéuticas: Cardiovascular, anti-infecciosos, anti-inflamatorios y analgésicos.',
       buttonTitle: 'Conoce los productos',
       buttonLink: '/productos',
-      img1URL: 'genven001.png',
-      img2URL: 'genven002.png',
-      img3URL: 'genven003.png',
+      img1URL: 'https://firebasestorage.googleapis.com/v0/b/grupo-leti-fd84e.appspot.com/o/images%2Fgenven001.png?alt=media&token=2000cb23-d4f5-47f5-82bf-e97013766e2d',
+      img2URL: 'https://firebasestorage.googleapis.com/v0/b/grupo-leti-fd84e.appspot.com/o/images%2Fgenven002.png?alt=media&token=a3c89546-c25d-4086-83ce-8f428d06b909',
+      img3URL: 'https://firebasestorage.googleapis.com/v0/b/grupo-leti-fd84e.appspot.com/o/images%2Fgenven003.png?alt=media&token=febba31c-02cf-4473-8427-0542de8174e2',
     })
     productosGenvenPage.save()
       .then(() => console.log(`equipo Biocontrolled page created`))

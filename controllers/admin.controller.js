@@ -851,18 +851,11 @@ module.exports.addTimeLineGenvenData = (req, res, next) => {
 }
 
 module.exports.getProductosGenven = (req, res, next) => {
-  const userRole = req.session.user.role
-
-  if (userRole === 'Admin') {
-    ProductosGenvenOC.find()
-      .then((data) => {
-        res.status(201).json(data)
-      })
-      .catch(next)
-  } else {
-    req.session.destroy()
-    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
-  }
+  ProductosGenvenOC.find()
+    .then((data) => {
+      res.status(201).json(data)
+    })
+    .catch(next)
 }
 /// pendiente add ///
 module.exports.addProductosGenvenData = (req, res, next) => {
