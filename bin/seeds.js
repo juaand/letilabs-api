@@ -590,7 +590,7 @@ Promise.all([
     const bannerID = new BannerID({
       title: 'Pilares de I&D',
       description: 'Para nosotros siempre ha sido prioridad contar con la tecnlogía e infraestructura que nos permita desarrollar los mejores productos, y además en las cantidades necesarias para cuidar de la salud de todo el país.',
-      imgURL: 'iyd-banner.png',
+      imgURL: 'https://firebasestorage.googleapis.com/v0/b/grupo-leti-fd84e.appspot.com/o/images%2Fiyd-banner.png?alt=media&token=42a2a76e-12e4-468f-9dd8-3fbae9914089',
     })
     bannerID.save()
       .then(() => console.log(`BannerAT created`))

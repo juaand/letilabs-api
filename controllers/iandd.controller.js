@@ -1,7 +1,15 @@
 // controllers/iandd.controllers.js
 const AllianceLogos = require('../models/I+D/alianzas/alianzaLogosCarrousel.model')
 const AllianceInfoCards = require('../models/I+D/I+D components/infoCardsID.model')
+const BannerID = require('../models/I+D/I+D components/bannerID.model')
 
+module.exports.getBannerID = (req, res, next) => {
+  BannerID.find()
+    .then((data) => {
+      res.status(201).json(data[0])
+    })
+    .catch(next)
+}
 
 module.exports.getLogos = (req, res, next) => {
   AllianceLogos.find()

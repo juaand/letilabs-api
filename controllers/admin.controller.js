@@ -36,7 +36,6 @@ const Video = require('../models/home/homeComponents/video.model')
 const BottomHomeData = require('../models/home/homeComponents/meetPeopleWorkWithUsHome.model')
 
 
-
 module.exports.getFarmVigData = (req, res, next) => {
   const userRole = req.session.user.role
 
@@ -623,11 +622,11 @@ module.exports.updateOurCompaniesInfoCardsBiocontrolled = (req, res, next) => {
 }
 
 module.exports.getEquipoBiocontrolledOC = (req, res, next) => {
-    EquipoBiocontrolledPageOC.find()
-      .then((data) => {
-        res.status(201).json(data[0])
-      })
-      .catch(next)
+  EquipoBiocontrolledPageOC.find()
+    .then((data) => {
+      res.status(201).json(data[0])
+    })
+    .catch(next)
 
 }
 
@@ -827,6 +826,12 @@ module.exports.addProductosGenvenData = (req, res, next) => {
     res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
   }
 }
+
+//////////////////////////////////////////////////////////////////////
+//////////////// NUESTRAS COMPAÑÍAS LETI CRUD ////////////////////////
+/////////////////////////////////////////////////////////////////////
+
+
 
 //////////////////////////////////////////////////////////////////////
 /////////////////////////// PRODUCTOS CRUD //////////////////////////
