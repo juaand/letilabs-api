@@ -405,11 +405,11 @@ Promise.all([
         .catch(error => console.log(error))
     })
     const equipoLetiPage = new EquipoLetiPage({
-      description: 'Cuidar la salud de los venezolanos',
+      description: 'El laboratorio más grande y más importante por la cantidad de ventas que tenía, cantidad de productos, cantidad de categorías donde participaba.',
       person: 'Ramón, director de unidad',
       buttonTitle: 'Conoce nuestra filosofía',
-      buttonLink: '/equipo',
-      imgURL: 'equipo.jpg',
+      buttonLink: '/nuestra-filosofia',
+      imgURL: 'https://firebasestorage.googleapis.com/v0/b/grupo-leti-fd84e.appspot.com/o/images%2Fequipo.jpg?alt=media&token=301345d4-0935-4285-9681-481ae645eb83',
     })
     equipoLetiPage.save()
       .then(() => console.log(`equipo leti page created`))
