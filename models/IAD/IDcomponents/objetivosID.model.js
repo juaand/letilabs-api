@@ -1,5 +1,5 @@
 // models/nuestrasEmpresasComponents/letiTimeLine.model.js
-const { Schema, model} = require('mongoose')
+const {Schema, model} = require('mongoose')
 
 const objetivosSchema = new Schema(
   {
@@ -7,12 +7,18 @@ const objetivosSchema = new Schema(
       type: String,
       required: true
     },
-    desc: {
-      type: String,
-      required: true
-    },
+    goals: [{
+      name: {
+        type: String,
+        required: true
+      },
+      desc: {
+        type: String,
+        required: true
+      }
+    }],
   },
-  { timestamps: true }
+  {timestamps: true}
 )
 
 module.exports = model('Objetivos', objetivosSchema)
