@@ -378,7 +378,8 @@ Promise.all([
     console.log('all databases cleaned')
     const bannerLetiPage = new BannerLetiPage({
       description: 'Esta es la unidad que se encarga de desarrollar la gama de productos que abarca diferentes áreas terapéuticas: cardiovascular, metabolismo, gástrica, respiratoria, neurológicas, músculo-esqueléticas, dolor, antibióticos, vitaminas, tanto para el paciente pediátrico como para el paciente adulto.',
-      imgURL: 'leti.svg',
+      imgURL: 'https://firebasestorage.googleapis.com/v0/b/grupo-leti-fd84e.appspot.com/o/images%2Fleti.svg?alt=media&token=7b074feb-97aa-4ab9-bf8a-f0981dfff556',
+      logoURL: 'https://firebasestorage.googleapis.com/v0/b/grupo-leti-fd84e.appspot.com/o/images%2Fleti.svg?alt=media&token=7b074feb-97aa-4ab9-bf8a-f0981dfff556'
     })
     bannerLetiPage.save()
       .then(() => console.log(`bannerletipage created`))
@@ -404,11 +405,11 @@ Promise.all([
         .catch(error => console.log(error))
     })
     const equipoLetiPage = new EquipoLetiPage({
-      description: 'Cuidar la salud de los venezolanos',
+      description: 'El laboratorio más grande y más importante por la cantidad de ventas que tenía, cantidad de productos, cantidad de categorías donde participaba.',
       person: 'Ramón, director de unidad',
       buttonTitle: 'Conoce nuestra filosofía',
-      buttonLink: '/equipo',
-      imgURL: 'equipo.jpg',
+      buttonLink: '/nuestra-filosofia',
+      imgURL: 'https://firebasestorage.googleapis.com/v0/b/grupo-leti-fd84e.appspot.com/o/images%2Fequipo.jpg?alt=media&token=301345d4-0935-4285-9681-481ae645eb83',
     })
     equipoLetiPage.save()
       .then(() => console.log(`equipo leti page created`))

@@ -60,13 +60,13 @@ router.patch('/updatebottomoc', routeGuard.isAuthenticated, adminController.upda
 ////////////////// NUESTRAS COMPAÑÍAS LETI CRUD //////////////////////
 /////////////////////////////////////////////////////////////////////
 
-router.get('/bannerdataocleti', routeGuard.isAuthenticated, adminController.getBannerOCLeti)
+router.get('/bannerdataocleti', adminController.getBannerOCLeti)
 router.patch('/updatebannerdataocleti', routeGuard.isAuthenticated, adminController.updateBannerDataOCLeti)
-router.get('/ourcompaniesinfocardsleti', routeGuard.isAuthenticated, adminController.getOurCompaniesInfoCardsLeti)
+router.get('/ourcompaniesinfocardsleti', adminController.getOurCompaniesInfoCardsLeti)
 router.patch('/updateourcompaniesinfocardsleti', routeGuard.isAuthenticated, adminController.updateOurCompaniesInfoCardsLeti)
-router.get('/ocequipoleti', routeGuard.isAuthenticated, adminController.getEquipoLetiOC)
+router.get('/ocequipoleti', adminController.getEquipoLetiOC)
 router.patch('/updateocequipoleti', routeGuard.isAuthenticated, adminController.updateEquipoLetiOC)
-router.get('/octimelineleti', routeGuard.isAuthenticated, adminController.getTimeLineLeti)
+router.get('/octimelineleti', adminController.getTimeLineLeti)
 router.patch('/addoctimelineleti', routeGuard.isAuthenticated, adminController.addTimeLineLetiData)
 
 //////////////////////////////////////////////////////////////////////

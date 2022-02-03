@@ -468,18 +468,11 @@ module.exports.updateBottomOC = (req, res, next) => {
 /////////////////////////////////////////////////////////////////////
 
 module.exports.getBannerOCLeti = (req, res, next) => {
-  const userRole = req.session.user.role
-
-  if (userRole === 'Admin') {
-    BannerOCLeti.find()
-      .then((data) => {
-        res.status(201).json(data[0])
-      })
-      .catch(next)
-  } else {
-    req.session.destroy()
-    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
-  }
+  BannerOCLeti.find()
+    .then((data) => {
+      res.status(201).json(data[0])
+    })
+    .catch(next)
 }
 
 module.exports.updateBannerDataOCLeti = (req, res, next) => {
@@ -500,18 +493,11 @@ module.exports.updateBannerDataOCLeti = (req, res, next) => {
 }
 
 module.exports.getOurCompaniesInfoCardsLeti = (req, res, next) => {
-  const userRole = req.session.user.role
-
-  if (userRole === 'Admin') {
-    OurCompaniesOCInfoCardsLeti.find()
-      .then((data) => {
-        res.status(201).json(data)
-      })
-      .catch(next)
-  } else {
-    req.session.destroy()
-    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
-  }
+  OurCompaniesOCInfoCardsLeti.find()
+    .then((data) => {
+      res.status(201).json(data)
+    })
+    .catch(next)
 }
 
 module.exports.updateOurCompaniesInfoCardsLeti = (req, res, next) => {
@@ -532,18 +518,11 @@ module.exports.updateOurCompaniesInfoCardsLeti = (req, res, next) => {
 }
 
 module.exports.getEquipoLetiOC = (req, res, next) => {
-  const userRole = req.session.user.role
-
-  if (userRole === 'Admin') {
-    EquipoLetiPageOC.find()
-      .then((data) => {
-        res.status(201).json(data[0])
-      })
-      .catch(next)
-  } else {
-    req.session.destroy()
-    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
-  }
+  EquipoLetiPageOC.find()
+    .then((data) => {
+      res.status(201).json(data[0])
+    })
+    .catch(next)
 }
 
 module.exports.updateEquipoLetiOC = (req, res, next) => {
@@ -564,19 +543,13 @@ module.exports.updateEquipoLetiOC = (req, res, next) => {
 }
 
 module.exports.getTimeLineLeti = (req, res, next) => {
-  const userRole = req.session.user.role
-
-  if (userRole === 'Admin') {
-    TimeLineLetiOC.find()
-      .then((data) => {
-        res.status(201).json(data)
-      })
-      .catch(next)
-  } else {
-    req.session.destroy()
-    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
-  }
+  TimeLineLetiOC.find()
+    .then((data) => {
+      res.status(201).json(data)
+    })
+    .catch(next)
 }
+
 /// pendiente add ///
 module.exports.addTimeLineLetiData = (req, res, next) => {
   const userRole = req.session.user.role
