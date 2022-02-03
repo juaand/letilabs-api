@@ -13,11 +13,9 @@ const biocontrolledTimeLineSchema = new Schema(
     },
     buttonTitle: {
       type: String,
-      required: true
     },
     buttonLink: {
       type: String,
-      required: true
     },
   },
   { timestamps: true }

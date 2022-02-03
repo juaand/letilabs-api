@@ -484,7 +484,7 @@ Promise.all([
       person: 'Ramón, director de unidad',
       buttonTitle: 'Conoce nuestra filosofía',
       buttonLink: '/nuestra-filosofia',
-      imgURL: 'bicontrolled-bottom.jpg',
+      imgURL: 'https://firebasestorage.googleapis.com/v0/b/grupo-leti-fd84e.appspot.com/o/images%2Fbicontrolled-bottom.jpg?alt=media&token=3d433325-6f4f-43a8-ba39-1fccca368d5a',
     })
     equipoBiocontrolledPage.save()
       .then(() => console.log(`equipo Biocontrolled page created`))

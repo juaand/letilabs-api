@@ -598,18 +598,11 @@ module.exports.updateBannerDataOCBiocontrolled = (req, res, next) => {
 }
 
 module.exports.getOurCompaniesInfoCardsBiocontrolled = (req, res, next) => {
-  const userRole = req.session.user.role
-
-  if (userRole === 'Admin') {
-    OurCompaniesOCInfoCardsBiocontrolled.find()
-      .then((data) => {
-        res.status(201).json(data)
-      })
-      .catch(next)
-  } else {
-    req.session.destroy()
-    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
-  }
+  OurCompaniesOCInfoCardsBiocontrolled.find()
+    .then((data) => {
+      res.status(201).json(data)
+    })
+    .catch(next)
 }
 
 module.exports.updateOurCompaniesInfoCardsBiocontrolled = (req, res, next) => {
@@ -630,18 +623,12 @@ module.exports.updateOurCompaniesInfoCardsBiocontrolled = (req, res, next) => {
 }
 
 module.exports.getEquipoBiocontrolledOC = (req, res, next) => {
-  const userRole = req.session.user.role
-
-  if (userRole === 'Admin') {
     EquipoBiocontrolledPageOC.find()
       .then((data) => {
         res.status(201).json(data[0])
       })
       .catch(next)
-  } else {
-    req.session.destroy()
-    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
-  }
+
 }
 
 module.exports.updateEquipoBiocontrolledOC = (req, res, next) => {
@@ -662,18 +649,11 @@ module.exports.updateEquipoBiocontrolledOC = (req, res, next) => {
 }
 
 module.exports.getTimeLineBiocontrolled = (req, res, next) => {
-  const userRole = req.session.user.role
-
-  if (userRole === 'Admin') {
-    TimeLineBiocontrolledOC.find()
-      .then((data) => {
-        res.status(201).json(data)
-      })
-      .catch(next)
-  } else {
-    req.session.destroy()
-    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
-  }
+  TimeLineBiocontrolledOC.find()
+    .then((data) => {
+      res.status(201).json(data)
+    })
+    .catch(next)
 }
 /// pendiente add ///
 module.exports.addTimeLineBiocontrolledData = (req, res, next) => {
@@ -694,18 +674,12 @@ module.exports.addTimeLineBiocontrolledData = (req, res, next) => {
 }
 
 module.exports.getCarrouselBiocontrolled = (req, res, next) => {
-  const userRole = req.session.user.role
+  CarrouselBiocontrolledOC.find()
+    .then((data) => {
+      res.status(201).json(data)
+    })
+    .catch(next)
 
-  if (userRole === 'Admin') {
-    CarrouselBiocontrolledOC.find()
-      .then((data) => {
-        res.status(201).json(data)
-      })
-      .catch(next)
-  } else {
-    req.session.destroy()
-    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
-  }
 }
 /// pendiente add ///
 module.exports.addCarrouselBiocontrolledData = (req, res, next) => {
