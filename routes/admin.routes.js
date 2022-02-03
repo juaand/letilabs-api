@@ -56,6 +56,7 @@ router.patch('/updatecareoc', routeGuard.isAuthenticated, adminController.update
 router.get('/bottomoc', adminController.getBottomOC)
 router.patch('/updatebottomoc', routeGuard.isAuthenticated, adminController.updateBottomOC)
 
+
 //////////////////////////////////////////////////////////////////////
 ////////////////// NUESTRAS COMPAÑÍAS LETI CRUD //////////////////////
 /////////////////////////////////////////////////////////////////////
@@ -103,6 +104,34 @@ router.patch('/addocproductosgenven', routeGuard.isAuthenticated, adminControlle
 /////////////////// INVESTIGACIÓN Y DESARROLLO CRUD //////////////////
 /////////////////////////////////////////////////////////////////////
 
+
+//////////////////////////////////////////////////////////////////////
+//////////////// PROPOSITOS Y RESPOSNSABILIDAD CRUD //////////////////
+/////////////////////////////////////////////////////////////////////
+
+router.get('/bannerdatapurpose', adminController.getBannerPurpose)
+router.patch('/updatebannerdatapurpose', routeGuard.isAuthenticated, adminController.updateBannerDataPurpose)
+router.get('/purposevideo', adminController.getVideoPurpose)
+router.patch('/updatepurposevideo', routeGuard.isAuthenticated, adminController.updateVideoPurpose)
+router.get('/timelinepurpose', adminController.getTimeLinePurpose)
+router.patch('/addtimelinepurpose', routeGuard.isAuthenticated, adminController.addTimeLinePurposeData)
+router.get('/titlefarmdatapurpose', adminController.getTitleFarmPurpose)
+router.patch('/updatetitlefarmdatapurpose', routeGuard.isAuthenticated, adminController.updateTitleFarmDataPurpose)
+
+//////////////////////////////////////////////////////////////////////
+////////////////////////// NUESTRA GENTE /////////////////////////////
+/////////////////////////////////////////////////////////////////////
+
+router.get('/bannerdataourpeople', adminController.getBannerOurPeople)
+router.patch('/updatebannerdataourpeople', routeGuard.isAuthenticated, adminController.updateBannerDataOurPeople)
+router.get('/ourpeopleinfocards', adminController.getInfoCardsOurPeople)
+router.patch('/updateourpeopleinfocards', routeGuard.isAuthenticated, adminController.updateInfoCardsOurPeople)
+router.get('/equipoourpeople', adminController.getEquipoOurPeople)
+router.patch('/updateourpeopleequipo', routeGuard.isAuthenticated, adminController.updateEquipoOurPeople)
+router.get('/bottomourpeople', adminController.getBottomOurPeople)
+router.patch('/updatebottomourpeople', routeGuard.isAuthenticated, adminController.updateBottomOurPeople)
+router.get('/carrerasdata', adminController.getCarreras)
+router.patch('/updatecarrerasdata', routeGuard.isAuthenticated, adminController.updateCarrerasData)
 
 //////////////////////////////////////////////////////////////////////
 /////////////////////////// PRODUCTOS CRUD ///////////////////////////
