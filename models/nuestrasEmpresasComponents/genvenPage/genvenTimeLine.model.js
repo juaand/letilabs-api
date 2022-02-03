@@ -11,6 +11,12 @@ const genvenTimeLineSchema = new Schema(
       type: String,
       required: true
     },
+    buttonText: {
+      type: String
+    },
+    buttonLink: {
+      type: String
+    },
   },
   { timestamps: true }
 )

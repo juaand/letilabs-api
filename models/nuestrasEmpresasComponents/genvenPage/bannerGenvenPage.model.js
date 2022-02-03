@@ -11,6 +11,10 @@ const bannerGenvenPageSchema = new Schema(
       type: String,
       required: true
     },
+    logoURL: {
+      type: String,
+      required: true
+    },
   },
   { timestamps: true }
 )

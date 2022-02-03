@@ -116,7 +116,7 @@ Promise.all([
       .then(() => console.log(`usInfo created`))
       .catch(error => console.log(error))
     const video = new Video({
-      url: 'play.svg',
+      url: 'https://firebasestorage.googleapis.com/v0/b/grupo-leti-fd84e.appspot.com/o/videos%2Fhome-video.mp4?alt=media&token=e5cf0b01-b8be-45c3-8793-2ec7c26ee6c0',
     })
     video.save()
       .then(() => console.log(`video created`))
@@ -517,13 +517,14 @@ Promise.all([
     console.log('all databases cleaned')
     const bannerGenvenPage = new BannerGenvenPage({
       description: '<span className="blue-text">Genven Genéricos Venezolanos,</span> es nuestra línea de genéricos de Laboratorios Leti S.A.V, con más de 25 años en el mercado farmacéutico venezolano.<br /><br />Esta planta de manufactura cuenta con <span className="blue-text">tecnología de punta y estrictos controles de calidad</span> en el proceso de fabricación de sus productos, lo que se traduce en medicamentos de comprobada eficacia terapéutica, que cumplen con los rigurosos controles exigidos por las Autoridades Sanitarias nacionales.',
-      imgURL: 'genven.svg',
+      logoURL: 'https://firebasestorage.googleapis.com/v0/b/grupo-leti-fd84e.appspot.com/o/images%2Fgenven.svg?alt=media&token=d36a1da6-0a37-4ce4-891c-f2c850d7c0be',
+      imgURL: 'https://firebasestorage.googleapis.com/v0/b/grupo-leti-fd84e.appspot.com/o/images%2Fgenven-banner-img.png?alt=media&token=ce53e790-b710-405d-911d-cb7e6750bdc9'
     })
     bannerGenvenPage.save()
       .then(() => console.log(`bannerletipage created`))
       .catch(error => console.log(error))
     const videoGenvenPage = new VideoGenvenPage({
-      videoURL: 'video',
+      videoURL: 'https://firebasestorage.googleapis.com/v0/b/grupo-leti-fd84e.appspot.com/o/videos%2Fhome-video.mp4?alt=media&token=e5cf0b01-b8be-45c3-8793-2ec7c26ee6c0',
     })
     videoGenvenPage.save()
       .then(() => console.log(`videoGenvenPage created`))
@@ -532,9 +533,9 @@ Promise.all([
       description: 'Ofrecemos terapias en las principales áreas terapéuticas: Cardiovascular, anti-infecciosos, anti-inflamatorios y analgésicos.',
       buttonTitle: 'Conoce los productos',
       buttonLink: '/productos',
-      img1URL: 'genven001.png',
-      img2URL: 'genven002.png',
-      img3URL: 'genven003.png',
+      img1URL: 'https://firebasestorage.googleapis.com/v0/b/grupo-leti-fd84e.appspot.com/o/images%2Fgenven001.png?alt=media&token=2000cb23-d4f5-47f5-82bf-e97013766e2d',
+      img2URL: 'https://firebasestorage.googleapis.com/v0/b/grupo-leti-fd84e.appspot.com/o/images%2Fgenven002.png?alt=media&token=a3c89546-c25d-4086-83ce-8f428d06b909',
+      img3URL: 'https://firebasestorage.googleapis.com/v0/b/grupo-leti-fd84e.appspot.com/o/images%2Fgenven003.png?alt=media&token=febba31c-02cf-4473-8427-0542de8174e2',
     })
     productosGenvenPage.save()
       .then(() => console.log(`equipo Biocontrolled page created`))
@@ -543,6 +544,8 @@ Promise.all([
       const genvenTimeLine = new GenvenTimeLine({
         imgURL: unidad.imgURL,
         desc: unidad.desc,
+        buttonText: unidad.buttonText,
+        buttonLink: unidad.buttonLink,
       })
       genvenTimeLine.save()
         .then(() => console.log(`genvenTimeLine created`))
@@ -661,7 +664,7 @@ Promise.all([
       .catch(error => console.log(error))
     const videoTecnologiaID = new VideoTecnologiaID({
       title: 'Tecnología',
-      videoURL: 'tech-video-bg.jpg',
+      videoURL: 'https://firebasestorage.googleapis.com/v0/b/grupo-leti-fd84e.appspot.com/o/videos%2Fhome-video.mp4?alt=media&token=e5cf0b01-b8be-45c3-8793-2ec7c26ee6c0',
     })
     videoTecnologiaID.save()
       .then(() => console.log(`videoTecnologiaID created`))
@@ -857,7 +860,7 @@ Promise.all([
       .catch(error => console.log(error))
     const videoProposito = new VideoProposito({
       title: 'Propósito y responsabilidad social',
-      videoURL: 'purpose-video.jpg',
+      videoURL: 'https://firebasestorage.googleapis.com/v0/b/grupo-leti-fd84e.appspot.com/o/videos%2Fhome-video.mp4?alt=media&token=e5cf0b01-b8be-45c3-8793-2ec7c26ee6c0',
     })
     videoProposito.save()
       .then(() => console.log(`videoProposito created`))

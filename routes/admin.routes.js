@@ -88,15 +88,15 @@ router.patch('/addoccarrouselbiocontrolled', routeGuard.isAuthenticated, adminCo
 /////////////////// NUESTRAS COMPAÑÍAS GENVEN CRUD //////////////////
 /////////////////////////////////////////////////////////////////////
 
-router.get('/bannerdataocgenven', routeGuard.isAuthenticated, adminController.getBannerOCGenven)
+router.get('/bannerdataocgenven', adminController.getBannerOCGenven)
 router.patch('/updatebannerdataocgenven', routeGuard.isAuthenticated, adminController.updateBannerDataOCGenven)
-router.get('/ourcompaniesvideogenven', routeGuard.isAuthenticated, adminController.getOurCompaniesVideoGenven)
+router.get('/ourcompaniesvideogenven', adminController.getOurCompaniesVideoGenven)
 router.patch('/updateourcompaniesvideogenven', routeGuard.isAuthenticated, adminController.updateOurCompaniesVideoGenven)
-router.get('/ocequipogenven', routeGuard.isAuthenticated, adminController.getEquipoGenvenOC)
+router.get('/ocequipogenven', adminController.getEquipoGenvenOC)
 router.patch('/updateocequipogenven', routeGuard.isAuthenticated, adminController.updateEquipoGenvenOC)
-router.get('/octimelinegenven', routeGuard.isAuthenticated, adminController.getTimeLineGenven)
+router.get('/octimelinegenven', adminController.getTimeLineGenven)
 router.patch('/addoctimelinegenven', routeGuard.isAuthenticated, adminController.addTimeLineGenvenData)
-router.get('/ocproductosgenven', routeGuard.isAuthenticated, adminController.getProductosGenven)
+router.get('/ocproductosgenven', adminController.getProductosGenven)
 router.patch('/addocproductosgenven', routeGuard.isAuthenticated, adminController.addProductosGenvenData)
 
 //////////////////////////////////////////////////////////////////////
