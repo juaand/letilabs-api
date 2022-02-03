@@ -468,18 +468,11 @@ module.exports.updateBottomOC = (req, res, next) => {
 /////////////////////////////////////////////////////////////////////
 
 module.exports.getBannerOCLeti = (req, res, next) => {
-  const userRole = req.session.user.role
-
-  if (userRole === 'Admin') {
-    BannerOCLeti.find()
-      .then((data) => {
-        res.status(201).json(data[0])
-      })
-      .catch(next)
-  } else {
-    req.session.destroy()
-    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
-  }
+  BannerOCLeti.find()
+    .then((data) => {
+      res.status(201).json(data[0])
+    })
+    .catch(next)
 }
 
 module.exports.updateBannerDataOCLeti = (req, res, next) => {
