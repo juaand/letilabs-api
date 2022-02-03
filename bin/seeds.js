@@ -445,8 +445,8 @@ Promise.all([
     console.log('all databases cleaned')
     const bannerBiocontrolledPage = new BannerBiocontrolledPage({
       description: 'Esta es la unidad de explorar nuevas maneras y eficaces maneras de desarrollar medicamentos, gracias a <span className="blue-text">Biocontrolled</span> es que nos mantenemos a la vanguardia y podemos seguir ofreciendo productos cada vez más beneficiosos.',
-      imgURL: 'biocontrolled-banner.png',
-      logo: 'biocontrolled.svg',
+      imgURL: 'https://firebasestorage.googleapis.com/v0/b/grupo-leti-fd84e.appspot.com/o/images%2Fbiocontrolled-banner.png?alt=media&token=e91792ea-145f-4c05-89a2-f40c00bd9c02',
+      logoURL: 'https://firebasestorage.googleapis.com/v0/b/grupo-leti-fd84e.appspot.com/o/images%2Fbiocontrolled.svg?alt=media&token=75a2a9f3-e198-4af0-b066-80d414f0715e',
     })
     bannerBiocontrolledPage.save()
       .then(() => console.log(`bannerletipage created`))

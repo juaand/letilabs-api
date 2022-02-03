@@ -573,18 +573,11 @@ module.exports.addTimeLineLetiData = (req, res, next) => {
 /////////////////////////////////////////////////////////////////////
 
 module.exports.getBannerOCBiocontrolled = (req, res, next) => {
-  const userRole = req.session.user.role
-
-  if (userRole === 'Admin') {
-    BannerOCBiocontrolled.find()
-      .then((data) => {
-        res.status(201).json(data[0])
-      })
-      .catch(next)
-  } else {
-    req.session.destroy()
-    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
-  }
+  BannerOCBiocontrolled.find()
+    .then((data) => {
+      res.status(201).json(data[0])
+    })
+    .catch(next)
 }
 
 module.exports.updateBannerDataOCBiocontrolled = (req, res, next) => {
@@ -787,11 +780,11 @@ module.exports.updateOurCompaniesVideoGenven = (req, res, next) => {
 }
 
 module.exports.getEquipoGenvenOC = (req, res, next) => {
-    EquipoGenvenPageOC.find()
-      .then((data) => {
-        res.status(201).json(data[0])
-      })
-      .catch(next)
+  EquipoGenvenPageOC.find()
+    .then((data) => {
+      res.status(201).json(data[0])
+    })
+    .catch(next)
 }
 
 module.exports.updateEquipoGenvenOC = (req, res, next) => {

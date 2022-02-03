@@ -73,7 +73,7 @@ router.patch('/addoctimelineleti', routeGuard.isAuthenticated, adminController.a
 /////////////// NUESTRAS COMPAÑÍAS BIOCONTROLLED CRUD ////////////////
 /////////////////////////////////////////////////////////////////////
 
-router.get('/bannerdataocbiocontrolled', routeGuard.isAuthenticated, adminController.getBannerOCBiocontrolled)
+router.get('/bannerdataocbiocontrolled', adminController.getBannerOCBiocontrolled)
 router.patch('/updatebannerdataocbiocontrolled', routeGuard.isAuthenticated, adminController.updateBannerDataOCBiocontrolled)
 router.get('/ourcompaniesinfocardsbiocontrolled', routeGuard.isAuthenticated, adminController.getOurCompaniesInfoCardsBiocontrolled)
 router.patch('/updateourcompaniesinfocardsbiocontrolled', routeGuard.isAuthenticated, adminController.updateOurCompaniesInfoCardsBiocontrolled)
