@@ -544,6 +544,8 @@ Promise.all([
       const genvenTimeLine = new GenvenTimeLine({
         imgURL: unidad.imgURL,
         desc: unidad.desc,
+        buttonText: unidad.buttonText,
+        buttonLink: unidad.buttonLink,
       })
       genvenTimeLine.save()
         .then(() => console.log(`genvenTimeLine created`))

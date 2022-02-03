@@ -94,7 +94,7 @@ router.get('/ourcompaniesvideogenven', adminController.getOurCompaniesVideoGenve
 router.patch('/updateourcompaniesvideogenven', routeGuard.isAuthenticated, adminController.updateOurCompaniesVideoGenven)
 router.get('/ocequipogenven', routeGuard.isAuthenticated, adminController.getEquipoGenvenOC)
 router.patch('/updateocequipogenven', routeGuard.isAuthenticated, adminController.updateEquipoGenvenOC)
-router.get('/octimelinegenven', routeGuard.isAuthenticated, adminController.getTimeLineGenven)
+router.get('/octimelinegenven', adminController.getTimeLineGenven)
 router.patch('/addoctimelinegenven', routeGuard.isAuthenticated, adminController.addTimeLineGenvenData)
 router.get('/ocproductosgenven', adminController.getProductosGenven)
 router.patch('/addocproductosgenven', routeGuard.isAuthenticated, adminController.addProductosGenvenData)

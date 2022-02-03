@@ -819,18 +819,11 @@ module.exports.updateEquipoGenvenOC = (req, res, next) => {
 }
 
 module.exports.getTimeLineGenven = (req, res, next) => {
-  const userRole = req.session.user.role
-
-  if (userRole === 'Admin') {
-    TimeLineGenvenOC.find()
-      .then((data) => {
-        res.status(201).json(data)
-      })
-      .catch(next)
-  } else {
-    req.session.destroy()
-    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
-  }
+  TimeLineGenvenOC.find()
+    .then((data) => {
+      res.status(201).json(data)
+    })
+    .catch(next)
 }
 /// pendiente add ///
 module.exports.addTimeLineGenvenData = (req, res, next) => {
