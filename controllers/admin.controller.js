@@ -34,6 +34,15 @@ const ProductosGenvenOC = require('../models/nuestrasEmpresasComponents/genvenPa
 const Vadevecum = require('../models/vadevecum.model')
 const Video = require('../models/home/homeComponents/video.model')
 const BottomHomeData = require('../models/home/homeComponents/meetPeopleWorkWithUsHome.model')
+const BannerPurpose = require('../models/propositoYResponsabilidad/bannerProposito.model')
+const VideoPurpose = require('../models/propositoYResponsabilidad/videoProposito.model')
+const TimeLinePurpose = require('../models/propositoYResponsabilidad/propositoTimeLine.model')
+const TitleFarmPurpose = require('../models/propositoYResponsabilidad/farmTitleProposito.model')
+const BannerOurPeople = require('../models/nuestraGente/bannerNuestraGente.model')
+const InfoCardsOurPeople = require('../models/nuestraGente/tresEquiposNuestraGente.model')
+const EquipoOurPeople = require('../models/nuestraGente/equipoNuestraGente.model')
+const BottomOurPeople = require('../models/nuestraGente/bottomCtaNuestraGente.model')
+const Carreras = require('../models/nuestraGente/carrerasNuestraGente.model')
 
 
 module.exports.getFarmVigData = (req, res, next) => {
@@ -298,6 +307,7 @@ module.exports.getGallery = (req, res, next) => {
     })
     .catch(next)
 }
+
 
 /////////////////////////////////////////////////////////////////////
 ///////////////////// NUESTRAS COMPAÑÍAS CRUD ///////////////////////////
@@ -828,9 +838,243 @@ module.exports.addProductosGenvenData = (req, res, next) => {
 }
 
 //////////////////////////////////////////////////////////////////////
+///////////////////////// NUESTRA GENTE //////////////////////////////
+/////////////////////////////////////////////////////////////////////
+
+module.exports.getBannerOurPeople = (req, res, next) => {
+  BannerOurPeople.find()
+    .then((data) => {
+      res.status(201).json(data[0])
+    })
+    .catch(next)
+}
+
+module.exports.updateBannerDataOurPeople = (req, res, next) => {
+  const userRole = req.session.user.role
+  const {description, imgURL, title, id} = req.body
+
+
+  if (userRole === 'Admin') {
+    BannerOurPeople.findByIdAndUpdate(id, req.body, {new: true})
+      .then((data) => {
+        res.status(201).json(data)
+      })
+      .catch(next)
+  } else {
+    req.session.destroy()
+    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+  }
+}
+
+module.exports.getInfoCardsOurPeople = (req, res, next) => {
+  InfoCardsOurPeople.find()
+    .then((data) => {
+      res.status(201).json(data)
+    })
+    .catch(next)
+}
+
+module.exports.updateInfoCardsOurPeople = (req, res, next) => {
+  const userRole = req.session.user.role
+  const {mainTitle, imgURL, title, info, id} = req.body
+
+
+  if (userRole === 'Admin') {
+    InfoCardsOurPeople.findByIdAndUpdate(id, req.body, {new: true})
+      .then((data) => {
+        res.status(201).json(data)
+      })
+      .catch(next)
+  } else {
+    req.session.destroy()
+    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+  }
+}
+
+module.exports.getEquipoOurPeople = (req, res, next) => {
+  EquipoOurPeople.find()
+    .then((data) => {
+      res.status(201).json(data[0])
+    })
+    .catch(next)
+}
+
+module.exports.updateEquipoOurPeople = (req, res, next) => {
+  const userRole = req.session.user.role
+  const {title, description, person, imgURL, buttonTitle, buttonLink, id} = req.body
+
+
+  if (userRole === 'Admin') {
+    EquipoOurPeople.findByIdAndUpdate(id, req.body, {new: true})
+      .then((data) => {
+        res.status(201).json(data[0])
+      })
+      .catch(next)
+  } else {
+    req.session.destroy()
+    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+  }
+}
+
+module.exports.getBottomOurPeople = (req, res, next) => {
+  BottomOurPeople.find()
+    .then((data) => {
+      res.status(201).json(data)
+    })
+    .catch(next)
+}
+
+module.exports.updateBottomOurPeople = (req, res, next) => {
+  const userRole = req.session.user.role
+  const {description, imgURL, id} = req.body
+
+
+  if (userRole === 'Admin') {
+    BottomOurPeople.findByIdAndUpdate(id, req.body, {new: true})
+      .then((data) => {
+        res.status(201).json(data)
+      })
+      .catch(next)
+  } else {
+    req.session.destroy()
+    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+  }
+}
+
+module.exports.getCarreras = (req, res, next) => {
+  Carreras.find()
+    .then((data) => {
+      res.status(201).json(data[0])
+    })
+    .catch(next)
+}
+
+module.exports.updateCarrerasData = (req, res, next) => {
+  const userRole = req.session.user.role
+  const {title, description, url, buttonTitle, id} = req.body
+
+
+  if (userRole === 'Admin') {
+    Carreras.findByIdAndUpdate(id, req.body, {new: true})
+      .then((data) => {
+        res.status(201).json(data)
+      })
+      .catch(next)
+  } else {
+    req.session.destroy()
+    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+  }
+}
+
+//////////////////////////////////////////////////////////////////////
 //////////////// NUESTRAS COMPAÑÍAS LETI CRUD ////////////////////////
 /////////////////////////////////////////////////////////////////////
 
+
+//////////////////////////////////////////////////////////////////////
+//////////////// PROPOSITOS Y RESPONSABILIDAD CRUD //////////////////
+/////////////////////////////////////////////////////////////////////
+
+module.exports.getBannerPurpose = (req, res, next) => {
+  BannerPurpose.find()
+    .then((data) => {
+      res.status(201).json(data[0])
+    })
+    .catch(next)
+}
+
+module.exports.updateBannerDataPurpose = (req, res, next) => {
+  const userRole = req.session.user.role
+  const {description, imgURL, id} = req.body
+
+
+  if (userRole === 'Admin') {
+    BannerPurpose.findByIdAndUpdate(id, req.body, {new: true})
+      .then((data) => {
+        res.status(201).json(data)
+      })
+      .catch(next)
+  } else {
+    req.session.destroy()
+    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+  }
+}
+
+module.exports.getVideoPurpose = (req, res, next) => {
+  VideoPurpose.find()
+    .then((data) => {
+      res.status(201).json(data)
+    })
+    .catch(next)
+}
+
+module.exports.updateVideoPurpose = (req, res, next) => {
+  const userRole = req.session.user.role
+  const {desc, url, logo, id} = req.body
+
+
+  if (userRole === 'Admin') {
+    VideoPurpose.findByIdAndUpdate(id, req.body, {new: true})
+      .then((data) => {
+        res.status(201).json(data)
+      })
+      .catch(next)
+  } else {
+    req.session.destroy()
+    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+  }
+}
+
+
+module.exports.getTimeLinePurpose = (req, res, next) => {
+  TimeLinePurpose.find()
+    .then((data) => {
+      res.status(201).json(data)
+    })
+    .catch(next)
+}
+/// pendiente add ///
+module.exports.addTimeLinePurposeData = (req, res, next) => {
+  const userRole = req.session.user.role
+  const {description, imgURL, id} = req.body
+
+
+  if (userRole === 'Admin') {
+    TimeLinePurpose.findByIdAndUpdate(id, req.body, {new: true})
+      .then((data) => {
+        res.status(201).json(data)
+      })
+      .catch(next)
+  } else {
+    req.session.destroy()
+    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+  }
+}
+
+module.exports.getTitleFarmPurpose = (req, res, next) => {
+  TitleFarmPurpose.find()
+    .then((data) => {
+      res.status(201).json(data[0])
+    })
+    .catch(next)
+}
+
+module.exports.updateTitleFarmDataPurpose = (req, res, next) => {
+  const userRole = req.session.user.role
+  const {title, id} = req.body
+
+
+  if (userRole === 'Admin') {
+    TitleFarmPurpose.findByIdAndUpdate(id, req.body, {new: true})
+      .then((data) => {
+        res.status(201).json(data)
+      })
+      .catch(next)
+  } else {
+    req.session.destroy()
+    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+  }
+}
 
 
 //////////////////////////////////////////////////////////////////////

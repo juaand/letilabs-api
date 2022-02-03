@@ -894,7 +894,7 @@ const BannerNuestraGente = require('../models/nuestraGente/bannerNuestraGente.mo
 const TresEquiposNuestraGente = require('../models/nuestraGente/tresEquiposNuestraGente.model')
 const EquipoNuestraGente = require('../models/nuestraGente/equipoNuestraGente.model')
 const BottomCtaNuestraGente = require('../models/nuestraGente/bottomCtaNuestraGente.model')
-const CarrerasNuestraGente = require('../models/nuestraGente/carrerasNuestraGente.model copy')
+const CarrerasNuestraGente = require('../models/nuestraGente/carrerasNuestraGente.model')
 
 const tresEquiposNuestraGenteData = require('../data/dataOurPeople')
 const bottomCtaNuestraGenteData = require('../data/bottomCtaNuestraGenteData')
