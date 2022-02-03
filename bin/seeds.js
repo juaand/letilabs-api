@@ -609,10 +609,8 @@ Promise.all([
     objetivosIDData.forEach(unidad => {
       const objetivosID = new ObjetivosID({
         title: unidad.title,
-        goals: unidad.goals.map(goal => ({
-          desc: goal.desc,
-          name: goal.name,
-        })),
+        desc: unidad.desc,
+        name: unidad.name,
       })
       objetivosID.save()
         .then(() => console.log(`ObjetivosID created`))

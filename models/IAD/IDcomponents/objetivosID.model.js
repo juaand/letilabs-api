@@ -7,16 +7,14 @@ const objetivosSchema = new Schema(
       type: String,
       required: true
     },
-    goals: [{
-      name: {
-        type: String,
-        required: true
-      },
-      desc: {
-        type: String,
-        required: true
-      }
-    }],
+    name: {
+      type: String,
+      required: true
+    },
+    desc: {
+      type: String,
+      required: true
+    }
   },
   {timestamps: true}
 )
