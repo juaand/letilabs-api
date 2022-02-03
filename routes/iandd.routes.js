@@ -11,6 +11,8 @@ module.exports = router
 //I+D routes
 router.get('/bannerdataid',  ianddController.getBannerID)
 router.get('/idinfocards', ianddController.getInfoCards)
+router.get('/idgoals', ianddController.getGoals)
+router.get('/idbottom', ianddController.getBottom)
 
 //I+D alliances routes
 router.get('/alliancelogos', ianddController.getLogos)

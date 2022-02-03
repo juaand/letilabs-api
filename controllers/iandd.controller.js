@@ -1,7 +1,9 @@
 // controllers/iandd.controllers.js
-const AllianceLogos = require('../models/I+D/alianzas/alianzaLogosCarrousel.model')
-const AllianceInfoCards = require('../models/I+D/I+D components/infoCardsID.model')
-const BannerID = require('../models/I+D/I+D components/bannerID.model')
+const AllianceLogos = require('../models/IAD/alianzas/alianzaLogosCarrousel.model')
+const AllianceInfoCards = require('../models/IAD/IDcomponents/infoCardsID.model')
+const BannerID = require('../models/IAD/IDcomponents/bannerID.model')
+const GoalsId = require('../models/IAD/IDcomponents/objetivosID.model')
+const BottomId = require('../models/IAD/IDcomponents/bottomCtaID.model')
 
 //admin I+D routes
 module.exports.getBannerID = (req, res, next) => {
@@ -14,6 +16,22 @@ module.exports.getBannerID = (req, res, next) => {
 
 module.exports.getInfoCards = (req, res, next) => {
   AllianceInfoCards.find()
+    .then(response => {
+      res.status(201).json(response)
+    })
+    .catch(next)
+}
+
+module.exports.getGoals = (req, res, next) => {
+  GoalsId.find()
+    .then(response => {
+      res.status(201).json(response)
+    })
+    .catch(next)
+}
+
+module.exports.getBottom = (req, res, next) => {
+  BottomId.find()
     .then(response => {
       res.status(201).json(response)
     })

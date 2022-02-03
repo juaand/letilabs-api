@@ -570,10 +570,10 @@ Promise.all([
 /////// INVESTIGACIÓN Y DESARROLLO ////////
 ///////////////////////////////////////////
 
-const BannerID = require('../models/I+D/I+D components/bannerID.model')
-const InfoCardsID = require('../models/I+D/I+D components/infoCardsID.model')
-const ObjetivosID = require('../models/I+D/I+D components/objetivosID.model')
-const BottomCtaID = require('../models/I+D/I+D components/bottomCtaID.model')
+const BannerID = require('../models/IAD/IDcomponents/bannerID.model')
+const InfoCardsID = require('../models/IAD/IDcomponents/infoCardsID.model')
+const ObjetivosID = require('../models/IAD/IDcomponents/objetivosID.model')
+const BottomCtaID = require('../models/IAD/IDcomponents/bottomCtaID.model')
 
 const infocardsIDData = require('../data/dataIyd')
 const objetivosIDData = require('../data/dataGoals')
@@ -610,8 +610,8 @@ Promise.all([
       const objetivosID = new ObjetivosID({
         title: unidad.title,
         goals: unidad.goals.map(goal => ({
-          title: goal.title,
           desc: goal.desc,
+          name: goal.name,
         })),
       })
       objetivosID.save()
@@ -639,11 +639,11 @@ Promise.all([
 /////////////// TECNOLOGÍA ////////////////
 ///////////////////////////////////////////
 
-const BannerTecnologiaID = require('../models/I+D/tecnologia/bannerTecnologiaID.model')
-const VideoTecnologiaID = require('../models/I+D/tecnologia/videoTecnologiaID.model')
-const MapTecnologiaID = require('../models/I+D/tecnologia/mapTecnologiaID.model')
-const BottomCtaTecnologiaID = require('../models/I+D/tecnologia/bottomCtaTecnologiaID.model')
-const CarrouselTecnologiaID = require('../models/I+D/tecnologia/carrouselTecnologiaID.model')
+const BannerTecnologiaID = require('../models/IAD/tecnologia/bannerTecnologiaID.model')
+const VideoTecnologiaID = require('../models/IAD/tecnologia/videoTecnologiaID.model')
+const MapTecnologiaID = require('../models/IAD/tecnologia/mapTecnologiaID.model')
+const BottomCtaTecnologiaID = require('../models/IAD/tecnologia/bottomCtaTecnologiaID.model')
+const CarrouselTecnologiaID = require('../models/IAD/tecnologia/carrouselTecnologiaID.model')
 
 const bottomCtaTecnologiaIDData = require('../data/bottomCtaIDData')
 const carrouselTecnologiaData = require('../data/tecnologiaCarousel')
@@ -711,10 +711,10 @@ Promise.all([
 ////////////// MANUFACTURA ////////////////
 ///////////////////////////////////////////
 
-const BannerManufacturaID = require('../models/I+D/manufactura/bannerManufacturaID.model')
-const CarrouselManufacturaID = require('../models/I+D/manufactura/manufacturaCarrousel.model')
-const CertificadoManufacturaID = require('../models/I+D/manufactura/certificadoManufacturaID.model')
-const BottomCtaManufacturaID = require('../models/I+D/manufactura/bottomCtaManufacturaID.model')
+const BannerManufacturaID = require('../models/IAD/manufactura/bannerManufacturaID.model')
+const CarrouselManufacturaID = require('../models/IAD/manufactura/manufacturaCarrousel.model')
+const CertificadoManufacturaID = require('../models/IAD/manufactura/certificadoManufacturaID.model')
+const BottomCtaManufacturaID = require('../models/IAD/manufactura/bottomCtaManufacturaID.model')
 
 const manufactureCarrousel = require('../data/manufactureCarousel')
 const bottomCtaManufacturaIDData = require('../data/bottomCtaManufacturaIDData')
@@ -774,11 +774,11 @@ Promise.all([
 //////////////// ALIANZAS /////////////////
 ///////////////////////////////////////////
 
-const BannerAlianzasID = require('../models/I+D/alianzas/bannerAlianzasID.model')
-const CarrouselTitleAlianzasID = require('../models/I+D/alianzas/alianzaTitleCarrousel.model')
-const ContribucionAlianzasID = require('../models/I+D/alianzas/contribucionAlianzasID.model')
-const BottomCtaAlianzasID = require('../models/I+D/alianzas/bottomCtaAlianzasID.model')
-const CarrouselLogoAlianzasID = require('../models/I+D/alianzas/alianzaLogosCarrousel.model')
+const BannerAlianzasID = require('../models/IAD/alianzas/bannerAlianzasID.model')
+const CarrouselTitleAlianzasID = require('../models/IAD/alianzas/alianzaTitleCarrousel.model')
+const ContribucionAlianzasID = require('../models/IAD/alianzas/contribucionAlianzasID.model')
+const BottomCtaAlianzasID = require('../models/IAD/alianzas/bottomCtaAlianzasID.model')
+const CarrouselLogoAlianzasID = require('../models/IAD/alianzas/alianzaLogosCarrousel.model')
 const bottomCtaAlianzasIDData = require('../data/bottomCtaAlianzasIDData')
 
 Promise.all([
