@@ -11,7 +11,7 @@ const bannerBiocontrolledPageSchema = new Schema(
       type: String,
       required: true
     },
-    logo: {
+    logoURL: {
       type: String,
       required: true
     },
