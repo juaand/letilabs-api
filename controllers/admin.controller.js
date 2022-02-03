@@ -737,18 +737,11 @@ module.exports.addCarrouselBiocontrolledData = (req, res, next) => {
 /////////////////////////////////////////////////////////////////////
 
 module.exports.getBannerOCGenven = (req, res, next) => {
-  const userRole = req.session.user.role
-
-  if (userRole === 'Admin') {
-    BannerOCGenven.find()
-      .then((data) => {
-        res.status(201).json(data[0])
-      })
-      .catch(next)
-  } else {
-    req.session.destroy()
-    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
-  }
+  BannerOCGenven.find()
+    .then((data) => {
+      res.status(201).json(data[0])
+    })
+    .catch(next)
 }
 
 module.exports.updateBannerDataOCGenven = (req, res, next) => {
@@ -769,18 +762,11 @@ module.exports.updateBannerDataOCGenven = (req, res, next) => {
 }
 
 module.exports.getOurCompaniesVideoGenven = (req, res, next) => {
-  const userRole = req.session.user.role
-
-  if (userRole === 'Admin') {
-    OurCompaniesOCVideoGenven.find()
-      .then((data) => {
-        res.status(201).json(data)
-      })
-      .catch(next)
-  } else {
-    req.session.destroy()
-    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
-  }
+  OurCompaniesOCVideoGenven.find()
+    .then((data) => {
+      res.status(201).json(data)
+    })
+    .catch(next)
 }
 
 module.exports.updateOurCompaniesVideoGenven = (req, res, next) => {

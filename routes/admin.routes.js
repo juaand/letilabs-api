@@ -88,9 +88,9 @@ router.patch('/addoccarrouselbiocontrolled', routeGuard.isAuthenticated, adminCo
 /////////////////// NUESTRAS COMPAÑÍAS GENVEN CRUD //////////////////
 /////////////////////////////////////////////////////////////////////
 
-router.get('/bannerdataocgenven', routeGuard.isAuthenticated, adminController.getBannerOCGenven)
+router.get('/bannerdataocgenven', adminController.getBannerOCGenven)
 router.patch('/updatebannerdataocgenven', routeGuard.isAuthenticated, adminController.updateBannerDataOCGenven)
-router.get('/ourcompaniesvideogenven', routeGuard.isAuthenticated, adminController.getOurCompaniesVideoGenven)
+router.get('/ourcompaniesvideogenven', adminController.getOurCompaniesVideoGenven)
 router.patch('/updateourcompaniesvideogenven', routeGuard.isAuthenticated, adminController.updateOurCompaniesVideoGenven)
 router.get('/ocequipogenven', routeGuard.isAuthenticated, adminController.getEquipoGenvenOC)
 router.patch('/updateocequipogenven', routeGuard.isAuthenticated, adminController.updateEquipoGenvenOC)
