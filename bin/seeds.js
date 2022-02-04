@@ -860,9 +860,8 @@ Promise.all([
   .then(() => {
     console.log('all databases cleaned')
     const bannerProposito = new BannerProposito({
-      title: 'Propósito y responsabilidad social',
       description: 'Ratificamos nuestro compromiso con Venezuela para marcar la diferencia en la vida de todos los venezolanos, acompañándolos en todo momento.',
-      imgURL: 'purpose-bg.png',
+      imgURL: 'https://firebasestorage.googleapis.com/v0/b/grupo-leti-fd84e.appspot.com/o/images%2Fpurpose-bg.png?alt=media&token=7f5e73af-34bf-4911-9ee7-36fc4a4ef2fc',
     })
     bannerProposito.save()
       .then(() => console.log(`bannerProposito created`))
