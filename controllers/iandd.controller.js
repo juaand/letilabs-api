@@ -14,6 +14,7 @@ const CarouselManufacture = require('../models/IAD/manufactura/manufacturaCarrou
 const CertificateManufacture = require('../models/IAD/manufactura/certificadoManufacturaID.model')
 const BottomManufacture = require('../models/IAD/manufactura/bottomCtaManufacturaID.model')
 const BannerAlliances = require('../models/IAD/alianzas/bannerAlianzasID.model')
+const FormAlliances = require('../models/IAD/alianzas/contribucionAlianzasID.model')
 
 //admin I+D routes
 module.exports.getBannerID = (req, res, next) => {
@@ -133,6 +134,14 @@ module.exports.getAlliancesBanner = (req, res, next) => {
 
 module.exports.getLogos = (req, res, next) => {
   AllianceLogos.find()
+    .then(response => {
+      res.status(201).json(response)
+    })
+    .catch(next)
+}
+
+module.exports.getForm = (req, res, next) => { 
+  FormAlliances.find()
     .then(response => {
       res.status(201).json(response)
     })

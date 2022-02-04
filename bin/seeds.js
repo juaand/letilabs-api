@@ -801,8 +801,7 @@ Promise.all([
       .catch(error => console.log(error))
     const contribucionAlianzasID = new ContribucionAlianzasID({
       title: '¡Tu contribución cuenta!',
-      desc1: '¿Quieres aliarte con nosotros?',
-      desc2: 'Compártenos tu iniciativa aquí o contáctanos.',
+      desc: '¿Quieres aliarte con nosotros?<br>Compártenos tu iniciativa aquí o contáctanos.',
       phone: '+582123602511',
       email: 'comunicaciones.leti@leti.com.ve',
     })
