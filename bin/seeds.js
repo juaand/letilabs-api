@@ -780,6 +780,7 @@ const ContribucionAlianzasID = require('../models/IAD/alianzas/contribucionAlian
 const BottomCtaAlianzasID = require('../models/IAD/alianzas/bottomCtaAlianzasID.model')
 const CarrouselLogoAlianzasID = require('../models/IAD/alianzas/alianzaLogosCarrousel.model')
 const bottomCtaAlianzasIDData = require('../data/bottomCtaAlianzasIDData')
+const logoAlianzasData = require('../data/dataLogoAlianzas')
 
 Promise.all([
   BannerAlianzasID.deleteMany(),
@@ -793,25 +794,29 @@ Promise.all([
     const bannerAlianzasID = new BannerAlianzasID({
       title: 'Alianzas',
       description: 'Para lograr nuestro propósito de cuidar de la salud de los venezolanos, es importante contar con aliados que aporten al proceso y nos ayuden a ofrecer lo mejor.',
-      imgURL: 'alliances-banner.png',
+      imgURL: 'https://firebasestorage.googleapis.com/v0/b/grupo-leti-fd84e.appspot.com/o/images%2Falliances-banner.png?alt=media&token=2f295eb6-d6f2-46ad-9a7d-594a4f3b627d',
     })
     bannerAlianzasID.save()
       .then(() => console.log(`BannerAlianzasID created`))
       .catch(error => console.log(error))
     const contribucionAlianzasID = new ContribucionAlianzasID({
       title: '¡Tu contribución cuenta!',
-      desc1: '¿Quieres aliarte con nosotros?',
-      desc2: 'Compártenos tu iniciativa aquí o contáctanos.',
+      desc: '¿Quieres aliarte con nosotros?<br>Compártenos tu iniciativa aquí o contáctanos.',
       phone: '+582123602511',
       email: 'comunicaciones.leti@leti.com.ve',
     })
     contribucionAlianzasID.save()
       .then(() => console.log(`contribucionAlianzasID  created`))
       .catch(error => console.log(error))
-    const carrouselLogoAlianzasID = new CarrouselLogoAlianzasID({})
-    carrouselLogoAlianzasID.save()
-      .then(() => console.log(`CarrouselLogoAlianzasID created`))
-      .catch(error => console.log(error))
+    logoAlianzasData.forEach(logo => {
+      const carrouselLogoAlianzasID = new CarrouselLogoAlianzasID({
+        title: logo.title,
+        picPath: logo.picPath,
+      })
+      carrouselLogoAlianzasID.save()
+        .then(() => console.log(`CarrouselLogoAlianzasID created`))
+        .catch(error => console.log(error))
+    })
     const carrouselTitleAlianzasID = new CarrouselTitleAlianzasID({
       title: 'Nuestros aliados en el tiempo',
     })

@@ -13,6 +13,9 @@ const BannerManufacture = require('../models/IAD/manufactura/bannerManufacturaID
 const CarouselManufacture = require('../models/IAD/manufactura/manufacturaCarrousel.model')
 const CertificateManufacture = require('../models/IAD/manufactura/certificadoManufacturaID.model')
 const BottomManufacture = require('../models/IAD/manufactura/bottomCtaManufacturaID.model')
+const BannerAlliances = require('../models/IAD/alianzas/bannerAlianzasID.model')
+const FormAlliances = require('../models/IAD/alianzas/contribucionAlianzasID.model')
+const BottomAlliances = require('../models/IAD/alianzas/bottomCtaAlianzasID.model')
 
 //admin I+D routes
 module.exports.getBannerID = (req, res, next) => {
@@ -122,8 +125,32 @@ module.exports.getBottomManufacture = (req, res, next) => {
 }
 
 //admin I+D alliances routes
-module.exports.getLogos = (req, res, next) => {
+module.exports.getAlliancesBanner = (req, res, next) => {
+  BannerAlliances.find()
+    .then(response => {
+      res.status(201).json(response)
+    })
+    .catch(next)
+}
+
+module.exports.getLogosAlliance = (req, res, next) => {
   AllianceLogos.find()
+    .then(response => {
+      res.status(201).json(response)
+    })
+    .catch(next)
+}
+
+module.exports.getFormAlliance = (req, res, next) => { 
+  FormAlliances.find()
+    .then(response => {
+      res.status(201).json(response)
+    })
+    .catch(next)
+}
+
+module.exports.getBottomAlliances = (req, res, next) => {
+  BottomAlliances.find()
     .then(response => {
       res.status(201).json(response)
     })

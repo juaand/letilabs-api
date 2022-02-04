@@ -7,14 +7,10 @@ const contribucionAlianzasIDSchema = new Schema(
       type: String,
       required: true
     },
-    desc1: {
+    desc: {
       type: String,
       required: true
-    },
-    desc2: {
-      type: String,
-      required: true
-    },    
+    },   
     phone: {
       type: String,
       required: true
