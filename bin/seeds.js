@@ -919,7 +919,7 @@ Promise.all([
     const bannerNuestraGente = new BannerNuestraGente({
       title: 'Contamos con un talento humano especializado que tienen años trabajando en el campo, y más importante, trabajando con nosotros',
       description: 'Gracias a nuestro talento es posible desarrollar nuestro amplio y diverso portafolio, que cuidan de la salud de todo el país.',
-      imgURL: 'our-people-bg.png',
+      imgURL: 'https://firebasestorage.googleapis.com/v0/b/grupo-leti-fd84e.appspot.com/o/images%2Four-people-bg.png?alt=media&token=bc1b0135-e8f9-4a4d-a203-aec26f9c10e1',
     })
     bannerNuestraGente.save()
       .then(() => console.log(`bannerNuestraGente created`))
