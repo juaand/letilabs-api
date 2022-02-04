@@ -658,13 +658,13 @@ Promise.all([
     const bannerTecnologiaID = new BannerTecnologiaID({
       title: 'Tecnología',
       description: 'Nuestra planta está ubicada en Guarenas, estado Miranda, y es la planta producción de fármacos más grande a nivel nacional. Cuenta con la única planta de cefalosporínicos existentes en Venezuela y una de las pocas penicilínicos, siendo modelo de Latinoamérica.',
-      imgURL: 'tech-banner.png',
+      imgURL: 'https://firebasestorage.googleapis.com/v0/b/grupo-leti-fd84e.appspot.com/o/images%2Ftech-banner.png?alt=media&token=0bc5ad56-b419-4bda-893e-14f1a9093c8d',
     })
     bannerTecnologiaID.save()
       .then(() => console.log(`BannerTecnologiaID created`))
       .catch(error => console.log(error))
     const videoTecnologiaID = new VideoTecnologiaID({
-      title: 'Tecnología',
+      title: '¡Recorre nuestras instalaciones!',
       videoURL: 'https://firebasestorage.googleapis.com/v0/b/grupo-leti-fd84e.appspot.com/o/videos%2Fhome-video.mp4?alt=media&token=e5cf0b01-b8be-45c3-8793-2ec7c26ee6c0',
     })
     videoTecnologiaID.save()
