@@ -950,7 +950,7 @@ Promise.all([
       title: 'Liderados por profesionales de trayectoria',
       description: '(Cita director de Laboratorios Leti)',
       person: 'Nombre director',
-      imgURL: 'director-image.jpg',
+      imgURL: 'https://firebasestorage.googleapis.com/v0/b/grupo-leti-fd84e.appspot.com/o/images%2Fdirector-image.jpg?alt=media&token=61c4bf70-48a7-4d08-b197-529c4dac43dc',
     })
     equipoNuestraGente.save()
       .then(() => console.log(`equipoNuestraGente created`))
