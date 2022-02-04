@@ -939,7 +939,7 @@ Promise.all([
       title: 'Carreras',
       description: 'Entérate de las posiciones que tenemos abiertas en el grupo',
       buttonTitle: 'Trabaja con nosotros',
-      buttonLink: '/posiciones',
+      buttonLink: 'https://www.linkedin.com/company/laboratorios-leti-s-a-v-/jobs/',
     })
     carrerasNuestraGente.save()
       .then(() => console.log(`carrerasNuestraGente created`))
