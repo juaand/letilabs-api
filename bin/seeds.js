@@ -728,7 +728,7 @@ Promise.all([
     const bannerManufacturaID = new BannerManufacturaID({
       title: 'Manufactura',
       description: 'Diariamente se manufacturan XX cantidades de todo tipo de medicinas, que salen de la planta para ser distribuidos en todo el país.',
-      imgURL: 'manufacture-banner.png',
+      imgURL: 'https://firebasestorage.googleapis.com/v0/b/grupo-leti-fd84e.appspot.com/o/images%2Fmanufacture-banner.png?alt=media&token=90c2f962-8066-4a20-bc09-548f0289a714',
     })
     bannerManufacturaID.save()
       .then(() => console.log(`BannerManufacturaID created`))
