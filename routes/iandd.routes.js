@@ -18,6 +18,7 @@ router.get('/idbottom', ianddController.getBottom)
 router.get('/bannertech',  ianddController.getTechBannerID)
 router.get('/videotech', ianddController.getVideoTech)
 router.get('/carrouseltech', ianddController.getCarrouselTech)
+router.get('/maptech', ianddController.getMapTech)
 
 //I+D alliances routes
 router.get('/alliancelogos', ianddController.getLogos)

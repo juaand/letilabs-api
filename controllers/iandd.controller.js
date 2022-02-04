@@ -7,6 +7,7 @@ const BottomId = require('../models/IAD/IDcomponents/bottomCtaID.model')
 const BannerTech = require('../models/IAD/tecnologia/bannerTecnologiaID.model')
 const VideoTech = require('../models/IAD/tecnologia/videoTecnologiaID.model')
 const CarrouselTech = require('../models/IAD/tecnologia/carrouselTecnologiaID.model')
+const MapTech = require('../models/IAD/tecnologia/mapTecnologiaID.model')
 
 //admin I+D routes
 module.exports.getBannerID = (req, res, next) => {
@@ -60,6 +61,14 @@ module.exports.getVideoTech = (req, res, next) => {
 
 module.exports.getCarrouselTech = (req, res, next) => {
   CarrouselTech.find()
+    .then(response => {
+      res.status(201).json(response)
+    })
+    .catch(next)
+}
+
+module.exports.getMapTech = (req, res, next) => {
+  MapTech.find()
     .then(response => {
       res.status(201).json(response)
     })
