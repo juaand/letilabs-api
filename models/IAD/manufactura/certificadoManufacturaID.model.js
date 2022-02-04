@@ -14,10 +14,6 @@ const certificadoManufacturaIDSchema = new Schema(
     imgURL: {
       type: String,
       required: true
-    },    
-    imgDesc: {
-      type: String,
-      required: true
     },
   },
   { timestamps: true }

@@ -11,6 +11,8 @@ const MapTech = require('../models/IAD/tecnologia/mapTecnologiaID.model')
 const BottomTech = require('../models/IAD/tecnologia/bottomCtaTecnologiaID.model')
 const BannerManufacture = require('../models/IAD/manufactura/bannerManufacturaID.model')
 const CarouselManufacture = require('../models/IAD/manufactura/manufacturaCarrousel.model')
+const CertificateManufacture = require('../models/IAD/manufactura/certificadoManufacturaID.model')
+const BottomManufacture = require('../models/IAD/manufactura/bottomCtaManufacturaID.model')
 
 //admin I+D routes
 module.exports.getBannerID = (req, res, next) => {
@@ -97,6 +99,22 @@ module.exports.getManufactureBanner = (req, res, next) => {
 
 module.exports.getCarrouselManufacture = (req, res, next) => {
   CarouselManufacture.find()
+    .then(response => {
+      res.status(201).json(response)
+    })
+    .catch(next)
+}
+
+module.exports.getCertificatesManufacture = (req, res, next) => {
+  CertificateManufacture.find()
+    .then(response => {
+      res.status(201).json(response)
+    })
+    .catch(next)
+}
+
+module.exports.getBottomManufacture = (req, res, next) => {
+  BottomManufacture.find()
     .then(response => {
       res.status(201).json(response)
     })

@@ -715,6 +715,7 @@ const CertificadoManufacturaID = require('../models/IAD/manufactura/certificadoM
 const BottomCtaManufacturaID = require('../models/IAD/manufactura/bottomCtaManufacturaID.model')
 
 const manufactureCarrousel = require('../data/manufactureCarousel')
+const manufactureCertificates = require('../data/certificatesManufactureID')
 const bottomCtaManufacturaIDData = require('../data/bottomCtaManufacturaIDData')
 
 Promise.all([
@@ -733,15 +734,16 @@ Promise.all([
     bannerManufacturaID.save()
       .then(() => console.log(`BannerManufacturaID created`))
       .catch(error => console.log(error))
-    const certificadoManufacturaID = new CertificadoManufacturaID({
-      title: 'Cumplimos con todas las regulaciones',
-      desc: 'Para producir medicamentos en Venezuela, primero hay que cumplir con varias exigencias para asegurar que el producto sea seguro y de calidad.',
-      imgURL: 'certificado.jpg',
-      imgDesc: '(Certificado, sello o documento que avale el cumplimiento)',
+    manufactureCertificates.forEach(certificate => {
+      const certificadoManufacturaID = new CertificadoManufacturaID({
+        title: certificate.title,
+        desc: certificate.desc,
+        imgURL: certificate.imgURL,
+      })
+      certificadoManufacturaID.save()
+        .then(() => console.log(`certificadoManufacturaID created`))
+        .catch(error => console.log(error))
     })
-    certificadoManufacturaID.save()
-      .then(() => console.log(`certificadoManufacturaID created`))
-      .catch(error => console.log(error))
     manufactureCarrousel.forEach(unidad => {
       const carrouselManufacturaID = new CarrouselManufacturaID({
         title: unidad.title,
