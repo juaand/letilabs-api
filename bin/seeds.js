@@ -875,6 +875,8 @@ Promise.all([
       .catch(error => console.log(error))
     const tituloFormProposito = new TituloFormProposito({
       title: 'Estamos para cuidarte',
+      desc: 'Conscientes de la responsabilidad por ofrecer medicamentos de alta calidad, facilitamos la recolección, evaluación e investigación de la información sobre posibles reacciones adversas de nuestros medicamentos, para realizar correctivos y establecer la máxima seguridad terapéutica de los mismos.<br/><br/><p class="blue-text">Nos preocupa saber si alguno de nuestros productos le causó algún efecto adverso, así podemos trabajar para ayudarle.</p>',
+      subtitle: 'Farmacovigilancia'
     })
     tituloFormProposito.save()
       .then(() => console.log(`TituloFormProposito created`))
