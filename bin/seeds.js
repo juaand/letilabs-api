@@ -462,6 +462,7 @@ Promise.all([
     })
     biocontrolledCarrousel.forEach(unidad => {
       const carrouselBiocontrolledPage = new CarrouselBiocontrolledPage({
+        title: unidad.title,
         info: unidad.info,
       })
       carrouselBiocontrolledPage.save()
