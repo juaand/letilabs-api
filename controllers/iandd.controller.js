@@ -6,6 +6,7 @@ const GoalsId = require('../models/IAD/IDcomponents/objetivosID.model')
 const BottomId = require('../models/IAD/IDcomponents/bottomCtaID.model')
 const BannerTech = require('../models/IAD/tecnologia/bannerTecnologiaID.model')
 const VideoTech = require('../models/IAD/tecnologia/videoTecnologiaID.model')
+const CarrouselTech = require('../models/IAD/tecnologia/carrouselTecnologiaID.model')
 
 //admin I+D routes
 module.exports.getBannerID = (req, res, next) => {
@@ -51,6 +52,14 @@ module.exports.getTechBannerID = (req, res, next) => {
 
 module.exports.getVideoTech = (req, res, next) => {
   VideoTech.find()
+    .then(response => {
+      res.status(201).json(response)
+    })
+    .catch(next)
+}
+
+module.exports.getCarrouselTech = (req, res, next) => {
+  CarrouselTech.find()
     .then(response => {
       res.status(201).json(response)
     })
