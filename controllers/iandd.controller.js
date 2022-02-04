@@ -4,6 +4,8 @@ const AllianceInfoCards = require('../models/IAD/IDcomponents/infoCardsID.model'
 const BannerID = require('../models/IAD/IDcomponents/bannerID.model')
 const GoalsId = require('../models/IAD/IDcomponents/objetivosID.model')
 const BottomId = require('../models/IAD/IDcomponents/bottomCtaID.model')
+const BannerTech = require('../models/IAD/tecnologia/bannerTecnologiaID.model')
+const VideoTech = require('../models/IAD/tecnologia/videoTecnologiaID.model')
 
 //admin I+D routes
 module.exports.getBannerID = (req, res, next) => {
@@ -32,6 +34,23 @@ module.exports.getGoals = (req, res, next) => {
 
 module.exports.getBottom = (req, res, next) => {
   BottomId.find()
+    .then(response => {
+      res.status(201).json(response)
+    })
+    .catch(next)
+}
+
+//admin I+D tech routes
+module.exports.getTechBannerID = (req, res, next) => {
+  BannerTech.find()
+    .then(response => {
+      res.status(201).json(response)
+    })
+    .catch(next)
+}
+
+module.exports.getVideoTech = (req, res, next) => {
+  VideoTech.find()
     .then(response => {
       res.status(201).json(response)
     })
