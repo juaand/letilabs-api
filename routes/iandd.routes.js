@@ -29,5 +29,6 @@ router.get('/bottommanufacture', ianddController.getBottomManufacture)
 
 //I+D alliances routes
 router.get('/banneralliances',  ianddController.getAlliancesBanner)
-router.get('/alliancelogos', ianddController.getLogos)
-router.get('/allianceform', ianddController.getForm)
+router.get('/alliancelogos', ianddController.getLogosAlliance)
+router.get('/allianceform', ianddController.getFormAlliance)
+router.get('/bottomalliances', ianddController.getBottomAlliances)
