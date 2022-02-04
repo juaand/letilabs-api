@@ -10,6 +10,7 @@ const CarrouselTech = require('../models/IAD/tecnologia/carrouselTecnologiaID.mo
 const MapTech = require('../models/IAD/tecnologia/mapTecnologiaID.model')
 const BottomTech = require('../models/IAD/tecnologia/bottomCtaTecnologiaID.model')
 const BannerManufacture = require('../models/IAD/manufactura/bannerManufacturaID.model')
+const CarouselManufacture = require('../models/IAD/manufactura/manufacturaCarrousel.model')
 
 //admin I+D routes
 module.exports.getBannerID = (req, res, next) => {
@@ -88,6 +89,14 @@ module.exports.getBottomTech = (req, res, next) => {
 //admin I+D manufacture routes
 module.exports.getManufactureBanner = (req, res, next) => {
   BannerManufacture.find()
+    .then(response => {
+      res.status(201).json(response)
+    })
+    .catch(next)
+}
+
+module.exports.getCarrouselManufacture = (req, res, next) => {
+  CarouselManufacture.find()
     .then(response => {
       res.status(201).json(response)
     })
