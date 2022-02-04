@@ -715,6 +715,7 @@ const CertificadoManufacturaID = require('../models/IAD/manufactura/certificadoM
 const BottomCtaManufacturaID = require('../models/IAD/manufactura/bottomCtaManufacturaID.model')
 
 const manufactureCarrousel = require('../data/manufactureCarousel')
+const manufactureCertificates = require('../data/certificatesManufactureID')
 const bottomCtaManufacturaIDData = require('../data/bottomCtaManufacturaIDData')
 
 Promise.all([
@@ -728,20 +729,21 @@ Promise.all([
     const bannerManufacturaID = new BannerManufacturaID({
       title: 'Manufactura',
       description: 'Diariamente se manufacturan XX cantidades de todo tipo de medicinas, que salen de la planta para ser distribuidos en todo el país.',
-      imgURL: 'manufacture-banner.png',
+      imgURL: 'https://firebasestorage.googleapis.com/v0/b/grupo-leti-fd84e.appspot.com/o/images%2Fmanufacture-banner.png?alt=media&token=90c2f962-8066-4a20-bc09-548f0289a714',
     })
     bannerManufacturaID.save()
       .then(() => console.log(`BannerManufacturaID created`))
       .catch(error => console.log(error))
-    const certificadoManufacturaID = new CertificadoManufacturaID({
-      title: 'Cumplimos con todas las regulaciones',
-      desc: 'Para producir medicamentos en Venezuela, primero hay que cumplir con varias exigencias para asegurar que el producto sea seguro y de calidad.',
-      imgURL: 'certificado.jpg',
-      imgDesc: '(Certificado, sello o documento que avale el cumplimiento)',
+    manufactureCertificates.forEach(certificate => {
+      const certificadoManufacturaID = new CertificadoManufacturaID({
+        title: certificate.title,
+        desc: certificate.desc,
+        imgURL: certificate.imgURL,
+      })
+      certificadoManufacturaID.save()
+        .then(() => console.log(`certificadoManufacturaID created`))
+        .catch(error => console.log(error))
     })
-    certificadoManufacturaID.save()
-      .then(() => console.log(`certificadoManufacturaID created`))
-      .catch(error => console.log(error))
     manufactureCarrousel.forEach(unidad => {
       const carrouselManufacturaID = new CarrouselManufacturaID({
         title: unidad.title,

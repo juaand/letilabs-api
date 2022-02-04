@@ -21,5 +21,11 @@ router.get('/carrouseltech', ianddController.getCarrouselTech)
 router.get('/maptech', ianddController.getMapTech)
 router.get('/bottomtech', ianddController.getBottomTech)
 
+//I+D manufacture routes
+router.get('/bannermanufacture',  ianddController.getManufactureBanner)
+router.get('/carrouselmanufacture', ianddController.getCarrouselManufacture)
+router.get('/certificatesmanufacture', ianddController.getCertificatesManufacture)
+router.get('/bottommanufacture', ianddController.getBottomManufacture)
+
 //I+D alliances routes
 router.get('/alliancelogos', ianddController.getLogos)
