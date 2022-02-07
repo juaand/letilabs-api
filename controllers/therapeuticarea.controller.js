@@ -1,8 +1,8 @@
 // controllers/therapeuticarea.controllers.js
 
-const BannerTA = require('../models/home/homeComponents/areasterapeuticas/bannerAT.model')
-const CarrouselTA = require('../models/home/homeComponents/areasterapeuticas/timeLineAT.model')
-const BottomTA = require('../models/home/homeComponents/areasterapeuticas/bottomCtaAT.model')
+const BannerTA = require('../models/home/areasterapeuticas/bannerAT.model')
+const CarrouselTA = require('../models/home/areasterapeuticas/timeLineAT.model')
+const BottomTA = require('../models/home/areasterapeuticas/bottomCtaAT.model')
 
 //admin therapeutic area routes
 module.exports.getBannerTA = (req, res, next) => {

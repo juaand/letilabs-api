@@ -1,6 +1,6 @@
 // controllers/vigilancia.controllers.js
 
-const Vigilancia = require('../models/home/homeComponents/vigilancia.model')
+const Vigilancia = require('../models/home/vigilancia.model')
 
 
 module.exports.addVigilancia = (req, res, next) => {

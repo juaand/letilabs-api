@@ -2,7 +2,7 @@ require('../config/db.config')
 require('dotenv').config()
 
 const User = require('../models/user.model')
-const Vigilancia = require('../models/home/homeComponents/vigilancia.model')
+const Vigilancia = require('../models/home/vigilancia.model')
 const faker = require('faker')
 const Blog = require('../models/blog.model')
 
@@ -14,14 +14,14 @@ const vigilanciaN = 3
 ////////////   HOME  ///////////////////
 ////////////////////////////////////////
 
-const CarrouselHome = require('../models/home/homeComponents/carrouselHome.model')
-const FarmacoVigilancia = require('../models/home/homeComponents/farmacoVigilancia.model')
-const MeetPeopleWorkWithUsHome = require('../models/home/homeComponents/meetPeopleWorkWithUsHome.model')
-const ModalFarmacoVigilancia = require('../models/home/homeComponents/modalFarmacoVigilancia.model')
-const Portfolio = require('../models/home/homeComponents/portfolio.model')
-const UnidadesNegocio = require('../models/home/homeComponents/unidadesNegocio.model')
-const UsInfo = require('../models/home/homeComponents/usInfo.model')
-const Video = require('../models/home/homeComponents/video.model')
+const CarrouselHome = require('../models/home/carrouselHome.model')
+const FarmacoVigilancia = require('../models/home/farmacoVigilancia.model')
+const MeetPeopleWorkWithUsHome = require('../models/home/meetPeopleWorkWithUsHome.model')
+const ModalFarmacoVigilancia = require('../models/home/modalFarmacoVigilancia.model')
+const Portfolio = require('../models/home/portfolio.model')
+const UnidadesNegocio = require('../models/home/unidadesNegocio.model')
+const UsInfo = require('../models/home/usInfo.model')
+const Video = require('../models/home/video.model')
 const carrouselHomeData = require('../data/homeCarousel')
 const portfolioData = require('../data/dataPortafolio')
 const meetPeopleWorkWithUsData = require('../data/dataMeetPeopleWorkWhitUs')
@@ -130,9 +130,9 @@ Promise.all([
 ///////////// AREAS TERAPEUTICAS /////////////
 /////////////////////////////////////////
 
-const BannerAT = require('../models/home/homeComponents/areasterapeuticas/bannerAT.model')
-const TimeLineAT = require('../models/home/homeComponents/areasterapeuticas/timeLineAT.model')
-const BottomCtaAT = require('../models/home/homeComponents/areasterapeuticas/bottomCtaAT.model')
+const BannerAT = require('../models/home/areasterapeuticas/bannerAT.model')
+const TimeLineAT = require('../models/home/areasterapeuticas/timeLineAT.model')
+const BottomCtaAT = require('../models/home/areasterapeuticas/bottomCtaAT.model')
 
 const timeLineATData = require('../data/areasTeraData')
 const bottomCtaATData = require('../data/bottomCtaATData')
@@ -1032,20 +1032,22 @@ Promise.all([
 /////////////// PRODUCTOS /////////////////
 ///////////////////////////////////////////
 
-const BannerProductosPage = require('../models/ProductosPage/bannerProductosPage.model')
-const EresMedicoProductos = require('../models/ProductosPage/eresMedicoProductos.model')
+const BannerProductosPage = require('../models/productosPage/bannerProductosPage.model')
+const EresMedicoProductos = require('../models/productosPage/eresMedicoProductos.model')
+const BannerProducstList = require('../models/productosPage/bannerProductsList.model')
 
 Promise.all([
   BannerProductos.deleteMany(),
   EresMedicoProductos.deleteMany(),
   BannerProductosPage.deleteMany(),
+  BannerProducstList.deleteMany(),
 ])
   .then(() => {
     console.log('all databases cleaned')
     const bannerProductosPage = new BannerProductosPage({
       title: 'Trabajamos cada día para poner nuestros conocimientos y habilidades al servicio de las personas:',
       description: 'Desarrollando y poniendo a su disposición productos que abarquen una amplia gama de necesidades.',
-      imgURL: 'products-banner.png',
+      imgURL: 'https://firebasestorage.googleapis.com/v0/b/grupo-leti-fd84e.appspot.com/o/images%2Fproducts-banner.png?alt=media&token=599872b3-8daa-4a6e-b652-7f9190d42a7c',
       button1Title: 'Conoce todos los productos',
       button1Link: '/listado-de-productos',
       button2Title: 'Descubre nuestras áreas terapéuticas',
@@ -1055,12 +1057,24 @@ Promise.all([
       .then(() => console.log(`bannerProductosPage created`))
       .catch(error => console.log(error))
     const eresMedicoProductos = new EresMedicoProductos({
+      findProductsTitle: 'Buscas un medicamento en específico?<br/>¡Encuéntralo aquí!',
       title: '¿Eres médico y quieres información especial sobre algún producto?',
       buttonTitle: 'Escríbenos aquí',
-      imgURL: 'products-bottom-bg.jpg',
+      imgURL: 'https://firebasestorage.googleapis.com/v0/b/grupo-leti-fd84e.appspot.com/o/images%2Fproducts-bottom-bg.jpg?alt=media&token=834bcbe8-a6fe-4e15-bd33-4e7376b9c097',
+      farmacoTitle: 'Farmacovigilancia',
+      farmacoDesc: '¿Tiene algún comentario o <br/>efecto adverso de alguno de nuestro productos?<br/>¡Su opinión es importante para nosotros!',
+      farmacoBtn: 'Infórmanos aquí'
     })
     eresMedicoProductos.save()
       .then(() => console.log(`eresMedicoProductos created`))
+      .catch(error => console.log(error))
+    const bannerProductsList = new BannerProducstList({
+      title: 'Listado de productos',
+      description: 'Nuestro amplio portafolio de productos incluye muchas marcas reconocidas que forman parte de la historia del <strong>Grupo Leti.</strong> ',
+      imgURL: 'https://firebasestorage.googleapis.com/v0/b/grupo-leti-fd84e.appspot.com/o/images%2Flistado-bg.png?alt=media&token=b56b950c-b930-442c-b72e-80bf89ddf97a'
+    })
+    bannerProductsList.save()
+      .then(() => console.log(`bannerProductsList created`))
       .catch(error => console.log(error))
   })
   .catch(error => console.log(error))

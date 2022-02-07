@@ -9,5 +9,7 @@ const productController = require('../controllers/product.controller')
 module.exports = router
 
 router.post('/producstdata', productController.getProduct)
-
 router.get('/listado-productos', productController.getProductsList)
+router.get('/bannerproduct', productController.getProductBanner)
+router.get('/bottomproduct', productController.getBottomProduct)
+router.get('/listadoproductosbanner', productController.getProductsBanner)
