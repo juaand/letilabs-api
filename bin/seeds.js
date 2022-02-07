@@ -147,13 +147,14 @@ Promise.all([
     const bannerAT = new BannerAT({
       title: 'Áreas terapéuticas',
       description: 'Atendemos una variedad de áreas terapéuticas para cubrir con las necesidades de salud de los venezolanos y asegurar el bienestar del país',
-      imgURL: 'areas-terapeuticas-banner.png',
+      imgURL: 'https://firebasestorage.googleapis.com/v0/b/grupo-leti-fd84e.appspot.com/o/images%2Fareas-terapeuticas-banner.png?alt=media&token=5023083b-cf80-4ef0-a1ea-b0809f9c57f3',
     })
     bannerAT.save()
       .then(() => console.log(`BannerAT created`))
       .catch(error => console.log(error))
     timeLineATData.forEach(unidad => {
       const timeLineAT = new TimeLineAT({
+        mainTitle: unidad.mainTitle,
         imgURL: unidad.imgURL,
         desc: unidad.desc,
         title: unidad.title,
@@ -973,6 +974,7 @@ Promise.all([
 /////////////////////////////////////////
 ////////// OUR PHILOSOPHY PAGE ///////////
 /////////////////////////////////////////
+
 const BannerNuestraFilosofia = require('../models/nuestraFilosofia/bannerNuestraFilosofia.model')
 const InfoCardsNuestraFilosofia = require('../models/nuestraFilosofia/infoCardsNuestraFilosofia.model')
 const BottomNuestraFilosofia = require('../models/nuestraFilosofia/bottomNuestraFilosofia.model')
@@ -1024,10 +1026,6 @@ Promise.all([
       .catch(error => console.log(error))
   })
   .catch(error => console.log(error))
-
-
-
-
 
 
 ////////////////////////////////////////////
