@@ -26,12 +26,46 @@ module.exports.getBannerID = (req, res, next) => {
     .catch(next)
 }
 
+module.exports.updateBannerID = (req, res, next) => {
+  const userRole = req.session.user.role
+  const {title, description, imgURL, id} = req.body
+
+
+  if (userRole === 'Admin') {
+    BannerID.findByIdAndUpdate(id, req.body, {new: true})
+      .then((data) => {
+        res.status(201).json(data)
+      })
+      .catch(next)
+  } else {
+    req.session.destroy()
+    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+  }
+}
+
 module.exports.getInfoCards = (req, res, next) => {
   AllianceInfoCards.find()
     .then(response => {
       res.status(201).json(response)
     })
     .catch(next)
+}
+
+module.exports.updateInfoCards = (req, res, next) => {
+  const userRole = req.session.user.role
+  const {picPath, info, btn, title, id} = req.body
+
+
+  if (userRole === 'Admin') {
+    AllianceInfoCards.findByIdAndUpdate(id, req.body, {new: true})
+      .then((data) => {
+        res.status(201).json(data)
+      })
+      .catch(next)
+  } else {
+    req.session.destroy()
+    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+  }
 }
 
 module.exports.getGoals = (req, res, next) => {
@@ -42,12 +76,46 @@ module.exports.getGoals = (req, res, next) => {
     .catch(next)
 }
 
+module.exports.updateGoals = (req, res, next) => {
+  const userRole = req.session.user.role
+  const {title, desc, name, id} = req.body
+
+
+  if (userRole === 'Admin') {
+    GoalsId.findByIdAndUpdate(id, req.body, {new: true})
+      .then((data) => {
+        res.status(201).json(data)
+      })
+      .catch(next)
+  } else {
+    req.session.destroy()
+    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+  }
+}
+
 module.exports.getBottom = (req, res, next) => {
   BottomId.find()
     .then(response => {
       res.status(201).json(response)
     })
     .catch(next)
+}
+
+module.exports.updateBottomID = (req, res, next) => {
+  const userRole = req.session.user.role
+  const {title, img, url, btn, id} = req.body
+
+
+  if (userRole === 'Admin') {
+    BottomId.findByIdAndUpdate(id, req.body, {new: true})
+      .then((data) => {
+        res.status(201).json(data)
+      })
+      .catch(next)
+  } else {
+    req.session.destroy()
+    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+  }
 }
 
 //admin I+D tech routes
@@ -57,6 +125,23 @@ module.exports.getTechBannerID = (req, res, next) => {
       res.status(201).json(response)
     })
     .catch(next)
+}
+
+module.exports.updateTechBanner = (req, res, next) => {
+  const userRole = req.session.user.role
+  const {title, description, imgURL, id} = req.body
+
+
+  if (userRole === 'Admin') {
+    BannerTech.findByIdAndUpdate(id, req.body, {new: true})
+      .then((data) => {
+        res.status(201).json(data)
+      })
+      .catch(next)
+  } else {
+    req.session.destroy()
+    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+  }
 }
 
 module.exports.getVideoTech = (req, res, next) => {
@@ -91,6 +176,23 @@ module.exports.getBottomTech = (req, res, next) => {
     .catch(next)
 }
 
+module.exports.updateBottomTech = (req, res, next) => {
+  const userRole = req.session.user.role
+  const {title, img, url, btn, id} = req.body
+
+
+  if (userRole === 'Admin') {
+    BottomTech.findByIdAndUpdate(id, req.body, {new: true})
+      .then((data) => {
+        res.status(201).json(data)
+      })
+      .catch(next)
+  } else {
+    req.session.destroy()
+    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+  }
+}
+
 //admin I+D manufacture routes
 module.exports.getManufactureBanner = (req, res, next) => {
   BannerManufacture.find()
@@ -98,6 +200,23 @@ module.exports.getManufactureBanner = (req, res, next) => {
       res.status(201).json(response)
     })
     .catch(next)
+}
+
+module.exports.updateManufactureBanner = (req, res, next) => {
+  const userRole = req.session.user.role
+  const {title, description, imgURL, id} = req.body
+
+
+  if (userRole === 'Admin') {
+    BannerManufacture.findByIdAndUpdate(id, req.body, {new: true})
+      .then((data) => {
+        res.status(201).json(data)
+      })
+      .catch(next)
+  } else {
+    req.session.destroy()
+    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+  }
 }
 
 module.exports.getCarrouselManufacture = (req, res, next) => {
@@ -108,6 +227,23 @@ module.exports.getCarrouselManufacture = (req, res, next) => {
     .catch(next)
 }
 
+module.exports.updateCarrouselManufacture = (req, res, next) => {
+  const userRole = req.session.user.role
+  const {info, title, id} = req.body
+
+
+  if (userRole === 'Admin') {
+    CarouselManufacture.findByIdAndUpdate(id, req.body, {new: true})
+      .then((data) => {
+        res.status(201).json(data)
+      })
+      .catch(next)
+  } else {
+    req.session.destroy()
+    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+  }
+}
+
 module.exports.getCertificatesManufacture = (req, res, next) => {
   CertificateManufacture.find()
     .then(response => {
@@ -116,12 +252,46 @@ module.exports.getCertificatesManufacture = (req, res, next) => {
     .catch(next)
 }
 
+module.exports.updateCertificatesManufacture = (req, res, next) => {
+  const userRole = req.session.user.role
+  const {title, desc, imgURL, id} = req.body
+
+
+  if (userRole === 'Admin') {
+    CertificateManufacture.findByIdAndUpdate(id, req.body, {new: true})
+      .then((data) => {
+        res.status(201).json(data)
+      })
+      .catch(next)
+  } else {
+    req.session.destroy()
+    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+  }
+}
+
 module.exports.getBottomManufacture = (req, res, next) => {
   BottomManufacture.find()
     .then(response => {
       res.status(201).json(response)
     })
     .catch(next)
+}
+
+module.exports.updateBottomManufacture = (req, res, next) => {
+  const userRole = req.session.user.role
+  const {title, img, url, btn, id} = req.body
+
+
+  if (userRole === 'Admin') {
+    BottomManufacture.findByIdAndUpdate(id, req.body, {new: true})
+      .then((data) => {
+        res.status(201).json(data)
+      })
+      .catch(next)
+  } else {
+    req.session.destroy()
+    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+  }
 }
 
 //admin I+D alliances routes
@@ -133,12 +303,46 @@ module.exports.getAlliancesBanner = (req, res, next) => {
     .catch(next)
 }
 
+module.exports.updateAlliancesBanner = (req, res, next) => {
+  const userRole = req.session.user.role
+  const {title, description, imgURL, id} = req.body
+
+
+  if (userRole === 'Admin') {
+    BannerAlliances.findByIdAndUpdate(id, req.body, {new: true})
+      .then((data) => {
+        res.status(201).json(data)
+      })
+      .catch(next)
+  } else {
+    req.session.destroy()
+    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+  }
+}
+
 module.exports.getLogosAlliance = (req, res, next) => {
   AllianceLogos.find()
     .then(response => {
       res.status(201).json(response)
     })
     .catch(next)
+}
+
+module.exports.updateLogosAlliance = (req, res, next) => {
+  const userRole = req.session.user.role
+  const {picPath, title, id} = req.body
+
+
+  if (userRole === 'Admin') {
+    AllianceLogos.findByIdAndUpdate(id, req.body, {new: true})
+      .then((data) => {
+        res.status(201).json(data)
+      })
+      .catch(next)
+  } else {
+    req.session.destroy()
+    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+  }
 }
 
 module.exports.getFormAlliance = (req, res, next) => { 
@@ -149,10 +353,44 @@ module.exports.getFormAlliance = (req, res, next) => {
     .catch(next)
 }
 
+module.exports.updateFormAlliance = (req, res, next) => {
+  const userRole = req.session.user.role
+  const {title, phone, desc, email, id} = req.body
+
+
+  if (userRole === 'Admin') {
+    FormAlliances.findByIdAndUpdate(id, req.body, {new: true})
+      .then((data) => {
+        res.status(201).json(data)
+      })
+      .catch(next)
+  } else {
+    req.session.destroy()
+    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+  }
+}
+
 module.exports.getBottomAlliances = (req, res, next) => {
   BottomAlliances.find()
     .then(response => {
       res.status(201).json(response)
     })
     .catch(next)
+}
+
+module.exports.updateBottomAlliances = (req, res, next) => {
+  const userRole = req.session.user.role
+  const {title, img, url, btn, id} = req.body
+
+
+  if (userRole === 'Admin') {
+    BottomAlliances.findByIdAndUpdate(id, req.body, {new: true})
+      .then((data) => {
+        res.status(201).json(data)
+      })
+      .catch(next)
+  } else {
+    req.session.destroy()
+    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+  }
 }
