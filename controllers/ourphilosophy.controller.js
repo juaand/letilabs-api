@@ -1,6 +1,6 @@
 // controllers/ourphilosophy.controllers.js
 
-const BannerID = require('../models/IAD/IDcomponents/bannerID.model')
+const BannerID = require('../models/nuestraFilosofia/bannerNuestraFilosofia.model')
 
 //admin our philosophy routes
 module.exports.getBannerOP = (req, res, next) => {
