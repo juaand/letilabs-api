@@ -46,6 +46,7 @@ const searchRouter = require('./routes/search.routes')
 const productRouter = require('./routes/product.routes')
 const newsRouter = require('./routes/news.routes')
 const ianddRouter = require('./routes/iandd.routes')
+const ourPhilosophyRouter = require('./routes/our-philosophy.routes')
 app.use('/', adminRouter)
 app.use('/', authRouter)
 app.use('/', vigilanciaRouter)
@@ -54,6 +55,7 @@ app.use('/', searchRouter)
 app.use('/', productRouter)
 app.use('/', newsRouter)
 app.use('/', ianddRouter)
+app.use('/', ourPhilosophyRouter)
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
