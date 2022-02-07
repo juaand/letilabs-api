@@ -12,3 +12,4 @@ module.exports = router
 router.get('/bannerourphilosophy', ourPhilosophyController.getBannerOP)
 router.get('/ourphilosophyinfocards', ourPhilosophyController.getInfoCardsOP)
 router.get('/ourphilosophyletter', ourPhilosophyController.getLetterOP)
+router.get('/bottomourphilosophy', ourPhilosophyController.getBottomOP)
