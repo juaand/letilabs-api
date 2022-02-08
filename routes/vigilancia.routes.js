@@ -13,3 +13,5 @@ router.get('/vigilancia/:id/delete',
 
 router.post('/vigilancia',
   vigilanciaController.addVigilancia)
+
+  
