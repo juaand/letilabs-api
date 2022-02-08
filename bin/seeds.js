@@ -4,7 +4,6 @@ require('dotenv').config()
 const User = require('../models/user.model')
 const Vigilancia = require('../models/home/vigilancia.model')
 const faker = require('faker')
-const Blog = require('../models/blog.model')
 
 const userN = 30
 const vigilanciaN = 3
@@ -254,12 +253,12 @@ Promise.all([
 ////////// NUESTRAS EMPRESAS ////////////
 /////////////////////////////////////////
 
-const BannerEmpresas = require('../models/nuestrasEmpresasComponents/bannerEmpresas.model')
-const BannerProductos = require('../models/nuestrasEmpresasComponents/bannerProductos.model')
-const CuidarEmpresas = require('../models/nuestrasEmpresasComponents/cuidarEmpresas.model')
-const InnovarEmpresas = require('../models/nuestrasEmpresasComponents/innovarEmpresas.model')
-const MeetEmpresas = require('../models/nuestrasEmpresasComponents/meetEmpresas.model')
-const UnidadesNegocioEmpresas = require('../models/nuestrasEmpresasComponents/unidadesNegocioEmpresas.model')
+const BannerEmpresas = require('../models/nuestrasEmpresas/bannerEmpresas.model')
+const BannerProductos = require('../models/nuestrasEmpresas/bannerProductos.model')
+const CuidarEmpresas = require('../models/nuestrasEmpresas/cuidarEmpresas.model')
+const InnovarEmpresas = require('../models/nuestrasEmpresas/innovarEmpresas.model')
+const MeetEmpresas = require('../models/nuestrasEmpresas/meetEmpresas.model')
+const UnidadesNegocioEmpresas = require('../models/nuestrasEmpresas/unidadesNegocioEmpresas.model')
 const Vadevecum = require('../models/vadevecum.model')
 
 
@@ -360,10 +359,10 @@ Promise.all([
 ///////////// LAB LETI PAGE /////////////
 /////////////////////////////////////////
 
-const BannerLetiPage = require('../models/nuestrasEmpresasComponents/laboratoriosLetiPage/bannerLetiPage.model')
-const InfoCardsLetiPage = require('../models/nuestrasEmpresasComponents/laboratoriosLetiPage/infoCardsLetiPage.model')
-const LetiTimeLine = require('../models/nuestrasEmpresasComponents/laboratoriosLetiPage/letiTimeLine.model')
-const EquipoLetiPage = require('../models/nuestrasEmpresasComponents/laboratoriosLetiPage/equipoLetiPage.model')
+const BannerLetiPage = require('../models/nuestrasEmpresas/laboratoriosLetiPage/bannerLetiPage.model')
+const InfoCardsLetiPage = require('../models/nuestrasEmpresas/laboratoriosLetiPage/infoCardsLetiPage.model')
+const LetiTimeLine = require('../models/nuestrasEmpresas/laboratoriosLetiPage/letiTimeLine.model')
+const EquipoLetiPage = require('../models/nuestrasEmpresas/laboratoriosLetiPage/equipoLetiPage.model')
 
 
 const letiTimeLineData = require('../data/letiTimeline')
@@ -424,11 +423,11 @@ Promise.all([
 ////////// BIOCONTROLLED PAGE ///////////
 /////////////////////////////////////////
 
-const BannerBiocontrolledPage = require('../models/nuestrasEmpresasComponents/biocontrolledPage/bannerBiocontrolledPage.model')
-const InfoCardsBiocontrolledPage = require('../models/nuestrasEmpresasComponents/biocontrolledPage/infoCardsBiocontrolledPage.model')
-const CarrouselBiocontrolledPage = require('../models/nuestrasEmpresasComponents/biocontrolledPage/biocontrolledCarrousel.model')
-const BiocontrolledTimeLine = require('../models/nuestrasEmpresasComponents/biocontrolledPage/biocontrolledTimeLine.model')
-const EquipoBiocontrolledPage = require('../models/nuestrasEmpresasComponents/biocontrolledPage/equipoBiocontrolledPage.model')
+const BannerBiocontrolledPage = require('../models/nuestrasEmpresas/biocontrolledPage/bannerBiocontrolledPage.model')
+const InfoCardsBiocontrolledPage = require('../models/nuestrasEmpresas/biocontrolledPage/infoCardsBiocontrolledPage.model')
+const CarrouselBiocontrolledPage = require('../models/nuestrasEmpresas/biocontrolledPage/biocontrolledCarrousel.model')
+const BiocontrolledTimeLine = require('../models/nuestrasEmpresas/biocontrolledPage/biocontrolledTimeLine.model')
+const EquipoBiocontrolledPage = require('../models/nuestrasEmpresas/biocontrolledPage/equipoBiocontrolledPage.model')
 
 
 const biocontrolledCarrousel = require('../data/biocontrolledCarousel')
@@ -500,11 +499,11 @@ Promise.all([
 ////////////// GENVEN PAGE //////////////
 /////////////////////////////////////////
 
-const BannerGenvenPage = require('../models/nuestrasEmpresasComponents/genvenPage/bannerGenvenPage.model')
-const VideoGenvenPage = require('../models/nuestrasEmpresasComponents/genvenPage/videoGenvenPage.model')
-const ProductosGenvenPage = require('../models/nuestrasEmpresasComponents/genvenPage/genvenProductos.model')
-const GenvenTimeLine = require('../models/nuestrasEmpresasComponents/genvenPage/genvenTimeLine.model')
-const EquipoGenvenPage = require('../models/nuestrasEmpresasComponents/genvenPage/equipoGenvenPage.model')
+const BannerGenvenPage = require('../models/nuestrasEmpresas/genvenPage/bannerGenvenPage.model')
+const VideoGenvenPage = require('../models/nuestrasEmpresas/genvenPage/videoGenvenPage.model')
+const ProductosGenvenPage = require('../models/nuestrasEmpresas/genvenPage/genvenProductos.model')
+const GenvenTimeLine = require('../models/nuestrasEmpresas/genvenPage/genvenTimeLine.model')
+const EquipoGenvenPage = require('../models/nuestrasEmpresas/genvenPage/equipoGenvenPage.model')
 
 const genvenTimeLineData = require('../data/genvenTimeline')
 
@@ -1163,8 +1162,12 @@ Promise.all([
 
 /////////////////NEWS////////////////////
 
+const Blog = require('../models/news.model')
+const NewsTitle = require('../models/newsTitle.model')
+
 Promise.all([
-  Blog.deleteMany()
+  Blog.deleteMany(),
+  NewsTitle.deleteMany()
 ])
   .then(() => {
     console.log('blog cleaned')
@@ -1182,6 +1185,14 @@ Promise.all([
         .then(() => console.log(`new added`))
         .catch(error => console.log(error))
     }
+    const newstitle = new NewsTitle({
+      lastestTitle: 'Lo último',
+      mostTitle: 'Lo más leído',
+      searchTitle: 'Artículos',
+    })
+    newstitle.save()
+      .then(() => console.log(`newstitle added`))
+      .catch(error => console.log(error))
   })
   .catch(error => console.log(error))
 

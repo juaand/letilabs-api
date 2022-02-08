@@ -1,6 +1,6 @@
 // controllers/content.controllers.js
 const SiteContent = require('../models/siteContent.model')
-const News = require('../models/blog.model')
+const News = require('../models/news.model')
 
 
 module.exports.searchContent = (req, res, next) => {

@@ -9,5 +9,5 @@ const newsController = require('../controllers/news.controller')
 module.exports = router
 
 router.get('/newsdata', newsController.getNews)
-
+router.get('/newstitles', newsController.getNewsTitles)
 router.post('/getrandomnews', newsController.getRandomNews)
