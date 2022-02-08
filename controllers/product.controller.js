@@ -1,8 +1,8 @@
 // controllers/content.controllers.js
 const Vadevecum = require('../models/vadevecum.model')
 const ProductBanner = require('../models/ProductosPage/bannerProductosPage.model')
-const ProductBottom = require('../models/productosPage/eresMedicoProductos.model')
-const ProductListBanner = require('../models/productosPage/bannerProductsList.model')
+const ProductBottom = require('../models/ProductosPage/eresMedicoProductos.model')
+const ProductListBanner = require('../models/ProductosPage/bannerProductsList.model')
 
 module.exports.getProduct = (req, res, next) => {
   const {buscar} = req.body
