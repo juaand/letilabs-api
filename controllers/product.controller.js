@@ -34,12 +34,46 @@ module.exports.getProductBanner = (req, res, next) => {
     .catch(next)
 }
 
+module.exports.updateProductBanner = (req, res, next) => {
+  const userRole = req.session.user.role
+  const {description, imgURL, title, button1Title, button1Link, button2Title, button2Link, id} = req.body
+
+
+  if (userRole === 'Admin') {
+    ProductBanner.findByIdAndUpdate(id, req.body, {new: true})
+      .then((data) => {
+        res.status(201).json(data)
+      })
+      .catch(next)
+  } else {
+    req.session.destroy()
+    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+  }
+}
+
 module.exports.getBottomProduct = (req, res, next) => {
   ProductBottom.find()
     .then((data) => {
       res.status(201).json(data)
     })
     .catch(next)
+}
+
+module.exports.updateBottomProduct = (req, res, next) => {
+  const userRole = req.session.user.role
+  const {findProductsTitle, imgURL, title, buttonTitle, farmacoTitle, farmacoBtn, farmacoDesc, id} = req.body
+
+
+  if (userRole === 'Admin') {
+    ProductBottom.findByIdAndUpdate(id, req.body, {new: true})
+      .then((data) => {
+        res.status(201).json(data)
+      })
+      .catch(next)
+  } else {
+    req.session.destroy()
+    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+  }
 }
 
 module.exports.getProductsBanner = (req, res, next) => {

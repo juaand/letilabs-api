@@ -152,6 +152,23 @@ module.exports.getVideoTech = (req, res, next) => {
     .catch(next)
 }
 
+module.exports.updateTechVideo = (req, res, next) => {
+  const userRole = req.session.user.role
+  const {title, videoURL, id} = req.body
+
+
+  if (userRole === 'Admin') {
+    VideoTech.findByIdAndUpdate(id, req.body, {new: true})
+      .then((data) => {
+        res.status(201).json(data)
+      })
+      .catch(next)
+  } else {
+    req.session.destroy()
+    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+  }
+}
+
 module.exports.getCarrouselTech = (req, res, next) => {
   CarrouselTech.find()
     .then(response => {
@@ -160,12 +177,46 @@ module.exports.getCarrouselTech = (req, res, next) => {
     .catch(next)
 }
 
+module.exports.updateTechCarrousel = (req, res, next) => {
+  const userRole = req.session.user.role
+  const {title, imgURL, description, mainTitle, id} = req.body
+
+
+  if (userRole === 'Admin') {
+    CarrouselTech.findByIdAndUpdate(id, req.body, {new: true})
+      .then((data) => {
+        res.status(201).json(data)
+      })
+      .catch(next)
+  } else {
+    req.session.destroy()
+    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+  }
+}
+
 module.exports.getMapTech = (req, res, next) => {
   MapTech.find()
     .then(response => {
       res.status(201).json(response)
     })
     .catch(next)
+}
+
+module.exports.updateTechMap = (req, res, next) => {
+  const userRole = req.session.user.role
+  const {description, mapURL, id} = req.body
+
+
+  if (userRole === 'Admin') {
+    MapTech.findByIdAndUpdate(id, req.body, {new: true})
+      .then((data) => {
+        res.status(201).json(data)
+      })
+      .catch(next)
+  } else {
+    req.session.destroy()
+    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+  }
 }
 
 module.exports.getBottomTech = (req, res, next) => {
