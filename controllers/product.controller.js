@@ -1,6 +1,6 @@
 // controllers/content.controllers.js
 const Vadevecum = require('../models/vadevecum.model')
-const ProductBanner = require('../models/productosPage/bannerProductosPage.model')
+const ProductBanner = require('../models/ProductosPage/bannerProductosPage.model')
 const ProductBottom = require('../models/productosPage/eresMedicoProductos.model')
 const ProductListBanner = require('../models/productosPage/bannerProductsList.model')
 
