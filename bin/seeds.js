@@ -1189,6 +1189,7 @@ Promise.all([
       lastestTitle: 'Lo último',
       mostTitle: 'Lo más leído',
       searchTitle: 'Artículos',
+      picPath: 'https://firebasestorage.googleapis.com/v0/b/grupo-leti-fd84e.appspot.com/o/images%2Fleti-news-img.jpg?alt=media&token=a503a04f-75d1-4d97-91ed-25baa145796e'
     })
     newstitle.save()
       .then(() => console.log(`newstitle added`))

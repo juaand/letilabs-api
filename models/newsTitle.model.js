@@ -15,6 +15,10 @@ const newsTitleSchema = new Schema(
       type: String,
       required: [true, 'searchTitle is required'],
     },
+    picPath: {
+      type: String,
+      required: [true, 'picPath is required'],
+    }
   },
   {
     timestamps: true,
