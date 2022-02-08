@@ -1,8 +1,12 @@
 // models/unidadesNegocio.model.js
-const { Schema, model } = require('mongoose')
+const {Schema, model} = require('mongoose')
 
 const unidadesNegocioSchema = new Schema(
   {
+    mainTitle: {
+      type: String,
+      required: [true, 'Título de la sesión es requerido'],
+    },
     name: {
       type: String,
       required: true
@@ -20,7 +24,7 @@ const unidadesNegocioSchema = new Schema(
       required: true
     },
   },
-  { timestamps: true }
+  {timestamps: true}
 )
 
 module.exports = model('UnidadesNegocio', unidadesNegocioSchema)

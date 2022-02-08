@@ -97,6 +97,7 @@ Promise.all([
     })
     unidadesNegocioData.forEach(unidad => {
       const unidadesNegocio = new UnidadesNegocio({
+        mainTitle: unidad.mainTitle,
         name: unidad.name,
         logo: unidad.logo,
         desc: unidad.desc,
