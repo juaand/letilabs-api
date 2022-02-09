@@ -13,6 +13,23 @@ module.exports.getBannerTA = (req, res, next) => {
     .catch(next)
 }
 
+module.exports.updateBannerTA = (req, res, next) => {
+  const userRole = req.session.user.role
+  const {description, imgURL, title, id} = req.body
+
+
+  if (userRole === 'Admin') {
+    BannerTA.findByIdAndUpdate(id, req.body, {new: true})
+      .then((data) => {
+        res.status(201).json(data)
+      })
+      .catch(next)
+  } else {
+    req.session.destroy()
+    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+  }
+}
+
 module.exports.getCarrouselTA = (req, res, next) => {
   CarrouselTA.find()
     .then((data) => {
@@ -21,10 +38,44 @@ module.exports.getCarrouselTA = (req, res, next) => {
     .catch(next)
 }
 
+module.exports.updateCarrouselTA = (req, res, next) => {
+  const userRole = req.session.user.role
+  const {desc, imgURL, title, mainTitle, id} = req.body
+
+
+  if (userRole === 'Admin') {
+    CarrouselTA.findByIdAndUpdate(id, req.body, {new: true})
+      .then((data) => {
+        res.status(201).json(data)
+      })
+      .catch(next)
+  } else {
+    req.session.destroy()
+    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+  }
+}
+
 module.exports.getBottomTA = (req, res, next) => {
   BottomTA.find()
     .then((data) => {
       res.status(201).json(data)
     })
     .catch(next)
+}
+
+module.exports.updateBottomTA = (req, res, next) => {
+  const userRole = req.session.user.role
+  const {img, title, buttonTitle, buttonLink, id} = req.body
+
+
+  if (userRole === 'Admin') {
+    BottomTA.findByIdAndUpdate(id, req.body, {new: true})
+      .then((data) => {
+        res.status(201).json(data)
+      })
+      .catch(next)
+  } else {
+    req.session.destroy()
+    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+  }
 }

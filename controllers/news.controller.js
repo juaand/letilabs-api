@@ -31,3 +31,20 @@ module.exports.getNewsTitles = (req, res, next) => {
     })
     .catch(next)
 }
+
+module.exports.updateNewsTitles = (req, res, next) => {
+  const userRole = req.session.user.role
+  const {lastestTitle, mostTitle, searchTitle, picPath, id} = req.body
+
+
+  if (userRole === 'Admin') {
+    NewsTitles.findByIdAndUpdate(id, req.body, {new: true})
+      .then((data) => {
+        res.status(201).json(data)
+      })
+      .catch(next)
+  } else {
+    req.session.destroy()
+    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+  }
+}
