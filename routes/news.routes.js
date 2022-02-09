@@ -10,4 +10,5 @@ module.exports = router
 
 router.get('/newsdata', newsController.getNews)
 router.get('/newstitles', newsController.getNewsTitles)
+router.get('/updatenewstitless', newsController.updateNewsTitles)
 router.post('/getrandomnews', newsController.getRandomNews)

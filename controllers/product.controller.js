@@ -83,3 +83,20 @@ module.exports.getProductsBanner = (req, res, next) => {
     })
     .catch(next)
 }
+
+module.exports.updateProductsBanner = (req, res, next) => {
+  const userRole = req.session.user.role
+  const {description, imgURL, title, id} = req.body
+
+
+  if (userRole === 'Admin') {
+    ProductListBanner.findByIdAndUpdate(id, req.body, {new: true})
+      .then((data) => {
+        res.status(201).json(data)
+      })
+      .catch(next)
+  } else {
+    req.session.destroy()
+    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+  }
+}

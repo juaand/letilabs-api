@@ -10,5 +10,8 @@ module.exports = router
 
 //our philosophy routes
 router.get('/bannerta', therapeuticAreaController.getBannerTA)
+router.get('/updatebannerta', therapeuticAreaController.updateBannerTA)
 router.get('/carrouselta', therapeuticAreaController.getCarrouselTA)
+router.get('/updatecarrouselta', therapeuticAreaController.updateCarrouselTA)
 router.get('/bottomta', therapeuticAreaController.getBottomTA)
+router.get('/updatebottomta', therapeuticAreaController.updateBottomTA)
