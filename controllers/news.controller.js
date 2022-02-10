@@ -1,10 +1,19 @@
 // controllers/content.controllers.js
 const Blog = require('../models/noticias/news.model')
 const NewsTitles = require('../models/noticias/newsTitle.model')
+const Tags = require('../models/noticias/tags.model')
 
 module.exports.getNews = (req, res, next) => {
 
   Blog.find()
+    .then(response => {
+      res.status(201).json(response)
+    })
+    .catch(next)
+}
+
+module.exports.getTags = (req, res, next) => {
+  Tags.find()
     .then(response => {
       res.status(201).json(response)
     })
