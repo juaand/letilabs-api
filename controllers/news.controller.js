@@ -1,6 +1,6 @@
 // controllers/content.controllers.js
-const Blog = require('../models/news.model')
-const NewsTitles = require('../models/newsTitle.model')
+const Blog = require('../models/noticias/news.model')
+const NewsTitles = require('../models/noticias/newsTitle.model')
 
 module.exports.getNews = (req, res, next) => {
 
