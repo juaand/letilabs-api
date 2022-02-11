@@ -6,7 +6,7 @@ const Tags = require('../models/noticias/tags.model')
 module.exports.getNews = (req, res, next) => {
 
   Blog.find()
-  .sort({publishDate: -1})
+    .sort({publishDate: -1})
     .then(response => {
       res.status(201).json(response)
     })
@@ -21,7 +21,7 @@ module.exports.createNews = (req, res, next) => {
     Blog.create(req.body)
       .then(() => {
         Blog.find()
-        .sort({publishDate: -1})
+          .sort({publishDate: -1})
           .then(response => {
             res.status(201).json(response)
           })
@@ -34,6 +34,27 @@ module.exports.createNews = (req, res, next) => {
   }
 }
 
+module.exports.addOutstandingNews = (req, res, next) => {
+  const id = req.params.id
+  const userRole = req.session.user.role
+  const {outstanding} = req.body
+
+  if (userRole === 'Admin') {
+    Blog.findByIdAndUpdate(id, req.body, {new: true})
+      .then(() => {
+        Blog.find()
+          .sort({publishDate: -1})
+          .then(data => {
+            res.status(201).json(data)
+          })
+          .catch(next)
+      })
+      .catch(next)
+  } else {
+    req.session.destroy()
+    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+  }
+}
 
 module.exports.getTags = (req, res, next) => {
   Tags.find()
