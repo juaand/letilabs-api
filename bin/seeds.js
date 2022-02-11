@@ -1142,7 +1142,7 @@ Promise.all([
       } else {
         const user = new User({
           name: faker.name.findName(),
-          email: faker.internet.email(),
+          email: 'grupoleti.dev@gmail.com',
           username: faker.internet.userName(),
           avatar: faker.image.image(),
           bio: faker.lorem.paragraph(),

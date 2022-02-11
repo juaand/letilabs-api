@@ -20,6 +20,48 @@ module.exports.getTags = (req, res, next) => {
     .catch(next)
 }
 
+module.exports.createTag = (req, res, next) => {
+  const userRole = req.session.user.role
+  const {tag} = req.body
+
+  console.log('TAGGGGGGG', tag)
+
+  if (userRole === 'Admin') {
+    Tags.create(req.body)
+      .then(() => {
+        Tags.find()
+          .then(response => {
+            res.status(201).json(response)
+          })
+          .catch(next)
+      })
+      .catch(next)
+  } else {
+    req.session.destroy()
+    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+  }
+}
+
+module.exports.deleteTag = (req, res, next) => {
+  const userRole = req.session.user.role
+  const id = req.params.id
+
+  if (userRole === 'Admin') {
+    Tags.findByIdAndDelete(id)
+      .then(() => {
+        Tags.find()
+          .then(response => {
+            res.status(201).json(response)
+          })
+          .catch(next)
+      })
+      .catch(next)
+  } else {
+    req.session.destroy()
+    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+  }
+}
+
 module.exports.getRandomNews = (req, res, next) => {
 
   Blog.aggregate([

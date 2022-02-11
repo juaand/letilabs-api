@@ -10,6 +10,8 @@ module.exports = router
 
 router.get('/newsdata', newsController.getNews)
 router.get('/tagsdata', newsController.getTags)
+router.post('/createtag', newsController.createTag)
+router.get('/tag/:id/delete', newsController.deleteTag)
 router.get('/newstitles', newsController.getNewsTitles)
 router.get('/updatenewstitless', newsController.updateNewsTitles)
 router.post('/getrandomnews', newsController.getRandomNews)
