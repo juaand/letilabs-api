@@ -6,11 +6,34 @@ const Tags = require('../models/noticias/tags.model')
 module.exports.getNews = (req, res, next) => {
 
   Blog.find()
+  .sort({publishDate: -1})
     .then(response => {
       res.status(201).json(response)
     })
     .catch(next)
 }
+
+module.exports.createNews = (req, res, next) => {
+  const userRole = req.session.user.role
+  const {title, subTitle, urlToPic, tag, content, outstanding, publishDate} = req.body
+
+  if (userRole === 'Admin') {
+    Blog.create(req.body)
+      .then(() => {
+        Blog.find()
+        .sort({publishDate: -1})
+          .then(response => {
+            res.status(201).json(response)
+          })
+          .catch(next)
+      })
+      .catch(next)
+  } else {
+    req.session.destroy()
+    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+  }
+}
+
 
 module.exports.getTags = (req, res, next) => {
   Tags.find()
