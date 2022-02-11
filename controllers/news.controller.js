@@ -55,6 +55,28 @@ module.exports.deleteNews = (req, res, next) => {
   }
 }
 
+module.exports.updateNews = (req, res, next) => {
+  const id = req.params.id
+  const userRole = req.session.user.role
+  const {title, subTitle, urlToPic, tag, content, outstanding, publishDate} = req.body
+
+  if (userRole === 'Admin') {
+    Blog.findByIdAndUpdate(id, req.body, {new: true})
+      .then(() => {
+        Blog.find()
+          .sort({publishDate: -1})
+          .then(data => {
+            res.status(201).json(data)
+          })
+          .catch(next)
+      })
+      .catch(next)
+  } else {
+    req.session.destroy()
+    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+  }
+}
+
 module.exports.addOutstandingNews = (req, res, next) => {
   const id = req.params.id
   const userRole = req.session.user.role

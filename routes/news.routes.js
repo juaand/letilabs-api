@@ -18,3 +18,4 @@ router.get('/updatenewstitless', routeGuard.isAuthenticated, newsController.upda
 router.post('/getrandomnews', newsController.getRandomNews)
 router.post('/addoutstandingnews/:id', routeGuard.isAuthenticated, newsController.addOutstandingNews)
 router.get('/news/:id/delete', routeGuard.isAuthenticated, newsController.deleteNews)
+router.patch('/updatenews/:id', routeGuard.isAuthenticated, newsController.updateNews)
