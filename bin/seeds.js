@@ -1142,7 +1142,7 @@ Promise.all([
       } else {
         const user = new User({
           name: faker.name.findName(),
-          email: faker.internet.email(),
+          email: 'grupoleti.dev@gmail.com',
           username: faker.internet.userName(),
           avatar: faker.image.image(),
           bio: faker.lorem.paragraph(),
@@ -1163,15 +1163,26 @@ Promise.all([
 
 /////////////////NEWS////////////////////
 
-const Blog = require('../models/news.model')
-const NewsTitle = require('../models/newsTitle.model')
+const Blog = require('../models/noticias/news.model')
+const NewsTitle = require('../models/noticias/newsTitle.model')
+const Tags = require('../models/noticias/tags.model')
+const NewsTag = require('../data/newsTags')
 
 Promise.all([
   Blog.deleteMany(),
-  NewsTitle.deleteMany()
+  NewsTitle.deleteMany(),
+  Tags.deleteMany()
 ])
   .then(() => {
     console.log('blog cleaned')
+    NewsTag.forEach(el => {
+      const newTag = new Tags({
+        tag: el.tag,
+      })
+      newTag.save()
+        .then(() => console.log(`tag created`))
+        .catch(error => console.log(error))
+    })
     for (let i = 1; i < 20; i++) {
       const blog = new Blog({
         title: faker.lorem.sentence(),
@@ -1180,7 +1191,7 @@ Promise.all([
         content: faker.lorem.paragraphs(40),
         outstanding: i === 6 ? true : false,
         publishDate: faker.date.past(),
-        tag: faker.random.arrayElement(["Grupo Leti", "Educativo", "Innovación", "Nuestra gente", "Investigación", "Salud y bienestar"]),
+        tag: faker.random.arrayElement(["Grupo Leti", "Educación", "Innovación", "Nuestra gente", "Investigación", "Salud y bienestar"]),
       })
       blog.save()
         .then(() => console.log(`new added`))
