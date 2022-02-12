@@ -180,12 +180,6 @@ module.exports.updateFarmacoData = (req, res, next) => {
   const userRole = req.session.user.role
   const {title, subTitle, buttonTitle, id} = req.body
 
-  console.log(title)
-  console.log(subTitle)
-  console.log(buttonTitle)
-  console.log(id)
-
-
   if (userRole === 'Admin') {
     FarmacoInicio.findByIdAndUpdate(id, req.body, {new: true})
       .then((data) => {

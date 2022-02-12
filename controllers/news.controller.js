@@ -111,8 +111,6 @@ module.exports.createTag = (req, res, next) => {
   const userRole = req.session.user.role
   const {tag} = req.body
 
-  console.log('TAGGGGGGG', tag)
-
   if (userRole === 'Admin') {
     Tags.create(req.body)
       .then(() => {

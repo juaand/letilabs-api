@@ -29,7 +29,6 @@ module.exports.dropVigilanciaCard = (req, res, next) => {
   if (userRole === 'Admin') {
     Vigilancia.findByIdAndDelete(id)
       .then(() => {
-        console.log('Vigilancia eliminada')
         res.status(204).json({message: 'El comentario fue eliminado.'})
       })
       .catch(next)
