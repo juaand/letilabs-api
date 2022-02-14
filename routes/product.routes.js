@@ -15,4 +15,4 @@ router.patch('/updatebannerproducts', routeGuard.isAuthenticated ,productControl
 router.get('/bottomproduct', productController.getBottomProduct)
 router.get('/updateproductbottom', productController.updateBottomProduct)
 router.get('/listadoproductosbanner', productController.getProductsBanner)
-router.get('/updatelistadoproductosbanner', productController.updateProductsBanner)
+router.patch('/updatelistadoproductosbanner', routeGuard.isAuthenticated, productController.updateProductsBanner)
