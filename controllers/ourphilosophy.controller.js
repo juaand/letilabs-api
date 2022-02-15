@@ -45,8 +45,13 @@ module.exports.updateInfoCardsOP = (req, res, next) => {
 
   if (userRole === 'Admin') {
     InfoCardsOP.findByIdAndUpdate(id, req.body, {new: true})
-      .then((data) => {
-        res.status(201).json(data)
+      .then(() => {
+        InfoCardsOP.find()
+          .then((data) => {
+            res.status(201).json(data)
+          }
+          )
+          .catch(next)
       })
       .catch(next)
   } else {
