@@ -1141,12 +1141,12 @@ Promise.all([
         user.save()
       } else {
         const user = new User({
-          name: faker.name.findName(),
+          name: 'Grupo Leti',
           email: 'grupoleti.dev@gmail.com',
-          username: faker.internet.userName(),
-          avatar: faker.image.image(),
-          bio: faker.lorem.paragraph(),
-          createdAt: faker.date.past(),
+          username: 'grupoleti',
+          avatar: 'https://firebasestorage.googleapis.com/v0/b/grupo-leti-fd84e.appspot.com/o/images%2Fgrupo-leti.svg?alt=media&token=d088b2c4-601e-4000-94b9-656399a20271',
+          bio: 'Administrador del sitio Grupo Leti',
+          createdAt: new Date(),
           role: 'Admin',
           password: 'Admin123',
           activation: {

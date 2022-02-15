@@ -112,7 +112,6 @@ module.exports.updateLetterOP = (req, res, next) => {
   const userRole = req.session.user.role
   const {body, imgURL, mainTitle, id} = req.body
 
-
   if (userRole === 'Admin') {
     LetterOP.findByIdAndUpdate(id, req.body, {new: true})
       .then((data) => {
