@@ -14,6 +14,7 @@ router.patch('/updatebannerourphilosophy', routeGuard.isAuthenticated, ourPhilos
 router.get('/ourphilosophyinfocards', ourPhilosophyController.getInfoCardsOP)
 router.get('/ourphilosophyinfocards/:id/delete', routeGuard.isAuthenticated, ourPhilosophyController.deleteInfoCardOP)
 router.patch('/updateourphilosophyinfocards', routeGuard.isAuthenticated, ourPhilosophyController.updateInfoCardsOP)
+router.post('/createpillar', routeGuard.isAuthenticated, ourPhilosophyController.createPillar)
 router.get('/ourphilosophyletter', ourPhilosophyController.getLetterOP)
 router.get('/updateourphilosophyletter', ourPhilosophyController.updateLetterOP)
 router.get('/bottomourphilosophy', ourPhilosophyController.getBottomOP)
