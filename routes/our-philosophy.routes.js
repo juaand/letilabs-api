@@ -18,4 +18,4 @@ router.post('/createpillar', routeGuard.isAuthenticated, ourPhilosophyController
 router.get('/ourphilosophyletter', ourPhilosophyController.getLetterOP)
 router.patch('/updateourphilosophyletter', routeGuard.isAuthenticated, ourPhilosophyController.updateLetterOP)
 router.get('/bottomourphilosophy', ourPhilosophyController.getBottomOP)
-router.get('/updatebottomourphilosophy', ourPhilosophyController.updateBottomOP)
+router.patch('/updatebottomourphilosophy', routeGuard.isAuthenticated, ourPhilosophyController.updateBottomOP)
