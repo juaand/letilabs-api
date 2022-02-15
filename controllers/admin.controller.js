@@ -144,10 +144,10 @@ module.exports.updateUnidadesInicio = (req, res, next) => {
     UnidadesInicio.findByIdAndUpdate(id, req.body, {new: true})
       .then(() => {
         UnidadesInicio.find()
-        .then((data) => {        
-          res.status(201).json(data)
-        })
-        .catch(next)
+          .then((data) => {
+            res.status(201).json(data)
+          })
+          .catch(next)
       })
       .catch(next)
   } else {
@@ -894,11 +894,14 @@ module.exports.updateInfoCardsOurPeople = (req, res, next) => {
   const userRole = req.session.user.role
   const {mainTitle, imgURL, title, info, id} = req.body
 
-
   if (userRole === 'Admin') {
     InfoCardsOurPeople.findByIdAndUpdate(id, req.body, {new: true})
-      .then((data) => {
-        res.status(201).json(data)
+      .then(() => {
+        InfoCardsOurPeople.find()
+          .then((data) => {
+            res.status(201).json(data)
+          })
+          .catch(next)
       })
       .catch(next)
   } else {
