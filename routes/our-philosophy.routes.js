@@ -10,7 +10,7 @@ module.exports = router
 
 //our philosophy routes
 router.get('/bannerourphilosophy', ourPhilosophyController.getBannerOP)
-router.get('/updatebannerourphilosophy', ourPhilosophyController.updateBannerOP)
+router.patch('/updatebannerourphilosophy', routeGuard.isAuthenticated, ourPhilosophyController.updateBannerOP)
 router.get('/ourphilosophyinfocards', ourPhilosophyController.getInfoCardsOP)
 router.get('/updateourphilosophyinfocards', ourPhilosophyController.updateInfoCardsOP)
 router.get('/ourphilosophyletter', ourPhilosophyController.getLetterOP)

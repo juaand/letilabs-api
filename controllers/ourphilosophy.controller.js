@@ -18,7 +18,6 @@ module.exports.updateBannerOP = (req, res, next) => {
   const userRole = req.session.user.role
   const {description, imgURL, title, id} = req.body
 
-
   if (userRole === 'Admin') {
     BannerOP.findByIdAndUpdate(id, req.body, {new: true})
       .then((data) => {
