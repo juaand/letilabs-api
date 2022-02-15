@@ -32,6 +32,7 @@ router.get('/homebottomdata', adminController.getHomeBottomData)
 /////////////////////////////////////////////////////////////////////
 
 router.get('/timelineaboutusdata', adminController.getTimeLine)
+router.patch('/updatetimelineaboutus', routeGuard.isAuthenticated, adminController.updateTimeLineAboutUs)
 router.get('/bannerdata', adminController.getBanner)
 router.patch('/updatebannerdata', routeGuard.isAuthenticated, adminController.updateBannerData)
 router.get('/marcandopautadata', adminController.getMarcandoPauta)
@@ -39,6 +40,8 @@ router.patch('/updatemarcandopautadata', routeGuard.isAuthenticated, adminContro
 router.get('/megatdata', adminController.getMegat)
 router.patch('/updatemegatdata', routeGuard.isAuthenticated, adminController.updateMegatData)
 router.get('/galleryaboutusdata', adminController.getGallery)
+router.patch('/updategalleryaboutus', routeGuard.isAuthenticated, adminController.updateGalleryAboutUs)
+
 
 /////////////////////////////////////////////////////////////////////
 ////////////////////////// NUESTRAS COMPAÑÍAS CRUD //////////////////////////////
