@@ -1009,13 +1009,17 @@ module.exports.getBottomOurPeople = (req, res, next) => {
 
 module.exports.updateBottomOurPeople = (req, res, next) => {
   const userRole = req.session.user.role
-  const {description, imgURL, id} = req.body
+  const {title, buttoLink, buttonTitle, img, id} = req.body
 
 
   if (userRole === 'Admin') {
     BottomOurPeople.findByIdAndUpdate(id, req.body, {new: true})
-      .then((data) => {
-        res.status(201).json(data)
+      .then(() => {
+        BottomOurPeople.find()
+          .then((data) => {
+            res.status(201).json(data)
+          })
+          .catch(next)
       })
       .catch(next)
   } else {
