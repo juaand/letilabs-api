@@ -1,18 +1,18 @@
 // models/nuestrasEmpresasComponents/videoTecnologiaEmpresas.model.js
 const { Schema, model} = require('mongoose')
 
-const tresEquiposNuestraGenteSchema = new Schema(
+const bannerTeamOurPeopleSchema = new Schema(
   {
-    title: {
+    mainTitle: {
       type: String,
       required: true
     },
-    info: {
+    imgURL: {
       type: String,
       required: true
-    },
+    }
   },
   { timestamps: true }
 )
 
-module.exports = model('TresEquiposNuestraGente', tresEquiposNuestraGenteSchema)
+module.exports = model('BannerTeamOurPeople', bannerTeamOurPeopleSchema)

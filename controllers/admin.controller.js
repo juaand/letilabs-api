@@ -43,7 +43,7 @@ const InfoCardsOurPeople = require('../models/nuestraGente/tresEquiposNuestraGen
 const EquipoOurPeople = require('../models/nuestraGente/equipoNuestraGente.model')
 const BottomOurPeople = require('../models/nuestraGente/bottomCtaNuestraGente.model')
 const Carreras = require('../models/nuestraGente/carrerasNuestraGente.model')
-
+const BannerTeamsOurPeople = require('../models/nuestraGente/bannerEquiposNuestraGente.model')
 
 module.exports.getFarmVigData = (req, res, next) => {
   const userRole = req.session.user.role
@@ -144,10 +144,10 @@ module.exports.updateUnidadesInicio = (req, res, next) => {
     UnidadesInicio.findByIdAndUpdate(id, req.body, {new: true})
       .then(() => {
         UnidadesInicio.find()
-        .then((data) => {        
-          res.status(201).json(data)
-        })
-        .catch(next)
+          .then((data) => {
+            res.status(201).json(data)
+          })
+          .catch(next)
       })
       .catch(next)
   } else {
@@ -933,11 +933,34 @@ module.exports.updateInfoCardsOurPeople = (req, res, next) => {
   const userRole = req.session.user.role
   const {mainTitle, imgURL, title, info, id} = req.body
 
-
   if (userRole === 'Admin') {
     InfoCardsOurPeople.findByIdAndUpdate(id, req.body, {new: true})
-      .then((data) => {
-        res.status(201).json(data)
+      .then(() => {
+        InfoCardsOurPeople.find()
+          .then((data) => {
+            res.status(201).json(data)
+          })
+          .catch(next)
+      })
+      .catch(next)
+  } else {
+    req.session.destroy()
+    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+  }
+}
+
+module.exports.deleteOurPeopleInfoCard = (req, res, next) => {
+  const userRole = req.session.user.role
+  const id = req.params.id
+
+  if (userRole === 'Admin') {
+    InfoCardsOurPeople.findByIdAndDelete(id)
+      .then(() => {
+        InfoCardsOurPeople.find()
+          .then((data) => {
+            res.status(201).json(data)
+          })
+          .catch(next)
       })
       .catch(next)
   } else {
@@ -958,12 +981,56 @@ module.exports.updateEquipoOurPeople = (req, res, next) => {
   const userRole = req.session.user.role
   const {title, description, person, imgURL, buttonTitle, buttonLink, id} = req.body
 
-
   if (userRole === 'Admin') {
     EquipoOurPeople.findByIdAndUpdate(id, req.body, {new: true})
       .then((data) => {
-        res.status(201).json(data[0])
+        res.status(201).json(data)
       })
+      .catch(next)
+  } else {
+    req.session.destroy()
+    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+  }
+}
+
+module.exports.getBannerTeams = (req, res, next) => {
+  BannerTeamsOurPeople.find()
+    .then((data) => {
+      res.status(201).json(data)
+    })
+    .catch(next)
+}
+
+module.exports.updateBannerTeams = (req, res, next) => {
+  const userRole = req.session.user.role
+  const {imgURL, mainTitle, id} = req.body
+
+  if (userRole === 'Admin') {
+    BannerTeamsOurPeople.findByIdAndUpdate(id, req.body, {new: true})
+      .then((data) => {
+        res.status(201).json(data)
+      })
+      .catch(next)
+  } else {
+    req.session.destroy()
+    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+  }
+}
+
+module.exports.createTeam = (req, res, next) => {
+  const userRole = req.session.user.role
+  const {title, info} = req.body
+
+  if (userRole === 'Admin') {
+    InfoCardsOurPeople.create({title, info})
+      .then(() => {
+        InfoCardsOurPeople.find()
+          .then((data) => {
+            res.status(201).json(data)
+          })
+          .catch(next)
+      }
+      )
       .catch(next)
   } else {
     req.session.destroy()
@@ -981,13 +1048,17 @@ module.exports.getBottomOurPeople = (req, res, next) => {
 
 module.exports.updateBottomOurPeople = (req, res, next) => {
   const userRole = req.session.user.role
-  const {description, imgURL, id} = req.body
+  const {title, buttoLink, buttonTitle, img, id} = req.body
 
 
   if (userRole === 'Admin') {
     BottomOurPeople.findByIdAndUpdate(id, req.body, {new: true})
-      .then((data) => {
-        res.status(201).json(data)
+      .then(() => {
+        BottomOurPeople.find()
+          .then((data) => {
+            res.status(201).json(data)
+          })
+          .catch(next)
       })
       .catch(next)
   } else {
