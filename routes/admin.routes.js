@@ -133,6 +133,11 @@ router.get('/bottomourpeople', adminController.getBottomOurPeople)
 router.patch('/updatebottomourpeople', routeGuard.isAuthenticated, adminController.updateBottomOurPeople)
 router.get('/carrerasdata', adminController.getCarreras)
 router.patch('/updatecarrerasdata', routeGuard.isAuthenticated, adminController.updateCarrerasData)
+router.get('/ourpeopleinfocard/:id/delete', routeGuard.isAuthenticated, adminController.deleteOurPeopleInfoCard)
+router.post('/createteam', routeGuard.isAuthenticated, adminController.createTeam)
+router.get('/bannerdatateams', adminController.getBannerTeams)
+router.patch('/updatebannerdatateams', routeGuard.isAuthenticated, adminController.updateBannerTeams)
+
 
 //////////////////////////////////////////////////////////////////////
 /////////////////////////// PRODUCTOS CRUD ///////////////////////////

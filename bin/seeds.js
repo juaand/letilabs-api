@@ -905,6 +905,7 @@ const TresEquiposNuestraGente = require('../models/nuestraGente/tresEquiposNuest
 const EquipoNuestraGente = require('../models/nuestraGente/equipoNuestraGente.model')
 const BottomCtaNuestraGente = require('../models/nuestraGente/bottomCtaNuestraGente.model')
 const CarrerasNuestraGente = require('../models/nuestraGente/carrerasNuestraGente.model')
+const BannerTeamOurPeople = require('../models/nuestraGente/bannerEquiposNuestraGente.model')
 
 const tresEquiposNuestraGenteData = require('../data/dataOurPeople')
 const bottomCtaNuestraGenteData = require('../data/bottomCtaNuestraGenteData')
@@ -915,6 +916,7 @@ Promise.all([
   EquipoNuestraGente.deleteMany(),
   BottomCtaNuestraGente.deleteMany(),
   CarrerasNuestraGente.deleteMany(),
+  BannerTeamOurPeople.deleteMany(),
 ])
   .then(() => {
     console.log('all databases cleaned')
@@ -968,246 +970,253 @@ Promise.all([
         .then(() => console.log(`bottomCtaNuestraGente created`))
         .catch(error => console.log(error))
     })
-  })
-  .catch(error => console.log(error))
-
-/////////////////////////////////////////
-////////// OUR PHILOSOPHY PAGE ///////////
-/////////////////////////////////////////
-
-const BannerNuestraFilosofia = require('../models/nuestraFilosofia/bannerNuestraFilosofia.model')
-const InfoCardsNuestraFilosofia = require('../models/nuestraFilosofia/infoCardsNuestraFilosofia.model')
-const BottomNuestraFilosofia = require('../models/nuestraFilosofia/bottomNuestraFilosofia.model')
-const LetterNuestraFilosofia = require('../models/nuestraFilosofia/letterNuestraFilosofia.model')
-const infoCardsNuestraFilosofiaData = require('../data/infoCardsNuestraFilosofiaData')
-
-Promise.all([
-  BannerNuestraFilosofia.deleteMany(),
-  InfoCardsNuestraFilosofia.deleteMany(),
-  BottomNuestraFilosofia.deleteMany(),
-  LetterNuestraFilosofia.deleteMany(),
-])
-  .then(() => {
-    console.log('all databases cleaned')
-    const bannerNuestraFilosofia = new BannerNuestraFilosofia({
-      title: 'Filosofía Leti',
-      description: 'Todos los líderes de cada unidad y demás áreas de trabajo, trabajan en conjunto para promover la relación de sinergia entre todas las empresas y así lograr los mejores resultados.<br/><br/> Contamos con un talento humano excepcional y altamente calificado que trabaja día a día generando soluciones para los venezolanos, bajo los principios y ética del grupo.',
-      imgURL: 'https://firebasestorage.googleapis.com/v0/b/grupo-leti-fd84e.appspot.com/o/images%2Four-philosophy-banner.png?alt=media&token=5b738b9d-5294-4850-bcb0-e7d69f2ba250',
+    const bannerTeamOurPeople = new BannerTeamOurPeople({
+      mainTitle: 'Somos tres equipos trabajando en constante sinergia',
+      imgURL: 'https://firebasestorage.googleapis.com/v0/b/grupo-leti-fd84e.appspot.com/o/images%2Fourpeople-infocards.jpg?alt=media&token=7a89ddd9-cfca-460a-aa16-7e26e3145f69'
     })
-    bannerNuestraFilosofia.save()
-      .then(() => console.log(`bannerNuestraFilosofia created`))
+    bannerTeamOurPeople.save()
+      .then(() => console.log(`bannerTeamOurPeople created`))
       .catch(error => console.log(error))
-    infoCardsNuestraFilosofiaData.forEach(unidad => {
-      const infoCardsNuestraFilosofia = new InfoCardsNuestraFilosofia({
-        title: unidad.title,
-        picPath: unidad.picPath,
-      })
-      infoCardsNuestraFilosofia.save()
-        .then(() => console.log(`infoCardsNuestraFilosofia created`))
-        .catch(error => console.log(error))
     })
-    const bottomNuestraFilosofia = new BottomNuestraFilosofia({
-      title: '¿Buscas una oportunidad de crecimiento?',
-      description: '¡Siempre estamos en busca de nuevos talentos!<br/> Encuentra posiciones abiertas',
-      buttonTitle: 'Consultar',
-      buttonLink: 'https://www.linkedin.com/company/laboratorios-leti-s-a-v-/jobs/',
-      imgURL: 'https://firebasestorage.googleapis.com/v0/b/grupo-leti-fd84e.appspot.com/o/images%2Fred-bubbles.png?alt=media&token=eceff76f-a5ce-499b-b8b9-2998e330b6aa'
-    })
-    bottomNuestraFilosofia.save()
-      .then(() => console.log(`bottomNuestraFilosofia created`))
       .catch(error => console.log(error))
-    const letterNuestraFilosofia = new LetterNuestraFilosofia({
-      mainTitle: 'Carta del CEO<br/>Dr. José Massa',
-      body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.<br/><br/>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur. Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur.',
-      imgURL: 'https://firebasestorage.googleapis.com/v0/b/grupo-leti-fd84e.appspot.com/o/images%2Fsign.png?alt=media&token=2d073775-7221-4079-945e-46da677e2bf7',
-    })
-    letterNuestraFilosofia.save()
-      .then(() => console.log(`letterNuestraFilosofia created`))
-      .catch(error => console.log(error))
-  })
-  .catch(error => console.log(error))
 
+    /////////////////////////////////////////
+    ////////// OUR PHILOSOPHY PAGE ///////////
+    /////////////////////////////////////////
 
-////////////////////////////////////////////
-/////////////// PRODUCTOS /////////////////
-///////////////////////////////////////////
+    const BannerNuestraFilosofia = require('../models/nuestraFilosofia/bannerNuestraFilosofia.model')
+    const InfoCardsNuestraFilosofia = require('../models/nuestraFilosofia/infoCardsNuestraFilosofia.model')
+    const BottomNuestraFilosofia = require('../models/nuestraFilosofia/bottomNuestraFilosofia.model')
+    const LetterNuestraFilosofia = require('../models/nuestraFilosofia/letterNuestraFilosofia.model')
+    const infoCardsNuestraFilosofiaData = require('../data/infoCardsNuestraFilosofiaData')
 
-const BannerProductosPage = require('../models/productosPage/bannerProductosPage.model')
-const EresMedicoProductos = require('../models/productosPage/eresMedicoProductos.model')
-const BannerProducstList = require('../models/productosPage/bannerProductsList.model')
-
-Promise.all([
-  BannerProductos.deleteMany(),
-  EresMedicoProductos.deleteMany(),
-  BannerProductosPage.deleteMany(),
-  BannerProducstList.deleteMany(),
-])
-  .then(() => {
-    console.log('all databases cleaned')
-    const bannerProductosPage = new BannerProductosPage({
-      title: 'Trabajamos cada día para poner nuestros conocimientos y habilidades al servicio de las personas:',
-      description: 'Desarrollando y poniendo a su disposición productos que abarquen una amplia gama de necesidades.',
-      imgURL: 'https://firebasestorage.googleapis.com/v0/b/grupo-leti-fd84e.appspot.com/o/images%2Fproducts-banner.png?alt=media&token=599872b3-8daa-4a6e-b652-7f9190d42a7c',
-      button1Title: 'Conoce todos los productos',
-      button1Link: '/listado-de-productos',
-      button2Title: 'Descubre nuestras áreas terapéuticas',
-      button2Link: '/areas-tearapeuticas',
-    })
-    bannerProductosPage.save()
-      .then(() => console.log(`bannerProductosPage created`))
-      .catch(error => console.log(error))
-    const eresMedicoProductos = new EresMedicoProductos({
-      findProductsTitle: 'Buscas un medicamento en específico?<br/>¡Encuéntralo aquí!',
-      title: '¿Eres médico y quieres información especial sobre algún producto?',
-      buttonTitle: 'Escríbenos aquí',
-      imgURL: 'https://firebasestorage.googleapis.com/v0/b/grupo-leti-fd84e.appspot.com/o/images%2Fproducts-bottom-bg.jpg?alt=media&token=834bcbe8-a6fe-4e15-bd33-4e7376b9c097',
-      farmacoTitle: 'Farmacovigilancia',
-      farmacoDesc: '¿Tiene algún comentario o <br/>efecto adverso de alguno de nuestro productos?<br/>¡Su opinión es importante para nosotros!',
-      farmacoBtn: 'Infórmanos aquí'
-    })
-    eresMedicoProductos.save()
-      .then(() => console.log(`eresMedicoProductos created`))
-      .catch(error => console.log(error))
-    const bannerProductsList = new BannerProducstList({
-      title: 'Listado de productos',
-      description: 'Nuestro amplio portafolio de productos incluye muchas marcas reconocidas que forman parte de la historia del <strong>Grupo Leti.</strong> ',
-      imgURL: 'https://firebasestorage.googleapis.com/v0/b/grupo-leti-fd84e.appspot.com/o/images%2Flistado-bg.png?alt=media&token=b56b950c-b930-442c-b72e-80bf89ddf97a'
-    })
-    bannerProductsList.save()
-      .then(() => console.log(`bannerProductsList created`))
-      .catch(error => console.log(error))
-  })
-  .catch(error => console.log(error))
-
-////////////////////////////////////////
-
-////////////   USERS  //////////////////
-
-Promise.all([
-  User.deleteMany(),
-  Vigilancia.deleteMany(),
-])
-  .then(() => {
-    console.log('all databases cleaned')
-    for (let i = 1; i < userN; i++) {
-      if (i < 20) {
-        const user = new User({
-          name: faker.name.findName(),
-          email: faker.internet.email(),
-          username: faker.internet.userName(),
-          avatar: faker.image.image(),
-          bio: faker.lorem.paragraph(),
-          createdAt: faker.date.past(),
-          password: 'GrupoLeti123',
-          activation: {
-            active: true
-          }
+    Promise.all([
+      BannerNuestraFilosofia.deleteMany(),
+      InfoCardsNuestraFilosofia.deleteMany(),
+      BottomNuestraFilosofia.deleteMany(),
+      LetterNuestraFilosofia.deleteMany(),
+    ])
+      .then(() => {
+        console.log('all databases cleaned')
+        const bannerNuestraFilosofia = new BannerNuestraFilosofia({
+          title: 'Filosofía Leti',
+          description: 'Todos los líderes de cada unidad y demás áreas de trabajo, trabajan en conjunto para promover la relación de sinergia entre todas las empresas y así lograr los mejores resultados.<br/><br/> Contamos con un talento humano excepcional y altamente calificado que trabaja día a día generando soluciones para los venezolanos, bajo los principios y ética del grupo.',
+          imgURL: 'https://firebasestorage.googleapis.com/v0/b/grupo-leti-fd84e.appspot.com/o/images%2Four-philosophy-banner.png?alt=media&token=5b738b9d-5294-4850-bcb0-e7d69f2ba250',
         })
-        user.save()
-          .then(u => {
-            console.log(`user ${u.name} created`)
-            for (let j = 0; j < vigilanciaN; j++) {
-              const vigilancia = new Vigilancia({
-                date: faker.date.past(),
-                effects: faker.lorem.paragraph(),
-                lastname: faker.name.lastName(),
-                name: faker.name.firstName(),
-                medicine: faker.random.arrayElement(['Alivet', 'Antux', 'Letisan', 'Migren', 'Monosulpa']),
-                prescribed: faker.random.arrayElement(['Si', 'No']),
-                sex: faker.random.arrayElement(['F', 'M']),
-                email: faker.internet.email()
-              })
-              vigilancia.save()
-                .then(vig => {
-                  console.log(`FarmacoVigilancia added by ${vig.name}`)
-                })
-                .catch(error => console.log(error))
-            }
-          })
-      } else if (i >= 20 && i < 29) {
-        const user = new User({
-          name: faker.name.findName(),
-          email: faker.internet.email(),
-          username: faker.internet.userName(),
-          avatar: faker.image.image(),
-          bio: faker.lorem.paragraph(),
-          createdAt: faker.date.past(),
-          role: 'Editor',
-          password: 'Editor123',
-          activation: {
-            active: true
-          }
-        })
-        user.save()
-      } else {
-        const user = new User({
-          name: 'Grupo Leti',
-          email: 'grupoleti.dev@gmail.com',
-          username: 'grupoleti',
-          avatar: 'https://firebasestorage.googleapis.com/v0/b/grupo-leti-fd84e.appspot.com/o/images%2Fgrupo-leti.svg?alt=media&token=d088b2c4-601e-4000-94b9-656399a20271',
-          bio: 'Administrador del sitio Grupo Leti',
-          createdAt: new Date(),
-          role: 'Admin',
-          password: 'Admin123',
-          activation: {
-            active: true
-          }
-        })
-        user.save()
-          .then(() => console.log(`admin added`))
+        bannerNuestraFilosofia.save()
+          .then(() => console.log(`bannerNuestraFilosofia created`))
           .catch(error => console.log(error))
-      }
-    }
-  })
-  .catch(error => console.log(error))
-
-/////////////////NEWS////////////////////
-
-const Blog = require('../models/noticias/news.model')
-const NewsTitle = require('../models/noticias/newsTitle.model')
-const Tags = require('../models/noticias/tags.model')
-const NewsTag = require('../data/newsTags')
-
-Promise.all([
-  Blog.deleteMany(),
-  NewsTitle.deleteMany(),
-  Tags.deleteMany()
-])
-  .then(() => {
-    console.log('blog cleaned')
-    NewsTag.forEach(el => {
-      const newTag = new Tags({
-        tag: el.tag,
+        infoCardsNuestraFilosofiaData.forEach(unidad => {
+          const infoCardsNuestraFilosofia = new InfoCardsNuestraFilosofia({
+            title: unidad.title,
+            picPath: unidad.picPath,
+          })
+          infoCardsNuestraFilosofia.save()
+            .then(() => console.log(`infoCardsNuestraFilosofia created`))
+            .catch(error => console.log(error))
+        })
+        const bottomNuestraFilosofia = new BottomNuestraFilosofia({
+          title: '¿Buscas una oportunidad de crecimiento?',
+          description: '¡Siempre estamos en busca de nuevos talentos!<br/> Encuentra posiciones abiertas',
+          buttonTitle: 'Consultar',
+          buttonLink: 'https://www.linkedin.com/company/laboratorios-leti-s-a-v-/jobs/',
+          imgURL: 'https://firebasestorage.googleapis.com/v0/b/grupo-leti-fd84e.appspot.com/o/images%2Fred-bubbles.png?alt=media&token=eceff76f-a5ce-499b-b8b9-2998e330b6aa'
+        })
+        bottomNuestraFilosofia.save()
+          .then(() => console.log(`bottomNuestraFilosofia created`))
+          .catch(error => console.log(error))
+        const letterNuestraFilosofia = new LetterNuestraFilosofia({
+          mainTitle: 'Carta del CEO<br/>Dr. José Massa',
+          body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.<br/><br/>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur. Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur.',
+          imgURL: 'https://firebasestorage.googleapis.com/v0/b/grupo-leti-fd84e.appspot.com/o/images%2Fsign.png?alt=media&token=2d073775-7221-4079-945e-46da677e2bf7',
+        })
+        letterNuestraFilosofia.save()
+          .then(() => console.log(`letterNuestraFilosofia created`))
+          .catch(error => console.log(error))
       })
-      newTag.save()
-        .then(() => console.log(`tag created`))
-        .catch(error => console.log(error))
-    })
-    for (let i = 1; i < 20; i++) {
-      const blog = new Blog({
-        title: faker.lorem.sentence(),
-        subTitle: faker.lorem.sentence(),
-        urlToPic: `https://picsum.photos/id/${i + 1000}/1440/800`,
-        content: faker.lorem.paragraphs(40),
-        outstanding: i === 6 ? true : false,
-        publishDate: faker.date.past(),
-        tag: faker.random.arrayElement(["Grupo Leti", "Educación", "Innovación", "Nuestra gente", "Investigación", "Salud y bienestar"]),
-      })
-      blog.save()
-        .then(() => console.log(`new added`))
-        .catch(error => console.log(error))
-    }
-    const newstitle = new NewsTitle({
-      lastestTitle: 'Lo último',
-      mostTitle: 'Lo más leído',
-      searchTitle: 'Artículos',
-      picPath: 'https://firebasestorage.googleapis.com/v0/b/grupo-leti-fd84e.appspot.com/o/images%2Fleti-news-img.jpg?alt=media&token=a503a04f-75d1-4d97-91ed-25baa145796e'
-    })
-    newstitle.save()
-      .then(() => console.log(`newstitle added`))
       .catch(error => console.log(error))
-  })
-  .catch(error => console.log(error))
+
+
+    ////////////////////////////////////////////
+    /////////////// PRODUCTOS /////////////////
+    ///////////////////////////////////////////
+
+    const BannerProductosPage = require('../models/productosPage/bannerProductosPage.model')
+    const EresMedicoProductos = require('../models/productosPage/eresMedicoProductos.model')
+    const BannerProducstList = require('../models/productosPage/bannerProductsList.model')
+
+    Promise.all([
+      BannerProductos.deleteMany(),
+      EresMedicoProductos.deleteMany(),
+      BannerProductosPage.deleteMany(),
+      BannerProducstList.deleteMany(),
+    ])
+      .then(() => {
+        console.log('all databases cleaned')
+        const bannerProductosPage = new BannerProductosPage({
+          title: 'Trabajamos cada día para poner nuestros conocimientos y habilidades al servicio de las personas:',
+          description: 'Desarrollando y poniendo a su disposición productos que abarquen una amplia gama de necesidades.',
+          imgURL: 'https://firebasestorage.googleapis.com/v0/b/grupo-leti-fd84e.appspot.com/o/images%2Fproducts-banner.png?alt=media&token=599872b3-8daa-4a6e-b652-7f9190d42a7c',
+          button1Title: 'Conoce todos los productos',
+          button1Link: '/listado-de-productos',
+          button2Title: 'Descubre nuestras áreas terapéuticas',
+          button2Link: '/areas-tearapeuticas',
+        })
+        bannerProductosPage.save()
+          .then(() => console.log(`bannerProductosPage created`))
+          .catch(error => console.log(error))
+        const eresMedicoProductos = new EresMedicoProductos({
+          findProductsTitle: 'Buscas un medicamento en específico?<br/>¡Encuéntralo aquí!',
+          title: '¿Eres médico y quieres información especial sobre algún producto?',
+          buttonTitle: 'Escríbenos aquí',
+          imgURL: 'https://firebasestorage.googleapis.com/v0/b/grupo-leti-fd84e.appspot.com/o/images%2Fproducts-bottom-bg.jpg?alt=media&token=834bcbe8-a6fe-4e15-bd33-4e7376b9c097',
+          farmacoTitle: 'Farmacovigilancia',
+          farmacoDesc: '¿Tiene algún comentario o <br/>efecto adverso de alguno de nuestro productos?<br/>¡Su opinión es importante para nosotros!',
+          farmacoBtn: 'Infórmanos aquí'
+        })
+        eresMedicoProductos.save()
+          .then(() => console.log(`eresMedicoProductos created`))
+          .catch(error => console.log(error))
+        const bannerProductsList = new BannerProducstList({
+          title: 'Listado de productos',
+          description: 'Nuestro amplio portafolio de productos incluye muchas marcas reconocidas que forman parte de la historia del <strong>Grupo Leti.</strong> ',
+          imgURL: 'https://firebasestorage.googleapis.com/v0/b/grupo-leti-fd84e.appspot.com/o/images%2Flistado-bg.png?alt=media&token=b56b950c-b930-442c-b72e-80bf89ddf97a'
+        })
+        bannerProductsList.save()
+          .then(() => console.log(`bannerProductsList created`))
+          .catch(error => console.log(error))
+      })
+      .catch(error => console.log(error))
+
+    ////////////////////////////////////////
+
+    ////////////   USERS  //////////////////
+
+    Promise.all([
+      User.deleteMany(),
+      Vigilancia.deleteMany(),
+    ])
+      .then(() => {
+        console.log('all databases cleaned')
+        for (let i = 1; i < userN; i++) {
+          if (i < 20) {
+            const user = new User({
+              name: faker.name.findName(),
+              email: faker.internet.email(),
+              username: faker.internet.userName(),
+              avatar: faker.image.image(),
+              bio: faker.lorem.paragraph(),
+              createdAt: faker.date.past(),
+              password: 'GrupoLeti123',
+              activation: {
+                active: true
+              }
+            })
+            user.save()
+              .then(u => {
+                console.log(`user ${u.name} created`)
+                for (let j = 0; j < vigilanciaN; j++) {
+                  const vigilancia = new Vigilancia({
+                    date: faker.date.past(),
+                    effects: faker.lorem.paragraph(),
+                    lastname: faker.name.lastName(),
+                    name: faker.name.firstName(),
+                    medicine: faker.random.arrayElement(['Alivet', 'Antux', 'Letisan', 'Migren', 'Monosulpa']),
+                    prescribed: faker.random.arrayElement(['Si', 'No']),
+                    sex: faker.random.arrayElement(['F', 'M']),
+                    email: faker.internet.email()
+                  })
+                  vigilancia.save()
+                    .then(vig => {
+                      console.log(`FarmacoVigilancia added by ${vig.name}`)
+                    })
+                    .catch(error => console.log(error))
+                }
+              })
+          } else if (i >= 20 && i < 29) {
+            const user = new User({
+              name: faker.name.findName(),
+              email: faker.internet.email(),
+              username: faker.internet.userName(),
+              avatar: faker.image.image(),
+              bio: faker.lorem.paragraph(),
+              createdAt: faker.date.past(),
+              role: 'Editor',
+              password: 'Editor123',
+              activation: {
+                active: true
+              }
+            })
+            user.save()
+          } else {
+            const user = new User({
+              name: 'Grupo Leti',
+              email: 'grupoleti.dev@gmail.com',
+              username: 'grupoleti',
+              avatar: 'https://firebasestorage.googleapis.com/v0/b/grupo-leti-fd84e.appspot.com/o/images%2Fgrupo-leti.svg?alt=media&token=d088b2c4-601e-4000-94b9-656399a20271',
+              bio: 'Administrador del sitio Grupo Leti',
+              createdAt: new Date(),
+              role: 'Admin',
+              password: 'Admin123',
+              activation: {
+                active: true
+              }
+            })
+            user.save()
+              .then(() => console.log(`admin added`))
+              .catch(error => console.log(error))
+          }
+        }
+      })
+      .catch(error => console.log(error))
+
+    /////////////////NEWS////////////////////
+
+    const Blog = require('../models/noticias/news.model')
+    const NewsTitle = require('../models/noticias/newsTitle.model')
+    const Tags = require('../models/noticias/tags.model')
+    const NewsTag = require('../data/newsTags')
+
+    Promise.all([
+      Blog.deleteMany(),
+      NewsTitle.deleteMany(),
+      Tags.deleteMany()
+    ])
+      .then(() => {
+        console.log('blog cleaned')
+        NewsTag.forEach(el => {
+          const newTag = new Tags({
+            tag: el.tag,
+          })
+          newTag.save()
+            .then(() => console.log(`tag created`))
+            .catch(error => console.log(error))
+        })
+        for (let i = 1; i < 20; i++) {
+          const blog = new Blog({
+            title: faker.lorem.sentence(),
+            subTitle: faker.lorem.sentence(),
+            urlToPic: `https://picsum.photos/id/${i + 1000}/1440/800`,
+            content: faker.lorem.paragraphs(40),
+            outstanding: i === 6 ? true : false,
+            publishDate: faker.date.past(),
+            tag: faker.random.arrayElement(["Grupo Leti", "Educación", "Innovación", "Nuestra gente", "Investigación", "Salud y bienestar"]),
+          })
+          blog.save()
+            .then(() => console.log(`new added`))
+            .catch(error => console.log(error))
+        }
+        const newstitle = new NewsTitle({
+          lastestTitle: 'Lo último',
+          mostTitle: 'Lo más leído',
+          searchTitle: 'Artículos',
+          picPath: 'https://firebasestorage.googleapis.com/v0/b/grupo-leti-fd84e.appspot.com/o/images%2Fleti-news-img.jpg?alt=media&token=a503a04f-75d1-4d97-91ed-25baa145796e'
+        })
+        newstitle.save()
+          .then(() => console.log(`newstitle added`))
+          .catch(error => console.log(error))
+      })
+      .catch(error => console.log(error))
 
 
   ////////////////////////////////////////

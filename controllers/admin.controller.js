@@ -43,7 +43,7 @@ const InfoCardsOurPeople = require('../models/nuestraGente/tresEquiposNuestraGen
 const EquipoOurPeople = require('../models/nuestraGente/equipoNuestraGente.model')
 const BottomOurPeople = require('../models/nuestraGente/bottomCtaNuestraGente.model')
 const Carreras = require('../models/nuestraGente/carrerasNuestraGente.model')
-
+const BannerTeamsOurPeople = require('../models/nuestraGente/bannerEquiposNuestraGente.model')
 
 module.exports.getFarmVigData = (req, res, next) => {
   const userRole = req.session.user.role
@@ -910,6 +910,26 @@ module.exports.updateInfoCardsOurPeople = (req, res, next) => {
   }
 }
 
+module.exports.deleteOurPeopleInfoCard = (req, res, next) => {
+  const userRole = req.session.user.role
+  const id = req.params.id
+
+  if (userRole === 'Admin') {
+    InfoCardsOurPeople.findByIdAndDelete(id)
+      .then(() => {
+        InfoCardsOurPeople.find()
+          .then((data) => {
+            res.status(201).json(data)
+          })
+          .catch(next)
+      })
+      .catch(next)
+  } else {
+    req.session.destroy()
+    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+  }
+}
+
 module.exports.getEquipoOurPeople = (req, res, next) => {
   EquipoOurPeople.find()
     .then((data) => {
@@ -928,6 +948,51 @@ module.exports.updateEquipoOurPeople = (req, res, next) => {
       .then((data) => {
         res.status(201).json(data[0])
       })
+      .catch(next)
+  } else {
+    req.session.destroy()
+    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+  }
+}
+
+module.exports.getBannerTeams = (req, res, next) => {
+  BannerTeamsOurPeople.find()
+    .then((data) => {
+      res.status(201).json(data)
+    })
+    .catch(next)
+}
+
+module.exports.updateBannerTeams = (req, res, next) => {
+  const userRole = req.session.user.role
+  const {imgURL, mainTitle, id} = req.body
+
+  if (userRole === 'Admin') {
+    BannerTeamsOurPeople.findByIdAndUpdate(id, req.body, {new: true})
+      .then((data) => {
+        res.status(201).json(data)
+      })
+      .catch(next)
+  } else {
+    req.session.destroy()
+    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+  }
+}
+
+module.exports.createTeam = (req, res, next) => {
+  const userRole = req.session.user.role
+  const {title, info} = req.body
+
+  if (userRole === 'Admin') {
+    InfoCardsOurPeople.create({title, info})
+      .then(() => {
+        InfoCardsOurPeople.find()
+          .then((data) => {
+            res.status(201).json(data)
+          })
+          .catch(next)
+      }
+      )
       .catch(next)
   } else {
     req.session.destroy()
