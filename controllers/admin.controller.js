@@ -942,11 +942,10 @@ module.exports.updateEquipoOurPeople = (req, res, next) => {
   const userRole = req.session.user.role
   const {title, description, person, imgURL, buttonTitle, buttonLink, id} = req.body
 
-
   if (userRole === 'Admin') {
     EquipoOurPeople.findByIdAndUpdate(id, req.body, {new: true})
       .then((data) => {
-        res.status(201).json(data[0])
+        res.status(201).json(data)
       })
       .catch(next)
   } else {
