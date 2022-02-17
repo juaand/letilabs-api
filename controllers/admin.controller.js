@@ -1164,13 +1164,36 @@ module.exports.getTimeLinePurpose = (req, res, next) => {
 /// pendiente add ///
 module.exports.addTimeLinePurposeData = (req, res, next) => {
   const userRole = req.session.user.role
-  const {description, imgURL, id} = req.body
-
+  const {desc, imgURL} = req.body
 
   if (userRole === 'Admin') {
-    TimeLinePurpose.findByIdAndUpdate(id, req.body, {new: true})
-      .then((data) => {
-        res.status(201).json(data)
+    TimeLinePurpose.create(req.body)
+      .then(() => {
+        TimeLinePurpose.find()
+          .then(data => {
+            res.status(201).json(data)
+          })
+          .catch(next)
+      })
+      .catch(next)
+  } else {
+    req.session.destroy()
+    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+  }
+}
+
+module.exports.deleteTimeLinePurposeData = (req, res, next) => {
+  const userRole = req.session.user.role
+  const id = req.params.id
+
+  if (userRole === 'Admin') {
+    TimeLinePurpose.findByIdAndDelete(id)
+      .then(() => {
+        TimeLinePurpose.find()
+          .then(data => {
+            res.status(201).json(data)
+          })
+          .catch(next)
       })
       .catch(next)
   } else {
