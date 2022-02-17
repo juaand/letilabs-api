@@ -257,12 +257,12 @@ module.exports.updateTimeLineAboutUs = (req, res, next) => {
     TimeLine.findByIdAndUpdate(id, req.body, {new: true})
       .then(() => {
         TimeLine.find()
-        .then((data) => {
-      res.status(201).json(data)
+          .then((data) => {
+            res.status(201).json(data)
+          })
+          .catch(next)
       })
       .catch(next)
-    })
-    .catch(next)
   } else {
     req.session.destroy()
     res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
@@ -352,12 +352,12 @@ module.exports.updateGalleryAboutUs = (req, res, next) => {
     Gallery.findByIdAndUpdate(id, req.body, {new: true})
       .then(() => {
         Gallery.find()
-        .then((data) => {
-      res.status(201).json(data)
+          .then((data) => {
+            res.status(201).json(data)
+          })
+          .catch(next)
       })
       .catch(next)
-    })
-    .catch(next)
   } else {
     req.session.destroy()
     res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
@@ -1171,6 +1171,26 @@ module.exports.addTimeLinePurposeData = (req, res, next) => {
     TimeLinePurpose.findByIdAndUpdate(id, req.body, {new: true})
       .then((data) => {
         res.status(201).json(data)
+      })
+      .catch(next)
+  } else {
+    req.session.destroy()
+    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+  }
+}
+
+module.exports.updateTimeLinePurpose = (req, res, next) => {
+  const userRole = req.session.user.role
+  const {desc, imgURL, id} = req.body
+
+  if (userRole === 'Admin') {
+    TimeLinePurpose.findByIdAndUpdate(id, req.body, {new: true})
+      .then(() => {
+        TimeLinePurpose.find()
+          .then((data) => {
+            res.status(201).json(data)
+          })
+          .catch(next)
       })
       .catch(next)
   } else {

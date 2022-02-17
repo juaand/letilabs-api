@@ -119,6 +119,7 @@ router.get('/purposevideo', adminController.getVideoPurpose)
 router.patch('/updatepurposevideo', routeGuard.isAuthenticated, adminController.updateVideoPurpose)
 router.get('/timelinepurpose', adminController.getTimeLinePurpose)
 router.patch('/addtimelinepurpose', routeGuard.isAuthenticated, adminController.addTimeLinePurposeData)
+router.patch('/updateTimeLinePurpose', routeGuard.isAuthenticated, adminController.updateTimeLinePurpose)
 router.get('/titlefarmdatapurpose', adminController.getTitleFarmPurpose)
 router.patch('/updatetitlefarmdatapurpose', routeGuard.isAuthenticated, adminController.updateTitleFarmDataPurpose)
 
