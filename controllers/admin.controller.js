@@ -1136,7 +1136,9 @@ module.exports.getVideoPurpose = (req, res, next) => {
 
 module.exports.updateVideoPurpose = (req, res, next) => {
   const userRole = req.session.user.role
-  const {desc, url, logo, id} = req.body
+  const {videoURL, id} = req.body
+
+  console.log(req.body)
 
 
   if (userRole === 'Admin') {
