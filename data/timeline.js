@@ -6,7 +6,7 @@ module.exports = [
   },
   {
     year: 1955,
-    imgURL: 'marcando-pauta.png',
+    imgURL: 'https://firebasestorage.googleapis.com/v0/b/grupo-leti-fd84e.appspot.com/o/images%2Fmarcando-pauta.png?alt=media&token=3d4b2d3b-fba5-4e1b-8cef-57350eaf650d',
     desc: 'El Dr. José María Massa Servitja y Don Joaquín Massa Servitja, quiénes con tecnología europea dan inmunológicas.'
   },
   {
