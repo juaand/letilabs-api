@@ -399,6 +399,28 @@ module.exports.deleteLogoAlliance = (req, res, next) => {
   }
 }
 
+module.exports.createAlly = (req, res, next) => {
+  const userRole = req.session.user.role
+  const {title, picPath} = req.body
+
+  console.log(picPath)
+
+  if (userRole === 'Admin') {
+    AllianceLogos.create(req.body)
+      .then(() => {
+        AllianceLogos.find()
+          .then(response => {
+            res.status(201).json(response)
+          })
+          .catch(next)
+      })
+      .catch(next)
+  } else {
+    req.session.destroy()
+    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+  }
+}
+
 module.exports.updateLogosAllianceTitle = (req, res, next) => {
   const userRole = req.session.user.role
   const {title} = req.body
