@@ -453,7 +453,6 @@ module.exports.updateFormAlliance = (req, res, next) => {
   const userRole = req.session.user.role
   const {title, phone, desc, email, id} = req.body
 
-
   if (userRole === 'Admin') {
     FormAlliances.findByIdAndUpdate(id, req.body, {new: true})
       .then((data) => {
