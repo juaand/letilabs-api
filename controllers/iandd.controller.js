@@ -34,6 +34,7 @@ module.exports.updateBannerID = (req, res, next) => {
   if (userRole === 'Admin') {
     BannerID.findByIdAndUpdate(id, req.body, {new: true})
       .then((data) => {
+        console.log(data)
         res.status(201).json(data)
       })
       .catch(next)
@@ -357,7 +358,6 @@ module.exports.getAlliancesBanner = (req, res, next) => {
 module.exports.updateAlliancesBanner = (req, res, next) => {
   const userRole = req.session.user.role
   const {title, description, imgURL, id} = req.body
-
 
   if (userRole === 'Admin') {
     BannerAlliances.findByIdAndUpdate(id, req.body, {new: true})
