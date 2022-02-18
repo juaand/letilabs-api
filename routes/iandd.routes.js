@@ -33,6 +33,7 @@ router.get('/updatebottomtech', ianddController.updateBottomTech)
 //I+D manufacture routes
 router.get('/bannermanufacture',  ianddController.getManufactureBanner)
 router.patch('/updatebannermanufacture', routeGuard.isAuthenticated, ianddController.updateManufactureBanner)
+router.post('/updatetitleproccess', routeGuard.isAuthenticated, ianddController.updateTitleProccess)
 router.get('/carrouselmanufacture', ianddController.getCarrouselManufacture)
 router.get('/updatecarrouselmanufacture', ianddController.updateCarrouselManufacture)
 router.get('/certificatesmanufacture', ianddController.getCertificatesManufacture)

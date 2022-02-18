@@ -271,6 +271,26 @@ module.exports.updateManufactureBanner = (req, res, next) => {
   }
 }
 
+module.exports.updateTitleProccess = (req, res, next) => {
+  const userRole = req.session.user.role
+  const {title} = req.body
+
+  if (userRole === 'Admin') {
+    CarouselManufacture.find()
+      .then(response => {
+        response.forEach(element => {
+          element.title = title
+          element.save()
+        })
+        res.status(201).json(response)
+      })
+      .catch(next)
+  } else {
+    req.session.destroy()
+    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+  }
+}
+
 module.exports.getCarrouselManufacture = (req, res, next) => {
   CarouselManufacture.find()
     .then(response => {
