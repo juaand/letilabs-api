@@ -42,7 +42,7 @@ router.get('/certificatesmanufacture', ianddController.getCertificatesManufactur
 router.post('/updatecertificatesmanufacture', routeGuard.isAuthenticated, ianddController.updateCertificatesManufacture)
 router.post('/createcertificatesmanufacture', routeGuard.isAuthenticated, ianddController.createCertificatesManufacture)
 router.get('/bottommanufacture', ianddController.getBottomManufacture)
-router.get('/updatebottommanufacture', ianddController.updateBottomManufacture)
+router.patch('/updatebottommanufacture', routeGuard.isAuthenticated, ianddController.updateBottomManufacture)
 
 //I+D alliances routes
 router.get('/banneralliances',  ianddController.getAlliancesBanner)
