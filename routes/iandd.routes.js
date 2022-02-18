@@ -50,4 +50,4 @@ router.get('/alliancelogos/:id/delete', routeGuard.isAuthenticated, ianddControl
 router.get('/allianceform', ianddController.getFormAlliance)
 router.post('/updateallianceform', routeGuard.isAuthenticated, ianddController.updateFormAlliance)
 router.get('/bottomalliances', ianddController.getBottomAlliances)
-router.get('/updatebottomalliances', ianddController.updateBottomAlliances)
+router.patch('/updatebottomalliances', routeGuard.isAuthenticated, ianddController.updateBottomAlliances)

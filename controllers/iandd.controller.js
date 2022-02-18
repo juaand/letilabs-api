@@ -475,13 +475,17 @@ module.exports.getBottomAlliances = (req, res, next) => {
 
 module.exports.updateBottomAlliances = (req, res, next) => {
   const userRole = req.session.user.role
-  const {title, img, url, btn, id} = req.body
+  const {title, img, buttonLink, buttonTitle, id} = req.body
 
 
   if (userRole === 'Admin') {
     BottomAlliances.findByIdAndUpdate(id, req.body, {new: true})
-      .then((data) => {
-        res.status(201).json(data)
+      .then(() => {
+        BottomAlliances.find()
+          .then(response => {
+            res.status(201).json(response)
+          })
+          .catch(next)
       })
       .catch(next)
   } else {
