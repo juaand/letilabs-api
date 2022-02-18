@@ -10,7 +10,7 @@ module.exports = router
 
 //I+D routes
 router.get('/bannerdataid', ianddController.getBannerID)
-router.get('/updatebannerdataid', ianddController.updateBannerID)
+router.patch('/updatebannerdataid', routeGuard.isAuthenticated, ianddController.updateBannerID)
 router.get('/idinfocards', ianddController.getInfoCards)
 router.get('/updateidinfocards', ianddController.updateInfoCards)
 router.get('/idgoals', ianddController.getGoals)
@@ -42,10 +42,12 @@ router.get('/updatebottommanufacture', ianddController.updateBottomManufacture)
 
 //I+D alliances routes
 router.get('/banneralliances',  ianddController.getAlliancesBanner)
-router.get('/updatebanneralliances',  ianddController.updateAlliancesBanner)
+router.patch('/updatebanneralliances', routeGuard.isAuthenticated, ianddController.updateAlliancesBanner)
 router.get('/alliancelogos', ianddController.getLogosAlliance)
-router.get('/updatealliancelogos', ianddController.updateLogosAlliance)
+router.post('/createalliance', routeGuard.isAuthenticated, ianddController.createAlly)
+router.post('/updatealliancelogostitle', routeGuard.isAuthenticated, ianddController.updateLogosAllianceTitle)
+router.get('/alliancelogos/:id/delete', routeGuard.isAuthenticated, ianddController.deleteLogoAlliance)
 router.get('/allianceform', ianddController.getFormAlliance)
-router.get('/updateallianceform', ianddController.updateFormAlliance)
+router.post('/updateallianceform', routeGuard.isAuthenticated, ianddController.updateFormAlliance)
 router.get('/bottomalliances', ianddController.getBottomAlliances)
-router.get('/updatebottomalliances', ianddController.updateBottomAlliances)
+router.patch('/updatebottomalliances', routeGuard.isAuthenticated, ianddController.updateBottomAlliances)

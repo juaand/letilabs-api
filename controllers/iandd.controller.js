@@ -34,6 +34,7 @@ module.exports.updateBannerID = (req, res, next) => {
   if (userRole === 'Admin') {
     BannerID.findByIdAndUpdate(id, req.body, {new: true})
       .then((data) => {
+        console.log(data)
         res.status(201).json(data)
       })
       .catch(next)
@@ -358,7 +359,6 @@ module.exports.updateAlliancesBanner = (req, res, next) => {
   const userRole = req.session.user.role
   const {title, description, imgURL, id} = req.body
 
-
   if (userRole === 'Admin') {
     BannerAlliances.findByIdAndUpdate(id, req.body, {new: true})
       .then((data) => {
@@ -379,15 +379,18 @@ module.exports.getLogosAlliance = (req, res, next) => {
     .catch(next)
 }
 
-module.exports.updateLogosAlliance = (req, res, next) => {
+module.exports.deleteLogoAlliance = (req, res, next) => {
   const userRole = req.session.user.role
-  const {picPath, title, id} = req.body
-
+  const id = req.params.id
 
   if (userRole === 'Admin') {
-    AllianceLogos.findByIdAndUpdate(id, req.body, {new: true})
-      .then((data) => {
-        res.status(201).json(data)
+    AllianceLogos.findByIdAndDelete(id)
+      .then(() => {
+        AllianceLogos.find()
+          .then(response => {
+            res.status(201).json(response)
+          })
+          .catch(next)
       })
       .catch(next)
   } else {
@@ -396,7 +399,49 @@ module.exports.updateLogosAlliance = (req, res, next) => {
   }
 }
 
-module.exports.getFormAlliance = (req, res, next) => { 
+module.exports.createAlly = (req, res, next) => {
+  const userRole = req.session.user.role
+  const {title, picPath} = req.body
+
+  console.log(picPath)
+
+  if (userRole === 'Admin') {
+    AllianceLogos.create(req.body)
+      .then(() => {
+        AllianceLogos.find()
+          .then(response => {
+            res.status(201).json(response)
+          })
+          .catch(next)
+      })
+      .catch(next)
+  } else {
+    req.session.destroy()
+    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+  }
+}
+
+module.exports.updateLogosAllianceTitle = (req, res, next) => {
+  const userRole = req.session.user.role
+  const {title} = req.body
+
+  if (userRole === 'Admin') {
+    AllianceLogos.find()
+      .then(response => {
+        response.forEach(element => {
+          element.title = title
+          element.save()
+        })
+        res.status(201).json(response)
+      })
+      .catch(next)
+  } else {
+    req.session.destroy()
+    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+  }
+}
+
+module.exports.getFormAlliance = (req, res, next) => {
   FormAlliances.find()
     .then(response => {
       res.status(201).json(response)
@@ -407,7 +452,6 @@ module.exports.getFormAlliance = (req, res, next) => {
 module.exports.updateFormAlliance = (req, res, next) => {
   const userRole = req.session.user.role
   const {title, phone, desc, email, id} = req.body
-
 
   if (userRole === 'Admin') {
     FormAlliances.findByIdAndUpdate(id, req.body, {new: true})
@@ -431,13 +475,17 @@ module.exports.getBottomAlliances = (req, res, next) => {
 
 module.exports.updateBottomAlliances = (req, res, next) => {
   const userRole = req.session.user.role
-  const {title, img, url, btn, id} = req.body
+  const {title, img, buttonLink, buttonTitle, id} = req.body
 
 
   if (userRole === 'Admin') {
     BottomAlliances.findByIdAndUpdate(id, req.body, {new: true})
-      .then((data) => {
-        res.status(201).json(data)
+      .then(() => {
+        BottomAlliances.find()
+          .then(response => {
+            res.status(201).json(response)
+          })
+          .catch(next)
       })
       .catch(next)
   } else {
