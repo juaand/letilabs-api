@@ -37,6 +37,7 @@ router.post('/updatetitleproccess', routeGuard.isAuthenticated, ianddController.
 router.get('/carrouselmanufacture', ianddController.getCarrouselManufacture)
 router.patch('/updatecarrouselmanufacture', routeGuard.isAuthenticated, ianddController.updateCarrouselManufacture)
 router.get('/deleteproccess/:id', routeGuard.isAuthenticated, ianddController.deleteProccess)
+router.get('/deletecertificate/:id', routeGuard.isAuthenticated, ianddController.deleteCertificate)
 router.get('/certificatesmanufacture', ianddController.getCertificatesManufacture)
 router.get('/updatecertificatesmanufacture', ianddController.updateCertificatesManufacture)
 router.get('/bottommanufacture', ianddController.getBottomManufacture)
