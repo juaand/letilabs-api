@@ -271,6 +271,26 @@ module.exports.updateManufactureBanner = (req, res, next) => {
   }
 }
 
+module.exports.updateTitleProccess = (req, res, next) => {
+  const userRole = req.session.user.role
+  const {title} = req.body
+
+  if (userRole === 'Admin') {
+    CarouselManufacture.find()
+      .then(response => {
+        response.forEach(element => {
+          element.title = title
+          element.save()
+        })
+        res.status(201).json(response)
+      })
+      .catch(next)
+  } else {
+    req.session.destroy()
+    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+  }
+}
+
 module.exports.getCarrouselManufacture = (req, res, next) => {
   CarouselManufacture.find()
     .then(response => {
@@ -286,8 +306,52 @@ module.exports.updateCarrouselManufacture = (req, res, next) => {
 
   if (userRole === 'Admin') {
     CarouselManufacture.findByIdAndUpdate(id, req.body, {new: true})
-      .then((data) => {
-        res.status(201).json(data)
+      .then(() => {
+        CarouselManufacture.find()
+          .then(response => {
+            res.status(201).json(response)
+          })
+          .catch(next)
+      })
+      .catch(next)
+  } else {
+    req.session.destroy()
+    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+  }
+}
+
+module.exports.deleteProccess = (req, res, next) => {
+  const userRole = req.session.user.role
+  const id = req.params.id
+
+  if (userRole === 'Admin') {
+    CarouselManufacture.findByIdAndDelete(id)
+      .then(() => {
+        CarouselManufacture.find()
+          .then(data => {
+            res.status(201).json(data)
+          })
+          .catch(next)
+      })
+      .catch(next)
+  } else {
+    req.session.destroy()
+    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+  }
+}
+
+module.exports.deleteCertificate = (req, res, next) => {
+  const userRole = req.session.user.role
+  const id = req.params.id
+
+  if (userRole === 'Admin') {
+    CertificateManufacture.findByIdAndDelete(id)
+      .then(() => {
+        CertificateManufacture.find()
+          .then(data => {
+            res.status(201).json(data)
+          })
+          .catch(next)
       })
       .catch(next)
   } else {
@@ -306,13 +370,37 @@ module.exports.getCertificatesManufacture = (req, res, next) => {
 
 module.exports.updateCertificatesManufacture = (req, res, next) => {
   const userRole = req.session.user.role
-  const {title, desc, imgURL, id} = req.body
-
+  const {title, desc} = req.body
 
   if (userRole === 'Admin') {
-    CertificateManufacture.findByIdAndUpdate(id, req.body, {new: true})
-      .then((data) => {
-        res.status(201).json(data)
+    CertificateManufacture.find()
+      .then(response => {
+        response.forEach(element => {
+          element.title = title
+          element.desc = desc
+          element.save()
+        })
+        res.status(201).json(response)
+      })
+      .catch(next)
+  } else {
+    req.session.destroy()
+    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+  }
+}
+
+module.exports.createCertificatesManufacture = (req, res, next) => {
+  const userRole = req.session.user.role
+  const {title, desc, imgURL} = req.body
+
+  if (userRole === 'Admin') {
+    CertificateManufacture.create(req.body)
+      .then(() => {
+        CertificateManufacture.find()
+          .then(response => {
+            res.status(201).json(response)
+          })
+          .catch(next)
       })
       .catch(next)
   } else {
@@ -331,13 +419,16 @@ module.exports.getBottomManufacture = (req, res, next) => {
 
 module.exports.updateBottomManufacture = (req, res, next) => {
   const userRole = req.session.user.role
-  const {title, img, url, btn, id} = req.body
+  const {title, img, buttonLink, buttonTitle, id} = req.body
 
 
   if (userRole === 'Admin') {
     BottomManufacture.findByIdAndUpdate(id, req.body, {new: true})
-      .then((data) => {
-        res.status(201).json(data)
+      .then(() => {
+        BottomManufacture.find()
+          .then(response => {
+            res.status(201).json(response)
+          })
       })
       .catch(next)
   } else {
