@@ -164,6 +164,27 @@ module.exports.getPortfolioInicio = (req, res, next) => {
     .catch(next)
 }
 
+module.exports.updatePortfolioInicio = (req, res, next) => {
+  const userRole = req.session.user.role
+  const {title, description, id} = req.body
+
+
+  if (userRole === 'Admin') {
+    PortfolioInicio.findByIdAndUpdate(id, req.body, {new: true})
+      .then(() => {
+        PortfolioInicio.find()
+          .then((data) => {
+            res.status(201).json(data)
+          })
+          .catch(next)
+      })
+      .catch(next)
+  } else {
+    req.session.destroy()
+    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+  }
+}
+
 module.exports.getVadevecumData = (req, res, next) => {
   Vadevecum.find()
     .sort({name: 1})
@@ -404,13 +425,15 @@ module.exports.getOurCompaniesOC = (req, res, next) => {
 
 module.exports.updateOurCompaniesOC = (req, res, next) => {
   const userRole = req.session.user.role
-  const {desc, url, logo, id} = req.body
-
+  const {name, logo, info, url, id} = req.body
 
   if (userRole === 'Admin') {
     OurCompaniesOC.findByIdAndUpdate(id, req.body, {new: true})
-      .then((data) => {
-        res.status(201).json(data)
+      .then(() => {
+        OurCompaniesOC.find()
+        .then((data) => {
+          res.status(201).json(data)
+        })
       })
       .catch(next)
   } else {
@@ -429,13 +452,13 @@ module.exports.getBannerProductsOC = (req, res, next) => {
 
 module.exports.updateBannerProductsOC = (req, res, next) => {
   const userRole = req.session.user.role
-  const {desc, url, logo, id} = req.body
+  const {description, description2, imgURL, img2URL, img3URL, id} = req.body
 
 
   if (userRole === 'Admin') {
     ProductsBannerOC.findByIdAndUpdate(id, req.body, {new: true})
       .then((data) => {
-        res.status(201).json(data[0])
+        res.status(201).json(data)
       })
       .catch(next)
   } else {
@@ -481,7 +504,6 @@ module.exports.updateCareOC = (req, res, next) => {
   const userRole = req.session.user.role
   const {description, imgURL, id} = req.body
 
-
   if (userRole === 'Admin') {
     CareOC.findByIdAndUpdate(id, req.body, {new: true})
       .then((data) => {
@@ -512,13 +534,16 @@ module.exports.getBottomOC = (req, res, next) => {
 
 module.exports.updateBottomOC = (req, res, next) => {
   const userRole = req.session.user.role
-  const {description, imgURL, id} = req.body
-
+  const {title, url, button, img, id} = req.body
+  console.log(req.body)
 
   if (userRole === 'Admin') {
     BottomOC.findByIdAndUpdate(id, req.body, {new: true})
-      .then((data) => {
-        res.status(201).json(data)
+      .then(() => {
+        BottomOC.find()
+        .then((data) => {
+          res.status(201).json(data)
+        })
       })
       .catch(next)
   } else {
