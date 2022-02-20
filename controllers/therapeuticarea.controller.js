@@ -16,6 +16,7 @@ module.exports.getBannerTA = (req, res, next) => {
 module.exports.updateBannerTA = (req, res, next) => {
   const userRole = req.session.user.role
   const {description, imgURL, title, id} = req.body
+  console.log(imgURL)
 
 
   if (userRole === 'Admin') {
@@ -40,13 +41,17 @@ module.exports.getCarrouselTA = (req, res, next) => {
 
 module.exports.updateCarrouselTA = (req, res, next) => {
   const userRole = req.session.user.role
-  const {desc, imgURL, title, mainTitle, id} = req.body
+  const {desc, imgPath, title, mainTitle, id} = req.body
 
 
   if (userRole === 'Admin') {
     CarrouselTA.findByIdAndUpdate(id, req.body, {new: true})
-      .then((data) => {
-        res.status(201).json(data)
+      .then(() => {
+        CarrouselTA.find()
+        .then((data) => {
+          res.status(201).json(data)
+        })
+        .catch(next)
       })
       .catch(next)
   } else {
@@ -70,8 +75,12 @@ module.exports.updateBottomTA = (req, res, next) => {
 
   if (userRole === 'Admin') {
     BottomTA.findByIdAndUpdate(id, req.body, {new: true})
-      .then((data) => {
-        res.status(201).json(data)
+      .then(() => {
+        BottomTA.find()
+          .then((data) => {
+            res.status(201).json(data)
+          })
+          .catch(next)
       })
       .catch(next)
   } else {

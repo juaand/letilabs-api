@@ -299,9 +299,9 @@ Promise.all([
     const bannerProductos = new BannerProductos({
       description: 'A través de esta relación de sinergia, es que logramos nuestros objetivos',
       description2: 'Ofrecer gran variedad y efectivos productos',
-      imgURL: 'ulgarin.png',
-      img2URL: 'azitomicina.png',
-      img3URL: 'diklason.png',
+      imgURL: 'https://firebasestorage.googleapis.com/v0/b/grupo-leti-fd84e.appspot.com/o/images%2Fulgarin.png?alt=media&token=c4b6d1e2-f951-4772-8ffc-da8fcb2a2f8d',
+      img2URL: 'https://firebasestorage.googleapis.com/v0/b/grupo-leti-fd84e.appspot.com/o/images%2Fazitomicina.png?alt=media&token=572a9f03-ab2f-4c0e-ae8f-035aa2652ed1',
+      img3URL: 'https://firebasestorage.googleapis.com/v0/b/grupo-leti-fd84e.appspot.com/o/images%2Fdiklason.png?alt=media&token=c4b52a8e-e43a-4693-a5da-2fc2a044b69f',
     })
     bannerProductos.save()
       .then(() => console.log(`BannerProductos created`))
