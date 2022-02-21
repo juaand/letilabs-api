@@ -34,7 +34,6 @@ module.exports.updateBannerID = (req, res, next) => {
   if (userRole === 'Admin') {
     BannerID.findByIdAndUpdate(id, req.body, {new: true})
       .then((data) => {
-        console.log(data)
         res.status(201).json(data)
       })
       .catch(next)
@@ -343,6 +342,26 @@ module.exports.getCarrouselManufacture = (req, res, next) => {
       res.status(201).json(response)
     })
     .catch(next)
+}
+
+module.exports.createProccess = (req, res, next) => {
+  const userRole = req.session.user.role
+  const {title, info} = req.body
+
+  if (userRole === 'Admin') {
+    CarouselManufacture.create(req.body)
+      .then(() => {
+        CarouselManufacture.find()
+          .then((data) => {
+            res.status(201).json(data)
+          })
+          .catch(next)
+      })
+      .catch(next)
+  } else {
+    req.session.destroy()
+    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+  }
 }
 
 module.exports.updateCarrouselManufacture = (req, res, next) => {
