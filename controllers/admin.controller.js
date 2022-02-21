@@ -591,13 +591,17 @@ module.exports.getOurCompaniesInfoCardsLeti = (req, res, next) => {
 
 module.exports.updateOurCompaniesInfoCardsLeti = (req, res, next) => {
   const userRole = req.session.user.role
-  const {desc, url, logo, id} = req.body
+  const {title, info, id} = req.body
 
 
   if (userRole === 'Admin') {
     OurCompaniesOCInfoCardsLeti.findByIdAndUpdate(id, req.body, {new: true})
-      .then((data) => {
-        res.status(201).json(data)
+      .then(() => {
+        OurCompaniesOCInfoCardsLeti.find()
+        .then((data) => {
+          res.status(201).json(data)
+        })
+        .catch(next)
       })
       .catch(next)
   } else {
@@ -616,13 +620,13 @@ module.exports.getEquipoLetiOC = (req, res, next) => {
 
 module.exports.updateEquipoLetiOC = (req, res, next) => {
   const userRole = req.session.user.role
-  const {desc, url, logo, id} = req.body
+  const {description, person, imgURL, buttonTitle, buttonLink, id} = req.body
 
 
   if (userRole === 'Admin') {
     EquipoLetiPageOC.findByIdAndUpdate(id, req.body, {new: true})
       .then((data) => {
-        res.status(201).json(data[0])
+        res.status(201).json(data)
       })
       .catch(next)
   } else {
@@ -639,18 +643,44 @@ module.exports.getTimeLineLeti = (req, res, next) => {
     .catch(next)
 }
 
-/// pendiente add ///
-module.exports.addTimeLineLetiData = (req, res, next) => {
+module.exports.updateTimeLineLetiData = (req, res, next) => {
   const userRole = req.session.user.role
-  const {description, imgURL, id} = req.body
+  const {desc, url, imgURL, button, id} = req.body
 
 
   if (userRole === 'Admin') {
     TimeLineLetiOC.findByIdAndUpdate(id, req.body, {new: true})
-      .then((data) => {
-        res.status(201).json(data)
+      .then(() => {
+        TimeLineLetiOC.find()
+        .then((data) => {
+          res.status(201).json(data)
+        })
+        .catch(next)
       })
       .catch(next)
+  } else {
+    req.session.destroy()
+    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+  }
+}
+
+/// pendiente add ///
+module.exports.addTimeLineLetiData = (req, res, next) => {
+  const userRole = req.session.user.role
+  const {desc, url, imgURL, button} = req.body
+
+
+  if (userRole === 'Admin') {
+    TimeLineLetiOC.create({desc, url, imgURL, button})
+    .then(() => {
+      TimeLineLetiOC.find()
+        .then((data) => {
+          res.status(201).json(data)
+        })
+        .catch(next)
+    }
+    )
+    .catch(next)
   } else {
     req.session.destroy()
     res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
@@ -852,13 +882,13 @@ module.exports.getEquipoGenvenOC = (req, res, next) => {
 
 module.exports.updateEquipoGenvenOC = (req, res, next) => {
   const userRole = req.session.user.role
-  const {desc, url, logo, id} = req.body
+  const {description, person, imgURL, buttonTitle, buttonLink, id} = req.body
 
 
   if (userRole === 'Admin') {
     EquipoGenvenPageOC.findByIdAndUpdate(id, req.body, {new: true})
       .then((data) => {
-        res.status(201).json(data[0])
+        res.status(201).json(data)
       })
       .catch(next)
   } else {
@@ -895,14 +925,32 @@ module.exports.addTimeLineGenvenData = (req, res, next) => {
 module.exports.getProductosGenven = (req, res, next) => {
   ProductosGenvenOC.find()
     .then((data) => {
-      res.status(201).json(data)
+      res.status(201).json(data[0])
     })
     .catch(next)
 }
+
+module.exports.updateProductosGenvenData = (req, res, next) => {
+  const userRole = req.session.user.role
+  const {description, buttonTitle, buttonLink, img1URL, img2URL, img3URL, id} = req.body
+
+
+  if (userRole === 'Admin') {
+    ProductosGenvenOC.findByIdAndUpdate(id, req.body, {new: true})
+      .then((data) => {
+        res.status(201).json(data)
+      })
+      .catch(next)
+  } else {
+    req.session.destroy()
+    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+  }
+}
+
 /// pendiente add ///
 module.exports.addProductosGenvenData = (req, res, next) => {
   const userRole = req.session.user.role
-  const {description, imgURL, id} = req.body
+  const {description, buttonTitle, buttonLink, img1URL, img2URL, img3URL} = req.body
 
 
   if (userRole === 'Admin') {
