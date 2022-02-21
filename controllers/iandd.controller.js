@@ -185,8 +185,50 @@ module.exports.updateTechCarrousel = (req, res, next) => {
 
   if (userRole === 'Admin') {
     CarrouselTech.findByIdAndUpdate(id, req.body, {new: true})
-      .then((data) => {
-        res.status(201).json(data)
+      .then(() => {
+        CarrouselTech.find()
+          .then((data) => {
+            res.status(201).json(data)
+          })
+          .catch(next)
+      })
+      .catch(next)
+  } else {
+    req.session.destroy()
+    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+  }
+}
+
+module.exports.updateTechCarrouselTitle = (req, res, next) => {
+  const userRole = req.session.user.role
+  const {mainTitle} = req.body
+
+  if (userRole === 'Admin') {
+    CarrouselTech.find()
+      .then(response => {
+        response.forEach(element => {
+          element.mainTitle = mainTitle
+          element.save()
+        })
+        res.status(201).json(response)
+      })
+      .catch(next)
+  } else {
+    req.session.destroy()
+    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+  }}
+
+module.exports.deleteTechCarrousel = (req, res, next) => {
+  const userRole = req.session.user.role
+
+  if (userRole === 'Admin') {
+    CarrouselTech.findByIdAndDelete(req.params.id)
+      .then(() => {
+        CarrouselTech.find()
+          .then((data) => {
+            res.status(201).json(data)
+          })
+          .catch(next)
       })
       .catch(next)
   } else {
@@ -230,13 +272,17 @@ module.exports.getBottomTech = (req, res, next) => {
 
 module.exports.updateBottomTech = (req, res, next) => {
   const userRole = req.session.user.role
-  const {title, img, url, btn, id} = req.body
+  const {title, img, buttonLink, buttonTitle, id} = req.body
 
 
   if (userRole === 'Admin') {
     BottomTech.findByIdAndUpdate(id, req.body, {new: true})
-      .then((data) => {
-        res.status(201).json(data)
+      .then(() => {
+        BottomTech.find()
+          .then((data) => {
+            res.status(201).json(data)
+          })
+          .catch(next)
       })
       .catch(next)
   } else {
