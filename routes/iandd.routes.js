@@ -28,7 +28,7 @@ router.patch('/updatecarrouseltech', routeGuard.isAuthenticated, ianddController
 router.post('/updatetechcarrouseltit', routeGuard.isAuthenticated, ianddController.updateTechCarrouselTitle)
 router.get('/carrouseltech/:id/delete', routeGuard.isAuthenticated, ianddController.deleteTechCarrousel)
 router.get('/maptech', ianddController.getMapTech)
-router.get('/updatemapdatatech', ianddController.updateTechMap)
+router.patch('/updatemapdatatech', routeGuard.isAuthenticated, ianddController.updateTechMap)
 router.get('/bottomtech', ianddController.getBottomTech)
 router.get('/updatebottomtech', ianddController.updateBottomTech)
 
