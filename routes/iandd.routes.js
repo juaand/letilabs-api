@@ -20,7 +20,7 @@ router.get('/updateidbottom', ianddController.updateBottomID)
 
 //I+D tech routes
 router.get('/bannertech',  ianddController.getTechBannerID)
-router.get('/updatebannertech',  ianddController.updateTechBanner)
+router.patch('/updatebannertech',  routeGuard.isAuthenticated, ianddController.updateTechBanner)
 router.get('/videotech', ianddController.getVideoTech)
 router.get('/updatevideodatatech',  ianddController.updateTechVideo)
 router.get('/carrouseltech', ianddController.getCarrouselTech)
