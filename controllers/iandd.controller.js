@@ -199,6 +199,25 @@ module.exports.updateTechCarrousel = (req, res, next) => {
   }
 }
 
+module.exports.updateTechCarrouselTitle = (req, res, next) => {
+  const userRole = req.session.user.role
+  const {mainTitle} = req.body
+
+  if (userRole === 'Admin') {
+    CarrouselTech.find()
+      .then(response => {
+        response.forEach(element => {
+          element.mainTitle = mainTitle
+          element.save()
+        })
+        res.status(201).json(response)
+      })
+      .catch(next)
+  } else {
+    req.session.destroy()
+    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+  }}
+
 module.exports.deleteTechCarrousel = (req, res, next) => {
   const userRole = req.session.user.role
 
