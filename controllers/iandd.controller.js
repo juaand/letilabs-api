@@ -198,6 +198,26 @@ module.exports.updateTechCarrousel = (req, res, next) => {
   }
 }
 
+module.exports.createTechCarrousel = (req, res, next) => {
+  const userRole = req.session.user.role
+  const {title, imgURL, description, mainTitle} = req.body
+
+  if (userRole === 'Admin') {
+    CarrouselTech.create(req.body)
+      .then(() => {
+        CarrouselTech.find()
+          .then((data) => {
+            res.status(201).json(data)
+          })
+          .catch(next)
+      })
+      .catch(next)
+  } else {
+    req.session.destroy()
+    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+  }
+}
+
 module.exports.updateTechCarrouselTitle = (req, res, next) => {
   const userRole = req.session.user.role
   const {mainTitle} = req.body
@@ -215,7 +235,8 @@ module.exports.updateTechCarrouselTitle = (req, res, next) => {
   } else {
     req.session.destroy()
     res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
-  }}
+  }
+}
 
 module.exports.deleteTechCarrousel = (req, res, next) => {
   const userRole = req.session.user.role

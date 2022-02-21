@@ -26,6 +26,7 @@ router.patch('/updatevideodatatech', routeGuard.isAuthenticated, ianddController
 router.get('/carrouseltech', ianddController.getCarrouselTech)
 router.patch('/updatecarrouseltech', routeGuard.isAuthenticated, ianddController.updateTechCarrousel)
 router.post('/updatetechcarrouseltit', routeGuard.isAuthenticated, ianddController.updateTechCarrouselTitle)
+router.post('/createtechcarrousel', routeGuard.isAuthenticated, ianddController.createTechCarrousel)
 router.get('/carrouseltech/:id/delete', routeGuard.isAuthenticated, ianddController.deleteTechCarrousel)
 router.get('/maptech', ianddController.getMapTech)
 router.patch('/updatemapdatatech', routeGuard.isAuthenticated, ianddController.updateTechMap)
