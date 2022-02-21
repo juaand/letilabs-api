@@ -73,7 +73,8 @@ router.patch('/updateourcompaniesinfocardsleti', routeGuard.isAuthenticated, adm
 router.get('/ocequipoleti', adminController.getEquipoLetiOC)
 router.patch('/updateocequipoleti', routeGuard.isAuthenticated, adminController.updateEquipoLetiOC)
 router.get('/octimelineleti', adminController.getTimeLineLeti)
-router.patch('/addoctimelineleti', routeGuard.isAuthenticated, adminController.addTimeLineLetiData)
+router.post('/addoctimelineleti', routeGuard.isAuthenticated, adminController.addTimeLineLetiData)
+router.patch('/updateoctimelineleti', routeGuard.isAuthenticated, adminController.updateTimeLineLetiData)
 
 //////////////////////////////////////////////////////////////////////
 /////////////// NUESTRAS COMPAÑÍAS BIOCONTROLLED CRUD ////////////////
@@ -103,7 +104,9 @@ router.patch('/updateocequipogenven', routeGuard.isAuthenticated, adminControlle
 router.get('/octimelinegenven', adminController.getTimeLineGenven)
 router.patch('/addoctimelinegenven', routeGuard.isAuthenticated, adminController.addTimeLineGenvenData)
 router.get('/ocproductosgenven', adminController.getProductosGenven)
-router.patch('/addocproductosgenven', routeGuard.isAuthenticated, adminController.addProductosGenvenData)
+router.post('/addocproductosgenven', routeGuard.isAuthenticated, adminController.addProductosGenvenData)
+router.patch('/updateocproductosgenven', routeGuard.isAuthenticated, adminController.updateProductosGenvenData)
+
 
 //////////////////////////////////////////////////////////////////////
 /////////////////// INVESTIGACIÓN Y DESARROLLO CRUD //////////////////
