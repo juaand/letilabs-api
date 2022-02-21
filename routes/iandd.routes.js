@@ -30,7 +30,7 @@ router.get('/carrouseltech/:id/delete', routeGuard.isAuthenticated, ianddControl
 router.get('/maptech', ianddController.getMapTech)
 router.patch('/updatemapdatatech', routeGuard.isAuthenticated, ianddController.updateTechMap)
 router.get('/bottomtech', ianddController.getBottomTech)
-router.get('/updatebottomtech', ianddController.updateBottomTech)
+router.patch('/updatebottomtech', routeGuard.isAuthenticated, ianddController.updateBottomTech)
 
 //I+D manufacture routes
 router.get('/bannermanufacture', ianddController.getManufactureBanner)
