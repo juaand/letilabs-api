@@ -14,7 +14,10 @@ router.patch('/updatebannerdataid', routeGuard.isAuthenticated, ianddController.
 router.get('/idinfocards', ianddController.getInfoCards)
 router.patch('/updateidinfocards', routeGuard.isAuthenticated, ianddController.updateInfoCards)
 router.get('/idgoals', ianddController.getGoals)
+router.post('/updateidgoalstitle', routeGuard.isAuthenticated, ianddController.updateGoalsTitle)
 router.patch('/updateidgoals', routeGuard.isAuthenticated, ianddController.updateGoals)
+router.get('/deleteidgoals/:id', routeGuard.isAuthenticated, ianddController.deleteGoal)
+router.post('/createidgoal', routeGuard.isAuthenticated, ianddController.createGoal)
 router.get('/idbottom', ianddController.getBottom)
 router.get('/updateidbottom', ianddController.updateBottomID)
 

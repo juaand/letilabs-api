@@ -80,6 +80,26 @@ module.exports.getGoals = (req, res, next) => {
     .catch(next)
 }
 
+module.exports.updateGoalsTitle = (req, res, next) => {
+  const userRole = req.session.user.role
+  const {title} = req.body
+
+  if (userRole === 'Admin') {
+    GoalsId.find()
+      .then(response => {
+        response.forEach(element => {
+          element.title = title
+          element.save()
+        })
+        res.status(201).json(response)
+      })
+      .catch(next)
+  } else {
+    req.session.destroy()
+    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+  }
+}
+
 module.exports.updateGoals = (req, res, next) => {
   const userRole = req.session.user.role
   const {title, desc, name, id} = req.body
@@ -88,6 +108,45 @@ module.exports.updateGoals = (req, res, next) => {
   if (userRole === 'Admin') {
     GoalsId.findByIdAndUpdate(id, req.body, {new: true})
       .then((data) => {
+        GoalsId.find()
+          .then((data) => {
+            res.status(201).json(data)
+          })
+          .catch(next)
+      })
+      .catch(next)
+  } else {
+    req.session.destroy()
+    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+  }
+}
+
+module.exports.deleteGoal = (req, res, next) => {
+  const userRole = req.session.user.role
+
+  if (userRole === 'Admin') {
+    GoalsId.findByIdAndDelete(req.params.id)
+      .then(() => {
+        GoalsId.find()
+          .then((data) => {
+            res.status(201).json(data)
+          })
+          .catch(next)
+      })
+      .catch(next)
+  } else {
+    req.session.destroy()
+    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+  }
+}
+
+module.exports.createGoal = (req, res, next) => {
+  const userRole = req.session.user.role
+  const {title, name, desc} = req.body
+
+  if (userRole === 'Admin') {
+    GoalsId.create(req.body)
+      .then(() => {
         GoalsId.find()
           .then((data) => {
             res.status(201).json(data)
