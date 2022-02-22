@@ -18,18 +18,6 @@ const eresMedicoProductosSchema = new Schema(
     imgURL: {
       type: String,
       required: true
-    },
-    farmacoTitle: {
-      type: String,
-      required: true
-    },
-    farmacoDesc: {
-      type: String,
-      required: true
-    },
-    farmacoBtn: {
-      type: String,
-      required: true
     }
   },
   {timestamps: true}

@@ -1070,9 +1070,6 @@ Promise.all([
           title: '¿Eres médico y quieres información especial sobre algún producto?',
           buttonTitle: 'Escríbenos aquí',
           imgURL: 'https://firebasestorage.googleapis.com/v0/b/grupo-leti-fd84e.appspot.com/o/images%2Fproducts-bottom-bg.jpg?alt=media&token=834bcbe8-a6fe-4e15-bd33-4e7376b9c097',
-          farmacoTitle: 'Farmacovigilancia',
-          farmacoDesc: '¿Tiene algún comentario o <br/>efecto adverso de alguno de nuestro productos?<br/>¡Su opinión es importante para nosotros!',
-          farmacoBtn: 'Infórmanos aquí'
         })
         eresMedicoProductos.save()
           .then(() => console.log(`eresMedicoProductos created`))
