@@ -88,7 +88,11 @@ module.exports.updateGoals = (req, res, next) => {
   if (userRole === 'Admin') {
     GoalsId.findByIdAndUpdate(id, req.body, {new: true})
       .then((data) => {
-        res.status(201).json(data)
+        GoalsId.find()
+          .then((data) => {
+            res.status(201).json(data)
+          })
+          .catch(next)
       })
       .catch(next)
   } else {
