@@ -34,7 +34,6 @@ module.exports.updateBannerID = (req, res, next) => {
   if (userRole === 'Admin') {
     BannerID.findByIdAndUpdate(id, req.body, {new: true})
       .then((data) => {
-        console.log(data)
         res.status(201).json(data)
       })
       .catch(next)
@@ -59,8 +58,12 @@ module.exports.updateInfoCards = (req, res, next) => {
 
   if (userRole === 'Admin') {
     AllianceInfoCards.findByIdAndUpdate(id, req.body, {new: true})
-      .then((data) => {
-        res.status(201).json(data)
+      .then(() => {
+        AllianceInfoCards.find()
+          .then((data) => {
+            res.status(201).json(data)
+          })
+          .catch(next)
       })
       .catch(next)
   } else {
@@ -77,6 +80,26 @@ module.exports.getGoals = (req, res, next) => {
     .catch(next)
 }
 
+module.exports.updateGoalsTitle = (req, res, next) => {
+  const userRole = req.session.user.role
+  const {title} = req.body
+
+  if (userRole === 'Admin') {
+    GoalsId.find()
+      .then(response => {
+        response.forEach(element => {
+          element.title = title
+          element.save()
+        })
+        res.status(201).json(response)
+      })
+      .catch(next)
+  } else {
+    req.session.destroy()
+    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+  }
+}
+
 module.exports.updateGoals = (req, res, next) => {
   const userRole = req.session.user.role
   const {title, desc, name, id} = req.body
@@ -85,7 +108,50 @@ module.exports.updateGoals = (req, res, next) => {
   if (userRole === 'Admin') {
     GoalsId.findByIdAndUpdate(id, req.body, {new: true})
       .then((data) => {
-        res.status(201).json(data)
+        GoalsId.find()
+          .then((data) => {
+            res.status(201).json(data)
+          })
+          .catch(next)
+      })
+      .catch(next)
+  } else {
+    req.session.destroy()
+    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+  }
+}
+
+module.exports.deleteGoal = (req, res, next) => {
+  const userRole = req.session.user.role
+
+  if (userRole === 'Admin') {
+    GoalsId.findByIdAndDelete(req.params.id)
+      .then(() => {
+        GoalsId.find()
+          .then((data) => {
+            res.status(201).json(data)
+          })
+          .catch(next)
+      })
+      .catch(next)
+  } else {
+    req.session.destroy()
+    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+  }
+}
+
+module.exports.createGoal = (req, res, next) => {
+  const userRole = req.session.user.role
+  const {title, name, desc} = req.body
+
+  if (userRole === 'Admin') {
+    GoalsId.create(req.body)
+      .then(() => {
+        GoalsId.find()
+          .then((data) => {
+            res.status(201).json(data)
+          })
+          .catch(next)
       })
       .catch(next)
   } else {
@@ -109,8 +175,12 @@ module.exports.updateBottomID = (req, res, next) => {
 
   if (userRole === 'Admin') {
     BottomId.findByIdAndUpdate(id, req.body, {new: true})
-      .then((data) => {
-        res.status(201).json(data)
+      .then(() => {
+        BottomId.find()
+          .then((data) => {
+            res.status(201).json(data)
+          })
+          .catch(next)
       })
       .catch(next)
   } else {
@@ -199,6 +269,26 @@ module.exports.updateTechCarrousel = (req, res, next) => {
   }
 }
 
+module.exports.createTechCarrousel = (req, res, next) => {
+  const userRole = req.session.user.role
+  const {title, imgURL, description, mainTitle} = req.body
+
+  if (userRole === 'Admin') {
+    CarrouselTech.create(req.body)
+      .then(() => {
+        CarrouselTech.find()
+          .then((data) => {
+            res.status(201).json(data)
+          })
+          .catch(next)
+      })
+      .catch(next)
+  } else {
+    req.session.destroy()
+    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+  }
+}
+
 module.exports.updateTechCarrouselTitle = (req, res, next) => {
   const userRole = req.session.user.role
   const {mainTitle} = req.body
@@ -216,7 +306,8 @@ module.exports.updateTechCarrouselTitle = (req, res, next) => {
   } else {
     req.session.destroy()
     res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
-  }}
+  }
+}
 
 module.exports.deleteTechCarrousel = (req, res, next) => {
   const userRole = req.session.user.role
@@ -343,6 +434,26 @@ module.exports.getCarrouselManufacture = (req, res, next) => {
       res.status(201).json(response)
     })
     .catch(next)
+}
+
+module.exports.createProccess = (req, res, next) => {
+  const userRole = req.session.user.role
+  const {title, info} = req.body
+
+  if (userRole === 'Admin') {
+    CarouselManufacture.create(req.body)
+      .then(() => {
+        CarouselManufacture.find()
+          .then((data) => {
+            res.status(201).json(data)
+          })
+          .catch(next)
+      })
+      .catch(next)
+  } else {
+    req.session.destroy()
+    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+  }
 }
 
 module.exports.updateCarrouselManufacture = (req, res, next) => {
