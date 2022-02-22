@@ -175,8 +175,12 @@ module.exports.updateBottomID = (req, res, next) => {
 
   if (userRole === 'Admin') {
     BottomId.findByIdAndUpdate(id, req.body, {new: true})
-      .then((data) => {
-        res.status(201).json(data)
+      .then(() => {
+        BottomId.find()
+          .then((data) => {
+            res.status(201).json(data)
+          })
+          .catch(next)
       })
       .catch(next)
   } else {
