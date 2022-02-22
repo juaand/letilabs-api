@@ -12,7 +12,7 @@ module.exports = router
 router.get('/bannerdataid', ianddController.getBannerID)
 router.patch('/updatebannerdataid', routeGuard.isAuthenticated, ianddController.updateBannerID)
 router.get('/idinfocards', ianddController.getInfoCards)
-router.get('/updateidinfocards', ianddController.updateInfoCards)
+router.patch('/updateidinfocards', routeGuard.isAuthenticated, ianddController.updateInfoCards)
 router.get('/idgoals', ianddController.getGoals)
 router.get('/updateidgoals', ianddController.updateGoals)
 router.get('/idbottom', ianddController.getBottom)

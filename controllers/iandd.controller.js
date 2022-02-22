@@ -58,8 +58,12 @@ module.exports.updateInfoCards = (req, res, next) => {
 
   if (userRole === 'Admin') {
     AllianceInfoCards.findByIdAndUpdate(id, req.body, {new: true})
-      .then((data) => {
-        res.status(201).json(data)
+      .then(() => {
+        AllianceInfoCards.find()
+          .then((data) => {
+            res.status(201).json(data)
+          })
+          .catch(next)
       })
       .catch(next)
   } else {
