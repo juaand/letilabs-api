@@ -87,9 +87,11 @@ router.patch('/updateourcompaniesinfocardsbiocontrolled', routeGuard.isAuthentic
 router.get('/ocequipobiocontrolled', adminController.getEquipoBiocontrolledOC)
 router.patch('/updateocequipobiocontrolled', routeGuard.isAuthenticated, adminController.updateEquipoBiocontrolledOC)
 router.get('/octimelinebiocontrolled', adminController.getTimeLineBiocontrolled)
-router.patch('/addoctimelinebiocontrolled', routeGuard.isAuthenticated, adminController.addTimeLineBiocontrolledData)
+router.post('/addoctimelinebiocontrolled', routeGuard.isAuthenticated, adminController.addTimeLineBiocontrolledData)
+router.patch('/updateoctimelinebiocontrolled', routeGuard.isAuthenticated, adminController.updateTimeLineBiocontrolledData)
 router.get('/occarrouselbiocontrolled', adminController.getCarrouselBiocontrolled)
-router.patch('/addoccarrouselbiocontrolled', routeGuard.isAuthenticated, adminController.addCarrouselBiocontrolledData)
+router.post('/addoccarrouselbiocontrolled', routeGuard.isAuthenticated, adminController.addCarrouselBiocontrolledData)
+router.patch('/updateoccarrouselbiocontrolled', routeGuard.isAuthenticated, adminController.updateCarrouselBiocontrolledData)
 
 //////////////////////////////////////////////////////////////////////
 /////////////////// NUESTRAS COMPAÑÍAS GENVEN CRUD //////////////////
