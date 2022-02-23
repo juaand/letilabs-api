@@ -1042,7 +1042,7 @@ Promise.all([
           button1Title: 'Conoce todos los productos',
           button1Link: '/listado-de-productos',
           button2Title: 'Descubre nuestras áreas terapéuticas',
-          button2Link: '/areas-tearapeuticas',
+          button2Link: '/areas-terapeuticas',
         })
         bannerProductosPage.save()
           .then(() => console.log(`bannerProductosPage created`))
