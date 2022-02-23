@@ -3,6 +3,7 @@ const Vadevecum = require('../models/vadevecum.model')
 const ProductBanner = require('../models/ProductosPage/bannerProductosPage.model')
 const ProductBottom = require('../models/ProductosPage/eresMedicoProductos.model')
 const ProductListBanner = require('../models/ProductosPage/bannerProductsList.model')
+const ProductInfo = require('../models/ProductosPage/productInfo.model')
 
 module.exports.getProduct = (req, res, next) => {
   const {buscar} = req.body
@@ -99,4 +100,14 @@ module.exports.updateProductsBanner = (req, res, next) => {
     req.session.destroy()
     res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
   }
+}
+
+module.exports.getProductInfo = (req, res, next) => {
+  const {name, lastname, work, years, speciality, info, license, mail} = req.body
+
+  ProductInfo.create(req.body)
+    .then((newProductInfo) => {
+      res.status(201).json(newProductInfo)
+    })
+    .catch(next)
 }
