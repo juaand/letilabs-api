@@ -111,3 +111,38 @@ module.exports.getProductInfo = (req, res, next) => {
     })
     .catch(next)
 }
+
+module.exports.getProductInfoData = (req, res, next) => {
+  const userRole = req.session.user.role
+
+  if (userRole === 'Admin') {
+    ProductInfo.find()
+      .then((data) => {
+        res.status(201).json(data)
+      })
+      .catch(next)
+  } else {
+    req.session.destroy()
+    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+  }
+
+}
+
+module.exports.dropProductInfo = (req, res, next) => {
+  const userRole = req.session.user.role
+
+  if (userRole === 'Admin') {
+    ProductInfo.findByIdAndDelete(req.params.id)
+      .then(() => {
+        ProductInfo.find()
+          .then((data) => {
+            res.status(201).json(data)
+          })
+          .catch(next)
+      })
+      .catch(next)
+  } else {
+    req.session.destroy()
+    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+  }
+}

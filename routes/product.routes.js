@@ -17,3 +17,5 @@ router.patch('/updateproductbottom', routeGuard.isAuthenticated, productControll
 router.get('/listadoproductosbanner', productController.getProductsBanner)
 router.patch('/updatelistadoproductosbanner', routeGuard.isAuthenticated, productController.updateProductsBanner)
 router.post('/productinfoform', productController.getProductInfo)
+router.get('/productinfoformdata', routeGuard.isAuthenticated, productController.getProductInfoData)
+router.get('/productinfoform/:id/delete', routeGuard.isAuthenticated, productController.dropProductInfo)
