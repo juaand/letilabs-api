@@ -653,8 +653,7 @@ module.exports.getBannerOCLeti = (req, res, next) => {
 
 module.exports.updateBannerDataOCLeti = (req, res, next) => {
   const userRole = req.session.user.role
-  const {description, imgURL, id} = req.body
-
+  const {description, imgURL, logoURL, id} = req.body
 
   if (userRole === 'Admin') {
     BannerOCLeti.findByIdAndUpdate(id, req.body, {new: true})
@@ -788,7 +787,7 @@ module.exports.getBannerOCBiocontrolled = (req, res, next) => {
 
 module.exports.updateBannerDataOCBiocontrolled = (req, res, next) => {
   const userRole = req.session.user.role
-  const {description, imgURL, id} = req.body
+  const {description, imgURL, logoURL, id} = req.body
 
 
   if (userRole === 'Admin') {
@@ -966,7 +965,7 @@ module.exports.getBannerOCGenven = (req, res, next) => {
 
 module.exports.updateBannerDataOCGenven = (req, res, next) => {
   const userRole = req.session.user.role
-  const {description, imgURL, id} = req.body
+  const {description, imgURL, logoURL, id} = req.body
 
 
   if (userRole === 'Admin') {
