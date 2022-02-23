@@ -6,6 +6,7 @@ const CarouselInicio = require('../models/home/carrouselHome.model')
 const UnidadesInicio = require('../models/home/unidadesNegocio.model')
 const PortfolioInicio = require('../models/home/portfolio.model')
 const FarmacoInicio = require('../models/home/farmacoVigilancia.model')
+const ModalFarmacoInicio = require('../models/home/modalFarmacoVigilancia.model')
 const TimeLine = require('../models/aboutUs/aboutUsComponents/timeline.model')
 const Banner = require('../models/aboutUs/aboutUsComponents/banner.model')
 const MarcandoPauta = require('../models/aboutUs/aboutUsComponents/marcandoPauta.model')
@@ -37,7 +38,6 @@ const BottomHomeData = require('../models/home/meetPeopleWorkWithUsHome.model')
 const BannerPurpose = require('../models/propositoYResponsabilidad/bannerProposito.model')
 const VideoPurpose = require('../models/propositoYResponsabilidad/videoProposito.model')
 const TimeLinePurpose = require('../models/propositoYResponsabilidad/propositoTimeLine.model')
-const TitleFarmPurpose = require('../models/propositoYResponsabilidad/farmTitleProposito.model')
 const BannerOurPeople = require('../models/nuestraGente/bannerNuestraGente.model')
 const InfoCardsOurPeople = require('../models/nuestraGente/tresEquiposNuestraGente.model')
 const EquipoOurPeople = require('../models/nuestraGente/equipoNuestraGente.model')
@@ -276,6 +276,34 @@ module.exports.getFarmacoInicio = (req, res, next) => {
       res.status(201).json(data[0])
     })
     .catch(next)
+}
+
+module.exports.getModalFarmacoInicio = (req, res, next) => {
+  ModalFarmacoInicio.find()
+    .then((data) => {
+      res.status(201).json(data[0])
+    })
+    .catch(next)
+}
+
+module.exports.updateModalFarmaco  = (req, res, next) => {
+  const userRole = req.session.user.role
+  const {title, subTitle, description, id} = req.body
+
+  if (userRole === 'Admin') {
+    ModalFarmacoInicio.findByIdAndUpdate(id, req.body, {new: true})
+      .then(() => {
+        ModalFarmacoInicio.find()
+          .then((data) => {
+            res.status(201).json(data)
+          })
+          .catch(next)
+      })
+      .catch(next)
+  } else {
+    req.session.destroy()
+    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+  }
 }
 
 module.exports.updateFarmacoData = (req, res, next) => {
@@ -1399,14 +1427,6 @@ module.exports.updateTimeLinePurpose = (req, res, next) => {
     req.session.destroy()
     res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
   }
-}
-
-module.exports.getTitleFarmPurpose = (req, res, next) => {
-  TitleFarmPurpose.find()
-    .then((data) => {
-      res.status(201).json(data[0])
-    })
-    .catch(next)
 }
 
 module.exports.updateTitleFarmDataPurpose = (req, res, next) => {

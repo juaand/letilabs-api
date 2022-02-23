@@ -70,17 +70,9 @@ Promise.all([
         .catch(error => console.log(error))
     })
     const modalFarmacoVigilancia = new ModalFarmacoVigilancia({
-      title: '.Estamos para cuidarte',
+      title: 'Estamos para cuidarte',
       subTitle: 'Farmacovigilancia',
-      description: 'Conscientes de la responsabilidad por ofrecer medicamentos de alta calidad, facilitamos la recolección, evaluación e investigación de la información sobre posibles reacciones adversas de nuestros medicamentos, para realizar correctivos y establecer la máxima seguridad terapéutica de los mismos.',
-      blueDescription: 'Nos preocupa saber si alguno de nuestros productos le causó algún efecto adverso, así podemos trabajar para ayudarle.',
-      name: 'Nombre del paciente',
-      surname: 'Apellido del paciente',
-      birthday: 'Fecha de nacimiento',
-      gender: 'Género',
-      medicament: 'Medicamento que tomó',
-      prescrit: '¿El medicamento fue prescrito?',
-      describe: 'Describa detalladamente el/los efectos presentados',
+      description: 'Conscientes de la responsabilidad por ofrecer medicamentos de alta calidad, facilitamos la recolección, evaluación e investigación de la información sobre posibles reacciones adversas de nuestros medicamentos, para realizar correctivos y establecer la máxima seguridad terapéutica de los mismos.<br/><span class="blue-text">Nos preocupa saber si alguno de nuestros productos le causó algún efecto adverso, así podemos trabajar para ayudarle.</span>',
     })
     modalFarmacoVigilancia.save()
       .then(() => console.log(`modalFarmacoVigilancia created`))
@@ -848,7 +840,6 @@ Promise.all([
 const BannerProposito = require('../models/propositoYResponsabilidad/bannerProposito.model')
 const VideoProposito = require('../models/propositoYResponsabilidad/videoProposito.model')
 const TimeLineProposito = require('../models/propositoYResponsabilidad/propositoTimeLine.model')
-const TituloFormProposito = require('../models/propositoYResponsabilidad/farmTitleProposito.model')
 
 const timelinePropositoData = require('../data/purposeTimeline')
 
@@ -856,7 +847,6 @@ Promise.all([
   BannerProposito.deleteMany(),
   VideoProposito.deleteMany(),
   TimeLineProposito.deleteMany(),
-  TituloFormProposito.deleteMany(),
 ])
   .then(() => {
     console.log('all databases cleaned')
@@ -873,14 +863,6 @@ Promise.all([
     })
     videoProposito.save()
       .then(() => console.log(`videoProposito created`))
-      .catch(error => console.log(error))
-    const tituloFormProposito = new TituloFormProposito({
-      title: 'Estamos para cuidarte',
-      desc: 'Conscientes de la responsabilidad por ofrecer medicamentos de alta calidad, facilitamos la recolección, evaluación e investigación de la información sobre posibles reacciones adversas de nuestros medicamentos, para realizar correctivos y establecer la máxima seguridad terapéutica de los mismos.<br/><br/><p class="blue-text">Nos preocupa saber si alguno de nuestros productos le causó algún efecto adverso, así podemos trabajar para ayudarle.</p>',
-      subtitle: 'Farmacovigilancia'
-    })
-    tituloFormProposito.save()
-      .then(() => console.log(`TituloFormProposito created`))
       .catch(error => console.log(error))
     timelinePropositoData.forEach(unidad => {
       const timeLineProposito = new TimeLineProposito({

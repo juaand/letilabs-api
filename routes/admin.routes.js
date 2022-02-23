@@ -24,6 +24,8 @@ router.post('/updatetitleportfolioiniciodata', routeGuard.isAuthenticated, admin
 router.get('/vadevecumdata', adminController.getVadevecumData)
 router.patch('/updateportfoliodata', routeGuard.isAuthenticated, adminController.updatePortfolioData)
 router.get('/farmacoiniciodata', adminController.getFarmacoInicio)
+router.get('/modalfarmacoiniciodata', adminController.getModalFarmacoInicio)
+router.patch('/updatemodalfarmaco', routeGuard.isAuthenticated, adminController.updateModalFarmaco)
 router.patch('/updatefarmacoiniciodata', routeGuard.isAuthenticated, adminController.updateFarmacoData)
 router.get('/deleteunititem/:id', routeGuard.isAuthenticated, adminController.deleteUnitlItem)
 router.patch('/updatevideodata', routeGuard.isAuthenticated, adminController.updateVideoData)
@@ -130,7 +132,6 @@ router.get('/timelinepurpose', adminController.getTimeLinePurpose)
 router.post('/addtimelinepurpose', routeGuard.isAuthenticated, adminController.addTimeLinePurposeData)
 router.get('/deletetimelinepurpose/:id', routeGuard.isAuthenticated, adminController.deleteTimeLinePurposeData)
 router.patch('/updateTimeLinePurpose', routeGuard.isAuthenticated, adminController.updateTimeLinePurpose)
-router.get('/titlefarmdatapurpose', adminController.getTitleFarmPurpose)
 router.patch('/updatetitlefarmdatapurpose', routeGuard.isAuthenticated, adminController.updateTitleFarmDataPurpose)
 
 //////////////////////////////////////////////////////////////////////
