@@ -185,6 +185,26 @@ module.exports.updatePortfolioInicio = (req, res, next) => {
   }
 }
 
+module.exports.updateTitlePortfolioInicio = (req, res, next) => {
+  const userRole = req.session.user.role
+  const {superiorTitle} = req.body
+
+  if (userRole === 'Admin') {
+    PortfolioInicio.find()
+      .then(response => {
+        response.forEach(element => {
+          element.superiorTitle = superiorTitle
+          element.save()
+        })
+        res.status(201).json(response)
+      })
+      .catch(next)
+  } else {
+    req.session.destroy()
+    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+  }
+}
+
 module.exports.deletePortfolioItem = (req, res, next) => {
   const userRole = req.session.user.role
 
