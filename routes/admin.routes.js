@@ -39,6 +39,8 @@ router.get('/homebottomdata', adminController.getHomeBottomData)
 
 router.get('/timelineaboutusdata', adminController.getTimeLine)
 router.patch('/updatetimelineaboutus', routeGuard.isAuthenticated, adminController.updateTimeLineAboutUs)
+router.post('/addtimelineaboutusdata', routeGuard.isAuthenticated, adminController.addTimeLineAboutUs)
+router.get('/deletetimelineaboutus/:id', routeGuard.isAuthenticated, adminController.deleteTimeLineAboutUs)
 router.get('/bannerdata', adminController.getBanner)
 router.patch('/updatebannerdata', routeGuard.isAuthenticated, adminController.updateBannerData)
 router.get('/marcandopautadata', adminController.getMarcandoPauta)
@@ -46,7 +48,10 @@ router.patch('/updatemarcandopautadata', routeGuard.isAuthenticated, adminContro
 router.get('/megatdata', adminController.getMegat)
 router.patch('/updatemegatdata', routeGuard.isAuthenticated, adminController.updateMegatData)
 router.get('/galleryaboutusdata', adminController.getGallery)
+router.get('/deletegalleryitem/:id', routeGuard.isAuthenticated, adminController.deleteGalleryItem)
 router.patch('/updategalleryaboutus', routeGuard.isAuthenticated, adminController.updateGalleryAboutUs)
+router.post('/addgalleryaboutusdata', routeGuard.isAuthenticated, adminController.addGalleryAboutUs)
+router.post('/updategallerytitle', routeGuard.isAuthenticated, adminController.updateGalleryTitle)
 
 
 /////////////////////////////////////////////////////////////////////

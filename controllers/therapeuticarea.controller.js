@@ -41,17 +41,76 @@ module.exports.getCarrouselTA = (req, res, next) => {
 
 module.exports.updateCarrouselTA = (req, res, next) => {
   const userRole = req.session.user.role
-  const {desc, imgPath, title, mainTitle, id} = req.body
+  const {title, mainTitle, desc, imgURL, id} = req.body
 
 
   if (userRole === 'Admin') {
     CarrouselTA.findByIdAndUpdate(id, req.body, {new: true})
       .then(() => {
         CarrouselTA.find()
-        .then((data) => {
-          res.status(201).json(data)
+          .then((data) => {
+            res.status(201).json(data)
+          })
+          .catch(next)
+      })
+      .catch(next)
+  } else {
+    req.session.destroy()
+    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+  }
+}
+
+module.exports.updateTagalleryTitle = (req, res, next) => {
+  const userRole = req.session.user.role
+  const {mainTitle} = req.body
+
+  if (userRole === 'Admin') {
+    CarrouselTA.find()
+      .then(response => {
+        response.forEach(element => {
+          element.mainTitle = mainTitle
+          element.save()
         })
-        .catch(next)
+        res.status(201).json(response)
+      })
+      .catch(next)
+  } else {
+    req.session.destroy()
+    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+  }
+}
+
+module.exports.createCarrouselTA = (req, res, next) => {
+  const userRole = req.session.user.role
+  const {title, mainTitle, desc, imgURL} = req.body
+
+  if (userRole === 'Admin') {
+    CarrouselTA.create(req.body)
+      .then((data) => {
+        CarrouselTA.find()
+          .then((data) => {
+            res.status(201).json(data)
+          })
+          .catch(next)
+      })
+      .catch(next)
+  } else {
+    req.session.destroy()
+    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+  }
+}
+
+module.exports.dropCarrouselTA = (req, res, next) => {
+  const userRole = req.session.user.role
+
+  if (userRole === 'Admin') {
+    CarrouselTA.findByIdAndDelete(req.params.id)
+      .then(() => {
+        CarrouselTA.find()
+          .then((data) => {
+            res.status(201).json(data)
+          })
+          .catch(next)
       })
       .catch(next)
   } else {
@@ -70,7 +129,7 @@ module.exports.getBottomTA = (req, res, next) => {
 
 module.exports.updateBottomTA = (req, res, next) => {
   const userRole = req.session.user.role
-  const {img, title, buttonTitle, buttonLink, id} = req.body
+  const {title, buttonLink, buttonTitle, img, id} = req.body
 
 
   if (userRole === 'Admin') {

@@ -286,7 +286,7 @@ module.exports.getModalFarmacoInicio = (req, res, next) => {
     .catch(next)
 }
 
-module.exports.updateModalFarmaco  = (req, res, next) => {
+module.exports.updateModalFarmaco = (req, res, next) => {
   const userRole = req.session.user.role
   const {title, subTitle, description, id} = req.body
 
@@ -351,6 +351,7 @@ module.exports.deleteUnitlItem = (req, res, next) => {
 
 module.exports.getTimeLine = (req, res, next) => {
   TimeLine.find()
+  .sort({year: 1})
     .then((data) => {
       res.status(201).json(data)
     })
@@ -363,6 +364,46 @@ module.exports.updateTimeLineAboutUs = (req, res, next) => {
 
   if (userRole === 'Admin') {
     TimeLine.findByIdAndUpdate(id, req.body, {new: true})
+      .then(() => {
+        TimeLine.find()
+          .then((data) => {
+            res.status(201).json(data)
+          })
+          .catch(next)
+      })
+      .catch(next)
+  } else {
+    req.session.destroy()
+    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+  }
+}
+
+module.exports.addTimeLineAboutUs = (req, res, next) => {
+  const userRole = req.session.user.role
+  const {year, imgURL, desc} = req.body
+
+  if (userRole === 'Admin') {
+    TimeLine.create(req.body)
+      .then(() => {
+        TimeLine.find()
+          .sort({year: 1})
+          .then((data) => {
+            res.status(201).json(data)
+          })
+          .catch(next)
+      })
+      .catch(next)
+  } else {
+    req.session.destroy()
+    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+  }
+}
+
+module.exports.deleteTimeLineAboutUs = (req, res, next) => {
+  const userRole = req.session.user.role
+
+  if (userRole === 'Admin') {
+    TimeLine.findByIdAndDelete(req.params.id)
       .then(() => {
         TimeLine.find()
           .then((data) => {
@@ -452,6 +493,25 @@ module.exports.getGallery = (req, res, next) => {
     .catch(next)
 }
 
+module.exports.deleteGalleryItem = (req, res, next) => {
+  const userRole = req.session.user.role
+
+  if (userRole === 'Admin') {
+    Gallery.findByIdAndDelete(req.params.id)
+      .then(() => {
+        Gallery.find()
+          .then((data) => {
+            res.status(201).json(data)
+          })
+          .catch(next)
+      })
+      .catch(next)
+  } else {
+    req.session.destroy()
+    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+  }
+}
+
 module.exports.updateGalleryAboutUs = (req, res, next) => {
   const userRole = req.session.user.role
   const {year, desc, imgURL, id} = req.body
@@ -464,6 +524,46 @@ module.exports.updateGalleryAboutUs = (req, res, next) => {
             res.status(201).json(data)
           })
           .catch(next)
+      })
+      .catch(next)
+  } else {
+    req.session.destroy()
+    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+  }
+}
+
+module.exports.addGalleryAboutUs = (req, res, next) => {
+  const userRole = req.session.user.role
+  const {mainTitle, title, imgPath, desc} = req.body
+
+  if (userRole === 'Admin') {
+    Gallery.create(req.body)
+      .then(() => {
+        Gallery.find()
+          .then((data) => {
+            res.status(201).json(data)
+          })
+          .catch(next)
+      })
+      .catch(next)
+  } else {
+    req.session.destroy()
+    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+  }
+}
+
+module.exports.updateGalleryTitle = (req, res, next) => {
+  const userRole = req.session.user.role
+  const {mainTitle} = req.body
+
+  if (userRole === 'Admin') {
+    Gallery.find()
+      .then(response => {
+        response.forEach(element => {
+          element.mainTitle = mainTitle
+          element.save()
+        })
+        res.status(201).json(response)
       })
       .catch(next)
   } else {
@@ -518,9 +618,9 @@ module.exports.updateOurCompaniesOC = (req, res, next) => {
     OurCompaniesOC.findByIdAndUpdate(id, req.body, {new: true})
       .then(() => {
         OurCompaniesOC.find()
-        .then((data) => {
-          res.status(201).json(data)
-        })
+          .then((data) => {
+            res.status(201).json(data)
+          })
       })
       .catch(next)
   } else {
@@ -628,9 +728,9 @@ module.exports.updateBottomOC = (req, res, next) => {
     BottomOC.findByIdAndUpdate(id, req.body, {new: true})
       .then(() => {
         BottomOC.find()
-        .then((data) => {
-          res.status(201).json(data)
-        })
+          .then((data) => {
+            res.status(201).json(data)
+          })
       })
       .catch(next)
   } else {
@@ -684,10 +784,10 @@ module.exports.updateOurCompaniesInfoCardsLeti = (req, res, next) => {
     OurCompaniesOCInfoCardsLeti.findByIdAndUpdate(id, req.body, {new: true})
       .then(() => {
         OurCompaniesOCInfoCardsLeti.find()
-        .then((data) => {
-          res.status(201).json(data)
-        })
-        .catch(next)
+          .then((data) => {
+            res.status(201).json(data)
+          })
+          .catch(next)
       })
       .catch(next)
   } else {
@@ -738,10 +838,10 @@ module.exports.updateTimeLineLetiData = (req, res, next) => {
     TimeLineLetiOC.findByIdAndUpdate(id, req.body, {new: true})
       .then(() => {
         TimeLineLetiOC.find()
-        .then((data) => {
-          res.status(201).json(data)
-        })
-        .catch(next)
+          .then((data) => {
+            res.status(201).json(data)
+          })
+          .catch(next)
       })
       .catch(next)
   } else {
@@ -758,15 +858,15 @@ module.exports.addTimeLineLetiData = (req, res, next) => {
 
   if (userRole === 'Admin') {
     TimeLineLetiOC.create({desc, url, imgURL, button})
-    .then(() => {
-      TimeLineLetiOC.find()
-        .then((data) => {
-          res.status(201).json(data)
-        })
-        .catch(next)
-    }
-    )
-    .catch(next)
+      .then(() => {
+        TimeLineLetiOC.find()
+          .then((data) => {
+            res.status(201).json(data)
+          })
+          .catch(next)
+      }
+      )
+      .catch(next)
   } else {
     req.session.destroy()
     res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
@@ -819,10 +919,10 @@ module.exports.updateOurCompaniesInfoCardsBiocontrolled = (req, res, next) => {
     OurCompaniesOCInfoCardsBiocontrolled.findByIdAndUpdate(id, req.body, {new: true})
       .then(() => {
         OurCompaniesOCInfoCardsBiocontrolled.find()
-        .then((data) => {
-          res.status(201).json(data)
-        })
-        .catch(next)
+          .then((data) => {
+            res.status(201).json(data)
+          })
+          .catch(next)
       })
       .catch(next)
   } else {
@@ -874,10 +974,10 @@ module.exports.updateTimeLineBiocontrolledData = (req, res, next) => {
     TimeLineBiocontrolledOC.findByIdAndUpdate(id, req.body, {new: true})
       .then(() => {
         TimeLineBiocontrolledOC.find()
-        .then((data) => {
-          res.status(201).json(data)
-        })
-        .catch(next)
+          .then((data) => {
+            res.status(201).json(data)
+          })
+          .catch(next)
       })
       .catch(next)
   } else {
@@ -921,10 +1021,10 @@ module.exports.updateCarrouselBiocontrolledData = (req, res, next) => {
     CarrouselBiocontrolledOC.findByIdAndUpdate(id, req.body, {new: true})
       .then(() => {
         CarrouselBiocontrolledOC.find()
-        .then((data) => {
-          res.status(201).json(data)
-        })
-        .catch(next)
+          .then((data) => {
+            res.status(201).json(data)
+          })
+          .catch(next)
       })
       .catch(next)
   } else {
