@@ -741,7 +741,6 @@ module.exports.getBottomOC = (req, res, next) => {
 module.exports.updateBottomOC = (req, res, next) => {
   const userRole = req.session.user.role
   const {title, url, button, img, id} = req.body
-  console.log(req.body)
 
   if (userRole === 'Admin') {
     BottomOC.findByIdAndUpdate(id, req.body, {new: true})
