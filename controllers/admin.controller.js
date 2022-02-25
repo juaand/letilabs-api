@@ -1007,6 +1007,45 @@ module.exports.updateOurCompaniesInfoCardsBiocontrolled = (req, res, next) => {
   }
 }
 
+module.exports.createBiocontrolledInfoCard = (req, res, next) => {
+  const userRole = req.session.user.role
+  const {title, info} = req.body
+
+  if (userRole === 'Admin') {
+    OurCompaniesOCInfoCardsBiocontrolled.create(req.body)
+      .then(() => {
+        OurCompaniesOCInfoCardsBiocontrolled.find()
+          .then((data) => {
+            res.status(201).json(data)
+          })
+          .catch(next)
+      })
+      .catch(next)
+  } else {
+    req.session.destroy()
+    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+  }
+}
+
+module.exports.deleteBiocontrolledInfoCard = (req, res, next) => {
+  const userRole = req.session.user.role
+
+  if (userRole === 'Admin') {
+    OurCompaniesOCInfoCardsBiocontrolled.findByIdAndDelete(req.params.id)
+      .then(() => {
+        OurCompaniesOCInfoCardsBiocontrolled.find()
+          .then((data) => {
+            res.status(201).json(data)
+          })
+          .catch(next)
+      })
+      .catch(next)
+  } else {
+    req.session.destroy()
+    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+  }
+}
+
 module.exports.getEquipoBiocontrolledOC = (req, res, next) => {
   EquipoBiocontrolledPageOC.find()
     .then((data) => {

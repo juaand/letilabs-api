@@ -98,6 +98,8 @@ router.get('/bannerdataocbiocontrolled', adminController.getBannerOCBiocontrolle
 router.patch('/updatebannerdataocbiocontrolled', routeGuard.isAuthenticated, adminController.updateBannerDataOCBiocontrolled)
 router.get('/ourcompaniesinfocardsbiocontrolled', adminController.getOurCompaniesInfoCardsBiocontrolled)
 router.patch('/updateourcompaniesinfocardsbiocontrolled', routeGuard.isAuthenticated, adminController.updateOurCompaniesInfoCardsBiocontrolled)
+router.post('/createbiocontrolledinfocard', routeGuard.isAuthenticated, adminController.createBiocontrolledInfoCard)
+router.get('/deletebiocontrolledinfocard/:id', routeGuard.isAuthenticated, adminController.deleteBiocontrolledInfoCard)
 router.get('/ocequipobiocontrolled', adminController.getEquipoBiocontrolledOC)
 router.patch('/updateocequipobiocontrolled', routeGuard.isAuthenticated, adminController.updateEquipoBiocontrolledOC)
 router.get('/octimelinebiocontrolled', adminController.getTimeLineBiocontrolled)
