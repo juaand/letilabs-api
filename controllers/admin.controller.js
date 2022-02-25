@@ -1101,6 +1101,25 @@ module.exports.updateTimeLineBiocontrolledData = (req, res, next) => {
   }
 }
 
+module.exports.deleteTimeLineBiocontrolled = (req, res, next) => {
+  const userRole = req.session.user.role
+
+  if (userRole === 'Admin') {
+    TimeLineBiocontrolledOC.findByIdAndDelete(req.params.id)
+      .then(() => {
+        TimeLineBiocontrolledOC.find()
+          .then((data) => {
+            res.status(201).json(data)
+          })
+          .catch(next)
+      })
+      .catch(next)
+  } else {
+    req.session.destroy()
+    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+  }
+}
+
 /// pendiente add ///
 module.exports.addTimeLineBiocontrolledData = (req, res, next) => {
   const userRole = req.session.user.role
@@ -1148,16 +1167,60 @@ module.exports.updateCarrouselBiocontrolledData = (req, res, next) => {
   }
 }
 
+module.exports.updateCarrouselTitle = (req, res, next) => {
+  const userRole = req.session.user.role
+  const {title} = req.body
+
+  if (userRole === 'Admin') {
+    CarrouselBiocontrolledOC.find()
+      .then(response => {
+        response.forEach(element => {
+          element.title = title
+          element.save()
+        })
+        res.status(201).json(response)
+      })
+      .catch(next)
+  } else {
+    req.session.destroy()
+    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+  }
+
+}
+
+module.exports.deleteBioCarrouselItem = (req, res, next) => {
+  const userRole = req.session.user.role
+
+  if (userRole === 'Admin') {
+    CarrouselBiocontrolledOC.findByIdAndDelete(req.params.id)
+      .then(() => {
+        CarrouselBiocontrolledOC.find()
+          .then((data) => {
+            res.status(201).json(data)
+          })
+          .catch(next)
+      })
+      .catch(next)
+  } else {
+    req.session.destroy()
+    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+  }
+}
+
 /// pendiente add ///
 module.exports.addCarrouselBiocontrolledData = (req, res, next) => {
   const userRole = req.session.user.role
-  const {info, id} = req.body
+  const {title, info, id} = req.body
 
 
   if (userRole === 'Admin') {
-    CarrouselBiocontrolledOC.findByIdAndUpdate(id, req.body, {new: true})
-      .then((data) => {
-        res.status(201).json(data)
+    CarrouselBiocontrolledOC.create(req.body)
+      .then(() => {
+        CarrouselBiocontrolledOC.find()
+          .then((data) => {
+            res.status(201).json(data)
+          })
+          .catch(next)
       })
       .catch(next)
   } else {
@@ -1310,7 +1373,7 @@ module.exports.updateGenvenTimeline = (req, res, next) => {
           .then((data) => {
             res.status(201).json(data)
           })
-        .catch(next)
+          .catch(next)
       })
       .catch(next)
   } else {
@@ -1329,7 +1392,7 @@ module.exports.deleteTimeLineGenven = (req, res, next) => {
           .then((data) => {
             res.status(201).json(data)
           })
-        .catch(next)
+          .catch(next)
       })
       .catch(next)
   } else {
