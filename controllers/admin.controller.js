@@ -351,7 +351,7 @@ module.exports.deleteUnitlItem = (req, res, next) => {
 
 module.exports.getTimeLine = (req, res, next) => {
   TimeLine.find()
-  .sort({year: 1})
+    .sort({year: 1})
     .then((data) => {
       res.status(201).json(data)
     })
@@ -621,6 +621,25 @@ module.exports.updateOurCompaniesOC = (req, res, next) => {
           .then((data) => {
             res.status(201).json(data)
           })
+      })
+      .catch(next)
+  } else {
+    req.session.destroy()
+    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+  }
+}
+
+module.exports.deleteOCNegocio = (req, res, next) => {
+  const userRole = req.session.user.role
+
+  if (userRole === 'Admin') {
+    OurCompaniesOC.findByIdAndDelete(req.params.id)
+      .then(() => {
+        OurCompaniesOC.find()
+          .then((data) => {
+            res.status(201).json(data)
+          })
+          .catch(next)
       })
       .catch(next)
   } else {
