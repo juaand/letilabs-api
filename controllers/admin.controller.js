@@ -1216,14 +1216,18 @@ module.exports.getTimeLineGenven = (req, res, next) => {
 /// pendiente add ///
 module.exports.addTimeLineGenvenData = (req, res, next) => {
   const userRole = req.session.user.role
-  const {description, imgURL, id} = req.body
-
+  const {desc, imgURL, buttonText, buttonLink} = req.body
 
   if (userRole === 'Admin') {
-    TimeLineGenvenOC.findByIdAndUpdate(id, req.body, {new: true})
-      .then((data) => {
-        res.status(201).json(data)
-      })
+    TimeLineGenvenOC.create(req.body)
+      .then(() => {
+        TimeLineGenvenOC.find()
+          .then((data) => {
+            res.status(201).json(data)
+          })
+          .catch(next)
+      }
+      )
       .catch(next)
   } else {
     req.session.destroy()
@@ -1248,6 +1252,45 @@ module.exports.updateProductosGenvenData = (req, res, next) => {
     ProductosGenvenOC.findByIdAndUpdate(id, req.body, {new: true})
       .then((data) => {
         res.status(201).json(data)
+      })
+      .catch(next)
+  } else {
+    req.session.destroy()
+    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+  }
+}
+
+module.exports.updateGenvenTimeline = (req, res, next) => {
+  const userRole = req.session.user.role
+  const {desc, buttonLink, imgURL, buttonText, id} = req.body
+
+  if (userRole === 'Admin') {
+    TimeLineGenvenOC.findByIdAndUpdate(id, req.body, {new: true})
+      .then(() => {
+        TimeLineGenvenOC.find()
+          .then((data) => {
+            res.status(201).json(data)
+          })
+        .catch(next)
+      })
+      .catch(next)
+  } else {
+    req.session.destroy()
+    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+  }
+}
+
+module.exports.deleteTimeLineGenven = (req, res, next) => {
+  const userRole = req.session.user.role
+
+  if (userRole === 'Admin') {
+    TimeLineGenvenOC.findByIdAndRemove(req.params.id)
+      .then(() => {
+        TimeLineGenvenOC.find()
+          .then((data) => {
+            res.status(201).json(data)
+          })
+        .catch(next)
       })
       .catch(next)
   } else {

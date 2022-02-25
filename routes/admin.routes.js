@@ -118,10 +118,12 @@ router.patch('/updateourcompaniesvideogenven', routeGuard.isAuthenticated, admin
 router.get('/ocequipogenven', adminController.getEquipoGenvenOC)
 router.patch('/updateocequipogenven', routeGuard.isAuthenticated, adminController.updateEquipoGenvenOC)
 router.get('/octimelinegenven', adminController.getTimeLineGenven)
-router.patch('/addoctimelinegenven', routeGuard.isAuthenticated, adminController.addTimeLineGenvenData)
+router.post('/addoctimelinegenven', routeGuard.isAuthenticated, adminController.addTimeLineGenvenData)
 router.get('/ocproductosgenven', adminController.getProductosGenven)
 router.post('/addocproductosgenven', routeGuard.isAuthenticated, adminController.addProductosGenvenData)
 router.patch('/updateocproductosgenven', routeGuard.isAuthenticated, adminController.updateProductosGenvenData)
+router.patch('/updategenventimeline', routeGuard.isAuthenticated, adminController.updateGenvenTimeline)
+router.get('/deleteoctimelinegenven/:id', routeGuard.isAuthenticated, adminController.deleteTimeLineGenven)
 
 
 //////////////////////////////////////////////////////////////////////
