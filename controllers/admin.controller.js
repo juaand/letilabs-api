@@ -1166,7 +1166,7 @@ module.exports.getOurCompaniesVideoGenven = (req, res, next) => {
 
 module.exports.updateOurCompaniesVideoGenven = (req, res, next) => {
   const userRole = req.session.user.role
-  const {desc, url, logo, id} = req.body
+  const {videoURL, id} = req.body
 
 
   if (userRole === 'Admin') {
