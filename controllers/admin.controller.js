@@ -863,7 +863,7 @@ module.exports.getEquipoLetiOC = (req, res, next) => {
 
 module.exports.updateEquipoLetiOC = (req, res, next) => {
   const userRole = req.session.user.role
-  const {description, person, imgURL, buttonTitle, buttonLink, id} = req.body
+  const {description, imgURL, buttonTitle, buttonLink, id} = req.body
 
 
   if (userRole === 'Admin') {
@@ -1018,7 +1018,7 @@ module.exports.getEquipoBiocontrolledOC = (req, res, next) => {
 
 module.exports.updateEquipoBiocontrolledOC = (req, res, next) => {
   const userRole = req.session.user.role
-  const {description, person, imgURL, buttonTitle, buttonLink, id} = req.body
+  const {description, imgURL, buttonTitle, buttonLink, id} = req.body
 
 
   if (userRole === 'Admin') {
@@ -1191,7 +1191,7 @@ module.exports.getEquipoGenvenOC = (req, res, next) => {
 
 module.exports.updateEquipoGenvenOC = (req, res, next) => {
   const userRole = req.session.user.role
-  const {description, person, imgURL, buttonTitle, buttonLink, id} = req.body
+  const {description, imgURL, buttonTitle, buttonLink, id} = req.body
 
 
   if (userRole === 'Admin') {

@@ -7,10 +7,6 @@ const equipoGenvenPageSchema = new Schema(
       type: String,
       required: true
     },
-    person: {
-      type: String,
-      required: true
-    },
     buttonTitle: {
       type: String,
       required: true

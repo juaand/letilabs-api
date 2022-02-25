@@ -398,8 +398,7 @@ Promise.all([
         .catch(error => console.log(error))
     })
     const equipoLetiPage = new EquipoLetiPage({
-      description: 'El laboratorio más grande y más importante por la cantidad de ventas que tenía, cantidad de productos, cantidad de categorías donde participaba.',
-      person: 'Ramón, director de unidad',
+      description: 'El laboratorio más grande y más importante por la cantidad de ventas que tenía, cantidad de productos, cantidad de categorías donde participaba.<br/><br/><strong>Ramón, director de unidad</strong>',
       buttonTitle: 'Conoce nuestra filosofía',
       buttonLink: '/nuestra-filosofia',
       imgURL: 'https://firebasestorage.googleapis.com/v0/b/grupo-leti-fd84e.appspot.com/o/images%2Fequipo.jpg?alt=media&token=301345d4-0935-4285-9681-481ae645eb83',
@@ -474,8 +473,7 @@ Promise.all([
         .catch(error => console.log(error))
     })
     const equipoBiocontrolledPage = new EquipoBiocontrolledPage({
-      description: 'El laboratorio más grande y más importante por la cantidad de ventas que tenía, cantidad de productos, cantidad de categoríasdonde participaba.',
-      person: 'Ramón, director de unidad',
+      description: 'El laboratorio más grande y más importante por la cantidad de ventas que tenía, cantidad de productos, cantidad de categoríasdonde participaba.<br/><br/><strong>Ramón, director de unidad</strong>',
       buttonTitle: 'Conoce nuestra filosofía',
       buttonLink: '/nuestra-filosofia',
       imgURL: 'https://firebasestorage.googleapis.com/v0/b/grupo-leti-fd84e.appspot.com/o/images%2Fbicontrolled-bottom.jpg?alt=media&token=3d433325-6f4f-43a8-ba39-1fccca368d5a',
@@ -546,8 +544,7 @@ Promise.all([
         .catch(error => console.log(error))
     })
     const equipoGenvenPage = new EquipoGenvenPage({
-      description: 'El laboratorio más grande y más importante por la cantidad de ventas que tenía, cantidad de productos, cantidad de categoríasdonde participaba.',
-      person: 'Ramón, director de unidad',
+      description: 'El laboratorio más grande y más importante por la cantidad de ventas que tenía, cantidad de productos, cantidad de categoríasdonde participaba.<br/><br/><strong>Ramón, director de unidad</strong>',
       buttonTitle: 'Conoce nuestra filosofía',
       buttonLink: '/nuestra-filosofia',
       imgURL: 'https://firebasestorage.googleapis.com/v0/b/grupo-leti-fd84e.appspot.com/o/images%2Fequipo.jpg?alt=media&token=301345d4-0935-4285-9681-481ae645eb83',
