@@ -81,11 +81,14 @@ router.get('/bannerdataocleti', adminController.getBannerOCLeti)
 router.patch('/updatebannerdataocleti', routeGuard.isAuthenticated, adminController.updateBannerDataOCLeti)
 router.get('/ourcompaniesinfocardsleti', adminController.getOurCompaniesInfoCardsLeti)
 router.patch('/updateourcompaniesinfocardsleti', routeGuard.isAuthenticated, adminController.updateOurCompaniesInfoCardsLeti)
+router.get('/deleteletiinfocard/:id', routeGuard.isAuthenticated, adminController.deleteLetiInfoCard)
+router.post('/createletiinfocard', routeGuard.isAuthenticated, adminController.createLetiInfoCard)
 router.get('/ocequipoleti', adminController.getEquipoLetiOC)
 router.patch('/updateocequipoleti', routeGuard.isAuthenticated, adminController.updateEquipoLetiOC)
 router.get('/octimelineleti', adminController.getTimeLineLeti)
 router.post('/addoctimelineleti', routeGuard.isAuthenticated, adminController.addTimeLineLetiData)
 router.patch('/updateoctimelineleti', routeGuard.isAuthenticated, adminController.updateTimeLineLetiData)
+router.get('/deleteoctimelineleti/:id', routeGuard.isAuthenticated, adminController.deleteTimeLineLeti)
 
 //////////////////////////////////////////////////////////////////////
 /////////////// NUESTRAS COMPAÑÍAS BIOCONTROLLED CRUD ////////////////

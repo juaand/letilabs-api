@@ -814,6 +814,45 @@ module.exports.updateOurCompaniesInfoCardsLeti = (req, res, next) => {
   }
 }
 
+module.exports.deleteLetiInfoCard = (req, res, next) => {
+  const userRole = req.session.user.role
+
+  if (userRole === 'Admin') {
+    OurCompaniesOCInfoCardsLeti.findByIdAndDelete(req.params.id)
+      .then(() => {
+        OurCompaniesOCInfoCardsLeti.find()
+          .then((data) => {
+            res.status(201).json(data)
+          })
+          .catch(next)
+      })
+      .catch(next)
+  } else {
+    req.session.destroy()
+    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+  }
+}
+
+module.exports.createLetiInfoCard = (req, res, next) => {
+  const userRole = req.session.user.role
+  const {title, info} = req.body
+
+  if (userRole === 'Admin') {
+    OurCompaniesOCInfoCardsLeti.create(req.body)
+      .then(() => {
+        OurCompaniesOCInfoCardsLeti.find()
+          .then((data) => {
+            res.status(201).json(data)
+          })
+          .catch(next)
+      })
+      .catch(next)
+  } else {
+    req.session.destroy()
+    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+  }
+}
+
 module.exports.getEquipoLetiOC = (req, res, next) => {
   EquipoLetiPageOC.find()
     .then((data) => {
@@ -854,6 +893,25 @@ module.exports.updateTimeLineLetiData = (req, res, next) => {
 
   if (userRole === 'Admin') {
     TimeLineLetiOC.findByIdAndUpdate(id, req.body, {new: true})
+      .then(() => {
+        TimeLineLetiOC.find()
+          .then((data) => {
+            res.status(201).json(data)
+          })
+          .catch(next)
+      })
+      .catch(next)
+  } else {
+    req.session.destroy()
+    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+  }
+}
+
+module.exports.deleteTimeLineLeti = (req, res, next) => {
+  const userRole = req.session.user.role
+
+  if (userRole === 'Admin') {
+    TimeLineLetiOC.findByIdAndDelete(req.params.id)
       .then(() => {
         TimeLineLetiOC.find()
           .then((data) => {
