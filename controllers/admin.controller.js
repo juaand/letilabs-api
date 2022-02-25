@@ -1123,13 +1123,17 @@ module.exports.deleteTimeLineBiocontrolled = (req, res, next) => {
 /// pendiente add ///
 module.exports.addTimeLineBiocontrolledData = (req, res, next) => {
   const userRole = req.session.user.role
-  const {description, imgURL, id} = req.body
+  const {desc, imgURL, buttonTitle, buttonLink, id} = req.body
 
 
   if (userRole === 'Admin') {
-    TimeLineBiocontrolledOC.findByIdAndUpdate(id, req.body, {new: true})
-      .then((data) => {
-        res.status(201).json(data)
+    TimeLineBiocontrolledOC.create(req.body)
+      .then(() => {
+        TimeLineBiocontrolledOC.find()
+          .then((data) => {
+            res.status(201).json(data)
+          })
+          .catch(next)
       })
       .catch(next)
   } else {
