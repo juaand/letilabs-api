@@ -60,5 +60,8 @@ router.post('/updatealliancelogostitle', routeGuard.isAuthenticated, ianddContro
 router.get('/alliancelogos/:id/delete', routeGuard.isAuthenticated, ianddController.deleteLogoAlliance)
 router.get('/allianceform', ianddController.getFormAlliance)
 router.post('/updateallianceform', routeGuard.isAuthenticated, ianddController.updateFormAlliance)
+router.post('/allianceform', routeGuard.isAuthenticated, ianddController.createFormAlliance)
 router.get('/bottomalliances', ianddController.getBottomAlliances)
 router.patch('/updatebottomalliances', routeGuard.isAuthenticated, ianddController.updateBottomAlliances)
+router.get('/leadsform', routeGuard.isAuthenticated, ianddController.getLeadsForm)
+router.get('/leadsform/:id/delete', routeGuard.isAuthenticated, ianddController.deleteLeadsForm)
