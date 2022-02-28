@@ -16,8 +16,6 @@ module.exports.getBannerTA = (req, res, next) => {
 module.exports.updateBannerTA = (req, res, next) => {
   const userRole = req.session.user.role
   const {description, imgURL, title, id} = req.body
-  console.log(imgURL)
-
 
   if (userRole === 'Admin') {
     BannerTA.findByIdAndUpdate(id, req.body, {new: true})

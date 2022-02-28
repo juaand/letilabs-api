@@ -7,11 +7,6 @@ const vigilanciaController = require('../controllers/vigilancia.controller')
 
 module.exports = router
 
-router.get('/vigilancia/:id/delete',
-  routeGuard.isAuthenticated,
-  vigilanciaController.dropVigilanciaCard)
+router.get('/vigilancia/:id/delete', routeGuard.isAuthenticated, vigilanciaController.dropVigilanciaCard)
+router.post('/vigilancia', routeGuard.isAuthenticated, vigilanciaController.addVigilancia)
 
-router.post('/vigilancia',
-  vigilanciaController.addVigilancia)
-
-  

@@ -137,8 +137,6 @@ module.exports.getUnidadesInicio = (req, res, next) => {
 module.exports.updateUnidadesInicio = (req, res, next) => {
   const userRole = req.session.user.role
   const {logo, desc, url, id} = req.body
-  console.log(req.body)
-  console.log(id)
 
   if (userRole === 'Admin') {
     UnidadesInicio.findByIdAndUpdate(id, req.body, {new: true})
@@ -309,6 +307,8 @@ module.exports.updateModalFarmaco = (req, res, next) => {
 module.exports.updateFarmacoData = (req, res, next) => {
   const userRole = req.session.user.role
   const {title, subTitle, buttonTitle, id} = req.body
+
+  console.log(id)
 
   if (userRole === 'Admin') {
     FarmacoInicio.findByIdAndUpdate(id, req.body, {new: true})
@@ -1668,9 +1668,6 @@ module.exports.getVideoPurpose = (req, res, next) => {
 module.exports.updateVideoPurpose = (req, res, next) => {
   const userRole = req.session.user.role
   const {videoURL, id} = req.body
-
-  console.log(req.body)
-
 
   if (userRole === 'Admin') {
     VideoPurpose.findByIdAndUpdate(id, req.body, {new: true})

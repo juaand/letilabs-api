@@ -15,6 +15,7 @@ const CertificateManufacture = require('../models/IAD/manufactura/certificadoMan
 const BottomManufacture = require('../models/IAD/manufactura/bottomCtaManufacturaID.model')
 const BannerAlliances = require('../models/IAD/alianzas/bannerAlianzasID.model')
 const FormAlliances = require('../models/IAD/alianzas/contribucionAlianzasID.model')
+const FormAlliancesMessages = require('../models/IAD/alianzas/alianzasForm.model')
 const BottomAlliances = require('../models/IAD/alianzas/bottomCtaAlianzasID.model')
 
 //admin I+D routes
@@ -651,8 +652,6 @@ module.exports.createAlly = (req, res, next) => {
   const userRole = req.session.user.role
   const {title, picPath} = req.body
 
-  console.log(picPath)
-
   if (userRole === 'Admin') {
     AllianceLogos.create(req.body)
       .then(() => {
@@ -705,6 +704,56 @@ module.exports.updateFormAlliance = (req, res, next) => {
     FormAlliances.findByIdAndUpdate(id, req.body, {new: true})
       .then((data) => {
         res.status(201).json(data)
+      })
+      .catch(next)
+  } else {
+    req.session.destroy()
+    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+  }
+}
+
+module.exports.createFormAlliance = (req, res, next) => {
+  const userRole = req.session.user.role
+  const {name, lastname, mail, phone, country, company, message} = req.body
+
+  if (userRole === 'Admin') {
+    FormAlliancesMessages.create(req.body)
+      .then((response) => {
+        res.status(201).json(response)
+      })
+      .catch(next)
+  } else {
+    req.session.destroy()
+    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+  }
+}
+
+module.exports.getLeadsForm = (req, res, next) => {
+  const userRole = req.session.user.role
+
+  if (userRole === 'Admin') {
+    FormAlliancesMessages.find()
+      .then(response => {
+        res.status(201).json(response)
+      })
+      .catch(next)
+  } else {
+    req.session.destroy()
+    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+  }
+}
+
+module.exports.deleteLeadsForm = (req, res, next) => {
+  const userRole = req.session.user.role
+
+  if (userRole === 'Admin') {
+    FormAlliancesMessages.findByIdAndDelete(req.params.id)
+      .then(() => {
+        FormAlliancesMessages.find()
+          .then(response => {
+            res.status(201).json(response)
+          })
+          .catch(next)
       })
       .catch(next)
   } else {
