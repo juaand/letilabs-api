@@ -651,8 +651,6 @@ module.exports.createAlly = (req, res, next) => {
   const userRole = req.session.user.role
   const {title, picPath} = req.body
 
-  console.log(picPath)
-
   if (userRole === 'Admin') {
     AllianceLogos.create(req.body)
       .then(() => {
