@@ -171,7 +171,7 @@ module.exports.getBottom = (req, res, next) => {
 
 module.exports.updateBottomID = (req, res, next) => {
   const userRole = req.session.user.role
-  const {title, img, url, btn, id} = req.body
+  const {title, img, buttonLink, buttonTitle, id} = req.body
 
 
   if (userRole === 'Admin') {
