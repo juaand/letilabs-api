@@ -1579,7 +1579,7 @@ module.exports.getBottomOurPeople = (req, res, next) => {
 
 module.exports.updateBottomOurPeople = (req, res, next) => {
   const userRole = req.session.user.role
-  const {title, buttoLink, buttonTitle, img, id} = req.body
+  const {title, buttonLink, buttonTitle, img, id} = req.body
 
 
   if (userRole === 'Admin') {
