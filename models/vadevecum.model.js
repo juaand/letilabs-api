@@ -64,7 +64,7 @@ const vadevecumSchema = new Schema(
       type: String,
       default: 'Sin información de vida útil de este medicamento.'
     },
-    CPE: {
+    cpe: {
       type: String,
       default: 'Sin información del CPE de este medicamento.'
     },
