@@ -22,6 +22,7 @@ router.patch('/updateportfolioiniciodata', routeGuard.isAuthenticated, adminCont
 router.post('/createportfolioiniciodata', routeGuard.isAuthenticated, adminController.createPortfolioInicio)
 router.post('/updatetitleportfolioiniciodata', routeGuard.isAuthenticated, adminController.updateTitlePortfolioInicio)
 router.get('/vadevecumdata', adminController.getVadevecumData)
+router.get('/therapeuticgroupsdata', adminController.getTherapeuticGroupsData)
 router.patch('/updateportfoliodata', routeGuard.isAuthenticated, adminController.updatePortfolioData)
 router.get('/farmacoiniciodata', adminController.getFarmacoInicio)
 router.get('/modalfarmacoiniciodata', adminController.getModalFarmacoInicio)

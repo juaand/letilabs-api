@@ -33,6 +33,7 @@ const EquipoGenvenPageOC = require('../models/nuestrasEmpresas/genvenPage/equipo
 const TimeLineGenvenOC = require('../models/nuestrasEmpresas/genvenPage/genvenTimeLine.model')
 const ProductosGenvenOC = require('../models/nuestrasEmpresas/genvenPage/genvenProductos.model')
 const Vadevecum = require('../models/vadevecum.model')
+const TherapeuticGroup = require('../models/therapeutic_group.model')
 const Video = require('../models/home/video.model')
 const BottomHomeData = require('../models/home/meetPeopleWorkWithUsHome.model')
 const BannerPurpose = require('../models/propositoYResponsabilidad/bannerProposito.model')
@@ -245,6 +246,15 @@ module.exports.deletePortfolioItem = (req, res, next) => {
 module.exports.getVadevecumData = (req, res, next) => {
   Vadevecum.find()
     .sort({name: 1})
+    .then((data) => {
+      res.status(201).json(data)
+    })
+    .catch(next)
+}
+
+module.exports.getTherapeuticGroupsData = (req, res, next) => {
+  TherapeuticGroup.find()
+    .sort({tag: 1})
     .then((data) => {
       res.status(201).json(data)
     })
@@ -1839,7 +1849,7 @@ module.exports.updateProduct = (req, res, next) => {
 
 module.exports.createProduct = (req, res, next) => {
   const userRole = req.session.user.role
-  const {name, line, health_register, picPath, QRpath, active_principle, posology, presentation, composition} = req.body
+  const {name, picPath, QRpath, line, composition, health_register, active_principle, posology, presentation, indication, therapeutic_group, category, util_life, cpe, how_to_use, contraindications, adverse_reactions} = req.body
 
   if (userRole === 'Admin') {
     Vadevecum.create(req.body)
