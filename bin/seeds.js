@@ -1023,15 +1023,26 @@ Promise.all([
     const BannerProductosPage = require('../models/productosPage/bannerProductosPage.model')
     const EresMedicoProductos = require('../models/productosPage/eresMedicoProductos.model')
     const BannerProducstList = require('../models/productosPage/bannerProductsList.model')
+    const TherapeuticGroup = require('../models/therapeutic_group.model')
+    const TherapeuticGroupTag = require('../data/therapeuticGroups') 
 
     Promise.all([
       BannerProductos.deleteMany(),
       EresMedicoProductos.deleteMany(),
       BannerProductosPage.deleteMany(),
       BannerProducstList.deleteMany(),
+      TherapeuticGroup.deleteMany(),
     ])
       .then(() => {
         console.log('all databases cleaned')
+        TherapeuticGroupTag.forEach(el => {
+          const newTg = new TherapeuticGroup({
+            tag: el.tag,
+          })
+          newTg.save()
+            .then(() => console.log(`therapeutic group created`))
+            .catch(error => console.log(error))
+        })
         const bannerProductosPage = new BannerProductosPage({
           title: 'Trabajamos cada día para poner nuestros conocimientos y habilidades al servicio de las personas:',
           description: 'Desarrollando y poniendo a su disposición productos que abarquen una amplia gama de necesidades.',
