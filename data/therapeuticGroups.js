@@ -1,5 +1,8 @@
 module.exports = [
   {
+    tag: "Analgésico"
+  }, 
+  {
     tag: "Anti depresivo"
   },
   {
@@ -40,6 +43,9 @@ module.exports = [
   },
   {
     tag: "Antiparasitarios"
+  },
+  {
+    tag: "Antipirético"
   },
   {
     tag: "Antitusígeno"
