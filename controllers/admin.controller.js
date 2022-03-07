@@ -1831,20 +1831,18 @@ module.exports.updateProduct = (req, res, next) => {
   const {name, picPath, QRpath, line, composition, health_register, active_principle, posology, presentation, indication, therapeutic_group, category, util_life, cpe, how_to_use, contraindications, adverse_reactions} = req.body
 
   if (userRole === 'Admin') {
-    if (typeof therapeutic_group === 'string') {
-      console.log(therapeutic_group)
-    } else {
-      Vadevecum.findByIdAndUpdate(id, req.body, {new: true})
-        .then(() => {
-          Vadevecum.find()
-            .sort({name: 1})
-            .then(data => {
-              res.status(201).json(data)
-            })
-            .catch(next)
-        })
-        .catch(next)
-    }
+    console.log('HERE')
+    Vadevecum.findByIdAndUpdate(id, req.body, {new: true})
+      .then(() => {
+        Vadevecum.find()
+          .sort({name: 1})
+          .then(data => {
+            res.status(201).json(data)
+          })
+          .catch(next)
+      })
+      .catch(next)
+
   } else {
     req.session.destroy()
     res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
