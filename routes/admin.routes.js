@@ -15,6 +15,7 @@ router.get('/farmvigdata', routeGuard.isAuthenticated, adminController.getFarmVi
 router.get('/usinfodata', adminController.getUsInfo)
 router.patch('/updateusinfodata', routeGuard.isAuthenticated, adminController.updateUsInfoData)
 router.get('/unidadesiniciodata', adminController.getUnidadesInicio)
+router.post('/updateunidadesnegociotitle', routeGuard.isAuthenticated, adminController.updateUnidadesNegocioTitle)
 router.patch('/updateunidadesiniciodata', routeGuard.isAuthenticated, adminController.updateUnidadesInicio)
 router.get('/portfolioiniciodata', adminController.getPortfolioInicio)
 router.get('/deleteportfolioitem/:id', routeGuard.isAuthenticated, adminController.deletePortfolioItem)

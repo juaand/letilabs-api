@@ -155,6 +155,26 @@ module.exports.getUnidadesInicio = (req, res, next) => {
     .catch(next)
 }
 
+module.exports.updateUnidadesNegocioTitle = (req, res, next) => {
+  const userRole = req.session.user.role
+  const {mainTitle} = req.body
+
+  if (userRole === 'Admin') {
+    UnidadesInicio.find()
+      .then(response => {
+        response.forEach(element => {
+          element.mainTitle = mainTitle
+          element.save()
+        })
+        res.status(201).json(response)
+      })
+      .catch(next)
+  } else {
+    req.session.destroy()
+    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+  }
+}
+
 module.exports.updateUnidadesInicio = (req, res, next) => {
   const userRole = req.session.user.role
   const {logo, desc, url, id} = req.body
