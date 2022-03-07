@@ -47,6 +47,7 @@ router.get('/deleteproccess/:id', routeGuard.isAuthenticated, ianddController.de
 router.get('/deletecertificate/:id', routeGuard.isAuthenticated, ianddController.deleteCertificate)
 router.get('/certificatesmanufacture', ianddController.getCertificatesManufacture)
 router.post('/updatecertificatesmanufacture', routeGuard.isAuthenticated, ianddController.updateCertificatesManufacture)
+router.patch('/updatecertificatesimage', routeGuard.isAuthenticated, ianddController.updateCertificatesImage)
 router.post('/createcertificatesmanufacture', routeGuard.isAuthenticated, ianddController.createCertificatesManufacture)
 router.get('/bottommanufacture', ianddController.getBottomManufacture)
 router.patch('/updatebottommanufacture', routeGuard.isAuthenticated, ianddController.updateBottomManufacture)

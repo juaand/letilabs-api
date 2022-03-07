@@ -528,7 +528,7 @@ module.exports.getCertificatesManufacture = (req, res, next) => {
 
 module.exports.updateCertificatesManufacture = (req, res, next) => {
   const userRole = req.session.user.role
-  const {title, desc} = req.body
+  const {imgURL, title, desc} = req.body
 
   if (userRole === 'Admin') {
     CertificateManufacture.find()
@@ -539,6 +539,26 @@ module.exports.updateCertificatesManufacture = (req, res, next) => {
           element.save()
         })
         res.status(201).json(response)
+      })
+      .catch(next)
+  } else {
+    req.session.destroy()
+    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+  }
+}
+
+module.exports.updateCertificatesImage = (req, res, next) => {
+  const userRole = req.session.user.role
+  const {imgURL, id} = req.body
+
+  if (userRole === 'Admin') {
+    CertificateManufacture.findByIdAndUpdate(id, req.body, {new: true})
+      .then(() => {
+        CertificateManufacture.find()
+          .then(response => {
+            res.status(201).json(response)
+          })
+          .catch(next)
       })
       .catch(next)
   } else {
