@@ -111,6 +111,26 @@ module.exports.getHomeBottomData = (req, res, next) => {
     .catch(next)
 }
 
+module.exports.updateBottomCtaData = (req, res, next) => {
+  const userRole = req.session.user.role
+  const {title, img, button, url, id} = req.body
+
+  if (userRole === 'Admin') {
+    BottomHomeData.findByIdAndUpdate(id, req.body, {new: true})
+      .then(() => {
+        BottomHomeData.find()
+          .then((data) => {
+            res.status(201).json(data)
+          })
+          .catch(next)
+      })
+      .catch(next)
+  } else {
+    req.session.destroy()
+    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+  }
+}
+
 module.exports.updateVideoData = (req, res, next) => {
   const userRole = req.session.user.role
   const {url, id} = req.body

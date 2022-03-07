@@ -32,6 +32,7 @@ router.get('/deleteunititem/:id', routeGuard.isAuthenticated, adminController.de
 router.patch('/updatevideodata', routeGuard.isAuthenticated, adminController.updateVideoData)
 router.get('/videoiniciodata', adminController.getVideoData)
 router.get('/homebottomdata', adminController.getHomeBottomData)
+router.patch('/updatebottomhome', routeGuard.isAuthenticated, adminController.updateBottomCtaData)
 
 
 /////////////////////////////////////////////////////////////////////
