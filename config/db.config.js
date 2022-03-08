@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-const MONGODB_URI = 'mongodb+srv://grupoleti:grup0l3t1.d3v@cluster0.quq61.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
+const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/letilabs-api'
 
 mongoose.connect(MONGODB_URI, {useNewUrlParser: true, useUnifiedTopology: true})
     .then(() => console.info(`Successfully connected to the database ${MONGODB_URI}`))
