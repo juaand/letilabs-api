@@ -51,7 +51,7 @@ Promise.all([
     const rrssInfo = new Rrss({
       instagram: 'https://www.instagram.com/',
       facebook: 'https://www.facebook.com/',
-      whatsapp: 'https://api.whatsapp.com/',
+      whatsapp: '344147777777',
       linkedin: 'https://www.linkedin.com/'
     })
     rrssInfo.save()

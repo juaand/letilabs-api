@@ -167,7 +167,7 @@ module.exports.getRrssInfo = (req, res, next) => {
 
 module.exports.updateRrssInfo = (req, res, next) => {
   const userRole = req.session.user.role
-  const {facebook, instagram, linkedin, whatsapp, id} = req.body
+  const {facebook, linkedin, whatsapp, id} = req.body
 
   if (userRole === 'Admin') {
     Rrss.findByIdAndUpdate(id, req.body, {new: true})

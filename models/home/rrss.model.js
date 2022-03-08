@@ -3,10 +3,6 @@ const {Schema, model} = require('mongoose')
 
 const rrssSchema = new Schema(
   {
-    instagram: {
-      type: String,
-      required: true
-    },
     facebook: {
       type: String,
       required: true
