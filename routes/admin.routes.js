@@ -34,6 +34,8 @@ router.patch('/updatevideodata', routeGuard.isAuthenticated, adminController.upd
 router.get('/videoiniciodata', adminController.getVideoData)
 router.get('/homebottomdata', adminController.getHomeBottomData)
 router.patch('/updatebottomhome', routeGuard.isAuthenticated, adminController.updateBottomCtaData)
+router.get('/cookieinfo', adminController.getCookieInfo)
+router.patch('/updatecookieinfo', routeGuard.isAuthenticated, adminController.updateCookieInfo)
 
 
 /////////////////////////////////////////////////////////////////////
