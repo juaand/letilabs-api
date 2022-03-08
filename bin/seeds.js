@@ -26,7 +26,7 @@ const portfolioData = require('../data/dataPortafolio')
 const meetPeopleWorkWithUsData = require('../data/dataMeetPeopleWorkWhitUs')
 const unidadesNegocioData = require('../data/unidadesNegocio')
 const Cookie = require('../models/home/cookie.model')
-
+const Rrss = require('../models/home/rrss.model')
 
 Promise.all([
   CarrouselHome.deleteMany(),
@@ -37,7 +37,8 @@ Promise.all([
   UnidadesNegocio.deleteMany(),
   UsInfo.deleteMany(),
   Video.deleteMany(),
-  Cookie.deleteMany()
+  Cookie.deleteMany(),
+  Rrss.deleteMany(),
 ])
   .then(() => {
     console.log('all databases cleaned')
@@ -46,6 +47,15 @@ Promise.all([
     })
     cookieInfo.save()
       .then(() => console.log(`Cookie created`))
+      .catch(error => console.log(error))
+    const rrssInfo = new Rrss({
+      instagram: 'https://www.instagram.com/',
+      facebook: 'https://www.facebook.com/',
+      whatsapp: 'https://api.whatsapp.com/',
+      linkedin: 'https://www.linkedin.com/'
+    })
+    rrssInfo.save()
+      .then(() => console.log(`Rrss created`))
       .catch(error => console.log(error))
     carrouselHomeData.forEach(unidad => {
       const carrouselHome = new CarrouselHome({

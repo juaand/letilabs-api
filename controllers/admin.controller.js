@@ -46,6 +46,7 @@ const BottomOurPeople = require('../models/nuestraGente/bottomCtaNuestraGente.mo
 const Carreras = require('../models/nuestraGente/carrerasNuestraGente.model')
 const BannerTeamsOurPeople = require('../models/nuestraGente/bannerEquiposNuestraGente.model')
 const CookieInfo = require('../models/home/cookie.model')
+const Rrss = require('../models/home/rrss.model')
 
 module.exports.getFarmVigData = (req, res, next) => {
   const userRole = req.session.user.role
@@ -146,6 +147,30 @@ module.exports.updateCookieInfo = (req, res, next) => {
 
   if (userRole === 'Admin') {
     CookieInfo.findByIdAndUpdate(id, req.body, {new: true})
+      .then((data) => {
+        res.status(201).json(data)
+      })
+      .catch(next)
+  } else {
+    req.session.destroy()
+    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+  }
+}
+
+module.exports.getRrssInfo = (req, res, next) => {
+  Rrss.find()
+    .then((data) => {
+      res.status(201).json(data)
+    })
+    .catch(next)
+}
+
+module.exports.updateRrssInfo = (req, res, next) => {
+  const userRole = req.session.user.role
+  const {facebook, instagram, linkedin, whatsapp, id} = req.body
+
+  if (userRole === 'Admin') {
+    Rrss.findByIdAndUpdate(id, req.body, {new: true})
       .then((data) => {
         res.status(201).json(data)
       })
