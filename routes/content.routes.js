@@ -8,4 +8,4 @@ const contentController = require('../controllers/content.controller')
 
 module.exports = router
 
-router.post('/update-content', contentController.createContent)
+router.post('/update-content', routeGuard.isAuthenticated, contentController.createContent)
