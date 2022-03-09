@@ -9,7 +9,7 @@ module.exports = [
     id: '2',
     page: 'Sobre nosotros',
     keywords: ['Grupo Leti', 'Sobre nosotros'],
-    description: 'Laboratorios Leti es un laboratorio farmacéutico venezolano que desde hace 70 años, crea soluciones de salud a través de la producción y comercialización de un amplio portafolio de medicamentos desarrollados con tecnología y seguridad, de la mano de un talento humano caliﬁcado que trabaja día a día para acompañar a los venezolanos.'
+    description: 'Desarrollamos soluciones de salud que marcan la diferencia en la vida de los venezolanos.'
   },
   {
     id: '3',

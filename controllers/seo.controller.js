@@ -18,12 +18,8 @@ module.exports.updateSeoData = (req, res, next) => {
 
   if (userRole === 'Admin') {
     Seo.findByIdAndUpdate(id, req.body, {new: true})
-      .then(() => {
-        Seo.find()
-          .then((data) => {
-            res.status(201).json(data)
-          })
-          .catch(next)
+      .then((data) => {
+        res.status(201).json(data)
       })
       .catch(next)
   } else {
