@@ -1224,8 +1224,30 @@ Promise.all([
   .catch(error => console.log(error))
 
 
-  ////////////////////////////////////////
+////////////////////////////////////////
+////////////   SEO  ///////////////////
+////////////////////////////////////////
 
+const Seo = require('../models/seo.model')
+const SeoData = require('../data/seoData')
+
+Promise.all([
+  Seo.deleteMany()
+])
+  .then(() => {
+    console.log('seo cleaned')
+    SeoData.forEach(el => {
+      const newSeo = new Seo({
+        keywords: el.keywords,
+        page: el.page,
+        description: el.description,
+      })
+      newSeo.save()
+        .then(() => console.log(`seo created`))
+        .catch(error => console.log(error))
+    })
+  })
+  .catch(error => console.log(error))
 
   ////////////////////////////////////////
 
