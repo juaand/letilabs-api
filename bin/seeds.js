@@ -49,10 +49,9 @@ Promise.all([
       .then(() => console.log(`Cookie created`))
       .catch(error => console.log(error))
     const rrssInfo = new Rrss({
-      instagram: 'https://www.instagram.com/',
-      facebook: 'https://www.facebook.com/',
-      whatsapp: '344147777777',
-      linkedin: 'https://www.linkedin.com/'
+      instagram: 'https://www.instagram.com/lab_leti/',
+      facebook: 'https://www.facebook.com/laboratoriosletisav',
+      linkedin: 'https://www.linkedin.com/company/grupoleti/'
     })
     rrssInfo.save()
       .then(() => console.log(`Rrss created`))

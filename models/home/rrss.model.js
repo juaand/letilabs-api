@@ -7,11 +7,11 @@ const rrssSchema = new Schema(
       type: String,
       required: true
     },
-    whatsapp: {
+    linkedin: {
       type: String,
       required: true
     },
-    linkedin: {
+    instagram: {
       type: String,
       required: true
     },
