@@ -7,23 +7,13 @@ module.exports.createContent = (req, res, next) => {
 
   const dataArr = new Set(content)
 
-  SiteContent.deleteMany()
+  console.log(content)
+  console.log(name)
+  Promise.all([
+    SiteContent.deleteMany({"name": name})
+  ]
+  )
 
-  SiteContent.find({name})
-    .then(response => {
-      if (response.length) {
-        SiteContent.findOneAndUpdate({name}, {$set: {content}})
-          .then(() => {
-            res.status(201).json({
-              message: 'Contenido ya existe'
-            })
-          })
-          .catch(next)
-      } else {
-        // SiteContent.create({name, url, content}).then((newContent) => {
-        //   res.status(201).json(newContent)
-        // })
-        //   .catch(next)
         dataArr.forEach(el => {
           SiteContent.create({name, url, content: el})
             .then(() => {
@@ -34,5 +24,3 @@ module.exports.createContent = (req, res, next) => {
             .catch(next)
         })
       }
-    })
-}
