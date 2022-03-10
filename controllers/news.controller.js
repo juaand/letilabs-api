@@ -77,6 +77,16 @@ module.exports.updateNews = (req, res, next) => {
   }
 }
 
+module.exports.getNewsById = (req, res, next) => {
+  const id = req.params.id
+
+  Blog.findById(id)
+    .then(response => {
+      res.status(201).json(response)
+    })
+    .catch(next)
+}
+
 module.exports.addOutstandingNews = (req, res, next) => {
   const id = req.params.id
   const userRole = req.session.user.role
