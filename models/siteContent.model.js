@@ -11,6 +11,9 @@ const siteContentSchema = new Schema(
     },
     content: {
       type: String,
+    },
+    type: {
+      type: String,
     }
   }
 )

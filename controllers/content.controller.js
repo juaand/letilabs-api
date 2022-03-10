@@ -3,24 +3,18 @@ const SiteContent = require('../models/siteContent.model')
 
 
 module.exports.createContent = (req, res, next) => {
-  const {name, url, content} = req.body
+  const {name, url, content, type} = req.body
 
-  const dataArr = [... new Set(content)];
-
-  console.log(dataArr)
-  console.log(name)
   Promise.all([
-    SiteContent.deleteMany({"name": name})
+    SiteContent.deleteMany({"type": type})
   ]
   ).then(() => {
-    dataArr.forEach(el => {
-      SiteContent.create({name, url, content: el})
-        .then(() => {
-          res.status(201).json({
-            message: 'Contenidos creados exitosamente'
-          })
+    SiteContent.create({name, url, type, content: content})
+      .then(() => {
+        res.status(201).json({
+          message: 'Contenido creado exitosamente'
         })
-        .catch(next)
-    })
+      })
+      .catch(next)
   })
 }
