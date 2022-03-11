@@ -22,7 +22,7 @@ const megatSchema = new Schema(
     logoURL: {
       type: String,
       required: true,
-      default: 'https://firebasestorage.googleapis.com/v0/b/grupo-leti-fd84e.appspot.com/o/images%2Fmegat.svg?alt=media&token=effe1cb4-00ed-4c17-b446-47129e124dfc'
+      default: 'https://firebasestorage.googleapis.com/v0/b/grupoleti.appspot.com/o/images%2Fmegat.svg?alt=media&token=4367be0e-5643-4cac-86d2-1b19959cd34d'
     }
   },
   {timestamps: true}

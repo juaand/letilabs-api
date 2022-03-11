@@ -5,7 +5,7 @@ const infoCardsIDSchema = new Schema(
   {
     picPath: {
       type: String,
-      default: 'https://firebasestorage.googleapis.com/v0/b/grupo-leti-fd84e.appspot.com/o/images%2Fno-image.png?alt=media&token=73bf7cd8-629d-4deb-b281-9e629fbfb752',
+      default: 'https://firebasestorage.googleapis.com/v0/b/grupoleti.appspot.com/o/images%2Fno-image.png?alt=media&token=b95b1265-ca58-4e6d-a5c8-4194203d1cd7',
     },
     title: {
       type: String,

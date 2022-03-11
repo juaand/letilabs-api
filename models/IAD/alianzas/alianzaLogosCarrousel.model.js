@@ -9,7 +9,7 @@ const alianzaLogosCarrouselSchema = new Schema(
     },
     picPath: {
       type: String,
-      default: 'https://firebasestorage.googleapis.com/v0/b/grupo-leti-fd84e.appspot.com/o/images%2Flogo-aliado.png?alt=media&token=dbf632e0-e1db-4f35-a828-bdd1c69a93f5',
+      default: 'https://firebasestorage.googleapis.com/v0/b/grupoleti.appspot.com/o/images%2Flogo-aliado.png?alt=media&token=543fb636-d6ec-4267-975e-4e6c5edd9031',
       required: true
     }
   },
