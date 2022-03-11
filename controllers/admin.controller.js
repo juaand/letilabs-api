@@ -408,8 +408,6 @@ module.exports.updateFarmacoData = (req, res, next) => {
   const userRole = req.session.user.role
   const {title, subTitle, buttonTitle, id} = req.body
 
-  console.log(id)
-
   if (userRole === 'Admin') {
     FarmacoInicio.findByIdAndUpdate(id, req.body, {new: true})
       .then((data) => {
@@ -1921,7 +1919,6 @@ module.exports.updateProduct = (req, res, next) => {
   const {name, picPath, QRpath, line, composition, health_register, active_principle, posology, presentation, indication, therapeutic_group, category, util_life, cpe, how_to_use, contraindications, adverse_reactions} = req.body
 
   if (userRole === 'Admin') {
-    console.log('HERE')
     Vadevecum.findByIdAndUpdate(id, req.body, {new: true})
       .then(() => {
         Vadevecum.find()
