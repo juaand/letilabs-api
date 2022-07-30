@@ -189,3 +189,9 @@ router.patch('/producto/:id/update', routeGuard.isAuthenticated, adminController
 
 router.post('/crear-producto', routeGuard.isAuthenticated, adminController.createProduct)
 
+//////////////////////////////////////////////////////////////////////
+/////////////////////////// NAVEGACIÓN CRUD //////////////////////////
+/////////////////////////////////////////////////////////////////////
+
+router.get('/getnavdata', adminController.getNavData)
+router.patch('/updatenavdata', routeGuard.isAuthenticated, adminController.updateNavData)

@@ -47,6 +47,7 @@ const Carreras = require('../models/nuestraGente/carrerasNuestraGente.model')
 const BannerTeamsOurPeople = require('../models/nuestraGente/bannerEquiposNuestraGente.model')
 const CookieInfo = require('../models/home/cookie.model')
 const Rrss = require('../models/home/rrss.model')
+const Nav = require('../models/navbar/navbarComponents/dataNav.model')
 
 module.exports.getFarmVigData = (req, res, next) => {
   const userRole = req.session.user.role
@@ -702,6 +703,7 @@ module.exports.updateBannerDataOC = (req, res, next) => {
 
 module.exports.getOurCompaniesOC = (req, res, next) => {
   OurCompaniesOC.find()
+  .sort({_id: 1})
     .then((data) => {
       res.status(201).json(data)
     })
@@ -1951,6 +1953,39 @@ module.exports.createProduct = (req, res, next) => {
           .catch(next)
       })
       .catch(next)
+  } else {
+    req.session.destroy()
+    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+  }
+}
+
+module.exports.getNavData = (req, res, next) => {
+    Nav.find()
+      .sort({_id: 1})
+      .then(data => {
+        console.log(data)
+        res.status(201).json(data)
+      })
+      .catch(next)
+
+}
+
+module.exports.updateNavData = (req, res, next) => {
+  const userRole = req.session.user.role
+  const {title, desc, nav_btn, nav_cta, id} = req.body
+
+  if (userRole === 'Admin') {
+    Nav.findByIdAndUpdate(id, req.body, {new: true})
+      .then(() => {
+        Nav.find()
+          .sort({name: 1})
+          .then(data => {
+            res.status(201).json(data)
+          })
+          .catch(next)
+      })
+      .catch(next)
+
   } else {
     req.session.destroy()
     res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
