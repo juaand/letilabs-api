@@ -15,6 +15,14 @@ const rrssSchema = new Schema(
       type: String,
       required: true
     },
+    twitter: {
+      type: String,
+      required: true
+    },
+    youtube: {
+      type: String,
+      required: true
+    }
   },
   {timestamps: true}
 )

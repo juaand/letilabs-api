@@ -1963,7 +1963,6 @@ module.exports.getNavData = (req, res, next) => {
     Nav.find()
       .sort({_id: 1})
       .then(data => {
-        console.log(data)
         res.status(201).json(data)
       })
       .catch(next)
