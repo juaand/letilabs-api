@@ -1,9 +1,13 @@
-// models/banner.model.js
+// models/science.model.js
 const { Schema, model} = require('mongoose')
 
-const bannerSchema = new Schema(
+const scienceSchema = new Schema(
   {
-    description: {
+    title: {
+      type: String,
+      required: true
+    },
+    desc: {
       type: String,
       required: true
     },
@@ -15,5 +19,4 @@ const bannerSchema = new Schema(
   { timestamps: true }
 )
 
-module.exports = model('Banner', bannerSchema)
-
+module.exports = model('Science', scienceSchema)

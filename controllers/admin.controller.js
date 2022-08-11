@@ -11,6 +11,7 @@ const TimeLine = require('../models/aboutUs/aboutUsComponents/timeline.model')
 const Banner = require('../models/aboutUs/aboutUsComponents/banner.model')
 const MarcandoPauta = require('../models/aboutUs/aboutUsComponents/marcandoPauta.model')
 const Megat = require('../models/aboutUs/aboutUsComponents/megat.model')
+const Science = require('../models/aboutUs/aboutUsComponents/science.model')
 const Gallery = require('../models/aboutUs/aboutUsComponents/gallery.model')
 const BannerOC = require('../models/nuestrasEmpresas/bannerEmpresas.model')
 const OurCompaniesOC = require('../models/nuestrasEmpresas/unidadesNegocioEmpresas.model')
@@ -567,6 +568,15 @@ module.exports.getMegat = (req, res, next) => {
     .catch(next)
 }
 
+module.exports.getScience = (req, res, next) => {
+  Science.find()
+    .then((data) => {
+      console.log(data)
+      res.status(201).json(data[0])
+    })
+    .catch(next)
+}
+
 module.exports.updateMegatData = (req, res, next) => {
   const userRole = req.session.user.role
   const {title, description, url, buttonTitle, id} = req.body
@@ -574,6 +584,23 @@ module.exports.updateMegatData = (req, res, next) => {
 
   if (userRole === 'Admin') {
     Megat.findByIdAndUpdate(id, req.body, {new: true})
+      .then((data) => {
+        res.status(201).json(data)
+      })
+      .catch(next)
+  } else {
+    req.session.destroy()
+    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+  }
+}
+
+module.exports.updateScienceData = (req, res, next) => {
+  const userRole = req.session.user.role
+  const {title, desc, imgURL, id} = req.body
+
+
+  if (userRole === 'Admin') {
+    Science.findByIdAndUpdate(id, req.body, {new: true})
       .then((data) => {
         res.status(201).json(data)
       })
