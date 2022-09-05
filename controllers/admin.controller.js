@@ -47,6 +47,7 @@ const BottomOurPeople = require('../models/nuestraGente/bottomCtaNuestraGente.mo
 const Carreras = require('../models/nuestraGente/carrerasNuestraGente.model')
 const BannerTeamsOurPeople = require('../models/nuestraGente/bannerEquiposNuestraGente.model')
 const InfoBannerOurPeople = require('../models/nuestraGente/ourPeopleInfoBanner.model')
+const BannerBtm = require('../models/nuestraGente/bannerBtm.model')
 const CookieInfo = require('../models/home/cookie.model')
 const Rrss = require('../models/home/rrss.model')
 const Nav = require('../models/navbar/navbarComponents/dataNav.model')
@@ -1681,6 +1682,30 @@ module.exports.getInfoBannerOP = (req, res, next) => {
       res.status(201).json(data)
     })
     .catch(next)
+}
+
+module.exports.getBannerBtm = (req, res, next) => {
+  BannerBtm.find()
+    .then((data) => {
+      res.status(201).json(data)
+    })
+    .catch(next)
+}
+
+module.exports.updateBannerBtm = (req, res, next) => {
+  const userRole = req.session.user.role
+  const {description, imgURL, id} = req.body
+
+  if (userRole === 'Admin') {
+    BannerBtm.findByIdAndUpdate(id, req.body, {new: true})
+      .then((data) => {
+        res.status(201).json(data)
+      })
+      .catch(next)
+  } else {
+    req.session.destroy()
+    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+  }
 }
 
 module.exports.createTeam = (req, res, next) => {
