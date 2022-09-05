@@ -177,6 +177,7 @@ router.get('/ourpeopleinfocard/:id/delete', routeGuard.isAuthenticated, adminCon
 router.post('/createteam', routeGuard.isAuthenticated, adminController.createTeam)
 router.get('/bannerdatateams', adminController.getBannerTeams)
 router.patch('/updatebannerdatateams', routeGuard.isAuthenticated, adminController.updateBannerTeams)
+router.get('/getibourpeople', adminController.getInfoBannerOP)
 
 
 //////////////////////////////////////////////////////////////////////

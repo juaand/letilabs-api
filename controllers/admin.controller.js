@@ -46,6 +46,7 @@ const EquipoOurPeople = require('../models/nuestraGente/equipoNuestraGente.model
 const BottomOurPeople = require('../models/nuestraGente/bottomCtaNuestraGente.model')
 const Carreras = require('../models/nuestraGente/carrerasNuestraGente.model')
 const BannerTeamsOurPeople = require('../models/nuestraGente/bannerEquiposNuestraGente.model')
+const InfoBannerOurPeople = require('../models/nuestraGente/ourPeopleInfoBanner.model')
 const CookieInfo = require('../models/home/cookie.model')
 const Rrss = require('../models/home/rrss.model')
 const Nav = require('../models/navbar/navbarComponents/dataNav.model')
@@ -1672,6 +1673,14 @@ module.exports.updateBannerTeams = (req, res, next) => {
     req.session.destroy()
     res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
   }
+}
+
+module.exports.getInfoBannerOP = (req, res, next) => {
+  InfoBannerOurPeople.find()
+    .then((data) => {
+      res.status(201).json(data)
+    })
+    .catch(next)
 }
 
 module.exports.createTeam = (req, res, next) => {
