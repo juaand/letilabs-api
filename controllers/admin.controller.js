@@ -82,7 +82,7 @@ module.exports.getUsInfo = (req, res, next) => {
 
 module.exports.updateUsInfoData = (req, res, next) => {
   const userRole = req.session.user.role
-  const {description, url, buttonTitle, id} = req.body
+  const {description, url, buttonTitle, age, id} = req.body
 
 
   if (userRole === 'Admin') {
@@ -571,7 +571,6 @@ module.exports.getMegat = (req, res, next) => {
 module.exports.getScience = (req, res, next) => {
   Science.find()
     .then((data) => {
-      console.log(data)
       res.status(201).json(data[0])
     })
     .catch(next)
