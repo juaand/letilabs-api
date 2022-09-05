@@ -20,6 +20,7 @@ router.get('/deleteidgoals/:id', routeGuard.isAuthenticated, ianddController.del
 router.post('/createidgoal', routeGuard.isAuthenticated, ianddController.createGoal)
 router.get('/idbottom', ianddController.getBottom)
 router.patch('/updateidbottom', routeGuard.isAuthenticated, ianddController.updateBottomID)
+router.get('/getidinfobanner', ianddController.getIdIInfoBanner)
 
 //I+D tech routes
 router.get('/bannertech', ianddController.getTechBannerID)

@@ -4,6 +4,7 @@ const AllianceInfoCards = require('../models/IAD/IDcomponents/infoCardsID.model'
 const BannerID = require('../models/IAD/IDcomponents/bannerID.model')
 const GoalsId = require('../models/IAD/IDcomponents/objetivosID.model')
 const BottomId = require('../models/IAD/IDcomponents/bottomCtaID.model')
+const InfoBannerID = require('../models/IAD/IDcomponents/bannerInfo.model')
 const BannerTech = require('../models/IAD/tecnologia/bannerTecnologiaID.model')
 const VideoTech = require('../models/IAD/tecnologia/videoTecnologiaID.model')
 const CarrouselTech = require('../models/IAD/tecnologia/carrouselTecnologiaID.model')
@@ -188,6 +189,14 @@ module.exports.updateBottomID = (req, res, next) => {
     req.session.destroy()
     res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
   }
+}
+
+module.exports.getIdIInfoBanner = (req, res, next) => {
+  InfoBannerID.find()
+    .then(response => {
+      res.status(201).json(response)
+    })
+    .catch(next)
 }
 
 //admin I+D tech routes
