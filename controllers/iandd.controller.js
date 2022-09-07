@@ -18,6 +18,7 @@ const BannerAlliances = require('../models/IAD/alianzas/bannerAlianzasID.model')
 const FormAlliances = require('../models/IAD/alianzas/contribucionAlianzasID.model')
 const FormAlliancesMessages = require('../models/IAD/alianzas/alianzasForm.model')
 const BottomAlliances = require('../models/IAD/alianzas/bottomCtaAlianzasID.model')
+const InfoBannerOurPeople = require("../models/nuestraGente/ourPeopleInfoBanner.model");
 
 //admin I+D routes
 module.exports.getBannerID = (req, res, next) => {
@@ -197,6 +198,49 @@ module.exports.getIdIInfoBanner = (req, res, next) => {
       res.status(201).json(response)
     })
     .catch(next)
+}
+
+module.exports.updateInfoBannerIAD = (req, res, next) => {
+  const userRole = req.session.user.role
+  const {backgroundURL, item, id} = req.body
+
+  if (userRole === 'Admin') {
+    InfoBannerOurPeople.findByIdAndUpdate(id, req.body, {new: true, useFindAndModify: false})
+        .then((data) => {
+          res.status(201).json(data)
+        })
+        .catch(next)
+  } else {
+    req.session.destroy()
+    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+  }
+}
+
+module.exports.updateInfoBannerIADDet = (req, res, next) => {
+  const userRole = req.session.user.role
+  const {desc, unity, iconURL, number, id} = req.body
+  const {whole} = req.body
+  const previousId = whole._id
+
+  for (let i = 0; i < whole.item.length; i++) {
+    if (whole.item[i]._id === id) {
+      whole.item[i].desc = desc;
+      whole.item[i].unity = unity;
+      whole.item[i].iconURL = iconURL;
+      whole.item[i].number = number;
+    }
+  }
+
+  if (userRole === 'Admin') {
+    InfoBannerID.findByIdAndUpdate(previousId, whole, {new: true, useFindAndModify: false})
+        .then((data) => {
+          res.status(201).json(data.item)
+        })
+        .catch(next)
+  } else {
+    req.session.destroy()
+    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+  }
 }
 
 //admin I+D tech routes

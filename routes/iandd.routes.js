@@ -5,6 +5,7 @@ const express = require("express")
 const router = express.Router()
 const routeGuard = require('../middlewares/auth.middleware')
 const ianddController = require('../controllers/iandd.controller')
+const adminController = require("../controllers/admin.controller");
 
 module.exports = router
 
@@ -21,6 +22,8 @@ router.post('/createidgoal', routeGuard.isAuthenticated, ianddController.createG
 router.get('/idbottom', ianddController.getBottom)
 router.patch('/updateidbottom', routeGuard.isAuthenticated, ianddController.updateBottomID)
 router.get('/getidinfobanner', ianddController.getIdIInfoBanner)
+router.patch('/updateinfobannerdataiad', routeGuard.isAuthenticated, ianddController.updateInfoBannerIAD)
+router.patch('/updateinfobannerdataiaddet', routeGuard.isAuthenticated, ianddController.updateInfoBannerIADDet)
 
 //I+D tech routes
 router.get('/bannertech', ianddController.getTechBannerID)
