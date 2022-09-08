@@ -47,6 +47,7 @@ const BottomOurPeople = require('../models/nuestraGente/bottomCtaNuestraGente.mo
 const Carreras = require('../models/nuestraGente/carrerasNuestraGente.model')
 const BannerTeamsOurPeople = require('../models/nuestraGente/bannerEquiposNuestraGente.model')
 const InfoBannerOurPeople = require('../models/nuestraGente/ourPeopleInfoBanner.model')
+const BannerBtm = require('../models/nuestraGente/bannerBtm.model')
 const CookieInfo = require('../models/home/cookie.model')
 const Rrss = require('../models/home/rrss.model')
 const Nav = require('../models/navbar/navbarComponents/dataNav.model')
