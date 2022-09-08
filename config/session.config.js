@@ -21,30 +21,12 @@ const SESSION_MAX_AGE_SECONDS = Number(process.env.SESSION_MAX_AGE_SECONDS) || 6
 // })
 
 //LOCALHOST
-module.exports = session({
-  secret: process.env.SESSION_SECRET || 'Grupoleti',
-  resave: true,
-  saveUninitialized: false,
-  cookie: {
-    secure: false,
-    httpOnly: true,
-    maxAge: SESSION_MAX_AGE_SECONDS * 1000
-  },
-  store: new MongoStore({
-    mongooseConnection: mongoose.connection,
-    ttl: SESSION_MAX_AGE_SECONDS
-  })
-})
-
-
-//HEROKU
 // module.exports = session({
 //   secret: process.env.SESSION_SECRET || 'Grupoleti',
 //   resave: true,
 //   saveUninitialized: false,
 //   cookie: {
-//     sameSite: 'none',
-//     secure: process.env.SESSION_SECURE,
+//     secure: false,
 //     httpOnly: true,
 //     maxAge: SESSION_MAX_AGE_SECONDS * 1000
 //   },
@@ -53,3 +35,21 @@ module.exports = session({
 //     ttl: SESSION_MAX_AGE_SECONDS
 //   })
 // })
+
+
+//HEROKU
+module.exports = session({
+  secret: process.env.SESSION_SECRET || 'Grupoleti',
+  resave: true,
+  saveUninitialized: false,
+  cookie: {
+    sameSite: 'none',
+    secure: process.env.SESSION_SECURE,
+    httpOnly: true,
+    maxAge: SESSION_MAX_AGE_SECONDS * 1000
+  },
+  store: new MongoStore({
+    mongooseConnection: mongoose.connection,
+    ttl: SESSION_MAX_AGE_SECONDS
+  })
+})
