@@ -178,6 +178,10 @@ router.post('/createteam', routeGuard.isAuthenticated, adminController.createTea
 router.get('/bannerdatateams', adminController.getBannerTeams)
 router.patch('/updatebannerdatateams', routeGuard.isAuthenticated, adminController.updateBannerTeams)
 router.get('/getibourpeople', adminController.getInfoBannerOP)
+router.get('/getbannerbtm', adminController.getBannerBtm)
+router.patch('/updatebannerbtm', routeGuard.isAuthenticated, adminController.updateBannerBtm)
+router.patch('/updateinfobannerdataourpeople', routeGuard.isAuthenticated, adminController.updateInfoBannerDataOurPeople)
+router.patch('/updateinfobannerdataourpeopledet', routeGuard.isAuthenticated, adminController.updateInfoBannerDataOurPeopleDet)
 
 
 //////////////////////////////////////////////////////////////////////
