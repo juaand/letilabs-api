@@ -180,6 +180,8 @@ router.patch('/updatebannerdatateams', routeGuard.isAuthenticated, adminControll
 router.get('/getibourpeople', adminController.getInfoBannerOP)
 router.get('/getbannerbtm', adminController.getBannerBtm)
 router.patch('/updatebannerbtm', routeGuard.isAuthenticated, adminController.updateBannerBtm)
+router.patch('/updateinfobannerdataourpeople', routeGuard.isAuthenticated, adminController.updateInfoBannerDataOurPeople)
+router.patch('/updateinfobannerdataourpeopledet', routeGuard.isAuthenticated, adminController.updateInfoBannerDataOurPeopleDet)
 
 
 //////////////////////////////////////////////////////////////////////
