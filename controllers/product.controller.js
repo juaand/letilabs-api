@@ -4,13 +4,36 @@ const ProductBanner = require('../models/ProductosPage/bannerProductosPage.model
 const ProductBottom = require('../models/ProductosPage/eresMedicoProductos.model')
 const ProductListBanner = require('../models/ProductosPage/bannerProductsList.model')
 const ProductInfo = require('../models/ProductosPage/productInfo.model')
+const {get} = require("mongoose");
 
 module.exports.getProduct = (req, res, next) => {
+
+  const seoURL = (str) => {
+    return str.toString()
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .replace(/\s+/g, '-')
+        .toLowerCase()
+        .replace(/&/g, '-and-')
+        // eslint-disable-next-line
+        .replace(/[^a-z0-9\-]/g, '')
+        .replace(/-+/g, '-')
+        .replace(/^-*/, '')
+        .replace(/-*$/, '')
+  }
+
   const {buscar} = req.body
 
-  const getProduct = Vadevecum.find({name: buscar})
-  const getRandomProducts = Vadevecum.aggregate([{$sample: {size: 3}}])
+  const allProducts = Vadevecum.find()
+  // console.log(allProducts)
+  //  const newAll = allProducts.forEach(el => {seoURL(el.name)})
+  //  console.log(newAll)
 
+
+  const getProduct = Vadevecum.find({name: new RegExp(buscar, 'i')})
+  console.log(getProduct)
+
+  const getRandomProducts = Vadevecum.aggregate([{$sample: {size: 3}}])
   Promise.all([getProduct, getRandomProducts])
     .then((data) => {
       res.status(201).json(data)
