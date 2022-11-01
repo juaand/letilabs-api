@@ -5,6 +5,7 @@ const express = require("express")
 const router = express.Router()
 const routeGuard = require('../middlewares/auth.middleware')
 const productController = require('../controllers/product.controller')
+const adminController = require("../controllers/admin.controller");
 
 module.exports = router
 
@@ -19,3 +20,4 @@ router.patch('/updatelistadoproductosbanner', routeGuard.isAuthenticated, produc
 router.post('/productinfoform', productController.getProductInfo)
 router.get('/productinfoformdata', routeGuard.isAuthenticated, productController.getProductInfoData)
 router.get('/productinfoform/:id/delete', routeGuard.isAuthenticated, productController.dropProductInfo)
+router.get('/prospect/:id', productController.productProspect)

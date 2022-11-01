@@ -5,6 +5,7 @@ const ProductBottom = require('../models/ProductosPage/eresMedicoProductos.model
 const ProductListBanner = require('../models/ProductosPage/bannerProductsList.model')
 const ProductInfo = require('../models/ProductosPage/productInfo.model')
 const {get} = require("mongoose");
+const Blog = require("../models/noticias/news.model");
 
 module.exports.getProduct = (req, res, next) => {
 
@@ -168,4 +169,14 @@ module.exports.dropProductInfo = (req, res, next) => {
     req.session.destroy()
     res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
   }
+}
+
+module.exports.productProspect = (req, res, next) => {
+  const id = req.params.id
+
+  Vadevecum.findById(id)
+      .then(response => {
+        res.status(201).json(response)
+      })
+      .catch(next)
 }
