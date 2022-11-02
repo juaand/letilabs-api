@@ -4,23 +4,23 @@ const ProductBanner = require('../models/ProductosPage/bannerProductosPage.model
 const ProductBottom = require('../models/ProductosPage/eresMedicoProductos.model')
 const ProductListBanner = require('../models/ProductosPage/bannerProductsList.model')
 const ProductInfo = require('../models/ProductosPage/productInfo.model')
-const {get} = require("mongoose");
-const Blog = require("../models/noticias/news.model");
+const {get} = require("mongoose")
+const Blog = require("../models/noticias/news.model")
 
 module.exports.getProduct = (req, res, next) => {
 
   const seoURL = (str) => {
     return str.toString()
-        .normalize('NFD')
-        .replace(/[\u0300-\u036f]/g, '')
-        .replace(/\s+/g, '-')
-        .toLowerCase()
-        .replace(/&/g, '-and-')
-        // eslint-disable-next-line
-        .replace(/[^a-z0-9\-]/g, '')
-        .replace(/-+/g, '-')
-        .replace(/^-*/, '')
-        .replace(/-*$/, '')
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .replace(/\s+/g, '-')
+      .toLowerCase()
+      .replace(/&/g, '-and-')
+      // eslint-disable-next-line
+      .replace(/[^a-z0-9\-]/g, '')
+      .replace(/-+/g, '-')
+      .replace(/^-*/, '')
+      .replace(/-*$/, '')
   }
 
   const {buscar} = req.body
@@ -173,10 +173,15 @@ module.exports.dropProductInfo = (req, res, next) => {
 
 module.exports.productProspect = (req, res, next) => {
   const id = req.params.id
+  const pathname = req.body.pathname
 
-  Vadevecum.findById(id)
+  if (id != 'undefined') {
+    Vadevecum.findById(id)
       .then(response => {
         res.status(201).json(response)
       })
       .catch(next)
+    } else {
+      console.log('POR AQUI')
+    }
 }
