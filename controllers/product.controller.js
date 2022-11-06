@@ -23,16 +23,17 @@ module.exports.getProduct = (req, res, next) => {
       .replace(/-*$/, '')
   }
 
+  function diacriticSensitiveRegex(string = '') {
+    return string.replace(/a/g, '[a,á,à,ä,â]')
+        .replace(/e/g, '[e,é,ë,è]')
+        .replace(/i/g, '[i,í,ï,ì]')
+        .replace(/o/g, '[o,ó,ö,ò]')
+        .replace(/u/g, '[u,ü,ú,ù]');
+  }
+
   const {buscar} = req.body
 
-  const allProducts = Vadevecum.find()
-  // console.log(allProducts)
-  //  const newAll = allProducts.forEach(el => {seoURL(el.name)})
-  //  console.log(newAll)
-
-
-  const getProduct = Vadevecum.find({name: new RegExp(buscar, 'i')})
-  console.log(getProduct)
+  const getProduct = Vadevecum.find({name: { $regex: diacriticSensitiveRegex(buscar), $options: 'i' }})
 
   const getRandomProducts = Vadevecum.aggregate([{$sample: {size: 3}}])
   Promise.all([getProduct, getRandomProducts])
