@@ -174,6 +174,15 @@ module.exports.dropProductInfo = (req, res, next) => {
 module.exports.productProspect = (req, res, next) => {
   const id = req.params.id
   const pathname = req.body.pathname
+  const pathname2 = pathname.slice(11)
+
+  function diacriticSensitiveRegex(string = '') {
+    return string.replace(/a/g, '[a,á,à,ä,â]')
+        .replace(/e/g, '[e,é,ë,è]')
+        .replace(/i/g, '[i,í,ï,ì]')
+        .replace(/o/g, '[o,ó,ö,ò]')
+        .replace(/u/g, '[u,ü,ú,ù]');
+  }
 
   if (id != 'undefined') {
     Vadevecum.findById(id)
@@ -182,6 +191,10 @@ module.exports.productProspect = (req, res, next) => {
       })
       .catch(next)
     } else {
+    Vadevecum.find({name: { $regex: diacriticSensitiveRegex(pathname2), $options: 'i' }})
+        .then(response => {
+          res.status(201).json(response[0])
+        })
       console.log('POR AQUI')
     }
 }
