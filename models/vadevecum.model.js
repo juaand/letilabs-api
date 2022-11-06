@@ -83,9 +83,6 @@ const vadevecumSchema = new Schema(
         prospect: {
             type: String,
             default: '- Sin información de prospecto.'
-        },
-        path_prospect: {
-            type: String,
         }
     },
     {timestamps: true}
