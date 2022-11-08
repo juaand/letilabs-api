@@ -182,7 +182,8 @@ module.exports.productProspect = (req, res, next) => {
         .replace(/e/g, '[e,é,ë,è]')
         .replace(/i/g, '[i,í,ï,ì]')
         .replace(/o/g, '[o,ó,ö,ò]')
-        .replace(/u/g, '[u,ü,ú,ù]');
+        .replace(/u/g, '[u,ü,ú,ù]')
+        .replace("-", " ");
   }
 
   if (id != 'undefined') {
@@ -196,6 +197,5 @@ module.exports.productProspect = (req, res, next) => {
         .then(response => {
           res.status(201).json(response[0])
         })
-      console.log('POR AQUI')
     }
 }
