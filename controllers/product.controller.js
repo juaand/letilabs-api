@@ -33,7 +33,7 @@ module.exports.getProduct = (req, res, next) => {
 
   const {buscar} = req.body
 
-  const getProduct = Vadevecum.find({name: { $regex: diacriticSensitiveRegex(buscar), $options: 'i' }})
+  const getProduct = Vadevecum.find({name: { $regex: diacriticSensitiveRegex(buscar), $options: 'i' }}).sort({name: 1})
 
   const getRandomProducts = Vadevecum.aggregate([{$sample: {size: 3}}])
   Promise.all([getProduct, getRandomProducts])
@@ -194,6 +194,7 @@ module.exports.productProspect = (req, res, next) => {
       .catch(next)
     } else {
     Vadevecum.find({name: { $regex: diacriticSensitiveRegex(pathname2), $options: 'i' }})
+        .sort({name: 1})
         .then(response => {
           res.status(201).json(response[0])
         })
