@@ -4,6 +4,7 @@ const ProductBanner = require('../models/ProductosPage/bannerProductosPage.model
 const ProductBottom = require('../models/ProductosPage/eresMedicoProductos.model')
 const ProductListBanner = require('../models/ProductosPage/bannerProductsList.model')
 const ProductInfo = require('../models/ProductosPage/productInfo.model')
+const Lines = require('../models/productosPage/lines.model')
 const {get} = require("mongoose")
 const Blog = require("../models/noticias/news.model")
 
@@ -210,5 +211,53 @@ module.exports.productProspect = (req, res, next) => {
         .then(response => {
           res.status(201).json(response[0])
         })
+  }
+}
+
+module.exports.getLines = (req, res, next) => {
+  Lines.find()
+    .then(response => {
+      res.status(201).json(response)
+    })
+    .catch(next)
+}
+
+module.exports.createLine = (req, res, next) => {
+  const userRole = req.session.user.role
+  const {line} = req.body
+
+  if (userRole === 'Admin') {
+    Lines.create(req.body)
+      .then(() => {
+        Lines.find()
+          .then(response => {
+            res.status(201).json(response)
+          })
+          .catch(next)
+      })
+      .catch(next)
+  } else {
+    req.session.destroy()
+    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+  }
+}
+
+module.exports.deleteLine = (req, res, next) => {
+  const userRole = req.session.user.role
+  const id = req.params.id
+
+  if (userRole === 'Admin') {
+    Lines.findByIdAndDelete(id)
+      .then(() => {
+        Lines.find()
+          .then(response => {
+            res.status(201).json(response)
+          })
+          .catch(next)
+      })
+      .catch(next)
+  } else {
+    req.session.destroy()
+    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
   }
 }
