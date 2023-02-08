@@ -13,6 +13,7 @@ module.exports.getNews = (req, res, next) => {
     .catch(next)
 }
 
+
 module.exports.createNews = (req, res, next) => {
   const userRole = req.session.user.role
   const {title, subTitle, urlToPic, tag, content, outstanding, publishDate} = req.body
