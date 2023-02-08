@@ -4,7 +4,7 @@ const ProductBanner = require('../models/ProductosPage/bannerProductosPage.model
 const ProductBottom = require('../models/ProductosPage/eresMedicoProductos.model')
 const ProductListBanner = require('../models/ProductosPage/bannerProductsList.model')
 const ProductInfo = require('../models/ProductosPage/productInfo.model')
-const Lines = require('../models/productosPage/lines.model')
+const Lines = require('../models/ProductosPage/lines.model')
 const {get} = require("mongoose")
 const Blog = require("../models/noticias/news.model")
 
