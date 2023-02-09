@@ -52,6 +52,10 @@ const vadevecumSchema = new Schema(
             type: Boolean,
             default: false
         },
+        show_in_products: {
+            type: Boolean,
+            default: true
+        },
         picPath: {
             type: String,
             default: 'https://firebasestorage.googleapis.com/v0/b/grupoleti.appspot.com/o/images%2Fno-image.png?alt=media&token=b95b1265-ca58-4e6d-a5c8-4194203d1cd7'
