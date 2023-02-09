@@ -209,7 +209,6 @@ module.exports.productProspect = (req, res, next) => {
     Vadevecum.find({name: {$regex: diacriticSensitiveRegex(pathname2), $options: 'i'}})
         .sort({name: 1})
         .then(response => {
-          console.log(response[0])
           if(response[0].show_in_products === false) {
             res.status(404)
           } else {
