@@ -36,7 +36,6 @@ const SESSION_MAX_AGE_SECONDS = Number(process.env.SESSION_MAX_AGE_SECONDS) || 6
 //     })
 //   })
 
-
 //HEROKU
   module.exports = session({
     secret: process.env.SESSION_SECRET || 'Grupoleti',
