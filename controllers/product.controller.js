@@ -214,6 +214,47 @@ module.exports.productProspect = (req, res, next) => {
   }
 }
 
+module.exports.productDataSheet = (req, res, next) => {
+
+  function replaceAllString(data) {
+    let newString = [];
+    for (let i = 0; i < data.length; i++) {
+      if (data[i] == "-") {
+        newString.push(" ")
+        i++
+      }
+      newString.push(data[i]);
+    }
+    return newString.join('');
+  }
+
+  function diacriticSensitiveRegex(string = '') {
+    return string.replace(/a/g, '[a,á,à,ä,â]')
+        .replace(/e/g, '[e,é,ë,è]')
+        .replace(/i/g, '[i,í,ï,ì]')
+        .replace(/o/g, '[o,ó,ö,ò]')
+        .replace(/u/g, '[u,ü,ú,ù]');
+  }
+
+  const id = req.params.id
+  const pathname = req.body.pathname
+  const pathname2 = replaceAllString(pathname.slice(15))
+
+  if (id != 'undefined') {
+    Vadevecum.findById(id)
+        .then(response => {
+          res.status(201).json(response)
+        })
+        .catch(next)
+  } else {
+    Vadevecum.find({name: {$regex: diacriticSensitiveRegex(pathname2), $options: 'i'}})
+        .sort({name: 1})
+        .then(response => {
+          res.status(201).json(response[0])
+        })
+  }
+}
+
 module.exports.getLines = (req, res, next) => {
   Lines.find()
     .then(response => {
