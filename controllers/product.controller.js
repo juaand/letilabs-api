@@ -34,7 +34,7 @@ module.exports.getProduct = (req, res, next) => {
 
   const {buscar} = req.body
 
-  const getProduct = Vadevecum.find({name: { $regex: diacriticSensitiveRegex(buscar), $options: 'i' }}).sort({name: 1})
+  const getProduct = Vadevecum.find({name: { $regex: diacriticSensitiveRegex(buscar), $options: 'i' }, show_in_products: true}).sort({name: 1})
 
   const getRandomProducts = Vadevecum.aggregate([{$sample: {size: 3}}])
   Promise.all([getProduct, getRandomProducts])
