@@ -32,14 +32,37 @@ module.exports.getProduct = (req, res, next) => {
         .replace(/u/g, '[u,ü,ú,ù]');
   }
 
+  function Compare(strA,strB){
+    for(var result = 0, i = strA.length; i--;){
+      if(typeof strB[i] == 'undefined' || strA[i] == strB[i]);
+      else if(strA[i].toLowerCase() == strB[i].toLowerCase())
+        result++;
+      else
+        result += 4;
+    }
+    return 1 - (result + 4*Math.abs(strA.length - strB.length))/(2*(strA.length+strB.length));
+  }
+
   const {buscar} = req.body
 
-  const getProduct = Vadevecum.find({name: { $regex: diacriticSensitiveRegex(buscar), $options: 'i' }, show_in_products: true}).sort({name: 1})
+  const getProduct = Vadevecum.find({name: { $regex: diacriticSensitiveRegex(buscar), $options: 'i' },
+                                      show_in_products: true})
+                              .sort({name: 1}
+  )
 
   const getRandomProducts = Vadevecum.aggregate([{$sample: {size: 3}}])
   Promise.all([getProduct, getRandomProducts])
     .then((data) => {
-      res.status(201).json(data)
+      let finalReturn;
+      for(let i = 0; i < data[0].length; i++) {
+        let finalResponsePercent = 0;
+        if(Compare(data[0][i].name, buscar) > finalResponsePercent) {
+          finalResponsePercent = Compare(data[0][i].name, buscar);
+          finalReturn = data[0][i];
+        }
+      }
+      let allProds = [[finalReturn], data[1]]
+      res.status(201).json(allProds)
     })
     .catch(next)
 }
@@ -195,6 +218,17 @@ module.exports.productProspect = (req, res, next) => {
         .replace(/u/g, '[u,ü,ú,ù]');
   }
 
+  function Compare(strA,strB){
+    for(var result = 0, i = strA.length; i--;){
+      if(typeof strB[i] == 'undefined' || strA[i] == strB[i]);
+      else if(strA[i].toLowerCase() == strB[i].toLowerCase())
+        result++;
+      else
+        result += 4;
+    }
+    return 1 - (result + 4*Math.abs(strA.length - strB.length))/(2*(strA.length+strB.length));
+  }
+
   const id = req.params.id
   const pathname = req.body.pathname
   const pathname2 = replaceAllString(pathname.slice(11))
@@ -209,7 +243,15 @@ module.exports.productProspect = (req, res, next) => {
     Vadevecum.find({name: {$regex: diacriticSensitiveRegex(pathname2), $options: 'i'}})
         .sort({name: 1})
         .then(response => {
-          res.status(201).json(response[0])
+          let finalReturn;
+          for(let i = 0; i < response.length; i++) {
+            let finalResponsePercent = 0;
+            if(Compare(response[i].name, pathname2) > finalResponsePercent) {
+              finalResponsePercent = Compare(response[i].name, pathname2);
+              finalReturn = i;
+            }
+          }
+          res.status(201).json(response[finalReturn])
         })
   }
 }
@@ -236,6 +278,17 @@ module.exports.productDataSheet = (req, res, next) => {
         .replace(/u/g, '[u,ü,ú,ù]');
   }
 
+  function Compare(strA,strB){
+    for(var result = 0, i = strA.length; i--;){
+      if(typeof strB[i] == 'undefined' || strA[i] == strB[i]);
+      else if(strA[i].toLowerCase() == strB[i].toLowerCase())
+        result++;
+      else
+        result += 4;
+    }
+    return 1 - (result + 4*Math.abs(strA.length - strB.length))/(2*(strA.length+strB.length));
+  }
+
   const id = req.params.id
   const pathname = req.body.pathname
   const pathname2 = replaceAllString(pathname.slice(15))
@@ -250,7 +303,15 @@ module.exports.productDataSheet = (req, res, next) => {
     Vadevecum.find({name: {$regex: diacriticSensitiveRegex(pathname2), $options: 'i'}})
         .sort({name: 1})
         .then(response => {
-          res.status(201).json(response[0])
+          let finalReturn;
+          for(let i = 0; i < response.length; i++) {
+            let finalResponsePercent = 0;
+            if(Compare(response[i].name, pathname2) > finalResponsePercent) {
+              finalResponsePercent = Compare(response[i].name, pathname2);
+              finalReturn = i;
+            }
+          }
+          res.status(201).json(response[finalReturn])
         })
   }
 }
