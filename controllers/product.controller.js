@@ -27,21 +27,21 @@ function Compare(strA,strB){
   return 1 - (result + 4*Math.abs(strA.length - strB.length))/(2*(strA.length+strB.length));
 }
 
-module.exports.getProduct = (req, res, next) => {
-
-  const seoURL = (str) => {
+const seoURL = (str) => {
     return str.toString()
-      .normalize('NFD')
-      .replace(/[\u0300-\u036f]/g, '')
-      .replace(/\s+/g, '-')
-      .toLowerCase()
-      .replace(/&/g, '-and-')
-      // eslint-disable-next-line
-      .replace(/[^a-z0-9\-]/g, '')
-      .replace(/-+/g, '-')
-      .replace(/^-*/, '')
-      .replace(/-*$/, '')
-  }
+              .normalize('NFD')
+              .replace(/[\u0300-\u036f]/g, '')
+              .replace(/\s+/g, '-')
+              .toLowerCase()
+              .replace(/&/g, '-and-')
+        // eslint-disable-next-line
+              .replace(/[^a-z0-9\-]/g, '')
+              .replace(/-+/g, '-')
+              .replace(/^-*/, '')
+              .replace(/-*$/, '')
+}
+
+module.exports.getProduct = (req, res, next) => {
 
   const {buscar} = req.body
   const getProduct = Vadevecum.find({name: { $regex: diacriticSensitiveRegex(buscar), $options: 'i' },
@@ -53,10 +53,11 @@ module.exports.getProduct = (req, res, next) => {
   Promise.all([getProduct, getRandomProducts])
     .then((data) => {
       let finalReturn;
+      let finalResponsePercent = 0;
       for(let i = 0; i < data[0].length; i++) {
-        let finalResponsePercent = 0;
-        if(Compare(data[0][i].name, buscar) > finalResponsePercent) {
-          finalResponsePercent = Compare(data[0][i].name, buscar);
+        let comparision = Compare(data[0][i].name.toLowerCase(),  buscar)
+        if(comparision > finalResponsePercent) {
+          finalResponsePercent = comparision;
           finalReturn = data[0][i];
         }
       }
@@ -224,10 +225,11 @@ module.exports.productProspect = (req, res, next) => {
         .sort({name: 1})
         .then(response => {
           let finalReturn;
+          let finalResponsePercent = 0;
           for(let i = 0; i < response.length; i++) {
-            let finalResponsePercent = 0;
-            if(Compare(response[i].name, pathname2) > finalResponsePercent) {
-              finalResponsePercent = Compare(response[i].name, pathname2);
+            let comparision = Compare(response[i].name.toLowerCase(), pathname2)
+            if(comparision > finalResponsePercent) {
+              finalResponsePercent = comparision;
               finalReturn = i;
             }
           }
@@ -265,10 +267,11 @@ module.exports.productDataSheet = (req, res, next) => {
         .sort({name: 1})
         .then(response => {
           let finalReturn;
+          let finalResponsePercent = 0;
           for(let i = 0; i < response.length; i++) {
-            let finalResponsePercent = 0;
-            if(Compare(response[i].name, pathname2) > finalResponsePercent) {
-              finalResponsePercent = Compare(response[i].name, pathname2);
+            let comparision = Compare(response[i].name.toLowerCase(), pathname2)
+            if(comparision > finalResponsePercent) {
+              finalResponsePercent = comparision;
               finalReturn = i;
             }
           }
