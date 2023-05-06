@@ -7,6 +7,10 @@ const linesSchema = new Schema(
       type: String,
       required: [true, 'Line is required'],
     },
+    line_eng: {
+      type: String,
+      required: [true, 'Line is required'],
+    },
   },
   {
     timestamps: true,

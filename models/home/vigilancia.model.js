@@ -8,7 +8,15 @@ const vigilanciaSchema = new Schema({
         type: String,
         maxLength: [400, "Efecto(s) secundario(s) ha excedido el máximo de caracteres permitidos para el campo."]
     },
+    effects_eng: {
+        type: String,
+        maxLength: [400, "Efecto(s) secundario(s) ha excedido el máximo de caracteres permitidos para el campo."]
+    },
     lastname: {
+        type: String,
+        maxLength: [75, "El apellido ha llegado al máximo de caracteres permitidos."]
+    },
+    lastname_eng: {
         type: String,
         maxLength: [75, "El apellido ha llegado al máximo de caracteres permitidos."]
     },
@@ -16,7 +24,15 @@ const vigilanciaSchema = new Schema({
         type: String,
         maxLength: [50, "El nombre ha llegado al máximo de caracteres permitidos."]
     },
+    name_eng: {
+        type: String,
+        maxLength: [50, "El nombre ha llegado al máximo de caracteres permitidos."]
+    },
     medicine: {
+        type: String,
+        required: true
+    },
+    medicine_eng: {
         type: String,
         required: true
     },
@@ -24,11 +40,23 @@ const vigilanciaSchema = new Schema({
         type: String,
         enum: ['Si', 'No']
     },
+    prescribed_eng: {
+        type: String,
+        enum: ['Yes', 'No']
+    },
     sex: {
         type: String,
         enum: ['F', 'M']
     },
+    sex_eng: {
+        type: String,
+        enum: ['F', 'M']
+    },
     email: {
+        type: String,
+        required: true
+    },
+    email_eng: {
         type: String,
         required: true
     }

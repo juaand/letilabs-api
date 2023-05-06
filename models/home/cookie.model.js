@@ -2,13 +2,17 @@
 const {Schema, model} = require('mongoose')
 
 const cookieSchema = new Schema(
-  {
-    info: {
-      type: String,
-      required: true
+    {
+        info: {
+            type: String,
+            required: true
+        },
+        info_eng: {
+            type: String,
+            required: true
+        },
     },
-  },
-  {timestamps: true}
+    {timestamps: true}
 )
 
 module.exports = model('Cookie', cookieSchema)

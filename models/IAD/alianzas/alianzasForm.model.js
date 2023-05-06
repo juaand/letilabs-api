@@ -6,7 +6,17 @@ const alianzaFormSchema = new Schema({
         maxLength: [50, "El nombre ha llegado al máximo de caracteres permitidos."],
         required: true
     },
+    name_eng: {
+        type: String,
+        maxLength: [50, "El nombre ha llegado al máximo de caracteres permitidos."],
+        required: true
+    },
     lastname: {
+        type: String,
+        maxLength: [75, "El apellido ha llegado al máximo de caracteres permitidos."],
+        required: true
+    },
+    lastname_eng: {
         type: String,
         maxLength: [75, "El apellido ha llegado al máximo de caracteres permitidos."],
         required: true
@@ -16,7 +26,17 @@ const alianzaFormSchema = new Schema({
         maxLength: [40, "El correo ha excedido el máximo de caracteres permitidos para el campo."],
         required: true
     },
+    mail_eng: {
+        type: String,
+        maxLength: [40, "El correo ha excedido el máximo de caracteres permitidos para el campo."],
+        required: true
+    },
     phone: {
+        type: String,
+        maxLength: [12, "El teléfono ha excedido el máximo de caracteres permitidos para el campo."],
+        required: true
+    },
+    phone_eng: {
         type: String,
         maxLength: [12, "El teléfono ha excedido el máximo de caracteres permitidos para el campo."],
         required: true
@@ -25,12 +45,26 @@ const alianzaFormSchema = new Schema({
         type: String,
         required: true
     },
+    country_eng: {
+        type: String,
+        required: true
+    },
     company: {
         type: String,
         maxLength: [40, "El teléfono ha excedido el máximo de caracteres permitidos para el campo."],
         required: true
     },
+    company_eng: {
+        type: String,
+        maxLength: [40, "El teléfono ha excedido el máximo de caracteres permitidos para el campo."],
+        required: true
+    },
     message: {
+        type: String,
+        maxLength: [500, "El mensaje ha excedido el máximo de caracteres permitidos para el campo."],
+        required: true
+    },
+    message_eng: {
         type: String,
         maxLength: [500, "El mensaje ha excedido el máximo de caracteres permitidos para el campo."],
         required: true

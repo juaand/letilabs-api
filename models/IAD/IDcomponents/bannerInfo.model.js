@@ -19,7 +19,14 @@ const bannerInfoSchema = new Schema(
       unity: {
         type: String,
       },
+      unity_eng: {
+        type: String,
+      },
       desc: {
+        type: String,
+        required: true
+      },
+      desc_eng: {
         type: String,
         required: true
       }

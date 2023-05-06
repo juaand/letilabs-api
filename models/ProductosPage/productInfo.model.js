@@ -5,7 +5,15 @@ const productInfoSchema = new Schema({
         type: String,
         maxLength: [50, "El nombre ha llegado al máximo de caracteres permitidos."]
     },
+    name_eng: {
+        type: String,
+        maxLength: [50, "El nombre ha llegado al máximo de caracteres permitidos."]
+    },
     lastname: {
+        type: String,
+        maxLength: [75, "El apellido ha llegado al máximo de caracteres permitidos."]
+    },
+    lastname_eng: {
         type: String,
         maxLength: [75, "El apellido ha llegado al máximo de caracteres permitidos."]
     },
@@ -13,7 +21,15 @@ const productInfoSchema = new Schema({
         type: String,
         maxLength: [75, "El nombre de la institución ha llegado al máximo de caracteres permitidos."]
     },
+    work_eng: {
+        type: String,
+        maxLength: [75, "El nombre de la institución ha llegado al máximo de caracteres permitidos."]
+    },
     years: {
+        type: String,
+        maxLength: [2, "El número de años ha llegado al máximo de caracteres permitidos."]
+    },
+    years_eng: {
         type: String,
         maxLength: [2, "El número de años ha llegado al máximo de caracteres permitidos."]
     },
@@ -21,7 +37,15 @@ const productInfoSchema = new Schema({
         type: String,
         maxLength: [75, "La especialidad ha llegado al máximo de caracteres permitidos."]
     },
+    speciality_eng: {
+        type: String,
+        maxLength: [75, "La especialidad ha llegado al máximo de caracteres permitidos."]
+    },
     license: {
+        type: String,
+        maxLength: [35, "La licencia ha llegado al máximo de caracteres permitidos."]
+    },
+    license_eng: {
         type: String,
         maxLength: [35, "La licencia ha llegado al máximo de caracteres permitidos."]
     },
@@ -29,7 +53,15 @@ const productInfoSchema = new Schema({
         type: String,
         maxLength: [450, "La información ha llegado al máximo de caracteres permitidos."]
     },
+    info_eng: {
+        type: String,
+        maxLength: [450, "La información ha llegado al máximo de caracteres permitidos."]
+    },
     mail: {
+        type: String,
+        maxLength: [100, "El correo ha llegado al máximo de caracteres permitidos."]
+    },
+    mail_eng: {
         type: String,
         maxLength: [100, "El correo ha llegado al máximo de caracteres permitidos."]
     }

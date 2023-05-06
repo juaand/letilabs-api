@@ -7,6 +7,10 @@ const therapeuticGroupSchema = new Schema(
       type: String,
       required: [true, 'Tag is required'],
     },
+    tag_eng: {
+      type: String,
+      required: [true, 'Tag is required'],
+    },
   },
   {
     timestamps: true,

@@ -2,21 +2,29 @@
 const {Schema, model} = require('mongoose')
 
 const letterNuestraFilosofiaSchema = new Schema(
-  {
-    mainTitle: {
-      type: String,
-      required: true
+    {
+        mainTitle: {
+            type: String,
+            required: true
+        },
+        mainTitle_eng: {
+            type: String,
+            required: true
+        },
+        imgURL: {
+            type: String,
+            required: true
+        },
+        body: {
+            type: String,
+            required: true
+        },
+        body_eng: {
+            type: String,
+            required: true
+        },
     },
-    imgURL: {
-      type: String,
-      required: true
-    },
-    body: {
-      type: String,
-      required: true
-    },
-  },
-  {timestamps: true}
+    {timestamps: true}
 )
 
 module.exports = model('LetterNuestraFilosofia', letterNuestraFilosofiaSchema)
