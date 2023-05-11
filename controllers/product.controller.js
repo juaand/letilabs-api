@@ -86,7 +86,7 @@ module.exports.getProductBanner = (req, res, next) => {
 
 module.exports.updateProductBanner = (req, res, next) => {
   const userRole = req.session.user.role
-  const {description, imgURL, title, button1Title, button1Link, button2Title, button2Link, id} = req.body
+  const {description, imgURL, title, button1Title, button1Link, button2Title, button2Link, description_eng, title_eng, button1Title_eng, button1Link_eng, button2Title_eng, button2Link_eng, id} = req.body
 
 
   if (userRole === 'Admin') {
@@ -111,7 +111,7 @@ module.exports.getBottomProduct = (req, res, next) => {
 
 module.exports.updateBottomProduct = (req, res, next) => {
   const userRole = req.session.user.role
-  const {findProductsTitle, imgURL, title, buttonTitle, farmacoTitle, farmacoBtn, farmacoDesc, id} = req.body
+  const {findProductsTitle, imgURL, title, buttonTitle, farmacoTitle, farmacoBtn, farmacoDesc, findProductsTitle_eng, title_eng, buttonTitle_eng, farmacoTitle_eng, farmacoBtn_eng, farmacoDesc_eng, id} = req.body
 
 
   if (userRole === 'Admin') {
@@ -136,7 +136,7 @@ module.exports.getProductsBanner = (req, res, next) => {
 
 module.exports.updateProductsBanner = (req, res, next) => {
   const userRole = req.session.user.role
-  const {description, imgURL, title, id} = req.body
+  const {description, imgURL, title, description_eng, title_eng, id} = req.body
 
 
   if (userRole === 'Admin') {
@@ -152,7 +152,7 @@ module.exports.updateProductsBanner = (req, res, next) => {
 }
 
 module.exports.getProductInfo = (req, res, next) => {
-  const {name, lastname, work, years, speciality, info, license, mail} = req.body
+  const {name, lastname, work, years, speciality, info, license, mail, name_eng, lastname_eng, work_eng, years_eng, speciality_eng, info_eng, license_eng, mail_eng} = req.body
 
   ProductInfo.create(req.body)
     .then((newProductInfo) => {
@@ -290,7 +290,7 @@ module.exports.getLines = (req, res, next) => {
 
 module.exports.createLine = (req, res, next) => {
   const userRole = req.session.user.role
-  const {line} = req.body
+  const {line, line_eng} = req.body
 
   if (userRole === 'Admin') {
     Lines.create(req.body)

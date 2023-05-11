@@ -31,7 +31,7 @@ module.exports.getBannerID = (req, res, next) => {
 
 module.exports.updateBannerID = (req, res, next) => {
   const userRole = req.session.user.role
-  const {title, description, imgURL, id} = req.body
+  const {title, description, imgURL, title_eng, description_eng, id} = req.body
 
 
   if (userRole === 'Admin') {
@@ -56,7 +56,7 @@ module.exports.getInfoCards = (req, res, next) => {
 
 module.exports.updateInfoCards = (req, res, next) => {
   const userRole = req.session.user.role
-  const {picPath, info, btn, title, id} = req.body
+  const {picPath, info, btn, title, info_eng, btn_eng, title_eng, id} = req.body
 
 
   if (userRole === 'Admin') {
@@ -85,13 +85,14 @@ module.exports.getGoals = (req, res, next) => {
 
 module.exports.updateGoalsTitle = (req, res, next) => {
   const userRole = req.session.user.role
-  const {title} = req.body
+  const {title, title_eng} = req.body
 
   if (userRole === 'Admin') {
     GoalsId.find()
       .then(response => {
         response.forEach(element => {
           element.title = title
+          element.title_eng = title_eng
           element.save()
         })
         res.status(201).json(response)
@@ -105,7 +106,7 @@ module.exports.updateGoalsTitle = (req, res, next) => {
 
 module.exports.updateGoals = (req, res, next) => {
   const userRole = req.session.user.role
-  const {title, desc, name, id} = req.body
+  const {title, desc, name, title_eng, desc_eng, name_eng, id} = req.body
 
 
   if (userRole === 'Admin') {
@@ -145,7 +146,7 @@ module.exports.deleteGoal = (req, res, next) => {
 
 module.exports.createGoal = (req, res, next) => {
   const userRole = req.session.user.role
-  const {title, name, desc} = req.body
+  const {title, name, desc, title_eng, name_eng, desc_eng} = req.body
 
   if (userRole === 'Admin') {
     GoalsId.create(req.body)
@@ -173,7 +174,7 @@ module.exports.getBottom = (req, res, next) => {
 
 module.exports.updateBottomID = (req, res, next) => {
   const userRole = req.session.user.role
-  const {title, img, buttonLink, buttonTitle, id} = req.body
+  const {title, img, buttonLink, buttonTitle, title_eng, buttonLink_eng, buttonTitle_eng, id} = req.body
 
 
   if (userRole === 'Admin') {
@@ -218,7 +219,7 @@ module.exports.updateInfoBannerIAD = (req, res, next) => {
 
 module.exports.updateInfoBannerIADDet = (req, res, next) => {
   const userRole = req.session.user.role
-  const {desc, unity, iconURL, number, id} = req.body
+  const {desc, unity, iconURL, number, desc_eng, unity_eng, id} = req.body
   const {whole} = req.body
   const previousId = whole._id
 
@@ -228,6 +229,8 @@ module.exports.updateInfoBannerIADDet = (req, res, next) => {
       whole.item[i].unity = unity;
       whole.item[i].iconURL = iconURL;
       whole.item[i].number = number;
+      whole.item[i].desc_eng = desc_eng;
+      whole.item[i].unity_eng = unity_eng;
     }
   }
 
@@ -254,7 +257,7 @@ module.exports.getTechBannerID = (req, res, next) => {
 
 module.exports.updateTechBanner = (req, res, next) => {
   const userRole = req.session.user.role
-  const {title, description, imgURL, id} = req.body
+  const {title, description, imgURL, title_eng, description_eng, id} = req.body
 
 
   if (userRole === 'Admin') {
@@ -279,7 +282,7 @@ module.exports.getVideoTech = (req, res, next) => {
 
 module.exports.updateTechVideo = (req, res, next) => {
   const userRole = req.session.user.role
-  const {title, videoURL, id} = req.body
+  const {title, videoURL, title_eng, id} = req.body
 
 
   if (userRole === 'Admin') {
@@ -304,7 +307,7 @@ module.exports.getCarrouselTech = (req, res, next) => {
 
 module.exports.updateTechCarrousel = (req, res, next) => {
   const userRole = req.session.user.role
-  const {title, imgURL, description, mainTitle, id} = req.body
+  const {title, imgURL, description, mainTitle, title_eng, description_eng, mainTitle_eng, id} = req.body
 
 
   if (userRole === 'Admin') {
@@ -325,7 +328,7 @@ module.exports.updateTechCarrousel = (req, res, next) => {
 
 module.exports.createTechCarrousel = (req, res, next) => {
   const userRole = req.session.user.role
-  const {title, imgURL, description, mainTitle} = req.body
+  const {title, imgURL, description, mainTitle, title_eng, description_eng, mainTitle_eng} = req.body
 
   if (userRole === 'Admin') {
     CarrouselTech.create(req.body)
@@ -345,13 +348,14 @@ module.exports.createTechCarrousel = (req, res, next) => {
 
 module.exports.updateTechCarrouselTitle = (req, res, next) => {
   const userRole = req.session.user.role
-  const {mainTitle} = req.body
+  const {mainTitle, mainTitle_eng} = req.body
 
   if (userRole === 'Admin') {
     CarrouselTech.find()
       .then(response => {
         response.forEach(element => {
           element.mainTitle = mainTitle
+          element.mainTitle_eng = mainTitle_eng
           element.save()
         })
         res.status(201).json(response)
@@ -392,7 +396,7 @@ module.exports.getMapTech = (req, res, next) => {
 
 module.exports.updateTechMap = (req, res, next) => {
   const userRole = req.session.user.role
-  const {description, mapURL, id} = req.body
+  const {description, mapURL, description_eng, id} = req.body
 
 
   if (userRole === 'Admin') {
@@ -417,7 +421,7 @@ module.exports.getBottomTech = (req, res, next) => {
 
 module.exports.updateBottomTech = (req, res, next) => {
   const userRole = req.session.user.role
-  const {title, img, buttonLink, buttonTitle, id} = req.body
+  const {title, img, buttonLink, buttonTitle, title_eng, buttonLink_eng, buttonTitle_eng, id} = req.body
 
 
   if (userRole === 'Admin') {
@@ -447,7 +451,7 @@ module.exports.getManufactureBanner = (req, res, next) => {
 
 module.exports.updateManufactureBanner = (req, res, next) => {
   const userRole = req.session.user.role
-  const {title, description, imgURL, id} = req.body
+  const {title, description, imgURL, title_eng, description_eng, id} = req.body
 
 
   if (userRole === 'Admin') {
@@ -464,13 +468,14 @@ module.exports.updateManufactureBanner = (req, res, next) => {
 
 module.exports.updateTitleProccess = (req, res, next) => {
   const userRole = req.session.user.role
-  const {title} = req.body
+  const {title, title_eng} = req.body
 
   if (userRole === 'Admin') {
     CarouselManufacture.find()
       .then(response => {
         response.forEach(element => {
           element.title = title
+          element.title_eng = title_eng
           element.save()
         })
         res.status(201).json(response)
@@ -492,7 +497,7 @@ module.exports.getCarrouselManufacture = (req, res, next) => {
 
 module.exports.createProccess = (req, res, next) => {
   const userRole = req.session.user.role
-  const {title, info} = req.body
+  const {title, info, title_eng, info_eng} = req.body
 
   if (userRole === 'Admin') {
     CarouselManufacture.create(req.body)
@@ -512,7 +517,7 @@ module.exports.createProccess = (req, res, next) => {
 
 module.exports.updateCarrouselManufacture = (req, res, next) => {
   const userRole = req.session.user.role
-  const {info, title, id} = req.body
+  const {info, title, info_eng, title_eng, id} = req.body
 
 
   if (userRole === 'Admin') {
@@ -581,7 +586,7 @@ module.exports.getCertificatesManufacture = (req, res, next) => {
 
 module.exports.updateCertificatesManufacture = (req, res, next) => {
   const userRole = req.session.user.role
-  const {imgURL, title, desc} = req.body
+  const {imgURL, title, desc, title_eng, desc_eng} = req.body
 
   if (userRole === 'Admin') {
     CertificateManufacture.find()
@@ -589,6 +594,8 @@ module.exports.updateCertificatesManufacture = (req, res, next) => {
         response.forEach(element => {
           element.title = title
           element.desc = desc
+          element.title_eng = title_eng
+          element.desc_eng = desc_eng
           element.save()
         })
         res.status(201).json(response)
@@ -622,7 +629,7 @@ module.exports.updateCertificatesImage = (req, res, next) => {
 
 module.exports.createCertificatesManufacture = (req, res, next) => {
   const userRole = req.session.user.role
-  const {title, desc, imgURL} = req.body
+  const {title, desc, imgURL, title_eng, desc_eng} = req.body
 
   if (userRole === 'Admin') {
     CertificateManufacture.create(req.body)
@@ -650,7 +657,7 @@ module.exports.getBottomManufacture = (req, res, next) => {
 
 module.exports.updateBottomManufacture = (req, res, next) => {
   const userRole = req.session.user.role
-  const {title, img, buttonLink, buttonTitle, id} = req.body
+  const {title, img, buttonLink, buttonTitle, title_eng, buttonLink_eng, buttonTitle_eng, id} = req.body
 
 
   if (userRole === 'Admin') {
@@ -679,7 +686,7 @@ module.exports.getAlliancesBanner = (req, res, next) => {
 
 module.exports.updateAlliancesBanner = (req, res, next) => {
   const userRole = req.session.user.role
-  const {title, description, imgURL, id} = req.body
+  const {title, description, imgURL, title_eng, description_eng, id} = req.body
 
   if (userRole === 'Admin') {
     BannerAlliances.findByIdAndUpdate(id, req.body, {new: true})
@@ -723,7 +730,7 @@ module.exports.deleteLogoAlliance = (req, res, next) => {
 
 module.exports.createAlly = (req, res, next) => {
   const userRole = req.session.user.role
-  const {title, picPath} = req.body
+  const {title, picPath, title_eng} = req.body
 
   if (userRole === 'Admin') {
     AllianceLogos.create(req.body)
@@ -743,13 +750,14 @@ module.exports.createAlly = (req, res, next) => {
 
 module.exports.updateLogosAllianceTitle = (req, res, next) => {
   const userRole = req.session.user.role
-  const {title} = req.body
+  const {title, title_eng} = req.body
 
   if (userRole === 'Admin') {
     AllianceLogos.find()
       .then(response => {
         response.forEach(element => {
           element.title = title
+          element.title_eng = title_eng
           element.save()
         })
         res.status(201).json(response)
@@ -771,7 +779,7 @@ module.exports.getFormAlliance = (req, res, next) => {
 
 module.exports.updateFormAlliance = (req, res, next) => {
   const userRole = req.session.user.role
-  const {title, phone, desc, email, id} = req.body
+  const {title, phone, desc, email, title_eng, phone_eng, desc_eng, email_eng, id} = req.body
 
   if (userRole === 'Admin') {
     FormAlliances.findByIdAndUpdate(id, req.body, {new: true})
@@ -787,7 +795,7 @@ module.exports.updateFormAlliance = (req, res, next) => {
 
 module.exports.createFormAlliance = (req, res, next) => {
   const userRole = req.session.user.role
-  const {name, lastname, mail, phone, country, company, message} = req.body
+  const {name, lastname, mail, phone, country, company, message, name_eng, lastname_eng, mail_eng, phone_eng, country_eng, company_eng, message_eng} = req.body
 
   if (userRole === 'Admin') {
     FormAlliancesMessages.create(req.body)
@@ -845,7 +853,7 @@ module.exports.getBottomAlliances = (req, res, next) => {
 
 module.exports.updateBottomAlliances = (req, res, next) => {
   const userRole = req.session.user.role
-  const {title, img, buttonLink, buttonTitle, id} = req.body
+  const {title, img, buttonLink, buttonTitle, title_eng, buttonLink_eng, buttonTitle_eng, id} = req.body
 
 
   if (userRole === 'Admin') {

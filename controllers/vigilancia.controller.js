@@ -4,7 +4,7 @@ const Vigilancia = require('../models/home/vigilancia.model')
 
 
 module.exports.addVigilancia = (req, res, next) => {
-  const {name, lastname, sex, medicine, date, effects, prescribed, email} = req.body
+  const {name, lastname, sex, medicine, date, effects, prescribed, email, name_eng, lastname_eng, sex_eng, medicine_eng, date_eng, effects_eng, prescribed_eng, email_eng} = req.body
 
   Vigilancia.create({
     name,
@@ -14,7 +14,15 @@ module.exports.addVigilancia = (req, res, next) => {
     date,
     effects,
     prescribed,
-    email
+    email,
+    name_eng,
+    lastname_eng,
+    sex_eng,
+    medicine_eng,
+    date_eng,
+    effects_eng,
+    prescribed_eng,
+    email_eng
   })
     .then((newVigilancia) => {
       res.status(201).json(newVigilancia)

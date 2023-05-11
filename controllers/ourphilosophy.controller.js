@@ -16,7 +16,7 @@ module.exports.getBannerOP = (req, res, next) => {
 
 module.exports.updateBannerOP = (req, res, next) => {
   const userRole = req.session.user.role
-  const {description, imgURL, title, id} = req.body
+  const {description, imgURL, title, description_eng, title_eng, id} = req.body
 
   if (userRole === 'Admin') {
     BannerOP.findByIdAndUpdate(id, req.body, {new: true})
@@ -32,7 +32,7 @@ module.exports.updateBannerOP = (req, res, next) => {
 
 module.exports.createPillar = (req, res, next) => {
   const userRole = req.session.user.role
-  const {picPath, title} = req.body
+  const {picPath, title, title_eng} = req.body
 
   if (userRole === 'Admin') {
     InfoCardsOP.create(req.body)
@@ -60,7 +60,7 @@ module.exports.getInfoCardsOP = (req, res, next) => {
 
 module.exports.updateInfoCardsOP = (req, res, next) => {
   const userRole = req.session.user.role
-  const {picPath, title, id} = req.body
+  const {picPath, title, title_eng, id} = req.body
 
 
   if (userRole === 'Admin') {
@@ -110,7 +110,7 @@ module.exports.getLetterOP = (req, res, next) => {
 
 module.exports.updateLetterOP = (req, res, next) => {
   const userRole = req.session.user.role
-  const {body, imgURL, mainTitle, id} = req.body
+  const {body, imgURL, mainTitle, body_eng, mainTitle_eng, id} = req.body
 
   if (userRole === 'Admin') {
     LetterOP.findByIdAndUpdate(id, req.body, {new: true})
@@ -134,7 +134,7 @@ module.exports.getBottomOP = (req, res, next) => {
 
 module.exports.updateBottomOP = (req, res, next) => {
   const userRole = req.session.user.role
-  const {title, imgURL, description, buttonLink, buttonTitle, id} = req.body
+  const {title, imgURL, description, buttonLink, buttonTitle, title_eng, description_eng, buttonLink_eng, buttonTitle_eng, id} = req.body
 
 
   if (userRole === 'Admin') {

@@ -16,7 +16,7 @@ module.exports.getNews = (req, res, next) => {
 
 module.exports.createNews = (req, res, next) => {
   const userRole = req.session.user.role
-  const {title, subTitle, urlToPic, tag, content, outstanding, publishDate} = req.body
+  const {title, subTitle, urlToPic, tag, content, outstanding, publishDate, title_eng, subTitle_eng, urlToPic_eng, tag_eng, content_eng, outstanding_eng} = req.body
 
   if (userRole === 'Admin') {
     Blog.create(req.body)
@@ -59,7 +59,7 @@ module.exports.deleteNews = (req, res, next) => {
 module.exports.updateNews = (req, res, next) => {
   const id = req.params.id
   const userRole = req.session.user.role
-  const {title, subTitle, urlToPic, tag, content, outstanding, publishDate} = req.body
+  const {title, subTitle, urlToPic, tag, content, outstanding, publishDate, title_eng, subTitle_eng, urlToPic_eng, tag_eng, content_eng, outstanding_eng} = req.body
 
   if (userRole === 'Admin') {
     Blog.findByIdAndUpdate(id, req.body, {new: true})
@@ -91,7 +91,7 @@ module.exports.getNewsById = (req, res, next) => {
 module.exports.addOutstandingNews = (req, res, next) => {
   const id = req.params.id
   const userRole = req.session.user.role
-  const {outstanding} = req.body
+  const {outstanding, outstanding_eng} = req.body
 
   if (userRole === 'Admin') {
     Blog.findByIdAndUpdate(id, req.body, {new: true})
@@ -120,7 +120,7 @@ module.exports.getTags = (req, res, next) => {
 
 module.exports.createTag = (req, res, next) => {
   const userRole = req.session.user.role
-  const {tag} = req.body
+  const {tag, tag_eng} = req.body
 
   if (userRole === 'Admin') {
     Tags.create(req.body)
@@ -181,7 +181,7 @@ module.exports.getNewsTitles = (req, res, next) => {
 
 module.exports.updateNewsTitles = (req, res, next) => {
   const userRole = req.session.user.role
-  const {lastestTitle, mostTitle, searchTitle, picPath, id} = req.body
+  const {lastestTitle, mostTitle, searchTitle, picPath, lastestTitle_eng, mostTitle_eng, searchTitle_eng, id} = req.body
 
   if (userRole === 'Admin') {
     NewsTitles.findByIdAndUpdate(id, req.body, {new: true})

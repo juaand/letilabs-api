@@ -84,7 +84,7 @@ module.exports.getUsInfo = (req, res, next) => {
 
 module.exports.updateUsInfoData = (req, res, next) => {
   const userRole = req.session.user.role
-  const {description, url, buttonTitle, age, id} = req.body
+  const {description, url, buttonTitle, age, description_eng, url_eng, buttonTitle_eng, age_eng, id} = req.body
 
 
   if (userRole === 'Admin') {
@@ -119,7 +119,7 @@ module.exports.getHomeBottomData = (req, res, next) => {
 
 module.exports.updateBottomCtaData = (req, res, next) => {
   const userRole = req.session.user.role
-  const {title, img, button, url, id} = req.body
+  const {title, img, button, url, title_eng, button_eng, url_eng, id} = req.body
 
   if (userRole === 'Admin') {
     BottomHomeData.findByIdAndUpdate(id, req.body, {new: true})
@@ -147,7 +147,7 @@ module.exports.getCookieInfo = (req, res, next) => {
 
 module.exports.updateCookieInfo = (req, res, next) => {
   const userRole = req.session.user.role
-  const {info, id} = req.body
+  const {info, info_eng, id} = req.body
 
   if (userRole === 'Admin') {
     CookieInfo.findByIdAndUpdate(id, req.body, {new: true})
@@ -187,7 +187,7 @@ module.exports.updateRrssInfo = (req, res, next) => {
 
 module.exports.updateVideoData = (req, res, next) => {
   const userRole = req.session.user.role
-  const {url, id} = req.body
+  const {url, url_eng, id} = req.body
 
   if (userRole === 'Admin') {
     Video.findByIdAndUpdate(id, req.body, {new: true})
@@ -211,13 +211,14 @@ module.exports.getUnidadesInicio = (req, res, next) => {
 
 module.exports.updateUnidadesNegocioTitle = (req, res, next) => {
   const userRole = req.session.user.role
-  const {mainTitle} = req.body
+  const {mainTitle, mainTitle_eng} = req.body
 
   if (userRole === 'Admin') {
     UnidadesInicio.find()
       .then(response => {
         response.forEach(element => {
           element.mainTitle = mainTitle
+          element.mainTitle_eng = mainTitle_eng
           element.save()
         })
         res.status(201).json(response)
@@ -231,7 +232,7 @@ module.exports.updateUnidadesNegocioTitle = (req, res, next) => {
 
 module.exports.updateUnidadesInicio = (req, res, next) => {
   const userRole = req.session.user.role
-  const {logo, desc, url, id} = req.body
+  const {logo, desc, url, desc_eng, url_eng, id} = req.body
 
   if (userRole === 'Admin') {
     UnidadesInicio.findByIdAndUpdate(id, req.body, {new: true})
@@ -259,7 +260,7 @@ module.exports.getPortfolioInicio = (req, res, next) => {
 
 module.exports.updatePortfolioInicio = (req, res, next) => {
   const userRole = req.session.user.role
-  const {title, description, id} = req.body
+  const {title, description, title_eng, description_eng, id} = req.body
 
 
   if (userRole === 'Admin') {
@@ -280,7 +281,7 @@ module.exports.updatePortfolioInicio = (req, res, next) => {
 
 module.exports.createPortfolioInicio = (req, res, next) => {
   const userRole = req.session.user.role
-  const {superiorTitle, title, description} = req.body
+  const {superiorTitle, title, description, superiorTitle_eng, title_eng, description_eng} = req.body
 
   if (userRole === 'Admin') {
     PortfolioInicio.create(req.body)
@@ -300,13 +301,14 @@ module.exports.createPortfolioInicio = (req, res, next) => {
 
 module.exports.updateTitlePortfolioInicio = (req, res, next) => {
   const userRole = req.session.user.role
-  const {superiorTitle} = req.body
+  const {superiorTitle, superiorTitle_eng} = req.body
 
   if (userRole === 'Admin') {
     PortfolioInicio.find()
       .then(response => {
         response.forEach(element => {
           element.superiorTitle = superiorTitle
+          element.superiorTitle_eng = superiorTitle_eng
           element.save()
         })
         res.status(201).json(response)
@@ -357,7 +359,7 @@ module.exports.getTherapeuticGroupsData = (req, res, next) => {
 
 module.exports.updatePortfolioData = (req, res, next) => {
   const userRole = req.session.user.role
-  const {title, description, id} = req.body
+  const {title, description, title_eng, description_eng, id} = req.body
 
 
   if (userRole === 'Admin') {
@@ -390,7 +392,7 @@ module.exports.getModalFarmacoInicio = (req, res, next) => {
 
 module.exports.updateModalFarmaco = (req, res, next) => {
   const userRole = req.session.user.role
-  const {title, subTitle, description, id} = req.body
+  const {title, subTitle, description, title_eng, subTitle_eng, description_eng, id} = req.body
 
   if (userRole === 'Admin') {
     ModalFarmacoInicio.findByIdAndUpdate(id, req.body, {new: true})
@@ -410,7 +412,7 @@ module.exports.updateModalFarmaco = (req, res, next) => {
 
 module.exports.updateFarmacoData = (req, res, next) => {
   const userRole = req.session.user.role
-  const {title, subTitle, buttonTitle, id} = req.body
+  const {title, subTitle, buttonTitle, title_eng, subTitle_eng, buttonTitle_eng, id} = req.body
 
   if (userRole === 'Admin') {
     FarmacoInicio.findByIdAndUpdate(id, req.body, {new: true})
@@ -462,7 +464,7 @@ module.exports.getTimeLine = (req, res, next) => {
 
 module.exports.updateTimeLineAboutUs = (req, res, next) => {
   const userRole = req.session.user.role
-  const {year, desc, imgURL, id} = req.body
+  const {year, desc, imgURL, desc_eng, id} = req.body
 
   if (userRole === 'Admin') {
     TimeLine.findByIdAndUpdate(id, req.body, {new: true})
@@ -482,7 +484,7 @@ module.exports.updateTimeLineAboutUs = (req, res, next) => {
 
 module.exports.addTimeLineAboutUs = (req, res, next) => {
   const userRole = req.session.user.role
-  const {year, imgURL, desc} = req.body
+  const {year, imgURL, desc, desc_eng} = req.body
 
   if (userRole === 'Admin') {
     TimeLine.create(req.body)
@@ -530,7 +532,7 @@ module.exports.getBanner = (req, res, next) => {
 
 module.exports.updateBannerData = (req, res, next) => {
   const userRole = req.session.user.role
-  const {description, imgURL, id} = req.body
+  const {description, imgURL, description_eng, id} = req.body
 
 
   if (userRole === 'Admin') {
@@ -547,7 +549,7 @@ module.exports.updateBannerData = (req, res, next) => {
 
 module.exports.updateMarcandoPautaData = (req, res, next) => {
   const userRole = req.session.user.role
-  const {description, imgURL, id} = req.body
+  const {description, imgURL, description_eng, id} = req.body
 
 
   if (userRole === 'Admin') {
@@ -580,7 +582,7 @@ module.exports.getScience = (req, res, next) => {
 
 module.exports.updateMegatData = (req, res, next) => {
   const userRole = req.session.user.role
-  const {title, description, url, buttonTitle, id} = req.body
+  const {title, description, url, buttonTitle, title_eng, description_eng, url_eng, buttonTitle_eng, id} = req.body
 
 
   if (userRole === 'Admin') {
@@ -597,7 +599,7 @@ module.exports.updateMegatData = (req, res, next) => {
 
 module.exports.updateScienceData = (req, res, next) => {
   const userRole = req.session.user.role
-  const {title, desc, imgURL, id} = req.body
+  const {title, desc, imgURL, title_eng, desc_eng, id} = req.body
 
 
   if (userRole === 'Admin') {
@@ -641,7 +643,7 @@ module.exports.deleteGalleryItem = (req, res, next) => {
 
 module.exports.updateGalleryAboutUs = (req, res, next) => {
   const userRole = req.session.user.role
-  const {year, desc, imgURL, id} = req.body
+  const {year, desc, imgURL, desc_eng, id} = req.body
 
   if (userRole === 'Admin') {
     Gallery.findByIdAndUpdate(id, req.body, {new: true})
@@ -661,7 +663,7 @@ module.exports.updateGalleryAboutUs = (req, res, next) => {
 
 module.exports.addGalleryAboutUs = (req, res, next) => {
   const userRole = req.session.user.role
-  const {mainTitle, title, imgPath, desc} = req.body
+  const {mainTitle, title, imgPath, desc, mainTitle_eng, title_eng, desc_eng} = req.body
 
   if (userRole === 'Admin') {
     Gallery.create(req.body)
@@ -681,13 +683,14 @@ module.exports.addGalleryAboutUs = (req, res, next) => {
 
 module.exports.updateGalleryTitle = (req, res, next) => {
   const userRole = req.session.user.role
-  const {mainTitle} = req.body
+  const {mainTitle, mainTitle_eng} = req.body
 
   if (userRole === 'Admin') {
     Gallery.find()
       .then(response => {
         response.forEach(element => {
           element.mainTitle = mainTitle
+          element.mainTitle_eng = mainTitle_eng
           element.save()
         })
         res.status(201).json(response)
@@ -714,7 +717,7 @@ module.exports.getBannerOC = (req, res, next) => {
 
 module.exports.updateBannerDataOC = (req, res, next) => {
   const userRole = req.session.user.role
-  const {description, imgURL, id} = req.body
+  const {description, imgURL, description_eng, id} = req.body
 
 
   if (userRole === 'Admin') {
@@ -740,7 +743,7 @@ module.exports.getOurCompaniesOC = (req, res, next) => {
 
 module.exports.updateOurCompaniesOC = (req, res, next) => {
   const userRole = req.session.user.role
-  const {name, logo, info, url, id} = req.body
+  const {name, logo, info, url, name_eng, info_eng, url_eng, id} = req.body
 
   if (userRole === 'Admin') {
     OurCompaniesOC.findByIdAndUpdate(id, req.body, {new: true})
@@ -786,7 +789,7 @@ module.exports.getBannerProductsOC = (req, res, next) => {
 
 module.exports.updateBannerProductsOC = (req, res, next) => {
   const userRole = req.session.user.role
-  const {description, description2, imgURL, img2URL, img3URL, id} = req.body
+  const {description, description2, imgURL, img2URL, img3URL, description_eng, description2_eng, id} = req.body
 
 
   if (userRole === 'Admin') {
@@ -811,7 +814,7 @@ module.exports.getInnovationOC = (req, res, next) => {
 
 module.exports.updateInnovationOC = (req, res, next) => {
   const userRole = req.session.user.role
-  const {description, imgURL, id} = req.body
+  const {description, imgURL, description_eng, id} = req.body
 
 
   if (userRole === 'Admin') {
@@ -836,7 +839,7 @@ module.exports.getCareOC = (req, res, next) => {
 
 module.exports.updateCareOC = (req, res, next) => {
   const userRole = req.session.user.role
-  const {description, imgURL, id} = req.body
+  const {description, imgURL, description_eng, id} = req.body
 
   if (userRole === 'Admin') {
     CareOC.findByIdAndUpdate(id, req.body, {new: true})
@@ -868,7 +871,7 @@ module.exports.getBottomOC = (req, res, next) => {
 
 module.exports.updateBottomOC = (req, res, next) => {
   const userRole = req.session.user.role
-  const {title, url, button, img, id} = req.body
+  const {title, url, button, img, title_eng, url_eng, button_eng, id} = req.body
 
   if (userRole === 'Admin') {
     BottomOC.findByIdAndUpdate(id, req.body, {new: true})
@@ -899,7 +902,7 @@ module.exports.getBannerOCLeti = (req, res, next) => {
 
 module.exports.updateBannerDataOCLeti = (req, res, next) => {
   const userRole = req.session.user.role
-  const {description, imgURL, logoURL, id} = req.body
+  const {description, imgURL, logoURL, description_eng, id} = req.body
 
   if (userRole === 'Admin') {
     BannerOCLeti.findByIdAndUpdate(id, req.body, {new: true})
@@ -923,7 +926,7 @@ module.exports.getOurCompaniesInfoCardsLeti = (req, res, next) => {
 
 module.exports.updateOurCompaniesInfoCardsLeti = (req, res, next) => {
   const userRole = req.session.user.role
-  const {title, info, id} = req.body
+  const {title, info, title_eng, info_eng, id} = req.body
 
 
   if (userRole === 'Admin') {
@@ -963,7 +966,7 @@ module.exports.deleteLetiInfoCard = (req, res, next) => {
 
 module.exports.createLetiInfoCard = (req, res, next) => {
   const userRole = req.session.user.role
-  const {title, info} = req.body
+  const {title, info, title_eng, info_eng} = req.body
 
   if (userRole === 'Admin') {
     OurCompaniesOCInfoCardsLeti.create(req.body)
@@ -991,7 +994,7 @@ module.exports.getEquipoLetiOC = (req, res, next) => {
 
 module.exports.updateEquipoLetiOC = (req, res, next) => {
   const userRole = req.session.user.role
-  const {description, imgURL, buttonTitle, buttonLink, id} = req.body
+  const {description, imgURL, buttonTitle, buttonLink, description_eng, buttonTitle_eng, buttonLink_eng, id} = req.body
 
 
   if (userRole === 'Admin') {
@@ -1016,7 +1019,7 @@ module.exports.getTimeLineLeti = (req, res, next) => {
 
 module.exports.updateTimeLineLetiData = (req, res, next) => {
   const userRole = req.session.user.role
-  const {desc, url, imgURL, button, id} = req.body
+  const {desc, url, imgURL, button, desc_eng, url_eng, button_eng, id} = req.body
 
 
   if (userRole === 'Admin') {
@@ -1057,11 +1060,11 @@ module.exports.deleteTimeLineLeti = (req, res, next) => {
 /// pendiente add ///
 module.exports.addTimeLineLetiData = (req, res, next) => {
   const userRole = req.session.user.role
-  const {desc, url, imgURL, button} = req.body
+  const {desc, url, imgURL, button, desc_eng, url_eng, button_eng} = req.body
 
 
   if (userRole === 'Admin') {
-    TimeLineLetiOC.create({desc, url, imgURL, button})
+    TimeLineLetiOC.create({desc, url, imgURL, button, desc_eng, url_eng, button_eng})
       .then(() => {
         TimeLineLetiOC.find()
           .then((data) => {
@@ -1091,7 +1094,7 @@ module.exports.getBannerOCBiocontrolled = (req, res, next) => {
 
 module.exports.updateBannerDataOCBiocontrolled = (req, res, next) => {
   const userRole = req.session.user.role
-  const {description, imgURL, logoURL, id} = req.body
+  const {description, imgURL, logoURL, description_eng, id} = req.body
 
 
   if (userRole === 'Admin') {
@@ -1116,7 +1119,7 @@ module.exports.getOurCompaniesInfoCardsBiocontrolled = (req, res, next) => {
 
 module.exports.updateOurCompaniesInfoCardsBiocontrolled = (req, res, next) => {
   const userRole = req.session.user.role
-  const {title, info, id} = req.body
+  const {title, info, title_eng, info_eng, id} = req.body
 
 
   if (userRole === 'Admin') {
@@ -1137,7 +1140,7 @@ module.exports.updateOurCompaniesInfoCardsBiocontrolled = (req, res, next) => {
 
 module.exports.createBiocontrolledInfoCard = (req, res, next) => {
   const userRole = req.session.user.role
-  const {title, info} = req.body
+  const {title, info, title_eng, info_eng} = req.body
 
   if (userRole === 'Admin') {
     OurCompaniesOCInfoCardsBiocontrolled.create(req.body)
@@ -1185,7 +1188,7 @@ module.exports.getEquipoBiocontrolledOC = (req, res, next) => {
 
 module.exports.updateEquipoBiocontrolledOC = (req, res, next) => {
   const userRole = req.session.user.role
-  const {description, imgURL, buttonTitle, buttonLink, id} = req.body
+  const {description, imgURL, buttonTitle, buttonLink, description_eng, buttonTitle_eng, buttonLink_eng, id} = req.body
 
 
   if (userRole === 'Admin') {
@@ -1210,7 +1213,7 @@ module.exports.getTimeLineBiocontrolled = (req, res, next) => {
 
 module.exports.updateTimeLineBiocontrolledData = (req, res, next) => {
   const userRole = req.session.user.role
-  const {description, imgURL, buttonTitle, buttonLink, id} = req.body
+  const {description, imgURL, buttonTitle, buttonLink, description_eng, buttonTitle_eng, buttonLink_eng, id} = req.body
 
 
   if (userRole === 'Admin') {
@@ -1251,7 +1254,7 @@ module.exports.deleteTimeLineBiocontrolled = (req, res, next) => {
 /// pendiente add ///
 module.exports.addTimeLineBiocontrolledData = (req, res, next) => {
   const userRole = req.session.user.role
-  const {desc, imgURL, buttonTitle, buttonLink, id} = req.body
+  const {desc, imgURL, buttonTitle, buttonLink, desc_eng, buttonTitle_eng, buttonLink_eng, id} = req.body
 
 
   if (userRole === 'Admin') {
@@ -1281,7 +1284,7 @@ module.exports.getCarrouselBiocontrolled = (req, res, next) => {
 
 module.exports.updateCarrouselBiocontrolledData = (req, res, next) => {
   const userRole = req.session.user.role
-  const {info, id} = req.body
+  const {info, info_eng, id} = req.body
 
   if (userRole === 'Admin') {
     CarrouselBiocontrolledOC.findByIdAndUpdate(id, req.body, {new: true})
@@ -1301,13 +1304,14 @@ module.exports.updateCarrouselBiocontrolledData = (req, res, next) => {
 
 module.exports.updateCarrouselTitle = (req, res, next) => {
   const userRole = req.session.user.role
-  const {title} = req.body
+  const {title, title_eng} = req.body
 
   if (userRole === 'Admin') {
     CarrouselBiocontrolledOC.find()
       .then(response => {
         response.forEach(element => {
           element.title = title
+          element.title_eng = title_eng
           element.save()
         })
         res.status(201).json(response)
@@ -1342,7 +1346,7 @@ module.exports.deleteBioCarrouselItem = (req, res, next) => {
 /// pendiente add ///
 module.exports.addCarrouselBiocontrolledData = (req, res, next) => {
   const userRole = req.session.user.role
-  const {title, info, id} = req.body
+  const {title, info, title_eng, info_eng, id} = req.body
 
 
   if (userRole === 'Admin') {
@@ -1375,7 +1379,7 @@ module.exports.getBannerOCGenven = (req, res, next) => {
 
 module.exports.updateBannerDataOCGenven = (req, res, next) => {
   const userRole = req.session.user.role
-  const {description, imgURL, logoURL, id} = req.body
+  const {description, imgURL, logoURL, description_eng, id} = req.body
 
 
   if (userRole === 'Admin') {
@@ -1425,7 +1429,7 @@ module.exports.getEquipoGenvenOC = (req, res, next) => {
 
 module.exports.updateEquipoGenvenOC = (req, res, next) => {
   const userRole = req.session.user.role
-  const {description, imgURL, buttonTitle, buttonLink, id} = req.body
+  const {description, imgURL, buttonTitle, buttonLink, description_eng, buttonTitle_eng, buttonLink_eng, id} = req.body
 
 
   if (userRole === 'Admin') {
@@ -1450,7 +1454,7 @@ module.exports.getTimeLineGenven = (req, res, next) => {
 /// pendiente add ///
 module.exports.addTimeLineGenvenData = (req, res, next) => {
   const userRole = req.session.user.role
-  const {desc, imgURL, buttonText, buttonLink} = req.body
+  const {desc, imgURL, buttonText, buttonLink, desc_eng, buttonText_eng, buttonLink_eng} = req.body
 
   if (userRole === 'Admin') {
     TimeLineGenvenOC.create(req.body)
@@ -1479,7 +1483,7 @@ module.exports.getProductosGenven = (req, res, next) => {
 
 module.exports.updateProductosGenvenData = (req, res, next) => {
   const userRole = req.session.user.role
-  const {description, buttonTitle, buttonLink, img1URL, img2URL, img3URL, id} = req.body
+  const {description, buttonTitle, buttonLink, img1URL, img2URL, img3URL, description_eng, buttonTitle_eng, buttonLink_eng, id} = req.body
 
 
   if (userRole === 'Admin') {
@@ -1496,7 +1500,7 @@ module.exports.updateProductosGenvenData = (req, res, next) => {
 
 module.exports.updateGenvenTimeline = (req, res, next) => {
   const userRole = req.session.user.role
-  const {desc, buttonLink, imgURL, buttonText, id} = req.body
+  const {desc, buttonLink, imgURL, buttonText, desc_eng, buttonLink_eng, buttonText_eng, id} = req.body
 
   if (userRole === 'Admin') {
     TimeLineGenvenOC.findByIdAndUpdate(id, req.body, {new: true})
@@ -1536,7 +1540,7 @@ module.exports.deleteTimeLineGenven = (req, res, next) => {
 /// pendiente add ///
 module.exports.addProductosGenvenData = (req, res, next) => {
   const userRole = req.session.user.role
-  const {description, buttonTitle, buttonLink, img1URL, img2URL, img3URL} = req.body
+  const {description, buttonTitle, buttonLink, img1URL, img2URL, img3URL, description_eng, buttonTitle_eng, buttonLink_eng} = req.body
 
 
   if (userRole === 'Admin') {
@@ -1565,7 +1569,7 @@ module.exports.getBannerOurPeople = (req, res, next) => {
 
 module.exports.updateBannerDataOurPeople = (req, res, next) => {
   const userRole = req.session.user.role
-  const {description, imgURL, title, id} = req.body
+  const {description, imgURL, title, description_eng, title_eng, id} = req.body
 
 
   if (userRole === 'Admin') {
@@ -1590,7 +1594,7 @@ module.exports.getInfoCardsOurPeople = (req, res, next) => {
 
 module.exports.updateInfoCardsOurPeople = (req, res, next) => {
   const userRole = req.session.user.role
-  const {mainTitle, imgURL, title, info, id} = req.body
+  const {mainTitle, imgURL, title, info, mainTitle_eng, title_eng, info_eng, id} = req.body
 
   if (userRole === 'Admin') {
     InfoCardsOurPeople.findByIdAndUpdate(id, req.body, {new: true})
@@ -1638,7 +1642,7 @@ module.exports.getEquipoOurPeople = (req, res, next) => {
 
 module.exports.updateEquipoOurPeople = (req, res, next) => {
   const userRole = req.session.user.role
-  const {title, description, person, imgURL, buttonTitle, buttonLink, id} = req.body
+  const {title, description, person, imgURL, buttonTitle, buttonLink, title_eng, description_eng, person_eng, buttonTitle_eng, buttonLink_eng, id} = req.body
 
   if (userRole === 'Admin') {
     EquipoOurPeople.findByIdAndUpdate(id, req.body, {new: true})
@@ -1662,7 +1666,7 @@ module.exports.getBannerTeams = (req, res, next) => {
 
 module.exports.updateBannerTeams = (req, res, next) => {
   const userRole = req.session.user.role
-  const {imgURL, mainTitle, id} = req.body
+  const {imgURL, mainTitle, mainTitle_eng, id} = req.body
 
   if (userRole === 'Admin') {
     BannerTeamsOurPeople.findByIdAndUpdate(id, req.body, {new: true})
@@ -1686,7 +1690,7 @@ module.exports.getInfoBannerOP = (req, res, next) => {
 
 module.exports.updateInfoBannerDataOurPeople = (req, res, next) => {
   const userRole = req.session.user.role
-  const {mainDescription, backgroundURL, item, id} = req.body
+  const {mainDescription, backgroundURL, item, mainDescription_eng, id} = req.body
 
   if (userRole === 'Admin') {
     InfoBannerOurPeople.findByIdAndUpdate(id, req.body, {new: true, useFindAndModify: false})
@@ -1702,7 +1706,7 @@ module.exports.updateInfoBannerDataOurPeople = (req, res, next) => {
 
 module.exports.updateInfoBannerDataOurPeopleDet = (req, res, next) => {
   const userRole = req.session.user.role
-  const {desc, iconURL, number, id} = req.body
+  const {desc, iconURL, number, desc_eng, id} = req.body
   const {whole} = req.body
   const previousId = whole._id
 
@@ -1711,6 +1715,7 @@ module.exports.updateInfoBannerDataOurPeopleDet = (req, res, next) => {
       whole.item[i].desc = desc;
       whole.item[i].iconURL = iconURL;
       whole.item[i].number = number;
+      whole.item[i].desc_eng = desc_eng;
     }
   }
 
@@ -1736,7 +1741,7 @@ module.exports.getBannerBtm = (req, res, next) => {
 
 module.exports.updateBannerBtm = (req, res, next) => {
   const userRole = req.session.user.role
-  const {description, imgURL, id} = req.body
+  const {description, imgURL, description_eng, id} = req.body
 
   if (userRole === 'Admin') {
     BannerBtm.findByIdAndUpdate(id, req.body, {new: true})
@@ -1752,10 +1757,10 @@ module.exports.updateBannerBtm = (req, res, next) => {
 
 module.exports.createTeam = (req, res, next) => {
   const userRole = req.session.user.role
-  const {title, info} = req.body
+  const {title, info, title_eng, info_eng} = req.body
 
   if (userRole === 'Admin') {
-    InfoCardsOurPeople.create({title, info})
+    InfoCardsOurPeople.create({title, info, title_eng, info_eng})
       .then(() => {
         InfoCardsOurPeople.find()
           .then((data) => {
@@ -1781,7 +1786,7 @@ module.exports.getBottomOurPeople = (req, res, next) => {
 
 module.exports.updateBottomOurPeople = (req, res, next) => {
   const userRole = req.session.user.role
-  const {title, buttonLink, buttonTitle, img, id} = req.body
+  const {title, buttonLink, buttonTitle, img, title_eng, buttonLink_eng, buttonTitle_eng, id} = req.body
 
 
   if (userRole === 'Admin') {
@@ -1810,7 +1815,7 @@ module.exports.getCarreras = (req, res, next) => {
 
 module.exports.updateCarrerasData = (req, res, next) => {
   const userRole = req.session.user.role
-  const {title, description, url, buttonTitle, id} = req.body
+  const {title, description, url, buttonTitle, title_eng, description_eng, url_eng, buttonTitle_eng, id} = req.body
 
 
   if (userRole === 'Admin') {
@@ -1844,7 +1849,7 @@ module.exports.getBannerPurpose = (req, res, next) => {
 
 module.exports.updateBannerDataPurpose = (req, res, next) => {
   const userRole = req.session.user.role
-  const {description, imgURL, id} = req.body
+  const {description, imgURL, description_eng, id} = req.body
 
 
   if (userRole === 'Admin') {
@@ -1894,7 +1899,7 @@ module.exports.getTimeLinePurpose = (req, res, next) => {
 /// pendiente add ///
 module.exports.addTimeLinePurposeData = (req, res, next) => {
   const userRole = req.session.user.role
-  const {desc, imgURL} = req.body
+  const {desc, imgURL, desc_eng} = req.body
 
   if (userRole === 'Admin') {
     TimeLinePurpose.create(req.body)
@@ -1934,7 +1939,7 @@ module.exports.deleteTimeLinePurposeData = (req, res, next) => {
 
 module.exports.updateTimeLinePurpose = (req, res, next) => {
   const userRole = req.session.user.role
-  const {desc, imgURL, id} = req.body
+  const {desc, imgURL, desc_eng, id} = req.body
 
   if (userRole === 'Admin') {
     TimeLinePurpose.findByIdAndUpdate(id, req.body, {new: true})
@@ -1954,7 +1959,7 @@ module.exports.updateTimeLinePurpose = (req, res, next) => {
 
 module.exports.updateTitleFarmDataPurpose = (req, res, next) => {
   const userRole = req.session.user.role
-  const {title, id} = req.body
+  const {title, title_eng, id} = req.body
 
 
   if (userRole === 'Admin') {
@@ -2020,7 +2025,7 @@ module.exports.deleteProduct = (req, res, next) => {
 module.exports.updateProduct = (req, res, next) => {
   const id = req.params.id
   const userRole = req.session.user.role
-  const {name, picPath, QRpath, line, composition, health_register, active_principle, posology, presentation, indication, therapeutic_group, category, util_life, cpe, how_to_use, contraindications, adverse_reactions, prospect, show_in_products} = req.body
+  const {name, picPath, QRpath, line, composition, health_register, active_principle, posology, presentation, indication, therapeutic_group, category, util_life, cpe, how_to_use, contraindications, adverse_reactions, prospect, show_in_products, name_eng, line_eng, composition_eng, health_register_eng, active_principle_eng, posology_eng, presentation_eng, indication_eng, therapeutic_group_eng, category_eng, util_life_eng, cpe_eng, how_to_use_eng, contraindications_eng, adverse_reactions_eng, prospect_eng} = req.body
 
   if (userRole === 'Admin') {
     Vadevecum.findByIdAndUpdate(id, req.body, {new: true})
@@ -2042,7 +2047,7 @@ module.exports.updateProduct = (req, res, next) => {
 
 module.exports.createProduct = (req, res, next) => {
   const userRole = req.session.user.role
-  const {name, picPath, QRpath, line, composition, health_register, active_principle, posology, presentation, indication, therapeutic_group, category, util_life, cpe, how_to_use, contraindications, adverse_reactions, prospect, show_in_products} = req.body
+  const {name, picPath, QRpath, line, composition, health_register, active_principle, posology, presentation, indication, therapeutic_group, category, util_life, cpe, how_to_use, contraindications, adverse_reactions, prospect, show_in_products, name_eng, line_eng, composition_eng, health_register_eng, active_principle_eng, posology_eng, presentation_eng, indication_eng, therapeutic_group_eng, category_eng, util_life_eng, cpe_eng, how_to_use_eng, contraindications_eng, adverse_reactions_eng, prospect_eng} = req.body
 
   if (userRole === 'Admin') {
     Vadevecum.create(req.body)
@@ -2073,7 +2078,7 @@ module.exports.getNavData = (req, res, next) => {
 
 module.exports.updateNavData = (req, res, next) => {
   const userRole = req.session.user.role
-  const {title, desc, nav_btn, nav_cta, id} = req.body
+  const {title, desc, nav_btn, nav_cta, title_eng, desc_eng, nav_btn_eng, nav_cta_eng, id} = req.body
 
   if (userRole === 'Admin') {
     Nav.findByIdAndUpdate(id, req.body, {new: true})

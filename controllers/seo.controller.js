@@ -14,7 +14,7 @@ module.exports.getSeoData = (req, res, next) => {
 
 module.exports.updateSeoData = (req, res, next) => {
   const userRole = req.session.user.role
-  const {keywords, description, page, id} = req.body
+  const {keywords, description, page, keywords_eng, description_eng, page_eng, id} = req.body
 
   if (userRole === 'Admin') {
     Seo.findByIdAndUpdate(id, req.body, {new: true})

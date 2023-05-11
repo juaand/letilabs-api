@@ -15,7 +15,7 @@ module.exports.getBannerTA = (req, res, next) => {
 
 module.exports.updateBannerTA = (req, res, next) => {
   const userRole = req.session.user.role
-  const {description, imgURL, title, id} = req.body
+  const {description, imgURL, title, description_eng, title_eng, id} = req.body
 
   if (userRole === 'Admin') {
     BannerTA.findByIdAndUpdate(id, req.body, {new: true})
@@ -39,7 +39,7 @@ module.exports.getCarrouselTA = (req, res, next) => {
 
 module.exports.updateCarrouselTA = (req, res, next) => {
   const userRole = req.session.user.role
-  const {title, mainTitle, desc, imgURL, id} = req.body
+  const {title, mainTitle, desc, imgURL, title_eng, mainTitle_eng, desc_eng, id} = req.body
 
 
   if (userRole === 'Admin') {
@@ -60,7 +60,7 @@ module.exports.updateCarrouselTA = (req, res, next) => {
 
 module.exports.updateTagalleryTitle = (req, res, next) => {
   const userRole = req.session.user.role
-  const {mainTitle} = req.body
+  const {mainTitle, mainTitle_eng} = req.body
 
   if (userRole === 'Admin') {
     CarrouselTA.find()
@@ -80,7 +80,7 @@ module.exports.updateTagalleryTitle = (req, res, next) => {
 
 module.exports.createCarrouselTA = (req, res, next) => {
   const userRole = req.session.user.role
-  const {title, mainTitle, desc, imgURL} = req.body
+  const {title, mainTitle, desc, imgURL, title_eng, mainTitle_eng, desc_eng} = req.body
 
   if (userRole === 'Admin') {
     CarrouselTA.create(req.body)
@@ -127,7 +127,7 @@ module.exports.getBottomTA = (req, res, next) => {
 
 module.exports.updateBottomTA = (req, res, next) => {
   const userRole = req.session.user.role
-  const {title, buttonLink, buttonTitle, img, id} = req.body
+  const {title, buttonLink, buttonTitle, img, title_eng, buttonLink_eng, buttonTitle_eng, id} = req.body
 
 
   if (userRole === 'Admin') {

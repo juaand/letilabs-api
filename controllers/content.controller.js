@@ -3,7 +3,7 @@ const SiteContent = require('../models/siteContent.model')
 
 
 module.exports.createContent = (req, res, next) => {
-  const {name, url, content, type} = req.body
+  const {name, url, content, type, name_eng, url_eng, content_eng, type_eng} = req.body
   const userRole = req.session.user.role
 
   if (userRole === 'Admin') {
@@ -12,7 +12,7 @@ module.exports.createContent = (req, res, next) => {
     ]
     )
       .then(() => {
-        SiteContent.create({name, url, type, content: content})
+        SiteContent.create({name, url, type, content: content, name_eng, url_eng, content_eng: content_eng, type_eng})
           .then(() => {
             res.status(201).json({
               message: 'Contenido creado exitosamente'
