@@ -84,7 +84,7 @@ module.exports.getUsInfo = (req, res, next) => {
 
 module.exports.updateUsInfoData = (req, res, next) => {
   const userRole = req.session.user.role
-  const {description, url, buttonTitle, age, description_eng, url_eng, buttonTitle_eng, age_eng, id} = req.body
+  const {description, url, buttonTitle, age, description_eng, url_eng, buttonTitle_eng, id} = req.body
 
 
   if (userRole === 'Admin') {
@@ -119,7 +119,7 @@ module.exports.getHomeBottomData = (req, res, next) => {
 
 module.exports.updateBottomCtaData = (req, res, next) => {
   const userRole = req.session.user.role
-  const {title, img, button, url, title_eng, button_eng, url_eng, id} = req.body
+  const {title, img, button, url, title_eng, button_eng, id} = req.body
 
   if (userRole === 'Admin') {
     BottomHomeData.findByIdAndUpdate(id, req.body, {new: true})
@@ -211,17 +211,12 @@ module.exports.getUnidadesInicio = (req, res, next) => {
 
 module.exports.updateUnidadesNegocioTitle = (req, res, next) => {
   const userRole = req.session.user.role
-  const {mainTitle, mainTitle_eng} = req.body
+  const {id, mainTitle, mainTitle_eng} = req.body
 
   if (userRole === 'Admin') {
-    UnidadesInicio.find()
-      .then(response => {
-        response.forEach(element => {
-          element.mainTitle = mainTitle
-          element.mainTitle_eng = mainTitle_eng
-          element.save()
-        })
-        res.status(201).json(response)
+    UnidadesInicio.findByIdAndUpdate(id, req.body, {new: true})
+      .then((data) => {
+        res.status(201).json(data)
       })
       .catch(next)
   } else {
@@ -232,7 +227,7 @@ module.exports.updateUnidadesNegocioTitle = (req, res, next) => {
 
 module.exports.updateUnidadesInicio = (req, res, next) => {
   const userRole = req.session.user.role
-  const {logo, desc, url, desc_eng, url_eng, id} = req.body
+  const {logo, desc, url, desc_eng, id} = req.body
 
   if (userRole === 'Admin') {
     UnidadesInicio.findByIdAndUpdate(id, req.body, {new: true})
@@ -301,17 +296,16 @@ module.exports.createPortfolioInicio = (req, res, next) => {
 
 module.exports.updateTitlePortfolioInicio = (req, res, next) => {
   const userRole = req.session.user.role
-  const {superiorTitle, superiorTitle_eng} = req.body
+  const {id, superiorTitle, superiorTitle_eng} = req.body
 
   if (userRole === 'Admin') {
-    PortfolioInicio.find()
-      .then(response => {
-        response.forEach(element => {
-          element.superiorTitle = superiorTitle
-          element.superiorTitle_eng = superiorTitle_eng
-          element.save()
-        })
-        res.status(201).json(response)
+    PortfolioInicio.findByIdAndUpdate(id, req.body, {new: true})
+      .then(() => {
+        PortfolioInicio.find()
+          .then((data) => {
+            res.status(201).json(data)
+          })
+          .catch(next)
       })
       .catch(next)
   } else {
@@ -683,17 +677,12 @@ module.exports.addGalleryAboutUs = (req, res, next) => {
 
 module.exports.updateGalleryTitle = (req, res, next) => {
   const userRole = req.session.user.role
-  const {mainTitle, mainTitle_eng} = req.body
+  const {id, mainTitle, mainTitle_eng} = req.body
 
   if (userRole === 'Admin') {
-    Gallery.find()
-      .then(response => {
-        response.forEach(element => {
-          element.mainTitle = mainTitle
-          element.mainTitle_eng = mainTitle_eng
-          element.save()
-        })
-        res.status(201).json(response)
+      Gallery.findByIdAndUpdate(id, req.body, {new: true})
+      .then((data) => {
+        res.status(201).json(data)
       })
       .catch(next)
   } else {
@@ -734,7 +723,7 @@ module.exports.updateBannerDataOC = (req, res, next) => {
 
 module.exports.getOurCompaniesOC = (req, res, next) => {
   OurCompaniesOC.find()
-  .sort({_id: 1})
+    .sort({_id: 1})
     .then((data) => {
       res.status(201).json(data)
     })
@@ -1694,10 +1683,10 @@ module.exports.updateInfoBannerDataOurPeople = (req, res, next) => {
 
   if (userRole === 'Admin') {
     InfoBannerOurPeople.findByIdAndUpdate(id, req.body, {new: true, useFindAndModify: false})
-        .then((data) => {
-          res.status(201).json(data)
-        })
-        .catch(next)
+      .then((data) => {
+        res.status(201).json(data)
+      })
+      .catch(next)
   } else {
     req.session.destroy()
     res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
@@ -1712,19 +1701,19 @@ module.exports.updateInfoBannerDataOurPeopleDet = (req, res, next) => {
 
   for (let i = 0; i < whole.item.length; i++) {
     if (whole.item[i]._id === id) {
-      whole.item[i].desc = desc;
-      whole.item[i].iconURL = iconURL;
-      whole.item[i].number = number;
-      whole.item[i].desc_eng = desc_eng;
+      whole.item[i].desc = desc
+      whole.item[i].iconURL = iconURL
+      whole.item[i].number = number
+      whole.item[i].desc_eng = desc_eng
     }
   }
 
   if (userRole === 'Admin') {
     InfoBannerOurPeople.findByIdAndUpdate(previousId, whole, {new: true, useFindAndModify: false})
-        .then((data) => {
-          res.status(201).json(data.item)
-        })
-        .catch(next)
+      .then((data) => {
+        res.status(201).json(data.item)
+      })
+      .catch(next)
   } else {
     req.session.destroy()
     res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
@@ -2067,12 +2056,12 @@ module.exports.createProduct = (req, res, next) => {
 }
 
 module.exports.getNavData = (req, res, next) => {
-    Nav.find()
-      .sort({_id: 1})
-      .then(data => {
-        res.status(201).json(data)
-      })
-      .catch(next)
+  Nav.find()
+    .sort({_id: 1})
+    .then(data => {
+      res.status(201).json(data)
+    })
+    .catch(next)
 
 }
 
