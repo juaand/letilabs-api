@@ -29,9 +29,6 @@ const usInfoSchema = new Schema(
         },
         age: {
             type: Number,
-        },
-        age_eng: {
-            type: Number,
         }
     },
     {timestamps: true}
