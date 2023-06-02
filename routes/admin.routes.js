@@ -118,7 +118,7 @@ router.get('/deleteoctimelinebiocontrolled/:id', routeGuard.isAuthenticated, adm
 router.get('/occarrouselbiocontrolled', adminController.getCarrouselBiocontrolled)
 router.post('/addoccarrouselbiocontrolled', routeGuard.isAuthenticated, adminController.addCarrouselBiocontrolledData)
 router.patch('/updateoccarrouselbiocontrolled', routeGuard.isAuthenticated, adminController.updateCarrouselBiocontrolledData)
-router.post('/updatebiocarrousletitle', routeGuard.isAuthenticated, adminController.updateCarrouselTitle)
+router.patch('/updatebiocarrousletitle', routeGuard.isAuthenticated, adminController.updateCarrouselTitle)
 router.get('/deletebiocarrouselitem/:id', routeGuard.isAuthenticated, adminController.deleteBioCarrouselItem)
 
 //////////////////////////////////////////////////////////////////////
