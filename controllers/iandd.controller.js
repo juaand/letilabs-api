@@ -18,7 +18,7 @@ const BannerAlliances = require('../models/IAD/alianzas/bannerAlianzasID.model')
 const FormAlliances = require('../models/IAD/alianzas/contribucionAlianzasID.model')
 const FormAlliancesMessages = require('../models/IAD/alianzas/alianzasForm.model')
 const BottomAlliances = require('../models/IAD/alianzas/bottomCtaAlianzasID.model')
-const InfoBannerOurPeople = require("../models/nuestraGente/ourPeopleInfoBanner.model");
+const InfoBannerOurPeople = require("../models/nuestraGente/ourPeopleInfoBanner.model")
 
 //admin I+D routes
 module.exports.getBannerID = (req, res, next) => {
@@ -85,17 +85,16 @@ module.exports.getGoals = (req, res, next) => {
 
 module.exports.updateGoalsTitle = (req, res, next) => {
   const userRole = req.session.user.role
-  const {title, title_eng} = req.body
+  const {id, title, title_eng} = req.body
 
   if (userRole === 'Admin') {
-    GoalsId.find()
-      .then(response => {
-        response.forEach(element => {
-          element.title = title
-          element.title_eng = title_eng
-          element.save()
-        })
-        res.status(201).json(response)
+    GoalsId.findByIdAndUpdate(id, req.body, {new: true})
+      .then(() => {
+        GoalsId.find()
+          .then((data) => {
+            res.status(201).json(data)
+          })
+          .catch(next)
       })
       .catch(next)
   } else {
@@ -111,7 +110,7 @@ module.exports.updateGoals = (req, res, next) => {
 
   if (userRole === 'Admin') {
     GoalsId.findByIdAndUpdate(id, req.body, {new: true})
-      .then((data) => {
+      .then(() => {
         GoalsId.find()
           .then((data) => {
             res.status(201).json(data)
@@ -207,10 +206,10 @@ module.exports.updateInfoBannerIAD = (req, res, next) => {
 
   if (userRole === 'Admin') {
     InfoBannerOurPeople.findByIdAndUpdate(id, req.body, {new: true, useFindAndModify: false})
-        .then((data) => {
-          res.status(201).json(data)
-        })
-        .catch(next)
+      .then((data) => {
+        res.status(201).json(data)
+      })
+      .catch(next)
   } else {
     req.session.destroy()
     res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
@@ -225,21 +224,21 @@ module.exports.updateInfoBannerIADDet = (req, res, next) => {
 
   for (let i = 0; i < whole.item.length; i++) {
     if (whole.item[i]._id === id) {
-      whole.item[i].desc = desc;
-      whole.item[i].unity = unity;
-      whole.item[i].iconURL = iconURL;
-      whole.item[i].number = number;
-      whole.item[i].desc_eng = desc_eng;
-      whole.item[i].unity_eng = unity_eng;
+      whole.item[i].desc = desc
+      whole.item[i].unity = unity
+      whole.item[i].iconURL = iconURL
+      whole.item[i].number = number
+      whole.item[i].desc_eng = desc_eng
+      whole.item[i].unity_eng = unity_eng
     }
   }
 
   if (userRole === 'Admin') {
     InfoBannerID.findByIdAndUpdate(previousId, whole, {new: true, useFindAndModify: false})
-        .then((data) => {
-          res.status(201).json(data.item)
-        })
-        .catch(next)
+      .then((data) => {
+        res.status(201).json(data.item)
+      })
+      .catch(next)
   } else {
     req.session.destroy()
     res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
@@ -348,17 +347,16 @@ module.exports.createTechCarrousel = (req, res, next) => {
 
 module.exports.updateTechCarrouselTitle = (req, res, next) => {
   const userRole = req.session.user.role
-  const {mainTitle, mainTitle_eng} = req.body
+  const {id, mainTitle, mainTitle_eng} = req.body
 
   if (userRole === 'Admin') {
-    CarrouselTech.find()
-      .then(response => {
-        response.forEach(element => {
-          element.mainTitle = mainTitle
-          element.mainTitle_eng = mainTitle_eng
-          element.save()
-        })
-        res.status(201).json(response)
+    CarrouselTech.findByIdAndUpdate(id, req.body, {new: true})
+      .then(() => {
+        CarrouselTech.find()
+          .then((data) => {
+            res.status(201).json(data)
+          })
+          .catch(next)
       })
       .catch(next)
   } else {
@@ -468,17 +466,16 @@ module.exports.updateManufactureBanner = (req, res, next) => {
 
 module.exports.updateTitleProccess = (req, res, next) => {
   const userRole = req.session.user.role
-  const {title, title_eng} = req.body
+  const {id, title, title_eng} = req.body
 
   if (userRole === 'Admin') {
-    CarouselManufacture.find()
-      .then(response => {
-        response.forEach(element => {
-          element.title = title
-          element.title_eng = title_eng
-          element.save()
-        })
-        res.status(201).json(response)
+      CarouselManufacture.findByIdAndUpdate(id, req.body, {new: true})
+      .then(() => {
+        CarouselManufacture.find()
+          .then((data) => {
+            res.status(201).json(data)
+          })
+          .catch(next)
       })
       .catch(next)
   } else {
@@ -750,17 +747,15 @@ module.exports.createAlly = (req, res, next) => {
 
 module.exports.updateLogosAllianceTitle = (req, res, next) => {
   const userRole = req.session.user.role
-  const {title, title_eng} = req.body
+  const {id, title, title_eng} = req.body
 
   if (userRole === 'Admin') {
-    AllianceLogos.find()
-      .then(response => {
-        response.forEach(element => {
-          element.title = title
-          element.title_eng = title_eng
-          element.save()
-        })
-        res.status(201).json(response)
+      AllianceLogos.findByIdAndUpdate(id, req.body, {new: true})
+      .then(() => {
+        AllianceLogos.find()
+          .then(response => {
+            res.status(201).json(response)
+          })
       })
       .catch(next)
   } else {

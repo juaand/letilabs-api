@@ -119,7 +119,7 @@ module.exports.getHomeBottomData = (req, res, next) => {
 
 module.exports.updateBottomCtaData = (req, res, next) => {
   const userRole = req.session.user.role
-  const {title, img, button, url, title_eng, button_eng, id} = req.body
+  const {title, img, button, url, title_eng, button_eng, url_eng, id} = req.body
 
   if (userRole === 'Admin') {
     BottomHomeData.findByIdAndUpdate(id, req.body, {new: true})
@@ -680,7 +680,7 @@ module.exports.updateGalleryTitle = (req, res, next) => {
   const {id, mainTitle, mainTitle_eng} = req.body
 
   if (userRole === 'Admin') {
-      Gallery.findByIdAndUpdate(id, req.body, {new: true})
+    Gallery.findByIdAndUpdate(id, req.body, {new: true})
       .then((data) => {
         res.status(201).json(data)
       })
@@ -1293,17 +1293,16 @@ module.exports.updateCarrouselBiocontrolledData = (req, res, next) => {
 
 module.exports.updateCarrouselTitle = (req, res, next) => {
   const userRole = req.session.user.role
-  const {title, title_eng} = req.body
+  const {id, title, title_eng} = req.body
 
   if (userRole === 'Admin') {
-    CarrouselBiocontrolledOC.find()
-      .then(response => {
-        response.forEach(element => {
-          element.title = title
-          element.title_eng = title_eng
-          element.save()
-        })
-        res.status(201).json(response)
+    CarrouselBiocontrolledOC.findByIdAndUpdate(id, req.body, {new: true})
+      .then(() => {
+        CarrouselBiocontrolledOC.find()
+          .then((data) => {
+            res.status(201).json(data)
+          })
+          .catch(next)
       })
       .catch(next)
   } else {
