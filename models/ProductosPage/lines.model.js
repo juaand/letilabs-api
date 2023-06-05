@@ -9,7 +9,7 @@ const linesSchema = new Schema(
     },
     line_eng: {
       type: String,
-      required: [true, 'Line is required'],
+      required: [true, 'Line eng is required'],
     },
   },
   {
