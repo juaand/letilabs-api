@@ -16,7 +16,7 @@ module.exports.getNews = (req, res, next) => {
 
 module.exports.createNews = (req, res, next) => {
   const userRole = req.session.user.role
-  const {title, subTitle, urlToPic, tag, content, outstanding, publishDate, title_eng, subTitle_eng, urlToPic_eng, tag_eng, content_eng, outstanding_eng} = req.body
+  const {title, subTitle, urlToPic, tag, content, outstanding, publishDate} = req.body
 
   if (userRole === 'Admin') {
     Blog.create(req.body)

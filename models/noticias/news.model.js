@@ -7,15 +7,7 @@ const blogSchema = new Schema(
             type: String,
             required: [true, 'El título de la noticia es obligatorio'],
         },
-        title_eng: {
-            type: String,
-            required: [true, 'El título de la noticia es obligatorio'],
-        },
         subTitle: {
-            type: String,
-            required: [true, 'El subtítulo de la noticia es obligatorio'],
-        },
-        subTitle_eng: {
             type: String,
             required: [true, 'El subtítulo de la noticia es obligatorio'],
         },
@@ -27,10 +19,6 @@ const blogSchema = new Schema(
             type: String,
             required: [true, 'El contenido de la noticia es obligatorio'],
         },
-        content_eng: {
-            type: String,
-            required: [true, 'El contenido de la noticia es obligatorio'],
-        },
         outstanding: {
             type: Boolean,
             required: [true, 'Outstanding is required'],
@@ -39,15 +27,7 @@ const blogSchema = new Schema(
             type: [String],
             required: [true, 'Seleccione al menos una etiqueta para la noticia'],
         },
-        tag_eng: {
-            type: [String],
-            required: [true, 'Seleccione al menos una etiqueta para la noticia'],
-        },
         publishDate: {
-            type: Date,
-            required: [true, 'PublishDate is required'],
-        },
-        publishDate_eng: {
             type: Date,
             required: [true, 'PublishDate is required'],
         }
