@@ -7,23 +7,11 @@ const newsTitleSchema = new Schema(
             type: String,
             required: [true, 'Title is required'],
         },
-        lastestTitle_eng: {
-            type: String,
-            required: [true, 'Title is required'],
-        },
         mostTitle: {
             type: String,
             required: [true, 'mostTitle is required'],
         },
-        mostTitle_eng: {
-            type: String,
-            required: [true, 'mostTitle is required'],
-        },
         searchTitle: {
-            type: String,
-            required: [true, 'searchTitle is required'],
-        },
-        searchTitle_eng: {
             type: String,
             required: [true, 'searchTitle is required'],
         },

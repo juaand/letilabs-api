@@ -59,7 +59,7 @@ module.exports.deleteNews = (req, res, next) => {
 module.exports.updateNews = (req, res, next) => {
   const id = req.params.id
   const userRole = req.session.user.role
-  const {title, subTitle, urlToPic, tag, content, outstanding, publishDate, title_eng, subTitle_eng, urlToPic_eng, tag_eng, content_eng, outstanding_eng} = req.body
+  const {title, subTitle, urlToPic, tag, content, outstanding, publishDate} = req.body
 
   if (userRole === 'Admin') {
     Blog.findByIdAndUpdate(id, req.body, {new: true})
@@ -181,7 +181,7 @@ module.exports.getNewsTitles = (req, res, next) => {
 
 module.exports.updateNewsTitles = (req, res, next) => {
   const userRole = req.session.user.role
-  const {lastestTitle, mostTitle, searchTitle, picPath, lastestTitle_eng, mostTitle_eng, searchTitle_eng, id} = req.body
+  const {lastestTitle, mostTitle, searchTitle, picPath, id} = req.body
 
   if (userRole === 'Admin') {
     NewsTitles.findByIdAndUpdate(id, req.body, {new: true})
