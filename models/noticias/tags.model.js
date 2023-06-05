@@ -9,7 +9,7 @@ const tagsSchema = new Schema(
     },
     tag_eng: {
       type: String,
-      required: [true, 'Tag is required'],
+      required: [true, 'Tag eng is required'],
     },
   },
   {
