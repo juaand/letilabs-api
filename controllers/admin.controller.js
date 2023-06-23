@@ -7,6 +7,7 @@ const UnidadesInicio = require('../models/home/unidadesNegocio.model')
 const PortfolioInicio = require('../models/home/portfolio.model')
 const FarmacoInicio = require('../models/home/farmacoVigilancia.model')
 const ModalFarmacoInicio = require('../models/home/modalFarmacoVigilancia.model')
+const ModalWork = require('../models/home/modalWork.model')
 const TimeLine = require('../models/aboutUs/aboutUsComponents/timeline.model')
 const Banner = require('../models/aboutUs/aboutUsComponents/banner.model')
 const MarcandoPauta = require('../models/aboutUs/aboutUsComponents/marcandoPauta.model')
@@ -378,6 +379,14 @@ module.exports.getFarmacoInicio = (req, res, next) => {
 
 module.exports.getModalFarmacoInicio = (req, res, next) => {
   ModalFarmacoInicio.find()
+    .then((data) => {
+      res.status(201).json(data[0])
+    })
+    .catch(next)
+}
+
+module.exports.getModalWork = (req, res, next) => {
+  ModalWork.find()
     .then((data) => {
       res.status(201).json(data[0])
     })

@@ -1,6 +1,6 @@
 const {Schema, model} = require('mongoose')
 
-const alianzaFormSchema = new Schema({
+const workSchema = new Schema({
     name: {
         type: String,
         maxLength: [50, "El nombre ha llegado al máximo de caracteres permitidos."],
@@ -11,29 +11,32 @@ const alianzaFormSchema = new Schema({
         maxLength: [75, "El apellido ha llegado al máximo de caracteres permitidos."],
         required: true
     },
-    mail: {
+    email: {
         type: String,
-        maxLength: [40, "El correo ha excedido el máximo de caracteres permitidos para el campo."],
         required: true
     },
     phone: {
         type: String,
-        maxLength: [12, "El teléfono ha excedido el máximo de caracteres permitidos para el campo."],
+        maxLength: [15, "Teléfono ha excedido el máximo de caracteres permitidos para el campo."],
         required: true
     },
     country: {
         type: String,
+        maxLength: [20, "País ha excedido el máximo de caracteres permitidos para el campo."],
         required: true
     },
-    company: {
+    city: {
         type: String,
-        maxLength: [40, "El teléfono ha excedido el máximo de caracteres permitidos para el campo."],
+        maxLength: [20, "Ciudad ha excedido el máximo de caracteres permitidos para el campo."],
         required: true
     },
-    message: {
+    cv: {
         type: String,
-        maxLength: [500, "El mensaje ha excedido el máximo de caracteres permitidos para el campo."],
         required: true
+    },
+    linkedin: {
+        type: String,
+        maxLength: [400, "Linkedin ha excedido el máximo de caracteres permitidos para el campo."]
     },
 }, {
     timestamps: true,
@@ -49,4 +52,4 @@ const alianzaFormSchema = new Schema({
     }
 })
 
-module.exports = model("AlianzaForm", alianzaFormSchema)
+module.exports = model("Work", workSchema)

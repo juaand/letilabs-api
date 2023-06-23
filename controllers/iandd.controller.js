@@ -790,7 +790,7 @@ module.exports.updateFormAlliance = (req, res, next) => {
 
 module.exports.createFormAlliance = (req, res, next) => {
   const userRole = req.session.user.role
-  const {name, lastname, mail, phone, country, company, message, name_eng, lastname_eng, mail_eng, phone_eng, country_eng, company_eng, message_eng} = req.body
+  const {name, lastname, mail, phone, country, company, message} = req.body
 
   if (userRole === 'Admin') {
     FormAlliancesMessages.create(req.body)
