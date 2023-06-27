@@ -789,19 +789,14 @@ module.exports.updateFormAlliance = (req, res, next) => {
 }
 
 module.exports.createFormAlliance = (req, res, next) => {
-  const userRole = req.session.user.role
   const {name, lastname, mail, phone, country, company, message} = req.body
 
-  if (userRole === 'Admin') {
     FormAlliancesMessages.create(req.body)
       .then((response) => {
         res.status(201).json(response)
       })
       .catch(next)
-  } else {
-    req.session.destroy()
-    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
-  }
+
 }
 
 module.exports.getLeadsForm = (req, res, next) => {
