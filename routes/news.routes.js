@@ -16,7 +16,7 @@ router.get('/tag/:id/delete', routeGuard.isAuthenticated, newsController.deleteT
 router.get('/newstitles', newsController.getNewsTitles)
 router.patch('/updatenewstitles', routeGuard.isAuthenticated, newsController.updateNewsTitles)
 router.post('/getrandomnews', newsController.getRandomNews)
-router.post('/addoutstandingnews/:id', routeGuard.isAuthenticated, newsController.addOutstandingNews)
+router.post('/addoutstandingnews/:id', newsController.addOutstandingNews)
 router.get('/news/:id/delete', routeGuard.isAuthenticated, newsController.deleteNews)
 router.patch('/updatenews/:id', routeGuard.isAuthenticated, newsController.updateNews)
 router.get(`/noticia/:id`, newsController.getNewsById)
