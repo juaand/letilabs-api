@@ -1,6 +1,7 @@
 // controllers/vigilancia.controllers.js
 
 const Work = require('../models/home/work.model')
+const nodemailer = require('../config/mailer.config')
 
 module.exports.addWorkWithUs = (req, res, next) => {
   const {name, lastname, email, phone, country, city, cv, linkedin} = req.body
@@ -20,6 +21,17 @@ module.exports.addWorkWithUs = (req, res, next) => {
     })
     .catch(next)
 }
+
+module.exports.sendEmailForm = (req, res, next) => {
+  const {name, lastname, email, phone, country, city, cv, linkedin} = req.body
+
+  nodemailer.sendFormEmail(name, lastname, email, phone, country, city, cv)
+    .then((newWork) => {
+      res.status(201).json(newWork)
+    })
+    .catch(next)
+}
+
 
 module.exports.getWorkWithUsInfoData = (req, res, next) => {
   const userRole = req.session.user.role
