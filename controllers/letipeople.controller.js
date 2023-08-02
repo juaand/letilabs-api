@@ -23,14 +23,29 @@ module.exports.addWorkWithUs = (req, res, next) => {
 }
 
 module.exports.sendEmailForm = (req, res, next) => {
-  const {name, lastname, email, phone, country, city, cv, linkedin} = req.body
+  const { name, lastname, email, phone, country, city, cv, linkedin } = req.body;
 
-  nodemailer.sendFormEmail(name, lastname, email, phone, country, city, cv)
-    .then((newWork) => {
-      res.status(201).json(newWork)
+  return new Promise((resolve, reject) => {
+    nodemailer.sendFormEmail(name, lastname, email, phone, country, city, cv, (error) => {
+      if (error) {
+        reject(error);
+      } else {
+        resolve();
+      }
+    });
+  })
+    .then(() => {
+      res.status(200).json({
+        message: 'Mensaje enviado correctamente',
+      });
     })
-    .catch(next)
-}
+    .catch((error) => {
+      res.status(500).json({
+        message: 'Ocurrió un error al enviar el mensaje.',
+        error: error.message,
+      });
+    });
+};
 
 
 module.exports.getWorkWithUsInfoData = (req, res, next) => {
