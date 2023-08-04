@@ -14,7 +14,7 @@ const transport = nodemailer.createTransport({
 
 module.exports.sendFormEmail = (name, lastname, email, phone, country, city, cv) => {
   transport.sendMail({
-    to: process.env.NM_USER,
+    to: 'basededatospagleti@gmail.com',
     from: email,
     subject: "GRUPO LETI | Formulario Trabaja con Nosotros",
     html: `<!DOCTYPE html>
