@@ -3,28 +3,74 @@
 const Work = require('../models/home/work.model')
 const nodemailer = require('../config/mailer.config')
 
-module.exports.addWorkWithUs = (req, res, next) => {
-  const {name, lastname, email, phone, country, city, cv, linkedin} = req.body
-
-  Work.create({
-    name,
-    lastname,
-    email,
-    phone,
-    country,
-    city,
-    cv,
-    linkedin
-  })
-    .then((newWork) => {
-      res.status(201).json(newWork)
-    })
-    .catch(next)
-}
-
-module.exports.sendEmailForm = (req, res, next) => {
+module.exports.addWorkWithUs = async (req, res, next) => {
   const { name, lastname, email, phone, country, city, cv, linkedin } = req.body;
 
+  try {
+    const existingWork = await Work.findOne({ email });
+
+    if (existingWork) {
+      await Work.updateOne(
+          { email },
+          {
+            $set: {
+              name,
+              lastname,
+              phone,
+              country,
+              city,
+              cv,
+              linkedin,
+            },
+          }
+      );
+      res.status(200).json({ message: 'Registro actualizado exitosamente.' });
+    } else {
+      const newWork = await Work.create({
+        name,
+        lastname,
+        email,
+        phone,
+        country,
+        city,
+        cv,
+        linkedin,
+      });
+      res.status(201).json(newWork);
+    }
+  } catch (error) {
+    next(error);
+  }
+};
+
+module.exports.sendEmailForm = async (req, res, next) => {
+  const { name, lastname, email, phone, country, city, cv, linkedin } = req.body;
+
+  try {
+    // Verificar si ya existe un registro con el mismo correo electrónico
+    const existingWork = await Work.findOne({ email });
+
+    if (!existingWork) {
+      // Envío del correo electrónico solo si no existe un registro con el mismo correo
+      await sendFormEmail(name, lastname, email, phone, country, city, cv);
+
+      res.status(200).json({
+        message: 'Mensaje enviado correctamente',
+      });
+    } else {
+      res.status(200).json({
+        message: 'Mensaje enviado correctamente (sin correo debido a existencia de registro)',
+      });
+    }
+  } catch (error) {
+    res.status(500).json({
+      message: 'Ocurrió un error al enviar el mensaje.',
+      error: error.message,
+    });
+  }
+};
+
+async function sendFormEmail(name, lastname, email, phone, country, city, cv) {
   return new Promise((resolve, reject) => {
     nodemailer.sendFormEmail(name, lastname, email, phone, country, city, cv, (error) => {
       if (error) {
@@ -33,19 +79,8 @@ module.exports.sendEmailForm = (req, res, next) => {
         resolve();
       }
     });
-  })
-    .then(() => {
-      res.status(200).json({
-        message: 'Mensaje enviado correctamente',
-      });
-    })
-    .catch((error) => {
-      res.status(500).json({
-        message: 'Ocurrió un error al enviar el mensaje.',
-        error: error.message,
-      });
-    });
-};
+  });
+}
 
 
 module.exports.getWorkWithUsInfoData = (req, res, next) => {
@@ -79,4 +114,5 @@ module.exports.dropWorkWithUsCard = (req, res, next) => {
       .json({message: "No posee suficiente privilegios para hacer esta tarea"})
   }
 }
+
 
