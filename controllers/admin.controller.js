@@ -46,6 +46,7 @@ const InfoCardsOurPeople = require('../models/nuestraGente/tresEquiposNuestraGen
 const EquipoOurPeople = require('../models/nuestraGente/equipoNuestraGente.model')
 const BottomOurPeople = require('../models/nuestraGente/bottomCtaNuestraGente.model')
 const Carreras = require('../models/nuestraGente/carrerasNuestraGente.model')
+const Ethics = require('../models/nuestraGente/eticaNuestraGente.model')
 const BannerTeamsOurPeople = require('../models/nuestraGente/bannerEquiposNuestraGente.model')
 const InfoBannerOurPeople = require('../models/nuestraGente/ourPeopleInfoBanner.model')
 const BannerBtm = require('../models/nuestraGente/bannerBtm.model')
@@ -1810,6 +1811,14 @@ module.exports.getCarreras = (req, res, next) => {
     .catch(next)
 }
 
+module.exports.getEthics = (req, res, next) => {
+  Ethics.find()
+    .then((data) => {
+      res.status(201).json(data[0])
+    })
+    .catch(next)
+}
+
 module.exports.updateCarrerasData = (req, res, next) => {
   const userRole = req.session.user.role
   const {title, description, url, buttonTitle, title_eng, description_eng, url_eng, buttonTitle_eng, id} = req.body
@@ -1827,6 +1836,22 @@ module.exports.updateCarrerasData = (req, res, next) => {
   }
 }
 
+module.exports.updateEthicsData = (req, res, next) => {
+  const userRole = req.session.user.role
+  const {title, description, url, buttonTitle, title_eng, description_eng, buttonTitle_eng, id} = req.body
+
+
+  if (userRole === 'Admin') {
+    Ethics.findByIdAndUpdate(id, req.body, {new: true})
+      .then((data) => {
+        res.status(201).json(data)
+      })
+      .catch(next)
+  } else {
+    req.session.destroy()
+    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+  }
+}
 //////////////////////////////////////////////////////////////////////
 //////////////// NUESTRAS COMPAÑÍAS LETI CRUD ////////////////////////
 /////////////////////////////////////////////////////////////////////
