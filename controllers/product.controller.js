@@ -1,5 +1,6 @@
 // controllers/content.controllers.js
 const Vadevecum = require('../models/vadevecum.model')
+const BannerSuppliers = require('../models/ProductosPage/bannerSuppliers.model')
 const ProductBanner = require('../models/ProductosPage/bannerProductosPage.model')
 const ProductBottom = require('../models/ProductosPage/eresMedicoProductos.model')
 const ProductListBanner = require('../models/ProductosPage/bannerProductsList.model')
@@ -326,4 +327,12 @@ module.exports.deleteLine = (req, res, next) => {
     req.session.destroy()
     res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
   }
+module.exports.getSuppliers = (req, res, next) => {
+    BannerSuppliers.find()
+        .sort({name: 1})
+        .then((data) => {
+            res.status(201).json(data)
+        })
+        .catch(next)
+}
 }

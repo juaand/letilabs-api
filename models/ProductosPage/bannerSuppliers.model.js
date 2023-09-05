@@ -1,6 +1,6 @@
 const {Schema, model} = require('mongoose')
 
-const bannerFarmatodoLocatelSchema = new Schema(
+const bannerSuppliersSchema = new Schema(
     {
         title: {
             type: String,
@@ -22,4 +22,4 @@ const bannerFarmatodoLocatelSchema = new Schema(
     {timestamps: true}
 )
 
-module.exports = model('BannerFarmatodoLocatel', bannerFarmatodoLocatelSchema)
+module.exports = model('BannerSuppliers', bannerSuppliersSchema)
