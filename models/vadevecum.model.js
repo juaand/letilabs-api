@@ -88,6 +88,14 @@ const vadevecumSchema = new Schema(
             type: String,
             default: '- Sin información de prospecto.'
         },
+        supplierFarmatodoLink: {
+            type: String,
+            required: true
+        },
+        supplierLocatelLink: {
+            type: String,
+            required: true
+        },
     },
     {timestamps: true}
 )
