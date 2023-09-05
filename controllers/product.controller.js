@@ -327,12 +327,13 @@ module.exports.deleteLine = (req, res, next) => {
     req.session.destroy()
     res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
   }
-module.exports.getSuppliers = (req, res, next) => {
-    BannerSuppliers.find()
-        .sort({name: 1})
-        .then((data) => {
-            res.status(201).json(data)
-        })
-        .catch(next)
 }
+
+module.exports.getSuppliers = (req, res, next) => {
+  BannerSuppliers.find()
+      .sort({name: 1})
+      .then((data) => {
+          res.status(201).json(data)
+      })
+      .catch(next)
 }

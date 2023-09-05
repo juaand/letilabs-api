@@ -26,4 +26,3 @@ router.get('/linesdata', productController.getLines)
 router.post('/createline', routeGuard.isAuthenticated, productController.createLine)
 router.get('/line/:id/delete', routeGuard.isAuthenticated, productController.deleteLine)
 router.get('/suppliers', productController.getSuppliers)
-
