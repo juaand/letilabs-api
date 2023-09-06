@@ -337,3 +337,20 @@ module.exports.getSuppliers = (req, res, next) => {
       })
       .catch(next)
 }
+
+module.exports.updateSuppliers = (req, res, next) => {
+    const userRole = req.session.user.role
+    const {title, title_eng, imgURLFarmatodo, imgURLLocatel, id} = req.body
+
+
+    if (userRole === 'Admin') {
+        BannerSuppliers.findByIdAndUpdate(id, req.body, {new: true})
+            .then((data) => {
+                res.status(201).json(data)
+            })
+            .catch(next)
+    } else {
+        req.session.destroy()
+        res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+    }
+}
