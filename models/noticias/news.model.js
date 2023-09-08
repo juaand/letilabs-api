@@ -5,11 +5,9 @@ const blogSchema = new Schema(
     {
         title: {
             type: String,
-            required: [true, 'El título de la noticia es obligatorio'],
         },
         subTitle: {
             type: String,
-            required: [true, 'El subtítulo de la noticia es obligatorio'],
         },
         urlToPic: {
             type: String,
