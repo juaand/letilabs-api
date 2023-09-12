@@ -18,6 +18,15 @@ const bannerSuppliersSchema = new Schema(
             type: String,
             required: true
         },
+        URLFarmatodo: {
+            type: String,
+            required: true
+        },
+        URLLocatel: {
+            type: String,
+            required: true
+        },
+
     },
     {timestamps: true}
 )

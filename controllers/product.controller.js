@@ -340,7 +340,7 @@ module.exports.getSuppliers = (req, res, next) => {
 
 module.exports.updateSuppliers = (req, res, next) => {
     const userRole = req.session.user.role
-    const {title, title_eng, imgURLFarmatodo, imgURLLocatel, id} = req.body
+    const {title, title_eng, imgURLFarmatodo, imgURLLocatel, URLFarmatodo, URLLocatel, id} = req.body
 
 
     if (userRole === 'Admin') {
