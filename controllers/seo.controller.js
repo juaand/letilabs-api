@@ -1,6 +1,8 @@
 // controllers/seo.controllers.js
 
 const Seo = require('../models/seo.model')
+const Pixel = require('../models/pixel.model')
+
 
 
 module.exports.getSeoData = (req, res, next) => {
@@ -11,6 +13,13 @@ module.exports.getSeoData = (req, res, next) => {
     .catch(next)
 }
 
+module.exports.getPixelData = (req, res, next) => {
+  Pixel.find()
+      .then((pixelData) => {
+        res.status(200).json(pixelData)
+      })
+      .catch(next)
+}
 
 module.exports.updateSeoData = (req, res, next) => {
   const userRole = req.session.user.role

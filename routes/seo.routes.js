@@ -9,4 +9,6 @@ module.exports = router
 
 router.get('/seodata', seoController.getSeoData)
 router.patch('/updateseo', routeGuard.isAuthenticated, seoController.updateSeoData)
+router.get('/pixels', seoController.getPixelData)
+
 
