@@ -36,3 +36,19 @@ module.exports.updateSeoData = (req, res, next) => {
     res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
   }
 }
+
+module.exports.updatePixelData = (req, res, next) => {
+    const userRole = req.session.user.role
+    const {facebook1, facebook2, google, google2, id} = req.body
+
+    if (userRole === 'Admin') {
+        Pixel.findByIdAndUpdate(id, req.body, {new: true})
+            .then((data) => {
+                res.status(201).json(data)
+            })
+            .catch(next)
+    } else {
+        req.session.destroy()
+        res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+    }
+}
