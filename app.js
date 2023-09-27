@@ -2,6 +2,7 @@ require('dotenv').config()
 
 const createError = require('http-errors')
 const express = require('express')
+const helmet = require('helmet');
 const path = require('path')
 const logger = require('morgan')
 const cookieParser = require('cookie-parser')
@@ -20,7 +21,19 @@ if (app.get('env') === 'production') {
   app.set('trust proxy', 1)
 }
 
-
+app.use(
+    helmet.contentSecurityPolicy({
+      directives: {
+        defaultSrc: ["'self'"],
+        scriptSrc: ["'self'", "'unsafe-inline'", 'https://grupoleti.com', 'http://localhost:3000', 'grupoleti.firebaseapp.com', 'grupoleti.appspot.com', 'https://grupoleti-api.herokuapp.com/', 'http://localhost:3001', 'https://firebasestorage.googleapis.com/'],
+        styleSrc: ["'self'", "'unsafe-inline'", 'https://grupoleti.com', 'https://fonts.googleapis.com', 'https://fonts.gstatic.com'],
+        connectSrc: ["'self'", 'https://grupoleti-api.herokuapp.com', 'http://localhost:3000', 'http://localhost:3001'],
+        imgSrc: ["'self'", 'https://grupoleti.com', 'https://firebasestorage.googleapis.com'],
+        fontSrc: ["'self'", 'https://grupoleti.com', 'https://fonts.gstatic.com'],
+        frameSrc: ["'self'"],
+      },
+    })
+);
 
 app.use(cors)
 app.use(logger('dev'))
