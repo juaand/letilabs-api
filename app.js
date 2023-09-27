@@ -21,20 +21,55 @@ if (app.get('env') === 'production') {
   app.set('trust proxy', 1)
 }
 
-app.use(
-    helmet.contentSecurityPolicy({
-      directives: {
-        defaultSrc: ["'self'"],
-        scriptSrc: ["'self'", "'unsafe-inline'", 'https://grupoleti.com', 'http://localhost:3000', 'grupoleti.firebaseapp.com', 'grupoleti.appspot.com', 'https://grupoleti-api.herokuapp.com/', 'http://localhost:3001', 'https://firebasestorage.googleapis.com/'],
-        styleSrc: ["'self'", "'unsafe-inline'", 'https://grupoleti.com', 'https://fonts.googleapis.com', 'https://fonts.gstatic.com'],
-        connectSrc: ["'self'", 'https://grupoleti-api.herokuapp.com', 'http://localhost:3000', 'http://localhost:3001'],
-        imgSrc: ["'self'", 'https://grupoleti.com', 'https://firebasestorage.googleapis.com'],
-        fontSrc: ["'self'", 'https://grupoleti.com', 'https://fonts.gstatic.com'],
-        frameSrc: ["'self'"],
-      },
-    })
-);
+const cspOptions = {
+  directives: {
+    defaultSrc: ["'self'", 'https://grupoleti.com'],
+    scriptSrc: [
+      "'self'",
+      'https://grupoleti.com',
+      'http://localhost:3000',
+      'http://localhost:3001',
+      'https://apis.google.com',
+      'https://fonts.googleapis.com',
+      'https://firebasestorage.googleapis.com',
+      'https://www.googletagmanager.com',
+      'https://cdn.jsdelivr.net',
+      'https://cdn.tiny.cloud',
+      'https://connect.facebook.net',
+      'https://cdnjs.cloudflare.com',
+      "'unsafe-inline'",
+    ],
+    styleSrc: ["'self'", "'unsafe-inline'", 'https://grupoleti.com', 'https://fonts.googleapis.com', 'https://cdn.tiny.cloud'],
+    connectSrc: [
+      "'self'",
+      'https://grupoleti-api.herokuapp.com',
+      'http://localhost:3000',
+      'http://localhost:3001',
+      'grupoleti.appspot.com',
+      'https://www.tiny.cloud',
+      'grupoleti.firebaseapp.com',
+      '*.firebaseio.com',
+      '*.firebaseapp.com',
+      'https://firebasestorage.googleapis.com',
+      'https://cdn.tiny.cloud',
+      'https://cdn.tiny.cloud',
+      'https://region1.google-analytics.com',
+    ],
+    imgSrc: [
+      "'self'",
+      'https://grupoleti.com',
+      'https://firebasestorage.googleapis.com',
+      'https://sp.tinymce.com',
+      'data:image/svg+xml',
+    ],
+    fontSrc: ["'self'", 'https://grupoleti.com', 'https://fonts.gstatic.com', 'https://cdnjs.cloudflare.com', 'https://cdn.tiny.cloud'],
+    frameSrc: ["'self'"],
+    mediaSrc: ["'self'", 'https://firebasestorage.googleapis.com'],
+    objectSrc: ["'none'"],
+  },
+};
 
+app.use(helmet.contentSecurityPolicy(cspOptions));
 app.use(cors)
 app.use(logger('dev'))
 app.use(express.json())
