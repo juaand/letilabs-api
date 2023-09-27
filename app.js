@@ -83,6 +83,11 @@ app.use((req, _, next) => {
   next()
 })
 
+app.use((req, res, next) => {
+  res.header('X-Content-Type-Options', 'nosniff');
+  next();
+});
+
 /**
  * Configure routes
  */
