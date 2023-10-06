@@ -189,7 +189,23 @@ module.exports.updateRrssInfo = (req, res, next) => {
 
 module.exports.updateVideoData = (req, res, next) => {
   const userRole = req.session.user.role
-  const {url, url_eng, id} = req.body
+  const {url, id} = req.body
+
+  if (userRole === 'Admin') {
+    Video.findByIdAndUpdate(id, req.body, {new: true})
+      .then((data) => {
+        res.status(201).json(data)
+      })
+      .catch(next)
+  } else {
+    req.session.destroy()
+    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+  }
+}
+
+module.exports.updateVideoDataEng = (req, res, next) => {
+  const userRole = req.session.user.role
+  const {url_eng, id} = req.body
 
   if (userRole === 'Admin') {
     Video.findByIdAndUpdate(id, req.body, {new: true})

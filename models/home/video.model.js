@@ -7,6 +7,10 @@ const videoSchema = new Schema(
       type: String,
       required: true
     },
+    url_eng: {
+      type: String,
+      required: true
+    },
   },
   { timestamps: true }
 )

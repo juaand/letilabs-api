@@ -32,6 +32,7 @@ router.patch('/updatemodalfarmaco', routeGuard.isAuthenticated, adminController.
 router.patch('/updatefarmacoiniciodata', routeGuard.isAuthenticated, adminController.updateFarmacoData)
 router.get('/deleteunititem/:id', routeGuard.isAuthenticated, adminController.deleteUnitlItem)
 router.patch('/updatevideodata', routeGuard.isAuthenticated, adminController.updateVideoData)
+router.patch('/updatevideodataeng', routeGuard.isAuthenticated, adminController.updateVideoDataEng)
 router.get('/videoiniciodata', adminController.getVideoData)
 router.get('/homebottomdata', adminController.getHomeBottomData)
 router.patch('/updatebottomhome', routeGuard.isAuthenticated, adminController.updateBottomCtaData)
