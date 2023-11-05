@@ -21,6 +21,21 @@ if (app.get('env') === 'production') {
   app.set('trust proxy', 1)
 }
 
+app.use((req, res, next) => {
+  if (
+      req.method === 'POST' && // Verificar el método de solicitud (por ejemplo, POST)
+      [2000, 5060, 8008, 8015].includes(req.port) // Verificar el puerto
+  ) {
+    return res.status(403).send('Solicitud no permitida');
+  }
+  next(); // Sigue con las demás solicitudes
+});
+
+app.use((req, res, next) => {
+  res.setHeader('X-Frame-Options', 'DENY');
+  next();
+});
+
 const cspOptions = {
   directives: {
     defaultSrc: ["'self'", 'https://grupoleti.com'],
