@@ -68,7 +68,7 @@ const cspOptions = {
       'https://firebasestorage.googleapis.com',
       'https://cdn.tiny.cloud',
       'https://cdn.tiny.cloud',
-      'https://region1.google-analytics.com',
+      '*.google-analytics.com',
     ],
     imgSrc: [
       "'self'",
