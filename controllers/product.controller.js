@@ -8,6 +8,8 @@ const ProductInfo = require('../models/ProductosPage/productInfo.model')
 const Lines = require('../models/ProductosPage/lines.model')
 const {get} = require("mongoose")
 const Blog = require("../models/noticias/news.model")
+const htmlToText = require('html-to-text');
+
 
 function diacriticSensitiveRegex(string = '') {
   return string.replace(/a/g, '[a,á,à,ä,â]')
@@ -26,6 +28,25 @@ function Compare(strA,strB){
       result += 4;
   }
   return 1 - (result + 4*Math.abs(strA.length - strB.length))/(2*(strA.length+strB.length));
+}
+
+function CompareActivePrinciple(strA,strB){
+
+    const plainTextA = htmlToText.convert(strA, {
+        wordwrap: false, // No envolver palabras
+        ignoreHref: true, // Ignorar enlaces
+        ignoreImage: true, // Ignorar imágenes
+        singleNewLineParagraphs: true // Tratar un salto de línea como un párrafo separado
+    });
+
+    for(var result = 0, i = plainTextA.length; i--;){
+        if(typeof strB[i] == 'undefined' || plainTextA[i] == strB[i]);
+        else if(plainTextA[i].toLowerCase() == strB[i].toLowerCase())
+            result++;
+        else
+            result += 4;
+    }
+    return 1 - (result + 4*Math.abs(plainTextA.length - strB.length))/(2*(plainTextA.length+strB.length));
 }
 
 const seoURL = (str) => {
@@ -237,6 +258,45 @@ module.exports.productProspect = (req, res, next) => {
           res.status(201).json(response[finalReturn])
         })
   }
+}
+
+module.exports.productActivePrinciple = (req, res, next) => {
+    function replaceAllString(data) {
+        let newString = [];
+        for (let i = 0; i < data.length; i++) {
+            if (data[i] == "-") {
+                newString.push(" ")
+                i++
+            }
+            newString.push(data[i]);
+        }
+        return newString.join('');
+    }
+
+
+    const pathname = req.params.id
+    const pathname2 = replaceAllString(pathname.slice(9))
+    console.log(pathname2)
+
+    const getRandomProducts = Vadevecum.aggregate([{$sample: {size: 3}}])
+
+    const getProduct = Vadevecum.find()
+            .sort({active_principle: 1})
+
+    Promise.all([getProduct, getRandomProducts])
+            .then(response => {
+                let finalReturn = response[0][0];
+                let finalResponsePercent = 0;
+                for(let i = 0; i < response[0].length; i++) {
+                    let comparision = CompareActivePrinciple(response[0][i].active_principle.toLowerCase(), pathname2)
+                    if(comparision > finalResponsePercent) {
+                        finalResponsePercent = comparision;
+                        finalReturn = response[0][i];
+                    }
+                }
+                let allProds = [[finalReturn], response[1]]
+                res.status(201).json(allProds)
+            })
 }
 
 module.exports.productDataSheet = (req, res, next) => {
