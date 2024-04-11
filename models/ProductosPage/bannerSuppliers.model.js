@@ -18,6 +18,14 @@ const bannerSuppliersSchema = new Schema(
             type: String,
             required: true
         },
+        imgURLFarmadon: {
+            type: String,
+            required: true
+        },
+        imgURLFarmabien: {
+            type: String,
+            required: true
+        },
         URLFarmatodo: {
             type: String,
             required: true
@@ -26,7 +34,14 @@ const bannerSuppliersSchema = new Schema(
             type: String,
             required: true
         },
-
+        URLFarmadon: {
+            type: String,
+            required: true
+        },
+        URLFarmabien: {
+            type: String,
+            required: true
+        },
     },
     {timestamps: true}
 )
