@@ -39,6 +39,7 @@ app.use((req, res, next) => {
 const cspOptions = {
   directives: {
     defaultSrc: ["'self'", 'https://grupoleti.com'],
+    frameSrc: ["'self'", 'https://grupoleti.com', '*.google.com'],
     scriptSrc: [
       "'self'",
       'https://grupoleti.com',
