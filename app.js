@@ -119,6 +119,7 @@ const ourPhilosophyRouter = require('./routes/our-philosophy.routes')
 const therapeuticAreasRouter = require('./routes/therapeutic-areas.routes')
 const seoRouter = require('./routes/seo.routes')
 const workWithUsRouter = require('./routes/letipeople.routes')
+const landingRouter = require('./routes/landing.routes')
 app.use('/', adminRouter)
 app.use('/', authRouter)
 app.use('/', vigilanciaRouter)
@@ -131,6 +132,7 @@ app.use('/', ourPhilosophyRouter)
 app.use('/', therapeuticAreasRouter)
 app.use('/', seoRouter)
 app.use('/', workWithUsRouter)
+app.use('/', landingRouter)
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
