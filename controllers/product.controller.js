@@ -5,6 +5,7 @@ const ProductBottom = require('../models/ProductosPage/eresMedicoProductos.model
 const ProductListBanner = require('../models/ProductosPage/bannerProductsList.model');
 const ProductInfo = require('../models/ProductosPage/productInfo.model');
 const Lines = require('../models/ProductosPage/lines.model');
+const SubLines = require('../models/ProductosPage/sublines.model');
 const { get } = require("mongoose");
 const Blog = require("../models/noticias/news.model");
 const htmlToText = require('html-to-text');
@@ -75,7 +76,6 @@ const seoURL = (str) => {
 module.exports.getProduct = (req, res, next) => {
     const { buscar } = req.body;
     const buscarLowerCase = buscar.toLowerCase();
-    console.log("buscarLower", buscarLower);
 
     const getProduct = Vadevecum.find();
 
@@ -428,6 +428,14 @@ module.exports.getLines = (req, res, next) => {
     .catch(next)
 }
 
+module.exports.getSubLines = (req, res, next) => {
+    SubLines.find()
+        .then(response => {
+            res.status(201).json(response)
+        })
+        .catch(next)
+}
+
 module.exports.createLine = (req, res, next) => {
   const userRole = req.session.user.role
   const {line, line_eng} = req.body
@@ -448,6 +456,26 @@ module.exports.createLine = (req, res, next) => {
   }
 }
 
+module.exports.createSubLine = (req, res, next) => {
+    const userRole = req.session.user.role
+    const {subLine, subLine_eng} = req.body
+
+    if (userRole === 'Admin') {
+        SubLines.create(req.body)
+            .then(() => {
+                SubLines.find()
+                    .then(response => {
+                        res.status(201).json(response)
+                    })
+                    .catch(next)
+            })
+            .catch(next)
+    } else {
+        req.session.destroy()
+        res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+    }
+}
+
 module.exports.deleteLine = (req, res, next) => {
   const userRole = req.session.user.role
   const id = req.params.id
@@ -466,6 +494,26 @@ module.exports.deleteLine = (req, res, next) => {
     req.session.destroy()
     res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
   }
+}
+
+module.exports.deleteSubLine = (req, res, next) => {
+    const userRole = req.session.user.role
+    const id = req.params.id
+
+    if (userRole === 'Admin') {
+        SubLines.findByIdAndDelete(id)
+            .then(() => {
+                SubLines.find()
+                    .then(response => {
+                        res.status(201).json(response)
+                    })
+                    .catch(next)
+            })
+            .catch(next)
+    } else {
+        req.session.destroy()
+        res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+    }
 }
 
 module.exports.getSuppliers = (req, res, next) => {
