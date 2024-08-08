@@ -2063,8 +2063,8 @@ module.exports.deleteProduct = (req, res, next) => {
 module.exports.updateProduct = (req, res, next) => {
   const id = req.params.id
   const userRole = req.session.user.role
-  const {name, picPath, QRpath, line, subline, composition, health_register, active_principle, posology, presentation, indication, therapeutic_group, category, util_life, cpe, how_to_use, contraindications, adverse_reactions, prospect, show_in_products, supplierFarmatodoLink, supplierLocatelLink, supplierFarmadonLink, supplierFarmabienLink} = req.body
-
+  const {name, picPath, QRpath, line, subLine, composition, health_register, active_principle, posology, presentation, indication, therapeutic_group, category, util_life, cpe, how_to_use, contraindications, adverse_reactions, prospect, show_in_products, supplierFarmatodoLink, supplierLocatelLink, supplierFarmadonLink, supplierFarmabienLink} = req.body
+  console.log(subLine)
   if (userRole === 'Admin') {
     Vadevecum.findByIdAndUpdate(id, req.body, {new: true})
       .then(() => {
@@ -2085,8 +2085,7 @@ module.exports.updateProduct = (req, res, next) => {
 
 module.exports.createProduct = (req, res, next) => {
   const userRole = req.session.user.role
-  const {name, picPath, QRpath, line, subline, composition, health_register, active_principle, posology, presentation, indication, therapeutic_group, category, util_life, cpe, how_to_use, contraindications, adverse_reactions, prospect, show_in_products, supplierFarmatodoLink, supplierLocatelLink, supplierFarmadonLink, supplierFarmabienLink} = req.body
-
+  const {name, picPath, QRpath, line, subLine, composition, health_register, active_principle, posology, presentation, indication, therapeutic_group, category, util_life, cpe, how_to_use, contraindications, adverse_reactions, prospect, show_in_products, supplierFarmatodoLink, supplierLocatelLink, supplierFarmadonLink, supplierFarmabienLink} = req.body
   if (userRole === 'Admin') {
     Vadevecum.create(req.body)
       .then(() => {
