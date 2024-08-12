@@ -292,6 +292,7 @@ module.exports.productActivePrinciple = (req, res, next) => {
 
     const pathname = req.params.id;
     const pathname2 = replaceAllString(pathname.slice(9));
+    console.log(pathname2);
 
     if (pathname2.includes("genven")) {
         const pathname3 = pathname2.replace("genven", "");

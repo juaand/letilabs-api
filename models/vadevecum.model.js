@@ -104,6 +104,9 @@ const vadevecumSchema = new Schema(
         supplierFarmabienLink: {
             type: String,
         },
+        url: {
+            type: String,
+        },
     },
     {timestamps: true}
 )

@@ -54,6 +54,19 @@ const CookieInfo = require('../models/home/cookie.model')
 const Rrss = require('../models/home/rrss.model')
 const Nav = require('../models/navbar/navbarComponents/dataNav.model')
 
+const seoURL = (str) => {
+  return str.toString()
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .replace(/\s+/g, '-')
+      .toLowerCase()
+      .replace(/&/g, '-and-')
+      .replace(/[^a-z0-9\-]/g, '')
+      .replace(/-+/g, '-')
+      .replace(/^-*/, '')
+      .replace(/-*$/, '');
+}
+
 module.exports.getFarmVigData = (req, res, next) => {
   const userRole = req.session.user.role
 
@@ -2063,8 +2076,9 @@ module.exports.deleteProduct = (req, res, next) => {
 module.exports.updateProduct = (req, res, next) => {
   const id = req.params.id
   const userRole = req.session.user.role
-  const {name, picPath, QRpath, line, subLine, composition, health_register, active_principle, posology, presentation, indication, therapeutic_group, category, util_life, cpe, how_to_use, contraindications, adverse_reactions, prospect, show_in_products, supplierFarmatodoLink, supplierLocatelLink, supplierFarmadonLink, supplierFarmabienLink} = req.body
-  console.log(subLine)
+  const {name, picPath, QRpath, line, subLine, composition, health_register, active_principle, posology, presentation, indication, therapeutic_group, category, util_life, cpe, how_to_use, contraindications, adverse_reactions, prospect, show_in_products, supplierFarmatodoLink, supplierLocatelLink, supplierFarmadonLink, supplierFarmabienLink, url} = req.body
+
+  console.log(url)
   if (userRole === 'Admin') {
     Vadevecum.findByIdAndUpdate(id, req.body, {new: true})
       .then(() => {
@@ -2085,7 +2099,7 @@ module.exports.updateProduct = (req, res, next) => {
 
 module.exports.createProduct = (req, res, next) => {
   const userRole = req.session.user.role
-  const {name, picPath, QRpath, line, subLine, composition, health_register, active_principle, posology, presentation, indication, therapeutic_group, category, util_life, cpe, how_to_use, contraindications, adverse_reactions, prospect, show_in_products, supplierFarmatodoLink, supplierLocatelLink, supplierFarmadonLink, supplierFarmabienLink} = req.body
+  const {name, picPath, QRpath, line, subLine, composition, health_register, active_principle, posology, presentation, indication, therapeutic_group, category, util_life, cpe, how_to_use, contraindications, adverse_reactions, prospect, show_in_products, supplierFarmatodoLink, supplierLocatelLink, supplierFarmadonLink, supplierFarmabienLink, url} = req.body
   if (userRole === 'Admin') {
     Vadevecum.create(req.body)
       .then(() => {
