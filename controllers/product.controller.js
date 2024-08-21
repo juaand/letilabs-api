@@ -317,8 +317,9 @@ module.exports.productActivePrinciple = (req, res, next) => {
     } else {
         const getRandomProducts = Vadevecum.aggregate([{ $sample: { size: 3 } }]);
         const getProduct = Vadevecum.find().sort({ active_principle: 1 });
+        const getProductByUrl = Vadevecum.find({url: pathname.slice(9)}).sort({name: 1});
 
-        Promise.all([getProduct, getRandomProducts])
+        Promise.all([getProductByUrl, getRandomProducts])
             .then(response => {
                 let finalReturn = response[0][0];
                 let finalResponsePercent = 0;

@@ -9,7 +9,6 @@ const vadevecumSchema = new Schema(
         },
         subLine: {
             type: String,
-            required: true
         },
         name: {
             type: String,
