@@ -52,3 +52,4 @@ const SESSION_MAX_AGE_SECONDS = Number(process.env.SESSION_MAX_AGE_SECONDS) || 6
       ttl: SESSION_MAX_AGE_SECONDS
     })
   })
+  
