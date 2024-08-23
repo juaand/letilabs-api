@@ -27,10 +27,6 @@ const landingSocialSchema = new Schema(
             type: String,
             required: true
         },
-        link_url: {
-            type: String,
-            required: true
-        },
     },
     {timestamps: true}
 )

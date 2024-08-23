@@ -338,3 +338,141 @@ module.exports.getBioletisanSocial = async (req, res, next) => {
     .catch(next)
 }
 
+module.exports.updateSuplierItem = async (req, res, next) => {
+  const userRole = req.session.user.role
+  const {place_url, place_link, id} = req.body
+
+
+  if (userRole === 'Admin') {
+    BioletisanPlaces.findByIdAndUpdate(id, req.body, {new: true})
+      .then(() => {
+        BioletisanPlaces.find()
+          .then((data) => {
+            res.status(201).json(data)
+          })
+          .catch(next)
+      })
+      .catch(next)
+  } else {
+    req.session.destroy()
+    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+  }
+}
+
+module.exports.deleteSupplierItem = (req, res, next) => {
+  const userRole = req.session.user.role
+
+  if (userRole === 'Admin') {
+    BioletisanPlaces.findByIdAndDelete(req.params.id)
+      .then(() => {
+        BioletisanPlaces.find()
+          .then((data) => {
+            res.status(201).json(data)
+          })
+          .catch(next)
+      })
+      .catch(next)
+  } else {
+    req.session.destroy()
+    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+  }
+}
+
+module.exports.updateFaqInfo = async (req, res, next) => {
+  const userRole = req.session.user.role
+  const {title, title_eng, description, description_eng, link, link_eng, link_url, id} = req.body
+
+
+  if (userRole === 'Admin') {
+    BioletisanFaq.findByIdAndUpdate(id, req.body, {new: true})
+      .then(() => {
+        BioletisanFaq.find()
+          .then((data) => {
+            res.status(201).json(data)
+          })
+          .catch(next)
+      })
+      .catch(next)
+  } else {
+    req.session.destroy()
+    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+  }
+}
+
+module.exports.updateFaqItem = async (req, res, next) => {
+  const userRole = req.session.user.role
+  const {question, question_eng, answer, answer_eng, id} = req.body
+
+  if (userRole === 'Admin') {
+    BioletisanFaqItems.findByIdAndUpdate
+      (id, req.body, {new: true})
+      .then(() => {
+        BioletisanFaqItems.find()
+          .then((data) => {
+            res.status(201).json(data)
+          })
+          .catch(next)
+      })
+      .catch(next)
+  }
+}
+
+module.exports.deleteFaqItem = (req, res, next) => {
+  const userRole = req.session.user.role
+
+  if (userRole === 'Admin') {
+    BioletisanFaqItems.findByIdAndDelete(req.params.id)
+      .then(() => {
+        BioletisanFaqItems.find()
+          .then((data) => {
+            res.status(201).json(data)
+          })
+          .catch(next)
+      })
+      .catch(next)
+  } else {
+    req.session.destroy()
+    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+  }
+}
+
+module.exports.createFaqItem = (req, res, next) => {
+  const userRole = req.session.user.role
+  const {title, title_eng, description, description_eng} = req.body
+
+  if (userRole === 'Admin') {
+    BioletisanFaqItems.create(req.body)
+      .then(() => {
+        BioletisanFaqItems.find()
+          .then((data) => {
+            res.status(201).json(data)
+          })
+          .catch(next)
+      })
+      .catch(next)
+  } else {
+    req.session.destroy()
+    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+  }
+}
+
+module.exports.updateBannerRrssData = async (req, res, next) => {
+  const userRole = req.session.user.role
+  const {title, title_eng, description, description_eng, background, id} = req.body
+
+
+  if (userRole === 'Admin') {
+    BioletisanSocial.findByIdAndUpdate(id, req.body, {new: true})
+      .then(() => {
+        BioletisanSocial.find()
+          .then((data) => {
+            res.status(201).json(data)
+          })
+          .catch(next)
+      })
+      .catch(next)
+  } else {
+    req.session.destroy()
+    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+  }
+}
