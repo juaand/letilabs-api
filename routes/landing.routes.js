@@ -7,7 +7,7 @@ const landingController = require('../controllers/landing.controller')
 
 module.exports = router
 
-
+// BIOLETISAN ROUTES
 router.get('/getbioletisanbanner', landingController.getBioletisanBanner)
 router.get('/getbioletisangoals', landingController.getBioletisanGoals)
 router.get('/getbioletisaninfo', landingController.getBioletisanInfo)
@@ -36,3 +36,23 @@ router.patch('/updatefaqitem', routeGuard.isAuthenticated, landingController.upd
 router.get('/deletefaqitem/:id', routeGuard.isAuthenticated, landingController.deleteFaqItem)
 router.post('/createfaqitem', routeGuard.isAuthenticated, landingController.createFaqItem)
 router.patch('/updatebannerrrssdata', routeGuard.isAuthenticated, landingController.updateBannerRrssData)
+
+
+//BIOCONTROLLED ROUTES
+router.get('/getwhoweare', landingController.getBiocontrolledWhoWeAre)
+router.get('/getmarquee', landingController.getBiocontrolledMarquee)
+router.get('/getmodified', landingController.getBiocontrolledModified)
+router.get('/gettechtitle', landingController.getBiocontrolledTechTitle)
+router.get('/gettechcards', landingController.getBiocontrolledTechCards)
+router.get('/getclinical', landingController.getBiocontrolledClinical)
+router.get('/getfooter', landingController.getBiocontrolledFooter)
+router.patch('/updatebiocontrolledwhoweare', routeGuard.isAuthenticated, landingController.updateBiocontrolledWhoWeAre)
+router.patch('/updatebiocontrolledmarquee', routeGuard.isAuthenticated, landingController.updateBiocontrolledMarquee)
+router.patch('/updatebiocontrolledmodified', routeGuard.isAuthenticated, landingController.updateBiocontrolledModified)
+router.patch('/updatebiocontrolledtechtitle', routeGuard.isAuthenticated, landingController.updateBiocontrolledTechTitle)
+router.get('/deletebiocontrolledtech/:id', routeGuard.isAuthenticated, landingController.deleteBiocontrolledTech)
+router.patch('/updatebiocontrolledtech', routeGuard.isAuthenticated, landingController.updateBiocontrolledTech)
+router.post('/createbiocontrolledtech', routeGuard.isAuthenticated, landingController.createBiocontrolledTech)
+router.patch('/updatebiocontrolledclinical', routeGuard.isAuthenticated, landingController.updateBiocontrolledClinical)
+router.patch('/updatebiocontrolledfooter', routeGuard.isAuthenticated, landingController.updateBiocontrolledFooter)
+router.get('/deletebiocontrolledfooter/:id', routeGuard.isAuthenticated, landingController.deleteBiocontrolledFooter)

@@ -1,4 +1,5 @@
 // controllers/landing.controllers.js
+// BIOLETISAN CONTROLLERS
 
 const BioletisanBanner = require('../models/landingPages/bioletisan/landingBanner.model')
 const BioletisanGoals = require('../models/landingPages/bioletisan/landingBioletisanGoal.model')
@@ -465,6 +466,254 @@ module.exports.updateBannerRrssData = async (req, res, next) => {
     BioletisanSocial.findByIdAndUpdate(id, req.body, {new: true})
       .then(() => {
         BioletisanSocial.find()
+          .then((data) => {
+            res.status(201).json(data)
+          })
+          .catch(next)
+      })
+      .catch(next)
+  } else {
+    req.session.destroy()
+    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+  }
+}
+
+
+//BIOCONTROLLED CONTROLLERS
+const BiocontrolledWhoWeAre = require('../models/landingPages/biocontrolled/biocontrolledWhoWeAre.model')
+const BiocontrolledMarquee = require('../models/landingPages/biocontrolled/biocontrolledMarquee.model')
+const BiocontrolledModified = require('../models/landingPages/biocontrolled/biocontrolledModified.model')
+const BiocontrolledTech = require('../models/landingPages/biocontrolled/biocontrolledTecnico.model')
+const BiocontrolledCard = require('../models/landingPages/biocontrolled/biocontrolledCard.model')
+const BiocontrolledClinical = require('../models/landingPages/biocontrolled/biocontrolledClinical.model')
+const BiocontrolledFooter = require('../models/landingPages/biocontrolled/biocontrolledFooter.model')
+
+module.exports.getBiocontrolledWhoWeAre = async (req, res, next) => {
+  BiocontrolledWhoWeAre.find()
+    .then((data) => {
+      res.status(201).json(data[0])
+    })
+    .catch(next)
+}
+
+module.exports.getBiocontrolledMarquee = async (req, res, next) => {
+  BiocontrolledMarquee.find()
+    .then((data) => {
+      res.status(201).json(data[0])
+    })
+    .catch(next)
+}
+
+module.exports.getBiocontrolledModified = async (req, res, next) => {
+  BiocontrolledModified.find()
+    .then((data) => {
+      res.status(201).json(data[0])
+    })
+    .catch(next)
+}
+
+module.exports.getBiocontrolledTechTitle = async (req, res, next) => {
+  BiocontrolledTech.find()
+    .then((data) => {
+      res.status(201).json(data[0])
+    })
+    .catch(next)
+}
+
+module.exports.getBiocontrolledTechCards = async (req, res, next) => {
+  BiocontrolledCard.find()
+    .then((data) => {
+      res.status(201).json(data)
+    })
+    .catch(next)
+}
+
+module.exports.getBiocontrolledClinical = async (req, res, next) => {
+  BiocontrolledClinical.find()
+    .then((data) => {
+      res.status(201).json(data[0])
+    })
+    .catch(next)
+}
+
+module.exports.getBiocontrolledFooter = async (req, res, next) => {
+  BiocontrolledFooter.find()
+    .then((data) => {
+      res.status(201).json(data)
+    })
+    .catch(next)
+}
+
+module.exports.updateBiocontrolledWhoWeAre = async (req, res, next) => {
+  const userRole = req.session.user.role
+  const {title, title_eng, description, description_eng, id} = req.body
+
+  if (userRole === 'Admin') {
+    BiocontrolledWhoWeAre.findByIdAndUpdate(id, req.body, {new: true})
+      .then((data) => {
+        res.status(201).json(data)
+      })
+      .catch(next)
+  } else {
+    req.session.destroy()
+    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+  }
+}
+
+module.exports.updateBiocontrolledMarquee = async (req, res, next) => {
+  const userRole = req.session.user.role
+  const {text, text_eng, id} = req.body
+
+  if (userRole === 'Admin') {
+    BiocontrolledMarquee.findByIdAndUpdate(id, req.body, {new: true})
+      .then((data) => {
+        res.status(201).json(data)
+      })
+      .catch(next)
+  } else {
+    req.session.destroy()
+    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+  }
+}
+
+module.exports.updateBiocontrolledModified = async (req, res, next) => {
+  const userRole = req.session.user.role
+  const {title_one, title_one_eng, title_two, title_two_eng, title_three, title_three_eng, description, description_eng, description_two, description_two_eng, id} = req.body
+
+  if (userRole === 'Admin') {
+    BiocontrolledModified.findByIdAndUpdate(id, req.body, {new: true})
+      .then((data) => {
+        res.status(201).json(data)
+      })
+      .catch(next)
+  } else {
+    req.session.destroy()
+    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+  }
+}
+
+module.exports.updateBiocontrolledTechTitle = async (req, res, next) => {
+  const userRole = req.session.user.role
+  const {title, title_eng, description, description_eng, id} = req.body
+
+  if (userRole === 'Admin') {
+    BiocontrolledTech.findByIdAndUpdate(id, req.body, {new: true})
+      .then((data) => {
+        res.status(201).json(data)
+      })
+      .catch(next)
+  } else {
+    req.session.destroy()
+    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+  }
+}
+
+module.exports.deleteBiocontrolledTech = (req, res, next) => {
+  const userRole = req.session.user.role
+
+  if (userRole === 'Admin') {
+    BiocontrolledCard.findByIdAndDelete(req.params.id)
+      .then(() => {
+        BiocontrolledCard.find()
+          .then((data) => {
+            res.status(201).json(data)
+          })
+          .catch(next)
+      })
+      .catch(next)
+  } else {
+    req.session.destroy()
+    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+  }
+}
+
+module.exports.updateBiocontrolledTech = async (req, res, next) => {
+  const userRole = req.session.user.role
+  const {title, title_eng, description, description_eng, link, id} = req.body
+
+  if (userRole === 'Admin') {
+    BiocontrolledCard.findByIdAndUpdate(id, req.body, {new: true})
+      .then(() => {
+        BiocontrolledCard.find()
+          .then((data) => {
+            res.status(201).json(data)
+          })
+          .catch(next)
+      })
+      .catch(next)
+  } else {
+    req.session.destroy()
+    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+  }
+}
+
+module.exports.createBiocontrolledTech = (req, res, next) => {
+  const userRole = req.session.user.role
+  const {title, title_eng, description, description_eng, link} = req.body
+
+  if (userRole === 'Admin') {
+    BiocontrolledCard.create(req.body)
+      .then(() => {
+        BiocontrolledCard.find()
+          .then((data) => {
+            res.status(201).json(data)
+          })
+          .catch(next)
+      })
+      .catch(next)
+  } else {
+    req.session.destroy()
+    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+  }
+}
+
+module.exports.updateBiocontrolledClinical = async (req, res, next) => {
+  const userRole = req.session.user.role
+  const {title, title_eng, description, description_eng, info, info_eng, title_two, title_two_eng, description_two, description_two_eng, id} = req.body
+
+  if (userRole === 'Admin') {
+    BiocontrolledClinical.findByIdAndUpdate(id, req.body, {new: true})
+      .then(() => {
+        BiocontrolledClinical.find()
+          .then((data) => {
+            res.status(201).json(data)
+          })
+          .catch(next)
+      })
+      .catch(next)
+  } else {
+    req.session.destroy()
+    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+  }
+}
+
+module.exports.updateBiocontrolledFooter = async (req, res, next) => {
+  const userRole = req.session.user.role
+  const {title, title_eng, description, description_eng, id} = req.body
+
+  if (userRole === 'Admin') {
+    BiocontrolledFooter.findByIdAndUpdate(id, req.body, {new: true})
+      .then(() => {
+        BiocontrolledFooter.find()
+          .then((data) => {
+            res.status(201).json(data)
+          })
+          .catch(next)
+      })
+      .catch(next)
+  } else {
+    req.session.destroy()
+    res.status(204).json({message: '¡No tiene suficientes privilegios para realizar esta acción!'})
+  }
+}
+
+module.exports.deleteBiocontrolledFooter = (req, res, next) => {
+  const userRole = req.session.user.role
+
+  if (userRole === 'Admin') {
+    BiocontrolledFooter.findByIdAndDelete(req.params.id)
+      .then(() => {
+        BiocontrolledFooter.find()
           .then((data) => {
             res.status(201).json(data)
           })
