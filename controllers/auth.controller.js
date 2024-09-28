@@ -17,7 +17,6 @@ module.exports.admin = (req, res, next) => {
       if (!user) {
         throw createError(404, "Usuario no encontrado, por favor, intenta nuevamente")
       } else {
-        console.log('[auth.controller.js] admin -> user:', user)
         return user
           .checkPassword(password)
           .then((match) => {
@@ -25,9 +24,7 @@ module.exports.admin = (req, res, next) => {
               throw createError(400, "Error de usuario y/o contraseña")
             } else {
               req.session.user = user
-              console.log('[auth.controller.js] req.session.user -> user:', req.session.user)
               if (user.role === "Admin") {
-                console.log('esto es un admin')
                 res.status(201).json(user)
               }
             }
@@ -73,7 +70,6 @@ module.exports.postRegister = (req, res, next) => {
       })
     })
     .then((userFromDB) => {
-      console.log('Newly created user is: ', userFromDB)
       res.render('auth/login', {
         message: 'Check your email for activation'
       })

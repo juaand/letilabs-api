@@ -2075,11 +2075,9 @@ module.exports.deleteProduct = (req, res, next) => {
 
 module.exports.updateProduct = (req, res, next) => {
   const id = req.params.id
-  console.log('[updateProduct] req.session', JSON.stringify(req.session))
   const userRole = req.session.user.role
   const {name, picPath, QRpath, line, subLine, composition, health_register, active_principle, posology, presentation, indication, therapeutic_group, category, util_life, cpe, how_to_use, contraindications, adverse_reactions, prospect, show_in_products, supplierFarmatodoLink, supplierLocatelLink, supplierFarmadonLink, supplierFarmabienLink, url} = req.body
 
-  console.log(url)
   if (userRole === 'Admin') {
     Vadevecum.findByIdAndUpdate(id, req.body, {new: true})
       .then(() => {

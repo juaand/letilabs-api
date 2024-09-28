@@ -292,7 +292,6 @@ module.exports.productActivePrinciple = (req, res, next) => {
 
     const pathname = req.params.id;
     const pathname2 = replaceAllString(pathname.slice(9));
-    console.log(pathname2);
 
     if (pathname2.includes("genven")) {
         const pathname3 = pathname2.replace("genven", "");
@@ -300,7 +299,6 @@ module.exports.productActivePrinciple = (req, res, next) => {
         const getRandomProducts = Vadevecum.aggregate([{ $sample: { size: 3 } }]);
         Promise.all([getProduct, getRandomProducts])
             .then(response => {
-                console.log()
                 let finalReturn = response[0][0];
                 let finalResponsePercent = 0;
                 for (let i = 0; i < response[0].length; i++) {
