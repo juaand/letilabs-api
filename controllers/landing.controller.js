@@ -402,7 +402,7 @@ module.exports.updateFaqInfo = async (req, res, next) => {
 
 module.exports.updateFaqItem = async (req, res, next) => {
   const userRole = req.session.user.role
-  const {question, question_eng, answer, answer_eng, id} = req.body
+  const {title, title_eng, description, description_eng, id} = req.body
 
   if (userRole === 'Admin') {
     BioletisanFaqItems.findByIdAndUpdate
