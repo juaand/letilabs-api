@@ -90,7 +90,6 @@ module.exports.getNewsById = (req, res, next) => {
 
 module.exports.addOutstandingNews = (req, res, next) => {
   const id = req.params.id
-  console.log(req.session.user)
   const userRole = req.session.user.role
   const {outstanding} = req.body
 

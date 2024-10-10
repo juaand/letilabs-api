@@ -111,3 +111,5 @@ const vadevecumSchema = new Schema(
 )
 
 module.exports = model('Vadevecum', vadevecumSchema)
+
+

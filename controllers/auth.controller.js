@@ -70,7 +70,6 @@ module.exports.postRegister = (req, res, next) => {
       })
     })
     .then((userFromDB) => {
-      console.log('Newly created user is: ', userFromDB)
       res.render('auth/login', {
         message: 'Check your email for activation'
       })
